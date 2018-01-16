@@ -26,6 +26,8 @@ export default class extends wepy.app {
     this.intercept('httpRequest', {
       config (p) {
         p.headers = this.createAuthHeader()
+        p.data = p.data || {}
+        p.data['privateKey'] = this.globalData.xToken
         return p
       }
     })
@@ -55,8 +57,7 @@ export default class extends wepy.app {
     const headers = { 'AntApp': AntApp }
 
     if (xToken) {
-      headers['Cookie'] = `tg_auth=${xToken}`
-      console.log(headers)
+      headers['cookie'] = `tg_auth=${xToken}`
     }
 
     return headers
