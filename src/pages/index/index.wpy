@@ -17,21 +17,6 @@
 </style>
 <template>
   <view class="container">
-    <view class="userinfo" @tap="handleViewTap">
-      <image class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover"/>
-      <view class="userinfo-nickname">{{ userInfo.nickName }}</view>
-    </view>
-
-    <panel>
-      <view class="title" slot="title">测试数据绑定</view>
-
-      <text class="info">{{normalTitle}}</text>
-      <text class="info">{{setTimeoutTitle}}</text>
-      <text class="info">{{mixin}}</text>
-      <text class="info">{{mynum}}</text>
-      <text class="info">{{now}}</text>
-      <button @tap="plus('a')" size="mini">  +  </button>
-    </panel>
 
     <panel>
       <view class="title" slot="title">其它测试</view>
@@ -79,12 +64,12 @@
 
 <script>
   import wepy from 'wepy'
-  import List from '../components/list'
+  import List from '../../components/list'
   import Panel from '@/components/panel' // alias example
   import Counter from 'counter' // alias example
-  import Group from '../components/group'
+  import Group from '../../components/group'
   import Toast from 'wepy-com-toast'
-  import testMixin from '../mixins/test'
+  import testMixin from '../../mixins/test'
 
   export default class Index extends wepy.page {
     config = {
@@ -214,21 +199,30 @@
       }
     }
 
-    onLoad() {
-      let self = this
-      this.$parent.getUserInfo(function (userInfo) {
-        if (userInfo) {
-          self.userInfo = userInfo
-        }
-        self.normalTitle = '标题已被修改'
+    async onLoad() {
+      await this.slesp()
+      console.log('0')
+      // let self = this
+      // this.$parent.getUserInfo(function (userInfo) {
+      //   if (userInfo) {
+      //     self.userInfo = userInfo
+      //   }
+      //   self.normalTitle = '标题已被修改'
 
-        self.setTimeoutTitle = '标题三秒后会被修改'
+      //   self.setTimeoutTitle = '标题三秒后会被修改'
+      //   setTimeout(() => {
+      //     self.setTimeoutTitle = '到三秒了'
+      //     self.$apply()
+      //   }, 3000)
+
+      //   self.$apply()
+      // })
+    }
+    async slesp (params) {
+      return new Promise((resolve) => {
         setTimeout(() => {
-          self.setTimeoutTitle = '到三秒了'
-          self.$apply()
+          resolve()
         }, 3000)
-
-        self.$apply()
       })
     }
   }
