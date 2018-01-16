@@ -1,4 +1,15 @@
+<<<<<<< HEAD
 node_modules
 dist
 ant
 .wepycache
+=======
+package-lock.json
+.DS_Store
+node_modules/
+ant/
+dist/
+*.log
+*.zip
+.wepycache
+>>>>>>> master
