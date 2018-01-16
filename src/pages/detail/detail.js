@@ -5,6 +5,7 @@ import Counter from 'counter' // alias example
 import Group from '../../components/group'
 import Toast from 'wepy-com-toast'
 import testMixin from '../../mixins/test'
+import pay from '@/utils/pay.js'
 
 export default class Index extends wepy.page {
   config = {
@@ -135,6 +136,8 @@ export default class Index extends wepy.page {
   }
 
   async onLoad() {
+    var m = await pay()
+    console.log(m)
     await this.slesp()
     console.log('0')
     // let self = this
