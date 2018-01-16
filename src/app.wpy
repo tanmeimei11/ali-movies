@@ -15,14 +15,7 @@ import wepy from 'wepy'
 
 export default class extends wepy.app {
   config = {
-<<<<<<< HEAD
-    pages: ['pages/result/result', 'pages/detail/detail', 'pages/seat/seat', 'pages/self/self', 'pages/result/result'],
-=======
-<<<<<<< HEAD
-    pages: ['pages/detail/detail', 'pages/index/index'],
-=======
     pages: ['pages/index/index', 'pages/detail/detail', 'pages/seat/seat', 'pages/self/self', 'pages/result/result'],
->>>>>>> 515d31bd489eef71e42fa4bd04ab1784aedd7ca3
     tabBar: {
       'items': [{
         'pagePath': 'pages/index/index',
@@ -35,7 +28,6 @@ export default class extends wepy.app {
         'name': '我的'
       }]
     },
->>>>>>> 75b8b630c926a2a8240c5f54f5657bff3d4b2bfd
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',

@@ -9,6 +9,8 @@
   .txt {
     margin-top: 72rpx;
     font-size: 44rpx;
+    display: flex;
+    
     color: #fff;
     text-align: center;
     border-radius: 50%;
@@ -100,8 +102,10 @@
 </style>
 <template>
   <view class="result">
-    <view class="txt">支付完成</view>
-    <!-- <view class="">分享朋友圈 抽免单机会</view> -->
+    <view class="txt">
+      <view>支付完成</view>
+      <view class="tips">分享朋友圈 抽免单机会</view>
+    </view>
     <view class="content">
       <view class="card">
         <view class="yuan"></view>
