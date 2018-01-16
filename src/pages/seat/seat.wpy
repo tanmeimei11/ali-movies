@@ -73,7 +73,7 @@
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: '杭州电影戏精卡'
+      navigationBarTitleText: '选座'
     }
     components = {
       panel: Panel,
