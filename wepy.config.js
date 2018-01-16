@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('path')
 var prod = process.env.NODE_ENV === 'production'
 
 module.exports = {
@@ -22,9 +22,9 @@ module.exports = {
     less: {
       compress: true
     },
-    /*sass: {
+    /* sass: {
       outputStyle: 'compressed'
-    },*/
+    }, */
     babel: {
       sourceMap: true,
       presets: [
@@ -34,7 +34,7 @@ module.exports = {
         'transform-class-properties',
         'transform-decorators-legacy',
         'transform-object-rest-spread',
-        'transform-export-extensions',
+        'transform-export-extensions'
       ]
     }
   },
@@ -46,8 +46,7 @@ module.exports = {
 }
 
 if (prod) {
-
-  delete module.exports.compilers.babel.sourcesMap;
+  delete module.exports.compilers.babel.sourcesMap
   // 压缩sass
   // module.exports.compilers['sass'] = {outputStyle: 'compressed'}
 

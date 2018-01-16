@@ -11,35 +11,34 @@
 
 <script>
 import wepy from 'wepy'
-import 'wepy-async-function'
+// import 'wepy-async-function'
 
 export default class extends wepy.app {
   config = {
-    pages: [
-      'pages/index'
-    ],
+    pages: ['pages/index/index', 'pages/detail/detail'],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'black'
     }
-  }
+  };
 
   globalData = {
     userInfo: null
-  }
+  };
 
-  constructor () {
+  constructor() {
     super()
     this.use('requestfix')
+    this.use('promisify')
   }
 
   onLaunch() {
     this.testAsync()
   }
 
-  sleep (s) {
+  sleep(s) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve('promise resolved')
@@ -47,7 +46,7 @@ export default class extends wepy.app {
     })
   }
 
-  async testAsync () {
+  async testAsync() {
     const data = await this.sleep(3)
     console.log(data)
   }
@@ -58,7 +57,7 @@ export default class extends wepy.app {
       return this.globalData.userInfo
     }
     wepy.getUserInfo({
-      success (res) {
+      success(res) {
         that.globalData.userInfo = res.userInfo
         cb && cb(res.userInfo)
       }
