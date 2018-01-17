@@ -66,14 +66,14 @@ export default class http {
     return error
   }
 
-  static get (url, config) {
+  static get (url, config = {}) {
     config['url'] = url
     config['method'] = 'GET'
 
     return this.request(config)
   }
 
-  static post (url, config) {
+  static post (url, config = {}) {
     config['url'] = url
     config['method'] = 'POST'
 
