@@ -46,8 +46,6 @@ export default class extends wepy.app {
       const meta = { model, platform, version, system, SDKVersion }
       this.globalData.AntApp = Object.keys(meta).map(key => `${key}=${meta[key]}`).join(';')
     } finally { /* none */ }
-
-    // await auth.login()
   }
 
   /**
@@ -73,14 +71,23 @@ export default class extends wepy.app {
   config = {
     pages: ['pages/detail/detail', 'pages/self/self', 'pages/index/index', 'pages/seat/seat', 'pages/result/result'],
     tabBar: {
-      'items': [{
+      'textColor': '#4A4A4A',
+      'selectedColor': '#EF5B4C',
+      'backgroundColor': '#F5F5F9',
+      items: [{
         'pagePath': 'pages/index/index',
+        'icon': 'image/icon_index.png',
+        'activeIcon': 'image/icon_index_on.png',
         'name': '首页'
       }, {
         'pagePath': 'pages/seat/seat',
+        'icon': 'image/icon_seat.png',
+        'activeIcon': 'image/icon_seat_on.png',
         'name': '选座'
       }, {
         'pagePath': 'pages/self/self',
+        'icon': 'image/icon_self.png',
+        'activeIcon': 'image/icon_self_on.png',
         'name': '我的'
       }]
     }
