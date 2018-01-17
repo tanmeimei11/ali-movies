@@ -27,26 +27,14 @@ export default class Index extends wepy.page {
   }
 
   methods = {
-    plus () {
-      this.mynum++
-    },
-    toast () {
-      let promise = this.$invoke('toast', 'show', {
-        title: '自定义标题',
-        img: 'https://raw.githubusercontent.com/kiinlam/wetoast/master/images/star.png'
-      })
-
-      promise.then((d) => {
-        console.log('toast done')
+    apply() {
+      wepy.redirectTo({
+        url: 'index'
       })
     }
   }
 
   events = {
-    'index-emit': (...args) => {
-      let $event = args[args.length - 1]
-      console.log(`${this.$name} receive ${$event.name} from ${$event.source.$name}`)
-    }
   }
 
   async onLoad() {
@@ -59,7 +47,7 @@ export default class Index extends wepy.page {
     })
 
     if (myInfoRes.succ) {
-      this.initCardInfo(myInfoRes.data.cards)
+      this.initCardInfo(myInfoRes.data.cards, myInfoRes.data.default_card)
       this.initUserInfo(myInfoRes.data)
     }
   }
@@ -75,8 +63,13 @@ export default class Index extends wepy.page {
   }
 
   // 初始化卡片信息
-  initCardInfo(cards) {
+  initCardInfo(cards, defaultCard) {
     if (!cards || !cards.length) {
+      this.cardInfos = [{
+        title: defaultCard.name,
+        desc: defaultCard.desc,
+        isApply: true
+      }]
       return
     }
     this.cardInfos = cards.map((item) => {
