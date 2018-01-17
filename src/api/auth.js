@@ -7,6 +7,10 @@ var _readyStatus = false
 event.$on('ready', status => { _readyStatus = status })
 
 export default class auth extends base {
+  /**
+   * 授权登录准备
+   * 授权弹窗如果取消 PromiseStatus:pending
+   */
   static async ready () {
     return _readyStatus ? Promise.resolve() : await this.login()
   }
