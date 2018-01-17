@@ -45,8 +45,6 @@ export default class extends wepy.app {
       const meta = { model, platform, version, system, SDKVersion }
       this.globalData.AntApp = Object.keys(meta).map(key => `${key}=${meta[key]}`).join(';')
     } finally { /* none */ }
-
-    await auth.login()
   }
 
   /**
