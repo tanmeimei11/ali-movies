@@ -70,11 +70,7 @@ export default class extends wepy.app {
     xToken: null
   }
   config = {
-<<<<<<< HEAD
-    pages: ['pages/result/result', 'pages/detail/detail', 'pages/seat/seat', 'pages/self/self', 'pages/result/result'],
-=======
     pages: ['pages/self/self', 'pages/index/index', 'pages/detail/detail', 'pages/seat/seat', 'pages/result/result'],
->>>>>>> 13368fd41903f3e04178069a9f4b7aa13cda5bca
     tabBar: {
       "textColor": "#4A4A4A",
       "selectedColor": "#EF5B4C",
