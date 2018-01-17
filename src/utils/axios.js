@@ -1,4 +1,5 @@
 import wepy from 'wepy'
+import tips from './tips'
 
 /**
  * @define 字符串转为对象
@@ -27,11 +28,10 @@ function getQueryParams (str) {
  */
 export default class http {
   static async request (config) {
-    console.log(config)
+    tips.loading()
     this._fixRequest(config) // 支付宝小程序特有
-    wepy.showNavigationBarLoading()
     const myres = await wepy.httpRequest(config)
-    wepy.hideNavigationBarLoading()
+    tips.loaded()
     if (this.isSuccess(myres)) {
       return myres.data.data
     } else {
