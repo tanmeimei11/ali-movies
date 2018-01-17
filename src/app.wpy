@@ -72,23 +72,23 @@ export default class extends wepy.app {
   config = {
     pages: ['pages/self/self', 'pages/index/index', 'pages/detail/detail', 'pages/seat/seat', 'pages/result/result'],
     tabBar: {
-      "textColor": "#4A4A4A",
-      "selectedColor": "#EF5B4C",
-      "backgroundColor": "#F5F5F9",
+      'textColor': '#4A4A4A',
+      'selectedColor': '#EF5B4C',
+      'backgroundColor': '#F5F5F9',
       items: [{
         'pagePath': 'pages/index/index',
-        "icon": "image/icon_index.png",
-        "activeIcon": "image/icon_index_on.png",
+        'icon': 'image/icon_index.png',
+        'activeIcon': 'image/icon_index_on.png',
         'name': '首页'
       }, {
         'pagePath': 'pages/seat/seat',
-        "icon": "image/icon_seat.png",
-        "activeIcon": "image/icon_seat_on.png",
+        'icon': 'image/icon_seat.png',
+        'activeIcon': 'image/icon_seat_on.png',
         'name': '选座'
       }, {
         'pagePath': 'pages/self/self',
-        "icon": "image/icon_self.png",
-        "activeIcon": "image/icon_self_on.png",
+        'icon': 'image/icon_self.png',
+        'activeIcon': 'image/icon_self_on.png',
         'name': '我的'
       }]
     }
