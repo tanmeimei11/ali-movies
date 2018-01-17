@@ -51,11 +51,12 @@ export default class extends wepy.app {
    * 构造权限头部
    */
   createAuthHeader() {
-    const { AntApp, xToken } = this.globalData
+    const { AntApp, xToken, xAries } = this.globalData
     const headers = { 'AntApp': AntApp }
 
     if (xToken) {
-      headers['cookie'] = `tg_auth=${xToken}`
+      headers['tg_auth'] = xToken
+      headers['_aries'] = xAries
     }
 
     return headers
@@ -65,8 +66,11 @@ export default class extends wepy.app {
     /** 收集微信机型数据 */
     AntApp: '',
     /** 用户唯一标识符 */
-    xToken: null
+    xToken: null,
+    /** 设备失效期 */
+    xAries: null
   }
+
   config = {
     pages: ['pages/detail/detail', 'pages/self/self', 'pages/detail/detail', 'pages/index/index', 'pages/seat/seat', 'pages/result/result'],
     tabBar: {

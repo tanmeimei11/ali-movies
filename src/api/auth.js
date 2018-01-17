@@ -21,8 +21,9 @@ export default class auth extends base {
    */
   static async login () {
     const { authCode: code } = await wepy.getAuthCode({ scopes: 'auth_user' })
-    const token = await this.post(`${this.baseUrl}/api/login`, { data: { code } })
+    const { tg_auth: token, _aries } = await this.post(`${this.baseUrl}/api/login`, { data: { code } })
     wepy.$instance.globalData.xToken = token
+    wepy.$instance.globalData.xAries = _aries
     event.$emit('ready', true)
     console.log(`code: ${code}\ntoken: ${token}`)
   }
