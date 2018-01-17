@@ -4,7 +4,7 @@ module.exports = {
   // DOMAIN: 'http://10.10.109.14:9075',
   // DOMAIN: 'https://activity.in66.com',
   DOMAIN: 'https://devcrowdfunding.in66.com',
-  isMock: false,
+  isMock: true,
   isTrack: false,
   qnTokenUrl: 'https://www.in66.com/promo/commonapi/qiniutoken',
   // qnUploadUrl: "http://up.qiniu.com",

@@ -70,7 +70,7 @@ export default class extends wepy.app {
     xToken: null
   }
   config = {
-    pages: ['pages/index/index', 'pages/detail/detail', 'pages/seat/seat', 'pages/self/self', 'pages/result/result'],
+    pages: ['pages/self/self', 'pages/index/index', 'pages/detail/detail', 'pages/seat/seat', 'pages/result/result'],
     tabBar: {
       'items': [{
         'pagePath': 'pages/index/index',
