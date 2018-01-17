@@ -3,5 +3,4 @@ module.exports = {
   [`${DOMAIN}/mnp/order/create`]: 'orderCreate',
   [`${DOMAIN}/mnp/user/my`]: 'my',
   [`${payUrl}`]: 'signature'
-
 }

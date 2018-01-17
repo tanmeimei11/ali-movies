@@ -18,7 +18,7 @@ export default class Detail {
   }
 
   /**
-   * 创建订单
+   * 创建订单接口
    */
   static async creatOrder() {
     return await this.request({
@@ -31,7 +31,7 @@ export default class Detail {
   }
 
   /**
-   * 获取订单信息
+   * 获取订单信息接口
    * @param {*} createRes  创建订单的res
    */
   static async getOrderDetail(createRes) {
@@ -51,7 +51,7 @@ export default class Detail {
   }
 
   /**
-   * 下单接口
+   * 下单
    */
   static async pay () {
     await auth.ready()

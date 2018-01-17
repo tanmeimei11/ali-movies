@@ -16,9 +16,7 @@ export default class auth extends base {
    * 授权弹窗如果取消 PromiseStatus:pending
    */
   static async login () {
-    console.log('0')
     const { authCode: code } = await wepy.getAuthCode({ scopes: 'auth_user' })
-    console.log('1')
     const token = await this.post(`${this.baseUrl}/api/login`, { data: { code } })
     wepy.$instance.globalData.xToken = token
     event.$emit('ready', true)

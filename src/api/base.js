@@ -1,9 +1,10 @@
 import wepy from 'wepy'
 import axios from '@/utils/axios'
+import {DOMAIN} from '@/utils/config'
 
 export default class base {
   // 数据交互域名
-  static baseUrl = 'https://qacrowdfunding.in66.com'
+  static baseUrl = DOMAIN
   // 上传资源域名
   static uploadUrl = 'https://upload.qiniup.com/'
   // 资源存储域名

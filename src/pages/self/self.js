@@ -71,10 +71,14 @@ export default class Index extends wepy.page {
       name: data.nick_name,
       phone: data.phone
     }
+    this.$apply()
   }
 
   // 初始化卡片信息
   initCardInfo(cards) {
+    if (!cards || !cards.length) {
+      return
+    }
     this.cardInfos = cards.map((item) => {
       return {
         id: item.id,
