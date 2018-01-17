@@ -11,7 +11,9 @@ export default class auth extends base {
   static async login () {
     try {
       const { authCode: code } = await wepy.getAuthCode({ scopes: 'auth_user' })
+      console.log(code)
       const token = await this.post(`${this.baseUrl}/api/login`, { data: { code } })
+      console.log('2')
       wepy.$instance.globalData.xToken = token
       console.log(`code: ${code}\ntoken: ${token}`)
     } catch (e) {
