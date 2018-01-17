@@ -195,7 +195,7 @@
     }
 
     async onLoad() {
-      console.log(my.canIUse('lifestyle'))
+      // console.log(my.canIUse('lifestyle'))
     }
   }
 </script>
