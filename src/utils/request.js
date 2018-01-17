@@ -45,6 +45,7 @@ var request = async function (option) {
   // var token = wx.getStorageSync('token') || ''
   requestBefore(option, '')
   if (isMock) {
+    console.log(option.url, mockConfig[option.url])
     console.log(require('../mock/' + mockConfig[option.url]))
     return require('../mock/' + mockConfig[option.url])
   }

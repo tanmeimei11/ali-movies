@@ -1,3 +1,5 @@
+import {DOMAIN} from '@/utils/config'
 module.exports = {
-  '/mnp/order/create': 'orderCreate'
+  [`${DOMAIN}/mnp/order/create`]: 'orderCreate',
+  [`${DOMAIN}/mnp/user/my`]: 'my'
 }
