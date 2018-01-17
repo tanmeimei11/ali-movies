@@ -1,11 +1,33 @@
 import wepy from 'wepy'
 
 /**
+ * @define 字符串转为对象
+ * @parame String
+ * @return Object
+ *
+ * #for example:
+ *  getUrlParams('https://www.domain.com?a=1&b=2&c=3')
+ *  {a: "1", b: "2", c: "3"}
+ */
+function getQueryParams (str) {
+  var result = {}
+  var re = /([^&=]+)=([^&]*)/g
+  var m
+
+  while (m = re.exec(str)) {
+    result[decodeURIComponent(m[1])] = decodeURIComponent(m[2])
+  }
+
+  return result
+}
+
+/**
  * 模仿 axios api 规范
  * https://github.com/axios/axios
  */
 export default class http {
   static async request (config) {
+    this._fixRequest(config) // 支付宝小程序特有
     wepy.showNavigationBarLoading()
     const myres = await wepy.httpRequest(config)
     wepy.hideNavigationBarLoading()
@@ -58,10 +80,26 @@ export default class http {
     return this.request(config)
   }
 
-  static delete (url, config) {
-    config['url'] = url
-    config['method'] = 'DELETE'
+  /**
+   * 请求处理
+   * fix bug: IDE url 连接符
+   */
+  static _fixRequest (config) {
+    var { url, data, method } = config
 
-    return this.request(config)
+    if (method === 'GET') {
+      var index = url.indexOf('?')
+      var params = {}
+
+      if (index > 0) {
+        url = url.substr(0, index)
+        params = getQueryParams(url.substr(index + 1))
+      }
+
+      Object.assign(data, params) // merge to data
+    }
+
+    config['url'] = url
+    config['data'] = data
   }
 }

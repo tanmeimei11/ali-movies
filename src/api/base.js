@@ -14,7 +14,6 @@ export default class base {
 
   static get = axios.get.bind(axios)
   static post = axios.post.bind(axios)
-  static delete = axios.delete.bind(axios)
 
   static ready () {
     return _readyStatus
