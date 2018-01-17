@@ -26,7 +26,7 @@ export default class extends wepy.app {
       config (p) {
         p.headers = this.createAuthHeader()
         p.data = p.data || {}
-        p.data['privateKey'] = this.globalData.xToken
+        p.data['privateKey'] = this.globalData.xToken || token
         return p
       }
     })
@@ -67,7 +67,7 @@ export default class extends wepy.app {
     xToken: null
   }
   config = {
-    pages: ['pages/self/self', 'pages/index/index', 'pages/detail/detail', 'pages/seat/seat', 'pages/result/result'],
+    pages: ['pages/detail/detail', 'pages/self/self', 'pages/index/index', 'pages/seat/seat', 'pages/result/result'],
     tabBar: {
       'textColor': '#4A4A4A',
       'selectedColor': '#EF5B4C',

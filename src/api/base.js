@@ -1,12 +1,9 @@
 import wepy from 'wepy'
 import axios from '@/utils/axios'
-import event from '@/utils/event'
-
-const _readyStatus = new Promise(resolve => event.$on('ready', resolve))
 
 export default class base {
   // 数据交互域名
-  static baseUrl = 'http://qacrowdfunding.in66.com'
+  static baseUrl = 'https://qacrowdfunding.in66.com'
   // 上传资源域名
   static uploadUrl = 'https://upload.qiniup.com/'
   // 资源存储域名
@@ -14,10 +11,6 @@ export default class base {
 
   static get = axios.get.bind(axios)
   static post = axios.post.bind(axios)
-
-  static ready () {
-    return _readyStatus
-  }
 
   /**
    * upload

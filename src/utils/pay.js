@@ -1,20 +1,18 @@
-import {request} from './request'
+import http from './axios'
 import {payment_channel, business_party, payUrl} from './config'
 import wepy from 'wepy'
 var pay = async () => {
-  var createRes = await request({
+  var createRes = await http.request({
     url: '/mnp/order/create',
     data: {
       product_id: 159,
-      pay_channel: payment_channel,
-      is_debug: true,
-      user_id: 1024160
+      pay_channel: payment_channel
     }
   })
 
   // 进行微信支付
   if (createRes.succ) {
-    request({
+    http.request({
       url: payUrl,
       data: {
         payment_channel: payment_channel,

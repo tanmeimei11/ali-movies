@@ -10,7 +10,8 @@ var requestBefore = (option, token) => {
   // 添加必要的辅助字断
   // var deviceInfo = getApp().getDeviceInfo()
   var cookieObj = {
-    'tg_auth': token
+    // 'tg_auth': token
+    'tg_auth': '12314'
     // '_v': config._v,
     // 'wxv': deviceInfo.version,
     // '_s': `${deviceInfo.platform.toLowerCase()}_wxminiprogram`,
@@ -27,6 +28,8 @@ var requestBefore = (option, token) => {
   option.header.Cookie = Object.keys(cookieObj).map((key) => {
     return `${key}=${cookieObj[key]}`
   }).join(';')
+
+  console.log(option)
   // 支付网关必须加上必要字段_token
   if (/payment\/signature/.test(option.url)) {
     option.data._token = token
