@@ -16,7 +16,7 @@
     </view>
     <view class="c-bg"></view>
     <view class="c-rules">
-       <view class="rule" wx:for="{{rulesText}}" wx:for-index="idx" wx:for-item="item">
+       <view class="rule" wx:for="{{rules}}" wx:for-index="idx" wx:for-item="item">
         {{item}}
       </view>
     </view>

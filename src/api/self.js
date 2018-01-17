@@ -1,66 +1,67 @@
-import wepy from 'wepy'
-import auth from './auth'
-import { isMock, DOMAIN, paymentChannel, businessParty, payUrl, token } from '@/utils/config'
-import mockConfig from '@/mock/mockConfig'
-import axios from '@/utils/axios'
-
-export default class Detail {
-  // 数据交互域名
-  static async request (options) {
-    // 域名添加
-    !/^http/.test(options.url) && (options.url = DOMAIN + options.url)
-    // mock
-    if (isMock) {
-      return require('../mock/' + mockConfig[options.url])
-    }
-    // 方法
-    return await axios.request(options)
+import Pagebase from './page'
+import {formatTime} from '@/utils/common'
+export default class Self extends Pagebase {
+  /**
+   * 获取我的信息接口
+   */
+  static async getMyInfo() {
+    return await this.request({
+      url: '/mnp/user/my'
+    })
   }
 
   /**
-   * 创建订单接口
+   *时间转换
+   * @param {*} sTime
+   * @param {*} eTime
    */
-  static async creatOrder() {
-    return await this.request({
-      url: '/mnp/order/create',
-      data: {
-        product_id: 159,
-        pay_channel: paymentChannel
+  static getCardTime(sTime, eTime) {
+    return `${formatTime(sTime)}-${formatTime(eTime)}`
+  }
+
+  /**
+   * 初始化卡片信息
+   * @param {*} cards  已经获得的卡片
+   * @param {*} defaultCard  默认卡
+   */
+  static initCardInfo(cards, defaultCard) {
+    if (!cards || !cards.length) {
+      return [{
+        title: defaultCard.name,
+        desc: defaultCard.desc,
+        isApply: true
+      }]
+    }
+    return cards.map((item) => {
+      return {
+        id: item.id,
+        title: item.name,
+        desc: item.desc,
+        time: this.getCardTime(item.start_date, item.end_date),
+        num: `NO.${item.card_no}`
       }
     })
   }
 
   /**
-   * 获取订单信息接口
-   * @param {*} createRes  创建订单的res
+   * 初始化用户信息
+   * @param {*} data
    */
-  static async getOrderDetail(createRes) {
-    var _data = {
-      _token: wepy.$instance.globalData.xToken || token,
-      payment_channel: paymentChannel,
-      business_party: businessParty,
-      order_detail: createRes.order_detail,
-      extend_params: JSON.stringify({
-        open_id: createRes.open_id
-      })
+  static initUserInfo(data) {
+    return {
+      avatar: data.avatar,
+      name: data.nick_name,
+      phone: data.phone
     }
-    return await this.request({
-      url: payUrl,
-      data: _data
-    })
   }
-
   /**
-   * 下单
+   * 初始化规则
+   * @param {*} data
    */
-  static async pay () {
-    await auth.ready()
-    var createRes = await this.creatOrder()
-    var getOrderRes = await this.getOrderDetail(createRes)
-    var tradePayRes = await wepy.tradePay({
-      orderStr: getOrderRes.sign  // 即上述服务端已经加签的orderSr参数
-    })
-
-    wepy.alert(tradePayRes.resultCode)
+  static initRules(rules) {
+    if (!rules || !rules.length) {
+      return []
+    }
+    return rules
   }
 }

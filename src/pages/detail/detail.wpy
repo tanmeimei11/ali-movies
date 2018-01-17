@@ -1,6 +1,9 @@
 
 <template>
   <view class="container">
+     <view class="pay" @tap="pay">
+       支付
+  </view>
   </view>
 </template>
 <style lang="less" src="./detail.less">
