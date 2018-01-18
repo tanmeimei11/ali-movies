@@ -34,6 +34,8 @@ export default class extends wepy.app {
   }
 
   async onLaunch(opts) {
+    // 渠道埋点
+    this.globalData.from = opts.qrcode_from || ''
     /**
      * try
      *   收集微信机型数据
@@ -51,12 +53,16 @@ export default class extends wepy.app {
    * 构造权限头部
    */
   createAuthHeader() {
-    const { AntApp, xToken, xAries } = this.globalData
+    const { AntApp, xToken, xAries, from } = this.globalData
     const headers = { 'AntApp': AntApp }
 
     if (xToken) {
       headers['tg_auth'] = xToken
       headers['_aries'] = xAries
+    }
+
+    if (from) {
+      headers['from'] = from
     }
 
     return headers
@@ -72,7 +78,7 @@ export default class extends wepy.app {
   }
 
   config = {
-    pages: ['pages/index/index', 'pages/self/self', 'pages/index/index', 'pages/seat/seat', 'pages/result/result'],
+    pages: ['pages/self/self', 'pages/detail/detail', 'pages/index/index', 'pages/seat/seat', 'pages/result/result'],
     tabBar: {
       'textColor': '#4A4A4A',
       'selectedColor': '#EF5B4C',

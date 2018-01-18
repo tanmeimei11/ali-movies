@@ -6,11 +6,14 @@ export default class Index extends wepy.page {
   config = {
     navigationBarTitleText: '我的'
   }
-  components = {
-  }
+  components = {}
 
   data = {
-    rules: [], // 规则文案
+    rules: ['使用本卡可以在指定影院，通过本小程序免费选座，不限次数。',
+      '使用本卡仅可以在每周一至周四使用，法定节假日除外（按影厅排片选座）。',
+      '本卡有效期3个月，即从2018年3月1日起至2018年5月31日止',
+      '使用本卡选座请点击小程序「选座」功能。',
+      '本卡最终解释权归九言科技所有'], // 规则文案
     userInfo: { // 用户信息
       avatar: '',
       name: '',
@@ -18,17 +21,18 @@ export default class Index extends wepy.page {
     },
     cardInfos: [{ // 卡片信息
       id: '',
-      title: '',
-      desc: '',
+      title: '戏精卡',
+      desc: '可任意次数兑换观影券',
       time: '',
-      num: 'NO.'
+      isApply: true,
+      num: ''
     }]
   }
 
   methods = {
     apply() {
-      wepy.redirectTo({
-        url: '../index/index'
+      wepy.navigateTo({
+        url: '/pages/detail/detail'
       })
     }
   }

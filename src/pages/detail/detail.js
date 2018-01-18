@@ -1,6 +1,7 @@
 import wepy from 'wepy'
 import auth from '@/api/auth'
 import Detail from '@/api/detail'
+// import loadingMixin from '@/mixins/loadingMixin'
 
 export default class Index extends wepy.page {
   config = {
@@ -20,20 +21,40 @@ export default class Index extends wepy.page {
   }
 
   async onLoad() {
-    this.pay()
   }
 
   /**
    *  支付
    */
   async pay() {
-    await auth.ready()
-    var createRes = await Detail.creatOrder()
-    var getOrderRes = await Detail.getOrderDetail(createRes)
-    var tradePayRes = await wepy.tradePay({
-      orderStr: getOrderRes.sign  // 即上述服务端已经加签的orderSr参数
-    })
+    try {
+      await auth.ready()
+      var createRes = await Detail.creatOrder()
+      var getOrderRes = await Detail.getOrderDetail(createRes)
+      var tradePayRes = await wepy.tradePay({
+        orderStr: getOrderRes.sign
+      })
 
-    wepy.alert(tradePayRes.resultCode)
+      // 支付成功
+      if (tradePayRes.resultCode === '9000') {
+        this.paySucc()
+      } else {
+        this.payFail()
+      }
+    } catch (e) {
+
+    }
+  }
+
+  /**
+   *  支付成功
+   */
+  paySucc() {
+    wepy.redirectTo({
+      url: '../result/result'
+    })
+  }
+  payFail() {
+
   }
 }
