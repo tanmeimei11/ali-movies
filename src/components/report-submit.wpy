@@ -1,0 +1,23 @@
+<template>
+  <form @Submit="formSubmit" report-submit>
+    <slot />
+  </form>
+</template>
+
+<script>
+import wepy from 'wepy'
+import axios from '@/utils/axios'
+import config from '@/utils/config'
+
+export default class ReportSubmit extends wepy.component {
+  methods = {
+    formSubmit ({ formId }) {
+      axios.request({
+        url: config.DOMAIN + '/tmpl/formid/submit',
+        method: 'POST',
+        formId
+      })
+    }
+  }
+}
+</script>
