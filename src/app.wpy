@@ -55,7 +55,7 @@ export default class extends wepy.app {
   createAuthHeader() {
     const { AntApp, xToken, xAries, from } = this.globalData
     const headers = { 'AntApp': AntApp }
-
+    console.log(xToken)
     if (xToken) {
       headers['tg_auth'] = xToken
       headers['_aries'] = xAries
@@ -78,7 +78,7 @@ export default class extends wepy.app {
   }
 
   config = {
-    pages: ['pages/detail/detail', 'pages/self/self', 'pages/index/index', 'pages/seat/seat', 'pages/result/result'],
+    pages: ['pages/self/self', 'pages/detail/detail', 'pages/index/index', 'pages/seat/seat', 'pages/result/result'],
     tabBar: {
       'textColor': '#4A4A4A',
       'selectedColor': '#EF5B4C',

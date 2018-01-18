@@ -1,5 +1,5 @@
 <template>
-  <!-- <report> -->
+  <report>
     <view class="container">
      <view class="pay" @tap="pay">支付</view>
     <!-- 电影部分 -->
@@ -17,7 +17,7 @@
         </view>
     </view>
   </view>
-  <!-- </report> -->
+  </report>
 </template>
 <style lang="less" src="./detail.less">
 </style>

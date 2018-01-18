@@ -19,14 +19,18 @@
 import wepy from 'wepy'
 import axios from '@/utils/axios'
 import config from '@/utils/config'
+import tips from '@/utils/tips'
 
 export default class ReportSubmit extends wepy.component {
   methods = {
     formSubmit ({ formId }) {
+      tips.setLoading()
       axios.request({
         url: config.DOMAIN + '/tmpl/formid/submit',
         method: 'POST',
-        formId
+        data: {
+          formId: formId
+        }
       })
     }
   }
