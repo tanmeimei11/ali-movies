@@ -33,8 +33,17 @@ export default class Detail extends Pagebase {
    * @static
    * @memberof Detail
    */
-  static async initMovies(data) {
+  static initMovies(data) {
+    if (!data.length) {
+      return []
+    }
 
+    return data.map((item) => {
+      return {
+        name: item.name,
+        url: item.movie_img_url
+      }
+    })
   }
   /**
    * 创建订单接口

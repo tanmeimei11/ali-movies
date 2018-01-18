@@ -1,5 +1,5 @@
 <template>
-  <report>
+  <!-- <report> -->
     <view class="container">
      <view class="pay" @tap="pay">支付</view>
     <!-- 电影部分 -->
@@ -8,15 +8,16 @@
         <view class="s-desc">21341234</view>
         <view class="s-info-wrap">
           <view class="movies-wrap"  >
-            <view class="movie" wx:for="{{[1,2,3,4,5,6,7,8]}}" wx:for-index="idx" wx:for-item="item">
-              <view class="movie-paper"></view>
-              <view class="movie-name">123</view>
+            <!-- <view class="movie" wx:for="{{[1,2,4,5,5,5]}}" wx:for-index="idx" wx:for-item="item"> -->
+            <view class="movie" wx:for="{{movies}}" wx:for-index="idx" wx:for-item="item">
+              <image class="movie-paper" src="{{item.url}}"></image>
+              <view class="movie-name">{{item.name}}</view>
             </view>
           </view>
         </view>
     </view>
   </view>
-  </report>
+  <!-- </report> -->
 </template>
 <style lang="less" src="./detail.less">
 </style>

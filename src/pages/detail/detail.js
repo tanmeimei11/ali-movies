@@ -19,7 +19,11 @@ export default class Index extends wepy.page {
         name: ''
       }
     ],
-    movies: []
+    movies: [
+      { name: '',
+        URL: ''
+      }
+    ]
   }
   computed = {}
   methods = {
@@ -38,6 +42,7 @@ export default class Index extends wepy.page {
     var res = await Detail.getDetailData()
     this.cinemas = Detail.initCinemas(res.cinemas)
     this.movies = Detail.initMovies(res.movies)
+    this.$apply()
   }
 
   /**
