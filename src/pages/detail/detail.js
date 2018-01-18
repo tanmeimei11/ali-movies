@@ -6,19 +6,13 @@ export default class Index extends wepy.page {
   config = {
     navigationBarTitleText: '活动页面'
   }
-  components = {
-  }
-
+  components = {}
   mixins = []
-
-  data = {
-  }
-
+  data = {}
   computed = {}
-
   methods = {
     async pay () {
-      await Detail.pay()
+      await this.pay()
     }
   }
 
@@ -29,6 +23,9 @@ export default class Index extends wepy.page {
     this.pay()
   }
 
+  /**
+   *  支付
+   */
   async pay() {
     await auth.ready()
     var createRes = await Detail.creatOrder()
