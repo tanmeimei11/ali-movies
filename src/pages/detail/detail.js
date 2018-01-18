@@ -1,4 +1,5 @@
 import wepy from 'wepy'
+import auth from '@/api/auth'
 import Detail from '@/api/detail'
 
 export default class Index extends wepy.page {
@@ -16,13 +17,26 @@ export default class Index extends wepy.page {
   computed = {}
 
   methods = {
+    async pay () {
+      await Detail.pay()
+    }
   }
 
   events = {
   }
 
   async onLoad() {
-    console.log(Detail)
-    await Detail.pay()
+    this.pay()
+  }
+
+  async pay() {
+    await auth.ready()
+    var createRes = await Detail.creatOrder()
+    var getOrderRes = await Detail.getOrderDetail(createRes)
+    var tradePayRes = await wepy.tradePay({
+      orderStr: getOrderRes.sign  // 即上述服务端已经加签的orderSr参数
+    })
+
+    wepy.alert(tradePayRes.resultCode)
   }
 }

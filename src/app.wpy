@@ -72,7 +72,7 @@ export default class extends wepy.app {
   }
 
   config = {
-    pages: ['pages/detail/detail', 'pages/self/self', 'pages/detail/detail', 'pages/index/index', 'pages/seat/seat', 'pages/result/result'],
+    pages: ['pages/self/self', 'pages/detail/detail', 'pages/detail/detail', 'pages/index/index', 'pages/seat/seat', 'pages/result/result'],
     tabBar: {
       'textColor': '#4A4A4A',
       'selectedColor': '#EF5B4C',
