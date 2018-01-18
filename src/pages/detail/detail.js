@@ -1,19 +1,24 @@
 import wepy from 'wepy'
 import auth from '@/api/auth'
 import Detail from '@/api/detail'
+import report from '@/components/report-submit'
 // import loadingMixin from '@/mixins/loadingMixin'
 
 export default class Index extends wepy.page {
   config = {
     navigationBarTitleText: '活动页面'
   }
-  components = {}
+  components = { report }
   mixins = []
   data = {}
   computed = {}
   methods = {
     async pay () {
       await this.pay()
+    },
+
+    formSubmit (e) {
+      console.log(e)
     }
   }
 

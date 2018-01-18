@@ -1,10 +1,12 @@
-
 <template>
-  <view class="container">
-     <view class="pay" @tap="pay">
-       支付
-  </view>
-  </view>
+  <report>
+    <view class="container">
+      <view class="pay" @tap="pay">
+        支付
+      </view>
+
+    </view>
+  </report>
 </template>
 <style lang="less" src="./detail.less">
 </style>
