@@ -1,15 +1,26 @@
 import wepy from 'wepy'
 import auth from '@/api/auth'
 import Detail from '@/api/detail'
+import report from '@/components/report-submit'
 // import loadingMixin from '@/mixins/loadingMixin'
 
 export default class Index extends wepy.page {
   config = {
     navigationBarTitleText: '活动页面'
   }
-  components = {}
+  components = {report}
   mixins = []
-  data = {}
+  data = {
+    cinemas: [
+      {
+        address: '',
+        addressImg: '',
+        gps: '',
+        name: ''
+      }
+    ],
+    movies: []
+  }
   computed = {}
   methods = {
     async pay () {
@@ -17,10 +28,12 @@ export default class Index extends wepy.page {
     }
   }
 
-  events = {
-  }
+  events = {}
 
   async onLoad() {
+    var res = await Detail.getDetailData()
+    this.cinemas = Detail.initCinemas(res.cinemas)
+    this.movies = Detail.initMovies(res.movies)
   }
 
   /**
