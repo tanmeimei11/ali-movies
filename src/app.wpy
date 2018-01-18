@@ -55,7 +55,7 @@ export default class extends wepy.app {
   createAuthHeader() {
     const { AntApp, xToken, xAries, from } = this.globalData
     const headers = { 'AntApp': AntApp }
-
+    console.log(xToken)
     if (xToken) {
       headers['tg_auth'] = xToken
       headers['_aries'] = xAries

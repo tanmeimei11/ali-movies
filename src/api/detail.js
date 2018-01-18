@@ -1,10 +1,50 @@
 import wepy from 'wepy'
 import Pagebase from './page'
 import { paymentChannel, businessParty, payUrl, token } from '@/utils/config'
-// import mockConfig from '@/mock/mockConfig'
-// import axios from '@/utils/axios'
 
 export default class Detail extends Pagebase {
+  /**
+   *  获取详情页数据接口
+   */
+  static async getDetailData() {
+    return await this.request({
+      url: '/info/cinemas'
+    })
+  }
+  /**
+   * 初始化影院
+   */
+  static initCinemas(data) {
+    if (!data.length) {
+      return []
+    }
+    return data.map((item) => {
+      return {
+        address: item.address,
+        addressImg: item.address_img,
+        gps: item.gps,
+        name: item.name
+      }
+    })
+  }
+  /**
+   *
+   * 初始化电影
+   * @static
+   * @memberof Detail
+   */
+  static initMovies(data) {
+    if (!data.length) {
+      return []
+    }
+
+    return data.map((item) => {
+      return {
+        name: item.name,
+        url: item.movie_img_url
+      }
+    })
+  }
   /**
    * 创建订单接口
    */
