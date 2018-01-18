@@ -8,7 +8,7 @@ export default class Index extends wepy.page {
   config = {
     navigationBarTitleText: '活动页面'
   }
-  components = {report}
+  components = { report }
   mixins = []
   data = {
     cinemas: [
@@ -25,6 +25,10 @@ export default class Index extends wepy.page {
   methods = {
     async pay () {
       await this.pay()
+    },
+
+    formSubmit (e) {
+      console.log(e)
     }
   }
 
