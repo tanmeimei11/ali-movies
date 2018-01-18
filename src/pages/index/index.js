@@ -19,6 +19,11 @@ export default class index extends wepy.page {
     }
 
     methods = {
+        toDetail() {
+            wepy.navigateTo({
+              url: '/pages/detail/detail'
+            })
+        }
     }
 
     events = {

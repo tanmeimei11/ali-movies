@@ -1,6 +1,6 @@
 <template>
   <view class="container">
-    <view class="btn"></view>
+    <view class="btn" @tap="toDetail">开通电影戏精卡</view>
   </view>
 </template>
 <style lang="less" src="./index.less">

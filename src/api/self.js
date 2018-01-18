@@ -16,7 +16,7 @@ export default class Self extends Pagebase {
    * @param {*} eTime
    */
   static getCardTime(sTime, eTime) {
-    return `${formatTime(sTime)}-${formatTime(eTime)}`
+    return `${formatTime(sTime)}- ${formatTime(eTime)}`
   }
 
   /**
@@ -29,6 +29,7 @@ export default class Self extends Pagebase {
       return [{
         title: defaultCard.name,
         desc: defaultCard.desc,
+        num: `NO.${defaultCard.card_no}`,
         isApply: true
       }]
     }

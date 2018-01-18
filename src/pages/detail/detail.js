@@ -50,8 +50,14 @@ export default class Index extends wepy.page {
    *  支付成功
    */
   paySucc() {
-    wepy.redirectTo({
-      url: '../result/result'
+    var pageRouter = getCurrentPages()
+    pageRouter.map(item => {
+      if(item.route === 'pages/self/self') {
+        item.init()
+        wepy.redirectTo({
+          url: '../result/result'
+        })
+      }
     })
   }
   payFail() {
