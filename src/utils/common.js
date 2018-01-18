@@ -8,15 +8,9 @@ const formatTime = (_date, isShowWeek) => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
   const day = date.getDate()
-  // const hour = date.getHours()
-  // const minute = date.getMinutes()
-  // const second = date.getSeconds()
-  // const week = weekdays[date.getDay()]
-  // if (isShowWeek) {
-  //   return `${formatNumber(month)}月${formatNumber(day)}日 ${week} ${[hour, minute].map(formatNumber).join(':')}`
-  // }
   return `${year}.${formatNumber(month)}.${formatNumber(day)} `
 }
+
 /**
  * 个位参数加0
  * @param {*} n
