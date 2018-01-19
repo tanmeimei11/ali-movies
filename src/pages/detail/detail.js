@@ -44,6 +44,10 @@ export default class Index extends wepy.page {
   events = {}
 
   async onLoad() {
+    this.init()
+  }
+
+  async init() {
     var res = await Detail.getDetailData()
     this.cinemas = Detail.initCinemas(res.cinemas)
     this.movies = Detail.initMovies(res.movies)
