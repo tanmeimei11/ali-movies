@@ -6,7 +6,7 @@
      <view class="c-card-num-wrap">
        <view class="s-title">{{cardNumInfo.title}}</view>
        <view class="s-desc">{{cardNumInfo.desc}}</view>
-       <view class="s-num">{{cardNumInf.num}}</view>
+       <view class="s-num">{{cardNumInfo.num}}</view>
      </view>
     <!-- 电影部分 -->
     <view class="c-part">

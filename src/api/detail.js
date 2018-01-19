@@ -11,6 +11,9 @@ export default class Detail extends Pagebase {
       url: '/info/cinemas'
     })
   }
+  static initCardNum(data) {
+    return `${data.current_person_count}/${data.total_person_count}`
+  }
   /**
    * 初始化影院
    */
