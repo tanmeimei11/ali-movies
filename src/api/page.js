@@ -9,7 +9,7 @@ export default class Pagebase {
     !/^http/.test(options.url) && (options.url = DOMAIN + options.url)
     // mock
     if (isMock) {
-      return require('../mock/' + mockConfig[options.url])
+      return require('../mock/' + mockConfig[options.url]).data
     }
     // 方法
     return await axios.request(options)

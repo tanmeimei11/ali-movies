@@ -11,6 +11,11 @@ export default class Index extends wepy.page {
   components = { report }
   mixins = []
   data = {
+    cardNumInfo: {
+      title: '专享优惠 名额有限',
+      desc: '为保障用户观影体验 限量发售五万张',
+      num: '122/12321'
+    },
     cinemas: [
       {
         address: '',
