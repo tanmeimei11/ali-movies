@@ -140,6 +140,18 @@
     text-align: center;
     background-image: linear-gradient(-44deg, #FBD262 0%, #FAEABD 100%);
     border-radius: 65rpx;
+    position: relative;
+    .lifestyle{
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: #000;
+      transform-origin: 0 0;
+      width: 100%!important;
+      height: 100%!important;
+      /* opacity: 0; */
+    }
   }
 </style>
 <template>
@@ -162,7 +174,7 @@
         <view class="icon"></view>
         <view>in同城趴</view>
         <view class="btn">关注
-          <lifestyle publicId="2018011801960713">
+          <lifestyle publicId="2018011801960713" @tap="alert" class="lifestyle" />
         </view>
       </view>
     </view>
@@ -189,6 +201,9 @@
     }
 
     methods = {
+      alert() {
+        console.log(1111)
+      }
     }
 
     events = {
