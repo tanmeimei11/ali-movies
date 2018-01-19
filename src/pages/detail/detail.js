@@ -44,6 +44,10 @@ export default class Index extends wepy.page {
   events = {}
 
   async onLoad() {
+    this.init()
+  }
+
+  async init() {
     var res = await Detail.getDetailData()
     this.cinemas = Detail.initCinemas(res.cinemas)
     this.movies = Detail.initMovies(res.movies)
@@ -80,7 +84,7 @@ export default class Index extends wepy.page {
   paySucc() {
     var pageRouter = getCurrentPages()
     pageRouter.map(item => {
-      if (item.route === 'pages/self/self') {
+      if (item.route === 'pages/self/self' || item.route === 'pages/detail/detail') {
         item.init()
       }
     })
