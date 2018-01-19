@@ -74,7 +74,7 @@ export default class Index extends wepy.page {
   paySucc() {
     var pageRouter = getCurrentPages()
     pageRouter.map(item => {
-      if(item.route === 'pages/self/self') {
+      if (item.route === 'pages/self/self') {
         item.init()
       }
     })
