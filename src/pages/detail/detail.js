@@ -76,10 +76,10 @@ export default class Index extends wepy.page {
     pageRouter.map(item => {
       if (item.route === 'pages/self/self') {
         item.init()
-        wepy.redirectTo({
-          url: '../result/result'
-        })
       }
+    })
+    wepy.redirectTo({
+      url: '../result/result'
     })
   }
   payFail() {
