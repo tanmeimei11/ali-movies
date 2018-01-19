@@ -51,6 +51,7 @@ export default class Index extends wepy.page {
     var res = await Detail.getDetailData()
     this.cinemas = Detail.initCinemas(res.cinemas)
     this.movies = Detail.initMovies(res.movies)
+    this.cardNumInfo.num = Detail.initCardNum(res)
     this.$apply()
   }
 
