@@ -3,10 +3,10 @@
     <view class="container">
      <view class="pay-btn" @tap="pay">支付</view>
      <!-- 卡数量 -->
-     <view class="c-card-num">
-       <view class="s-title">132432432</view>
-       <view class="s-desc">1324324</view>
-       <view class="s-num">122/300</view>
+     <view class="c-card-num-wrap">
+       <view class="s-title">{{cardNumInfo.title}}</view>
+       <view class="s-desc">{{cardNumInfo.desc}}</view>
+       <view class="s-num">{{cardNumInf.num}}</view>
      </view>
     <!-- 电影部分 -->
     <view class="c-part">

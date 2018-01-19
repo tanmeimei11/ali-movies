@@ -39,14 +39,14 @@ export default class Index extends wepy.page {
 
   async init() {
     var myInfoRes = await Self.getMyInfo()
+    console.log(myInfoRes)
     this.cardInfos = Self.initCardInfo(myInfoRes.cards, myInfoRes.default_card)
     this.userInfo = Self.initUserInfo(myInfoRes)
     this.rules = Self.initRules(myInfoRes.texts)
     this.$apply()
   }
-  
-  events = {
-  }
+
+  events = {}
 
   async onLoad() {
     await auth.ready()
