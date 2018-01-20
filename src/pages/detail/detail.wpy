@@ -1,28 +1,62 @@
 <template>
   <!-- <report> -->
     <view class="container">
-     <view class="pay-btn" @tap="pay">支付</view>
-     <!-- 卡数量 -->
+     <!-- <view class="pay-btn" @tap="pay">支付</view> -->
+     <view class="c-bg">
+       <!-- 卡数量 -->
      <view class="c-card-num-wrap">
-       <view class="s-title">{{cardNumInfo.title}}</view>
-       <view class="s-desc">{{cardNumInfo.desc}}</view>
-       <view class="s-num">{{cardNumInfo.num}}</view>
+       <view class="s-outer"></view>
+       <view class="s-inner">
+          <view class="s-inner-num">{{cardNumInfo.num}}</view>
+       </view>
+       <!-- <view class="s-title">{{cardNumInfo.title}}</view> -->
+       <!-- <view class="s-desc">{{cardNumInfo.desc}}</view> -->
+       <!-- <view class="s-num">{{cardNumInfo.num}}</view> -->
+     </view>
+      <view class="pay-btn" @tap="pay">支付</view>
      </view>
     <!-- 电影部分 -->
     <view class="c-part">
-      <view class="s-title">1234324</view>
-        <view class="s-desc">21341234</view>
+
+      <view class="c-one-part">
+        <view class="s-mid-title top">全杭州15个免费影城任你选</view>
+        <view class="s-img-1"></view>
         <view class="s-info-wrap">
-          <view class="movies-wrap"  >
-            <!-- <view class="movie" wx:for="{{[1,2,4,5,5,5]}}" wx:for-index="idx" wx:for-item="item"> -->
-            <view class="movie" wx:for="{{movies}}" wx:for-index="idx" wx:for-item="item">
-              <image class="movie-paper" src="{{item.url}}"></image>
-              <view class="movie-name">{{item.name}}</view>
-            </view>
+          <view class="cinemas-wrap"  wx:for="{{cinemas}}" wx:for-index="idx" wx:for-item="item">
+            <view class="name">{{item.name}}</view>
+            <view class="addr">{{item.address}}</view>
           </view>
         </view>
+
+        <view class="c-one-part">
+          <view class="s-mid-title">超高性价比</view>
+          <view class="s-title">只需99元看三个月电影</view>
+          <view class="s-desc">3张电影的票价=3个月所有院线影片随意看</view>
+          <view class="s-img-1"></view>
+          <view class="s-title">2018热门电影</view>
+          <view class="s-info-wrap">
+            <view class="movies-wrap"  >
+              <view class="movie" wx:for="{{movies}}" wx:for-index="idx" wx:for-item="item">
+                <image class="movie-paper" src="{{item.url}}"></image>
+                <view class="movie-name">{{item.name}}</view>
+              </view>
+            </view>
+          </view>
+          <view class="s-tips">(页面仅展示部分电影，更多电影无限畅看)</view>
+        </view>
+      </view>
+
+      <view class="c-one-part">
+        <view class="s-mid-title">超高性价比</view>
+        <view class="s-img-1"></view>
+      </view>
+      
     </view>
 
+     <view class="c-last">
+        <view class="s-mid-title">详情介绍</view>
+        <view class="s-img-1"></view>
+      </view>
   </view>
   <!-- </report> -->
 </template>

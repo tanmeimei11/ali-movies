@@ -1,71 +1,173 @@
-.pay-fixed{
-  position: fixed;
-  left: 0;
-  bottom:0;
-  z-index: 2;
-  width: 100%;
-}
-.pay-btn{
-  width: 503rpx;
-  height: 68rpx;
-  text-align: center;
-  line-height: 68rpx;
-  font-size: 27rpx;
-  color: #5d3b00;
-  background-color: #d5af6e;
-  border-radius: 600rpx;
-}
+// .pay-fixed{
+//   position: fixed;
+//   left: 0;
+//   bottom:0;
+//   z-index: 2;
+//   width: 100%;
+// }
+// .pay-btn{
+//   width: 503rpx;
+//   height: 68rpx;
+//   text-align: center;
+//   line-height: 68rpx;
+//   font-size: 27rpx;
+//   color: #5d3b00;
+//   background-color: #d5af6e;
+//   border-radius: 600rpx;
+// }
 .container{
-  background-color: #19033d;
   text-align: left;
-  background-image: url('https://inimg01.jiuyan.info/in/2018/01/19/3264D039-0C36-280F-51AD-CDCEFF876BD8.jpg'),url('https://inimg01.jiuyan.info/in/2018/01/19/ADD2681D-10C8-2860-7575-0F912F4A621B.jpg'),url('https://inimg01.jiuyan.info/in/2018/01/19/95384084-7E72-217C-A1E2-46F1D143C07B.jpg');
+  background-color: #270547;
+}
+.c-bg{
+  width: 100%;
+  height: 1069rpx;
+  box-sizing: border-box;
+  background-color:#1a0448;
+  background-image: url('https://inimg01.jiuyan.info/in/2018/01/20/430321C9-8557-D44A-441F-A5AAA8C486D2.jpg'),url('https://inimg01.jiuyan.info/in/2018/01/20/00A5D326-2DEE-2764-9DC8-12FDDB786B94.jpg');
   background-repeat: no-repeat;
-  background-size: 100%  350rpx;
-  background-position: 0 0, 0 350rpx, 0 700rpx;
-  padding-top:1050rpx;
+  background-size: 100%  413rpx;
+  background-position: 0 0, 0 413rpx;
+  position: relative;
+  padding-top: 900rpx;
+  .pay-btn{
+    margin:35rpx auto 0 auto;
+    width: 505rpx;
+    height: 90rpx;
+    text-align: center;
+    line-height: 90rpx;
+    font-size: 32rpx;
+    color: #fff;
+    background-color: #d5af6e;
+    border-radius: 600rpx;
+  }
 }
 .c-card-num-wrap{
-  position: absolute;
-  top:875rpx;
-  left: 120rpx;
-  width:510rpx;
-  height: 150rpx;
+  width:430rpx;
+  height: 15rpx;
+  margin:0 auto;
   color:#fff;
-  text-align: center;
-  .s-title{
-    font-size: 44rpx;
+  position: relative;
+  .s-outer{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #2b1261;
+    border-radius: 500rpx
   }
-  .s-desc{
-    font-size: 23rpx;
-    line-height: 48rpx;
-    // margin-bottom: 10rpx;
+  .s-inner{
+    position: absolute;
+    top:0;
+    left: 0;
+    height: 100%;
+    width: 300rpx;
+    background-color: #fff;
+    border-radius: 500rpx
   }
-  .s-num{
-    font-size: 30rpx;
-    color:#ece93a;
+  .s-inner-num{
+    position: absolute;
+    top:0;
+    right: 0;
+    transform: translate(50%,-150%);
+    height: 40rpx;
+    color: #fff;
+    background-color: #d5af6e;
+    font-size: 20rpx;
+    line-height: 40rpx;
+    border-radius: 2000rpx;
+    padding: 0 15rpx;
+
   }
+  .s-inner-num:after{
+    content:'';
+    position: absolute;
+    bottom: 0;
+    left:50%;
+    transform: translate(-50%,100%);
+    width: 0;
+    height: 0;
+    border-top: 5px solid #d5af6e;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+  } 
+  // .s-title{
+  //   font-size: 44rpx;
+  // }
+  // .s-desc{
+  //   font-size: 23rpx;
+  //   line-height: 48rpx;
+  // }
+  // .s-num{
+  //   font-size: 30rpx;
+  //   color:#ece93a;
+  // }
+
 }
 
-.c-part{
+.c-last{
   width: 690rpx;
   padding:35rpx;
   box-sizing: border-box;
-  background-color: #030c36;
-  background-image: url('https://inimg01.jiuyan.info/in/2018/01/18/AEF66378-F65C-C077-60F1-AAED8FFAFD1E.jpg');
-  background-repeat: no-repeat;
-  background-size: 100% auto;
-  background-position: center top;
   margin:0 auto;
   color: #fff;
-  .s-title{
-    font-size: 27.5rpx;
-    line-height: 38rpx;
+  .s-mid-title{
+    margin-top: 45rpx;
+    font-size: 36rpx;
     padding-left: 37rpx;
-    background-image:url('https://inimg01.jiuyan.info/in/2018/01/18/84E8D659-1847-36D1-6BEE-05F6A1BA1F94.jpg');
+    background-image:url('https://inimg01.jiuyan.info/in/2018/01/20/404D8D8E-AEB3-6472-C0D9-2D42E4BAD091.jpg');
     background-repeat: no-repeat;
     background-size: 32rpx 32rpx;
     background-position: left top;
-
+    &.top{
+      margin-top:0;
+    }
+  }
+}
+.c-part{
+  width: 100%;
+  padding: 150rpx 30rpx 0;
+  box-sizing: border-box;
+  color: #504f54;
+  background-color: #270547;
+  background-image:url('https://inimg01.jiuyan.info/in/2018/01/20/5AD1B74F-E7A4-F321-925D-A94CF168FE8F.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  .c-one-part{
+    padding:0 35rpx;
+    background-color: #fff;
+    overflow: hidden;
+  }
+  .s-mid-title{
+    margin-top: 45rpx;
+    color: #6927b6;
+    font-size: 36rpx;
+    padding-left: 37rpx;
+    background-image:url('https://inimg01.jiuyan.info/in/2018/01/20/404D8D8E-AEB3-6472-C0D9-2D42E4BAD091.jpg');
+    background-repeat: no-repeat;
+    background-size: 32rpx 32rpx;
+    background-position: left top;
+    &.top{
+      // margin-top:0;
+    }
+  }
+  .s-mid-title + .s-title{
+    margin-top:15rpx;
+  }
+  .s-img-1{
+    width: 509rpx;
+    height: 299rpx;
+    margin:15rpx auto 45rpx;
+    background-image: url('https://inimg01.jiuyan.info/in/2018/01/20/4FABB17C-5A99-5E78-F584-A13CFB942E6B.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+  .s-title{
+    font-size: 32rpx;
+    line-height: 38rpx;
   }
   .s-desc{
     font-size: 18rpx;
@@ -98,9 +200,35 @@
     }
     .movie-name{
       text-align: center;
-      font-size: 17rpx;
-      height: 27rpx;
-      line-height: 27rpx;
+      font-size: 24rpx;
+      height: 30rpx;
+      line-height: 30rpx;
     }
+  }
+  .cinemas-wrap{
+    height: 90rpx;
+    background-color: #f6f6f6;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    padding-left: 35rpx;
+    margin-bottom: 5rpx;
+    border-radius: 6rpx;
+    .name{
+      width:100%;
+      font-size: 28rpx;
+      font-weight: bold;
+      color: #333333;
+      margin-bottom: 8rpx;
+    }
+    .addr{
+      font-size: 20rpx;
+      color: rgba(51,51,51,.7);
+    }
+  }
+  .s-tips{
+    color:#333333;
+    text-align: center;
+    width: 100%;
   }
 }

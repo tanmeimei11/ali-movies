@@ -1,7 +1,7 @@
-import wepy from 'wepy'
-import auth from '@/api/auth'
-import Detail from '@/api/detail'
-import report from '@/components/report-submit'
+import wepy from 'wepy';
+import auth from '@/api/auth';
+import Detail from '@/api/detail';
+import report from '@/components/report-submit';
 // import loadingMixin from '@/mixins/loadingMixin'
 
 export default class Index extends wepy.page {
@@ -33,66 +33,60 @@ export default class Index extends wepy.page {
   computed = {}
   methods = {
     async pay () {
-      await this.pay()
-    },
-
-    formSubmit (e) {
-      console.log(e)
+      await this.pay();
     }
   }
 
   events = {}
 
-  async onLoad() {
-    this.init()
+  async onLoad () {
+    this.init();
   }
 
-  async init() {
-    var res = await Detail.getDetailData()
-    this.cinemas = Detail.initCinemas(res.cinemas)
-    this.movies = Detail.initMovies(res.movies)
-    this.cardNumInfo.num = Detail.initCardNum(res)
-    this.$apply()
+  async init () {
+    var res = await Detail.getDetailData();
+    this.cinemas = Detail.initCinemas( res.cinemas );
+    this.movies = Detail.initMovies( res.movies );
+    this.cardNumInfo.num = Detail.initCardNum( res );
+    this.$apply();
   }
-
   /**
    *  支付
    */
-  async pay() {
+  async pay () {
     try {
-      await auth.ready()
-      var createRes = await Detail.creatOrder()
-      var getOrderRes = await Detail.getOrderDetail(createRes)
-      var tradePayRes = await wepy.tradePay({
+      await auth.ready();
+      var createRes = await Detail.creatOrder();
+      var getOrderRes = await Detail.getOrderDetail( createRes );
+      var tradePayRes = await wepy.tradePay( {
         orderStr: getOrderRes.sign
-      })
+      } );
 
       // 支付成功
-      if (tradePayRes.resultCode === '9000') {
-        this.paySucc()
+      if ( tradePayRes.resultCode === '9000' ) {
+        this.paySucc();
       } else {
-        this.payFail()
+        this.payFail();
       }
-    } catch (e) {
+    } catch ( e ) {
 
     }
   }
-
   /**
    *  支付成功
    */
-  paySucc() {
-    var pageRouter = getCurrentPages()
-    pageRouter.map(item => {
-      if (item.route === 'pages/self/self' || item.route === 'pages/detail/detail') {
-        item.init()
+  paySucc () {
+    var pageRouter = getCurrentPages();  // eslint-disable-line
+    pageRouter.map( item => {
+      if ( item.route === 'pages/self/self' || item.route === 'pages/detail/detail' ) {
+        item.init();
       }
-    })
-    wepy.redirectTo({
+    } );
+    wepy.redirectTo( {
       url: '../result/result'
-    })
+    } );
   }
-  payFail() {
+  payFail () {
 
   }
 }
