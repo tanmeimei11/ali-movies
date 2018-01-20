@@ -1,9 +1,14 @@
 <style lang="less">
+  page{
+    background: #19033b;
+  }
   .result {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(-180deg, #FF8467 0%, #E35650 100%);
+    background: url('http://inimg05.jiuyan.info/in/2018/01/20/03C3B4F8-DCA2-0A83-2F29-B51B0B494A76.jpg') no-repeat;
+    background-size: contain;
+    background-position: top;
   }
 
   .txt {
@@ -117,7 +122,7 @@
       .btn{
         margin-top: 28rpx;
         color: #fff;
-        background-image: linear-gradient(90deg, #FC7E70 0%, #FB655C 100%);
+        background-image: linear-gradient(90deg, #E1C088 0%, #D5AF6E 100%);
       }
     }
     .getinfo{
@@ -138,7 +143,7 @@
     font-size: 32rpx;
     color: #a8433d;
     text-align: center;
-    background-image: linear-gradient(-44deg, #FBD262 0%, #FAEABD 100%);
+    background-image: linear-gradient(90deg, #E1C088 0%, #D5AF6E 100%);
     border-radius: 65rpx;
     position: relative;
     .lifestyle{
@@ -174,7 +179,7 @@
         <view class="icon"></view>
         <view>in同城趴</view>
         <view class="btn">关注
-          <lifestyle publicId="2018011801960713" @tap="alert" class="lifestyle" />
+          <!-- <lifestyle publicId="2018011801960713" @tap="alert" class="lifestyle" /> -->
         </view>
       </view>
     </view>

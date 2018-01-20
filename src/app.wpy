@@ -81,7 +81,7 @@ export default class extends wepy.app {
     pages: ['pages/detail/detail','pages/self/self',  'pages/index/index', 'pages/seat/seat', 'pages/result/result'],
     tabBar: {
       'textColor': '#4A4A4A',
-      'selectedColor': '#EF5B4C',
+      'selectedColor': '#D0A661',
       'backgroundColor': '#F5F5F9',
       items: [{
         'pagePath': 'pages/index/index',
