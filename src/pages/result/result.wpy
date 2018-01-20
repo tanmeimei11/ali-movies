@@ -179,7 +179,7 @@
         <view class="icon"></view>
         <view>in同城趴</view>
         <view class="btn">关注
-          <!-- <lifestyle publicId="2018011801960713" @tap="alert" class="lifestyle" /> -->
+          <!-- <lifestyle publicId="{{contractID}}" @tap="alert" class="lifestyle" /> -->
         </view>
       </view>
     </view>
@@ -189,6 +189,7 @@
 
 <script>
   import wepy from 'wepy'
+  import Result from '@/api/result'
 
   export default class result extends wepy.page {
     config = {
@@ -196,14 +197,21 @@
     }
     components = {}
     mixins = []
-    data = {}
+    data = {
+      contractID: '2018011801960713'
+    }
     computed = {}
     methods = {
       alert() {
-            console.log(1111);
+        console.log(1111);
       }
     }
     events = {}
-    async onLoad() {}
+    async onLoad() {
+      var getContractID = await Result.getContractID()
+      this.contractID = getContractID.contract_id
+      this.$apply()
+      console.log(this.contractID)
+    }
   }
 </script>
