@@ -13,4 +13,4 @@ module.exports = {
   businessParty: 'incrowdfunding',
   paymentChannel: 'newalipay', // wechatpay weapppay
   token: ''
-}
+};

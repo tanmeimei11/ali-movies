@@ -4,6 +4,15 @@ import { paymentChannel, businessParty, payUrl, token } from '@/utils/config';
 
 export default class Detail extends Pagebase {
   /**
+   *  获取众筹状态接口
+   */
+  static async getDetailStatus () {
+    return await this.request( {
+      url: '/mnp/product/cfStatus',
+      data: { product_id: 159 }
+    } );
+  }
+  /**
    *  获取详情页数据接口
    */
   static async getDetailData () {

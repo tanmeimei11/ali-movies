@@ -8,14 +8,14 @@ var m = {
     'order_detail': 'eyJvcmRlcl9ubyI6IjIwMTgwMTE2MDAzNDg5NjE3OCIsImFtb3VudCI6IjAuMDEiLCJzdWJqZWN0Ijoi5LyX5625LeagkeS6uua1i+ivleWVhuWTgeWQjSIsImJvZHkiOiLkvJfnrbkt5qCR5Lq65rWL6K+V5ZWG5ZOB5ZCNIn0='
   },
   'timestamp': '1516094687'
-}
+};
 
 var k =
   {
     'msg': '用户已经购买了此产品',
-    'code': '-1',
+    'code': '4000031814',
     'succ': false,
     'timestamp': '1516170694'
-  }
+  };
 
-module.exports = m
+module.exports = k;

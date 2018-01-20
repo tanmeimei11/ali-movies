@@ -30,9 +30,10 @@ module.exports = {
         'movie_img_url': 'http://inimg02.jiuyan.info/in/2018/01/18/BEBD80A5-ECEE-F40B-DE51-1CD8FD90CC8F.jpg'
       }
     ],
+    'all_cinema_addr_img': 'http://inimg01.jiuyan.info/in/2018/01/18/0DB172F7-09B5-212A-F0B4-DA26F44762AB.png', // 所有影院位置的图
     'total_person_count': '50000',
     'current_person_count': '12345'
   },
   'code': '0',
   'msg': ''
-}
+};
