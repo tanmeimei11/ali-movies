@@ -127,7 +127,7 @@
       .btn{
         margin-top: 28rpx;
         color: #fff;
-        background-image: linear-gradient(90deg, #E1C088 0%, #D5AF6E 100%);
+        background-image: linear-gradient(90deg, #FD9C6C 0%, #F95557 100%);
       }
     }
     .getinfo{
@@ -148,7 +148,7 @@
     font-size: 32rpx;
     color: #a8433d;
     text-align: center;
-    background-image: linear-gradient(90deg, #E1C088 0%, #D5AF6E 100%);
+    background-image: linear-gradient(90deg, #FD9C6C 0%, #F95557 100%);
     border-radius: 65rpx;
     position: relative;
     .lifestyle{
@@ -180,7 +180,7 @@
       <text class="getinfo">请关注小程序了解最近进展</text> -->
       <view class="follow">
         <view class="title">关注in同城趴生活号</view>
-        <view class="get">获取最新信息</view>
+        <view class="get">获取开始选座提醒</view>
         <view class="icon"></view>
         <view class="name">in同城趴</view>
         <view class="btn" a:if="{{contractID}}">关注
