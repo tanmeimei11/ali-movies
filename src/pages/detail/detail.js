@@ -14,16 +14,20 @@ export default class Index extends wepy.page {
     cardNumInfo: {
       title: '专享优惠 名额有限',
       desc: '为保障用户观影体验 限量发售五万张',
-      num: '122/12321'
+      num: '122/12321',
+      percent: 0
     },
-    cinemas: [
-      {
-        address: '',
-        addressImg: '',
-        gps: '',
-        name: ''
-      }
-    ],
+    cinemas: {
+      img: '',
+      list: [
+        {
+          address: '',
+          addressImg: '',
+          gps: '',
+          name: ''
+        }
+      ]
+    },
     movies: [
       { name: '',
         URL: ''
@@ -45,9 +49,11 @@ export default class Index extends wepy.page {
 
   async init () {
     var res = await Detail.getDetailData();
-    this.cinemas = Detail.initCinemas( res.cinemas );
+    this.cinemas = Detail.initCinemas( res.cinemas, res.all_cinema_addr_img );
     this.movies = Detail.initMovies( res.movies );
-    this.cardNumInfo.num = Detail.initCardNum( res );
+    var initCardNumRes = Detail.initCardNum( res );
+    this.cardNumInfo.num = initCardNumRes.num;
+    this.cardNumInfo.percent = initCardNumRes.percent;
     this.$apply();
   }
   /**
