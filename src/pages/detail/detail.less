@@ -30,8 +30,19 @@
   background-position: 0 0, 0 413rpx;
   position: relative;
   padding-top: 900rpx;
+  .logo{
+    position: absolute;
+    top:25rpx;
+    left:218rpx;
+    width: 306rpx;
+    height: 44rpx;
+    background-image: url('https://inimg01.jiuyan.info/in/2018/01/20/B79AAFBC-5FC1-FFB9-CE7B-23C09BDBACE0.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
   .pay-btn{
-    margin:35rpx auto 0 auto;
+    margin:25rpx auto 0 auto;
     width: 505rpx;
     height: 90rpx;
     text-align: center;
@@ -106,26 +117,6 @@
   // }
 
 }
-
-.c-last{
-  width: 690rpx;
-  padding:35rpx;
-  box-sizing: border-box;
-  margin:0 auto;
-  color: #fff;
-  .s-mid-title{
-    margin-top: 45rpx;
-    font-size: 36rpx;
-    padding-left: 37rpx;
-    background-image:url('https://inimg01.jiuyan.info/in/2018/01/20/404D8D8E-AEB3-6472-C0D9-2D42E4BAD091.jpg');
-    background-repeat: no-repeat;
-    background-size: 32rpx 32rpx;
-    background-position: left top;
-    &.top{
-      margin-top:0;
-    }
-  }
-}
 .c-part{
   width: 100%;
   padding: 150rpx 30rpx 0;
@@ -135,6 +126,22 @@
   background-image:url('https://inimg01.jiuyan.info/in/2018/01/20/5AD1B74F-E7A4-F321-925D-A94CF168FE8F.jpg');
   background-size: 100%;
   background-repeat: no-repeat;
+  .c-one-part.look{
+    .s-mid-title{
+      margin-bottom: 10rpx;
+    }
+    .s-desc{
+      line-height: 1.5;
+    }
+  }
+  .c-one-part.movie{
+    .s-mid-title{
+      margin-bottom: 15rpx;
+    }
+    .s-desc{
+      line-height: 1.5;
+    }
+  }
   .c-one-part{
     padding:0 30rpx;
     background-color: #fff;
@@ -148,10 +155,14 @@
     background-image:url('https://inimg01.jiuyan.info/in/2018/01/20/404D8D8E-AEB3-6472-C0D9-2D42E4BAD091.jpg');
     background-repeat: no-repeat;
     background-size: 32rpx 32rpx;
-    background-position: left top;
-    &.top{
-      // margin-top:0;
+    background-position: left center;
+    &.ciname{
+      background-image:url('https://inimg01.jiuyan.info/in/2018/01/20/F468E728-7673-4CFD-E805-ECD9B33C8B4A.jpg')
     }
+    &.movie{
+      background-image:url('https://inimg01.jiuyan.info/in/2018/01/20/89AD468D-4AEB-A1FA-3FDA-45F2CE8090A2.jpg')
+    }
+   
   }
   .s-mid-title + .s-title{
     margin-top:15rpx;
@@ -169,11 +180,13 @@
     margin:15rpx auto 45rpx;
   }
   .s-title{
+    color: #504f54;
     font-size: 32rpx;
     line-height: 38rpx;
   }
   .s-desc{
-    font-size: 18rpx;
+    color: #504f54;
+    font-size: 24rpx;
     line-height: 28rpx;
   }
   .s-info-wrap{
@@ -223,6 +236,16 @@
       font-weight: bold;
       color: #333333;
       margin-bottom: 8rpx;
+      position: relative;
+    }
+    .name:before{
+      content:'';
+      position: absolute;
+      left:-15rpx;
+      top:10rpx;
+      width:5rpx;
+      height:5rpx;
+      background-color: #f7de4f;
     }
     .addr{
       font-size: 20rpx;
@@ -230,8 +253,46 @@
     }
   }
   .s-tips{
+    font-size: 24rpx;
     color:#333333;
     text-align: center;
     width: 100%;
+  }
+}
+.c-last{
+  width: 690rpx;
+  padding:35rpx;
+  box-sizing: border-box;
+  margin:0 auto;
+  color: #fff;
+  .s-mid-title{
+    margin-top: 45rpx;
+    font-size: 36rpx;
+    padding-left: 37rpx;
+    background-image:url('https://inimg01.jiuyan.info/in/2018/01/20/404D8D8E-AEB3-6472-C0D9-2D42E4BAD091.jpg');
+    background-repeat: no-repeat;
+    background-size: 32rpx 32rpx;
+    background-position: left center;
+    &.rule{
+      background-image:url('https://inimg01.jiuyan.info/in/2018/01/20/220978E1-2E79-143E-07B6-E9DB81F8813B.jpg')
+    }
+  }
+  .s-rules{
+    margin:15rpx 0;
+    .title{
+      font-size: 24rpx;
+      line-height: 1.5;
+      &.bold{
+        font-weight: bold;
+        padding-top: 6rpx;
+      }
+      &.pre{
+       margin-left: -12rpx;
+      }
+    }
+    .desc{
+      font-size: 20rpx;
+      line-height: 1.5;
+    }
   }
 }
