@@ -1,6 +1,7 @@
 import wepy from 'wepy';
 import auth from '@/api/auth';
 import Self from '@/api/self';
+import tips from '@/utils/tips'
 
 export default class Index extends wepy.page {
   config = {
@@ -9,6 +10,7 @@ export default class Index extends wepy.page {
   components = {}
 
   data = {
+    btninfo: {},
     rules: ['使用本卡可以在指定影院，通过本小程序免费选座，不限次数。',
       '使用本卡仅可以在每周一至周四使用，法定节假日除外（按影厅排片选座）。',
       '本卡有效期3个月，即从2018年3月1日起至2018年5月31日止',
@@ -31,6 +33,10 @@ export default class Index extends wepy.page {
 
   methods = {
     apply () {
+      if (this.btninfo.cf_start === "false") {
+        tips.error(this.btninfo.cf_start_desc)
+        return
+      }
       wepy.navigateTo( {
         url: '/pages/detail/detail'
       } );
@@ -39,10 +45,12 @@ export default class Index extends wepy.page {
 
   async init () {
     var myInfoRes = await Self.getMyInfo();
+    this.btninfo = myInfoRes;
     this.cardInfos = Self.initCardInfo( myInfoRes.cards, myInfoRes.default_card );
     this.userInfo = Self.initUserInfo( myInfoRes );
     this.rules = Self.initRules( myInfoRes.texts );
     this.$apply();
+    console.log(this.btnon)
   }
 
   

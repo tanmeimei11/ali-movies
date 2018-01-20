@@ -6,7 +6,7 @@
         <text>{{texts.desc01}}</text>
         <text>{{texts.desc02}}</text>
       </view>
-      <view class="btn" @tap="toDetail">立即抢购</view>
+      <view class="btn" @tap="toDetail">{{btnon ? '立即抢购' : texts.cf_start_desc}}</view>
     </view>
   </view>
 </template>
