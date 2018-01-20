@@ -1,34 +1,40 @@
-import wepy from 'wepy'
-import Pagebase from './page'
-import { paymentChannel, businessParty, payUrl, token } from '@/utils/config'
+import wepy from 'wepy';
+import Pagebase from './page';
+import { paymentChannel, businessParty, payUrl, token } from '@/utils/config';
 
 export default class Detail extends Pagebase {
   /**
    *  获取详情页数据接口
    */
-  static async getDetailData() {
-    return await this.request({
+  static async getDetailData () {
+    return await this.request( {
       url: '/info/cinemas'
-    })
+    } );
   }
-  static initCardNum(data) {
-    return `${data.current_person_count}/${data.total_person_count}`
+  static initCardNum ( data ) {
+    return {
+      num: `${data.current_person_count}/${data.total_person_count}`,
+      percent: ( data.current_person_count / data.total_person_count * 100 ) + '%'
+    };
   }
   /**
    * 初始化影院
    */
-  static initCinemas(data) {
-    if (!data.length) {
-      return []
+  static initCinemas ( data, img ) {
+    if ( !data.length ) {
+      return [];
     }
-    return data.map((item) => {
-      return {
-        address: item.address,
-        addressImg: item.address_img,
-        gps: item.gps,
-        name: item.name
-      }
-    })
+    return {
+      img: img,
+      list: data.map( ( item ) => {
+        return {
+          address: item.address,
+          addressImg: item.address_img,
+          gps: item.gps,
+          name: item.name
+        };
+      } )
+    };
   }
   /**
    *
@@ -36,48 +42,48 @@ export default class Detail extends Pagebase {
    * @static
    * @memberof Detail
    */
-  static initMovies(data) {
-    if (!data.length) {
-      return []
+  static initMovies ( data ) {
+    if ( !data.length ) {
+      return [];
     }
 
-    return data.map((item) => {
+    return data.map( ( item ) => {
       return {
         name: item.name,
         url: item.movie_img_url
-      }
-    })
+      };
+    } );
   }
   /**
    * 创建订单接口
    */
-  static async creatOrder() {
-    return await this.request({
+  static async creatOrder () {
+    return await this.request( {
       url: '/mnp/order/create',
       data: {
         product_id: 159,
         pay_channel: paymentChannel
       }
-    })
+    } );
   }
 
   /**
    * 获取订单信息接口
    * @param {*} createRes  创建订单的res
    */
-  static async getOrderDetail(createRes) {
+  static async getOrderDetail ( createRes ) {
     var _data = {
       _token: wepy.$instance.globalData.xToken || token,
       payment_channel: paymentChannel,
       business_party: businessParty,
       order_detail: createRes.order_detail,
-      extend_params: JSON.stringify({
+      extend_params: JSON.stringify( {
         open_id: createRes.open_id
-      })
-    }
-    return await this.request({
+      } )
+    };
+    return await this.request( {
       url: payUrl,
       data: _data
-    })
+    } );
   }
 }
