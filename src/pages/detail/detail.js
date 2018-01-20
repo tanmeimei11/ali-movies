@@ -124,7 +124,7 @@ export default class Index extends wepy.page {
         item.init();
       }
     } );
-    wepy.redirectTo( {
+    wepy.navigateTo( {
       url: '../result/result'
     } );
   }

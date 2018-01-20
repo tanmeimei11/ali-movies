@@ -1,38 +1,38 @@
-import wepy from 'wepy'
+import wepy from 'wepy';
 // import Index from '@/api/index'
 
 export default class index extends wepy.page {
-    config = {
-        navigationBarTitleText: '我的电影卡'
-    }
-    components = {
-    }
+  config = {
+    navigationBarTitleText: '我的电影卡'
+  }
+  components = {
+  }
 
-    mixins = []
+  mixins = []
 
-    data = {
-        funding: [],
-        texts: ''
+  data = {
+    funding: [],
+    texts: ''
+  }
+
+  computed = {
+  }
+
+  methods = {
+    toDetail () {
+      wepy.navigateTo( {
+        url: '/pages/detail/detail'
+      } );
     }
+  }
 
-    computed = {
-    }
+  events = {
+  }
 
-    methods = {
-        toDetail() {
-            wepy.navigateTo({
-              url: '/pages/detail/detail'
-            })
-        }
-    }
-
-    events = {
-    }
-
-    async onLoad() {
+  async onLoad () {
         // var InfoRes = await Index.getFundingInfo()
         // this.funding = Index.initFundingInfo(InfoRes)
         // this.$apply()
         // console.log(this.funding)
-    }
+  }
 }
