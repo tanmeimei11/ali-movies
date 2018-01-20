@@ -2,6 +2,10 @@ module.exports = {
   'timestamp': '1516246003',
   'succ': true,
   'data': {
+    'desc': {
+      'desc01':'',
+      'desc06':['',''],
+    },
     'texts': [
       '全面覆盖杭州15大影院'     // 文字列表
     ],

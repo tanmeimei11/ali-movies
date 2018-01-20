@@ -19,7 +19,7 @@
     <view class="c-part">
 
       <view class="c-one-part">
-        <view class="s-mid-title ciname">全杭州15个免费影城任你选</view>
+        <view class="s-mid-title ciname">{{detailText.desc01}}</view>
         <image class="s-img-1" mode="aspectFill" src="{{cinemas.img}}"></image>
         <view class="s-info-wrap">
           <view class="cinemas-wrap"  wx:for="{{cinemas.list}}" wx:for-index="idx" wx:for-item="item">
@@ -30,9 +30,9 @@
       </view>
 
       <view class="c-one-part movie">
-        <view class="s-mid-title movie">超高性价比</view>
-        <view class="s-title">只需99元看三个月电影</view>
-        <view class="s-desc">3张电影的票价=3个月所有院线影片随意看</view>
+        <view class="s-mid-title movie">{{detailText.desc02}}</view>
+        <view class="s-title">{{detailText.desc03}}</view>
+        <view class="s-desc">{{detailText.desc04}}</view>
         <image class="s-img-movie" src="https://inimg01.jiuyan.info/in/2018/01/20/4FABB17C-5A99-5E78-F584-A13CFB942E6B.jpg"></image>
         <view class="s-title">2018热门电影</view>
         <view class="s-info-wrap">
@@ -47,9 +47,9 @@
       </view>
 
       <view class="c-one-part look">
-        <view class="s-mid-title">观影不限次数</view>
-        <view class="s-desc">每周一到周四，上午到晚上，观影不限次数</view>
-        <view class="s-desc">懒觉睡醒约一个，午休没事约一个，下班结束约一个</view>
+        <view class="s-mid-title">{{detailText.desc05}}</view>
+        <view class="s-desc">{{detailText.desc06[0]}}</view>
+        <view class="s-desc">{{detailText.desc06[1]}}</view>
         <image class="s-img-1" mode="aspectFill" src="https://inimg01.jiuyan.info/in/2018/01/20/5C6F0180-3C30-D9F7-C4CF-0AE422636EC1.jpg"></image>
       </view>
     </view>

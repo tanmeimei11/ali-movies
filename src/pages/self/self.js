@@ -45,10 +45,15 @@ export default class Index extends wepy.page {
     this.$apply();
   }
 
+  
   events = {}
 
   async onLoad () {
     await auth.ready();
     this.init();
   }
+  async onShow () {
+    this.init();
+  }
+
 }

@@ -8,7 +8,7 @@ module.exports = {
     'total_person_count': '10000', // 总筹总人数
     'current_person_count': '100', // 总筹当前人数
     'is_share': '0',                // 用户是否分享过
-    'is_buy': '1'                // 用户是否买过该产品
+    'is_buy': '0'                // 用户是否买过该产品
   },
   'timestamp': '1512552968'
 };

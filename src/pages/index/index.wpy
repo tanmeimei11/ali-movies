@@ -3,8 +3,8 @@
     <view class="title"></view>
     <view class="txt">
       <view class="bg"></view>
-      <text>99元三个月电影任你看</text>
-      <text>全杭州15家影院任你选</text>
+      <text>{{texts.desc01}}</text>
+      <text>{{texts.desc02}}</text>
     </view>
     <view class="btn" @tap="toDetail">立即抢购</view>
   </view>

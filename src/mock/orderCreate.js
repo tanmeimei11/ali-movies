@@ -12,10 +12,22 @@ var m = {
 
 var k =
   {
-    'msg': '用户已经购买了此产品',
-    'code': '4000031814',
+    'data': {
+      'msg': '用户已经购买了此产品',
+      'code': '4000031814',
+    },
     'succ': false,
     'timestamp': '1516170694'
   };
+
+  var o =
+    {
+      'data': {
+        'msg': '还没开始',
+        'code': '4000032129',
+      },
+      'succ': false,
+      'timestamp': '1516170694'
+    };
 
 module.exports = k;
