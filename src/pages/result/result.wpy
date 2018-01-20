@@ -187,30 +187,18 @@
 
   export default class result extends wepy.page {
     config = {
-      navigationBarTitleText: '支付完成'
+      navigationBarTitleText:  '支付完成'
     }
-    components = {
-    }
-
+    components = {}
     mixins = []
-
-    data = {
-    }
-
-    computed = {
-    }
-
+    data = {}
+    computed = {}
     methods = {
       alert() {
-        console.log(1111)
+            console.log(1111);
       }
     }
-
-    events = {
-    }
-
-    async onLoad() {
-      // console.log(my.canIUse('lifestyle'))
-    }
+    events = {}
+    async onLoad() {}
   }
 </script>
