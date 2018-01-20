@@ -1,9 +1,9 @@
 import wepy from 'wepy'
-import Index from '@/api/index'
+// import Index from '@/api/index'
 
 export default class index extends wepy.page {
     config = {
-        navigationBarTitleText: '杭州电影戏精卡'
+        navigationBarTitleText: '我的电影卡'
     }
     components = {
     }
