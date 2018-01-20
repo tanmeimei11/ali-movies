@@ -1,0 +1,4 @@
+
+  <view class="seat fake">
+      <view class="mask" onTap="test"/>
+  </view>

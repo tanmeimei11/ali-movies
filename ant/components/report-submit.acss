@@ -1,0 +1,7 @@
+
+.report-button {
+  background: transparent;
+  border: none;
+  height: auto;
+  border-radius: 0;
+}
