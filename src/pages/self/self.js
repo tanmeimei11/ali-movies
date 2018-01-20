@@ -1,6 +1,6 @@
-import wepy from 'wepy'
-import auth from '@/api/auth'
-import Self from '@/api/self'
+import wepy from 'wepy';
+import auth from '@/api/auth';
+import Self from '@/api/self';
 
 export default class Index extends wepy.page {
   config = {
@@ -30,26 +30,25 @@ export default class Index extends wepy.page {
   }
 
   methods = {
-    apply() {
-      wepy.navigateTo({
+    apply () {
+      wepy.navigateTo( {
         url: '/pages/detail/detail'
-      })
+      } );
     }
   }
 
-  async init() {
-    var myInfoRes = await Self.getMyInfo()
-    console.log(myInfoRes)
-    this.cardInfos = Self.initCardInfo(myInfoRes.cards, myInfoRes.default_card)
-    this.userInfo = Self.initUserInfo(myInfoRes)
-    this.rules = Self.initRules(myInfoRes.texts)
-    this.$apply()
+  async init () {
+    var myInfoRes = await Self.getMyInfo();
+    this.cardInfos = Self.initCardInfo( myInfoRes.cards, myInfoRes.default_card );
+    this.userInfo = Self.initUserInfo( myInfoRes );
+    this.rules = Self.initRules( myInfoRes.texts );
+    this.$apply();
   }
 
   events = {}
 
-  async onLoad() {
-    await auth.ready()
-    this.init()
+  async onLoad () {
+    await auth.ready();
+    this.init();
   }
 }
