@@ -4,7 +4,7 @@ import Self from '@/api/self'
 
 export default class Index extends wepy.page {
   config = {
-    navigationBarTitleText: '我的'
+    navigationBarTitleText: '我的电影卡'
   }
   components = {}
 

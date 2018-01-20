@@ -44,7 +44,7 @@
     }
   }
   .content{
-    margin: 164rpx auto 48rpx;
+    margin: 130rpx auto 48rpx;
     width: 594rpx;
     height: 726rpx;
     background: #fff;
@@ -119,6 +119,10 @@
         background-size: contain;
         background-position: center;
       }
+      .name{
+        font-size: 24rpx;
+        color: #333;
+      }
       .btn{
         margin-top: 28rpx;
         color: #fff;
@@ -177,9 +181,9 @@
         <view class="title">关注in同城趴生活号</view>
         <view class="get">获取最新信息</view>
         <view class="icon"></view>
-        <view>in同城趴</view>
+        <view class="name">in同城趴</view>
         <view class="btn">关注
-          <!-- <lifestyle publicId="{{contractID}}" @tap="alert" class="lifestyle" /> -->
+          <lifestyle publicId="{{contractID}}" @tap="alert" class="lifestyle" ></lifestyle>  
         </view>
       </view>
     </view>
