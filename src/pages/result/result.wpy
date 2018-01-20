@@ -183,8 +183,8 @@
         <view class="get">获取最新信息</view>
         <view class="icon"></view>
         <view class="name">in同城趴</view>
-        <view class="btn">关注
-          <!-- <lifestyle publicId="{{contractID}}" @tap="alert" class="lifestyle" a:if="{{contractID}}"></lifestyle>   -->
+        <view class="btn" a:if="{{contractID}}">关注
+          <lifestyle publicId="{{contractID}}" @tap="alert" class="lifestyle"></lifestyle>  
         </view>
       </view>
     </view>

@@ -91,6 +91,12 @@ export default class Index extends wepy.page {
     var statusRes = await Detail.getDetailStatus()
     this.detailStatus = statusRes;
     this.detailText = statusRes.desc
+    this.rules[0].title = statusRes.desc.desc07
+    this.rules[0].desc = statusRes.desc.desc08
+    this.rules[1].title = statusRes.desc.desc09
+    this.rules[1].desc = statusRes.desc.desc10
+    this.rules[2].title = statusRes.desc.desc11
+    this.rules[2].desc = statusRes.desc.desc12
     this.$apply();
     console.log( this.detailText );
   }

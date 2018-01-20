@@ -1,6 +1,5 @@
 <template>
   <view class="index">
-    <view class="title"></view>
     <view class="txt">
       <view class="bg"></view>
       <text>{{texts.desc01}}</text>
