@@ -1,7 +1,7 @@
 import wepy from 'wepy';
 import auth from '@/api/auth';
 import Self from '@/api/self';
-import tips from '@/utils/tips'
+import tips from '@/utils/tips';
 
 export default class Index extends wepy.page {
   config = {
@@ -33,9 +33,9 @@ export default class Index extends wepy.page {
 
   methods = {
     apply () {
-      if (this.btninfo.cf_start === "false") {
-        tips.error(this.btninfo.cf_start_desc)
-        return
+      if ( this.btninfo.cf_start === 'false' ) {
+        tips.error( this.btninfo.cf_start_desc );
+        return;
       }
       wepy.navigateTo( {
         url: '/pages/detail/detail'
@@ -52,7 +52,6 @@ export default class Index extends wepy.page {
     this.$apply();
   }
 
-  
   events = {}
 
   // async onLoad () {
@@ -63,5 +62,4 @@ export default class Index extends wepy.page {
     await auth.ready();
     this.init();
   }
-
 }
