@@ -23,10 +23,10 @@ export default class Index extends wepy.page {
     },
     cardInfos: [{ // 卡片信息
       id: '',
-      title: '戏精卡',
+      title: '',
       desc: '可任意次数兑换观影券',
       time: '',
-      isApply: true,
+      isApply: false,
       num: ''
     }]
   }
@@ -50,17 +50,17 @@ export default class Index extends wepy.page {
     this.userInfo = Self.initUserInfo( myInfoRes );
     this.rules = Self.initRules( myInfoRes.texts );
     this.$apply();
-    console.log(this.btnon)
   }
 
   
   events = {}
 
-  async onLoad () {
-    await auth.ready();
-    this.init();
-  }
+  // async onLoad () {
+  //   await auth.ready();
+  //   this.init();
+  // }
   async onShow () {
+    await auth.ready();
     this.init();
   }
 
