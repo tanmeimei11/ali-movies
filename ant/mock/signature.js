@@ -1,8 +1,0 @@
-'use strict';
-
-module.exports = {
-  succ: true,
-  'gateway_trade_no': '', // 内部支付网关内的订单流水号
-  'sign': '' // 支付宝，微信等三方支付时需要用到的参数
-};
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNpZ25hdHVyZS5qcyJdLCJuYW1lcyI6WyJtb2R1bGUiLCJleHBvcnRzIiwic3VjYyJdLCJtYXBwaW5ncyI6Ijs7QUFBQUEsT0FBT0MsT0FBUCxHQUFpQjtBQUNmQyxRQUFNLElBRFM7QUFFZixzQkFBb0IsRUFGTCxFQUVtQjtBQUNsQyxVQUFRLEVBSE8sQ0FHYztBQUhkLENBQWpCIiwiZmlsZSI6InNpZ25hdHVyZS5qcyIsInNvdXJjZXNDb250ZW50IjpbIm1vZHVsZS5leHBvcnRzID0ge1xuICBzdWNjOiB0cnVlLFxuICAnZ2F0ZXdheV90cmFkZV9ubyc6ICcnLCAgICAgICAgICAgLy8g5YaF6YOo5pSv5LuY572R5YWz5YaF55qE6K6i5Y2V5rWB5rC05Y+3XG4gICdzaWduJzogJycgICAgICAgICAgICAgICAgICAgLy8g5pSv5LuY5a6d77yM5b6u5L+h562J5LiJ5pa55pSv5LuY5pe26ZyA6KaB55So5Yiw55qE5Y+C5pWwXG59XG4iXX0=
