@@ -1,5 +1,5 @@
 import wepy from 'wepy';
-import Index from '@/api/index'
+import Index from '@/api/index';
 
 export default class index extends wepy.page {
   config = {
@@ -11,7 +11,7 @@ export default class index extends wepy.page {
   mixins = []
 
   data = {
-    btnon: false,
+    btnon: true,
     texts: {}
   }
 
@@ -20,8 +20,8 @@ export default class index extends wepy.page {
 
   methods = {
     toDetail () {
-      if (!this.btnon) {
-        return
+      if ( !this.btnon ) {
+        return;
       }
       wepy.navigateTo( {
         url: '/pages/detail/detail'
@@ -33,9 +33,9 @@ export default class index extends wepy.page {
   }
 
   async onLoad () {
-    var InfoRes = await Index.getIndexInfo()
-    this.texts = InfoRes
-    this.btnon = InfoRes.cf_start === 'true' ? true : false
-    this.$apply()
+    var InfoRes = await Index.getIndexInfo();
+    this.texts = InfoRes;
+    this.btnon = InfoRes.cf_start !== 'false';
+    this.$apply();
   }
 }

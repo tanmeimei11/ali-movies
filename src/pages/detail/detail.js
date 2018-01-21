@@ -1,7 +1,7 @@
 import wepy from 'wepy';
 import auth from '@/api/auth';
 import Detail from '@/api/detail';
-import tips from '@/utils/tips'
+import tips from '@/utils/tips';
 import report from '@/components/report-submit';
 // import loadingMixin from '@/mixins/loadingMixin'
 
@@ -75,7 +75,7 @@ export default class Index extends wepy.page {
 
   events = {}
 
-  async onLoad () {
+  async onShow () {
     this.init();
   }
 
@@ -88,15 +88,15 @@ export default class Index extends wepy.page {
     this.cardNumInfo.percent = initCardNumRes.percent;
     this.$apply();
     await auth.ready();
-    var statusRes = await Detail.getDetailStatus()
+    var statusRes = await Detail.getDetailStatus();
     this.detailStatus = statusRes;
-    this.detailText = statusRes.desc
-    this.rules[0].title = statusRes.desc.desc07
-    this.rules[0].desc = statusRes.desc.desc08
-    this.rules[1].title = statusRes.desc.desc09
-    this.rules[1].desc = statusRes.desc.desc10
-    this.rules[2].title = statusRes.desc.desc11
-    this.rules[2].desc = statusRes.desc.desc12
+    this.detailText = statusRes.desc;
+    this.rules[0].title = statusRes.desc.desc07;
+    this.rules[0].desc = statusRes.desc.desc08;
+    this.rules[1].title = statusRes.desc.desc09;
+    this.rules[1].desc = statusRes.desc.desc10;
+    this.rules[2].title = statusRes.desc.desc11;
+    this.rules[2].desc = statusRes.desc.desc12;
     this.$apply();
     console.log( this.detailText );
   }
@@ -109,9 +109,9 @@ export default class Index extends wepy.page {
     }
     try {
       var createRes = await Detail.creatOrder();
-      if (createRes.code === '4000032129' || createRes.code === '4000031814') {
-        tips.error(createRes.msg)
-        return
+      if ( createRes.code === '4000032129' || createRes.code === '4000031814' ) {
+        tips.error( createRes.msg );
+        return;
       }
       var getOrderRes = await Detail.getOrderDetail( createRes );
       var tradePayRes = await wepy.tradePay( {
@@ -138,7 +138,7 @@ export default class Index extends wepy.page {
     //     item.init();
     //   }
     // } );
-    this.init();
+    // this.init();
     wepy.navigateTo( {
       url: '../result/result'
     } );
