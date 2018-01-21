@@ -1,7 +1,7 @@
 import wepy from 'wepy';
 import auth from '@/api/auth';
 import Self from '@/api/self';
-import tips from '@/utils/tips'
+import tips from '@/utils/tips';
 
 export default class Index extends wepy.page {
   config = {
@@ -23,7 +23,7 @@ export default class Index extends wepy.page {
     },
     cardInfos: [{ // 卡片信息
       id: '',
-      title: '戏精卡',
+      title: 'in同城趴·电影王卡',
       desc: '可任意次数兑换观影券',
       time: '',
       isApply: true,
@@ -33,9 +33,9 @@ export default class Index extends wepy.page {
 
   methods = {
     apply () {
-      if (this.btninfo.cf_start === "false") {
-        tips.error(this.btninfo.cf_start_desc)
-        return
+      if ( this.btninfo.cf_start === 'false' ) {
+        tips.error( this.btninfo.cf_start_desc );
+        return;
       }
       wepy.navigateTo( {
         url: '/pages/detail/detail'
@@ -50,10 +50,9 @@ export default class Index extends wepy.page {
     this.userInfo = Self.initUserInfo( myInfoRes );
     this.rules = Self.initRules( myInfoRes.texts );
     this.$apply();
-    console.log(this.btnon)
+    console.log( this.btnon );
   }
 
-  
   events = {}
 
   async onLoad () {
@@ -63,5 +62,4 @@ export default class Index extends wepy.page {
   async onShow () {
     this.init();
   }
-
 }
