@@ -1,19 +1,16 @@
 import wepy from 'wepy'
 import base from './base'
 import tips from '@/utils/tips'
-import event from '@/utils/event'
-
-var _readyStatus = false
-
-event.$on('ready', status => { _readyStatus = status })
 
 export default class auth extends base {
+  static _readyStatus = false
+
   /**
    * 授权登录准备
    * 授权弹窗如果取消 PromiseStatus:pending
    */
   static async ready () {
-    return _readyStatus ? Promise.resolve() : await this.login()
+    return this._readyStatus ? Promise.resolve() : await this.login()
   }
 
   /**
@@ -26,7 +23,7 @@ export default class auth extends base {
     const { tg_auth: token, _aries } = await this.post(`${this.baseUrl}/api/login`, { data: { code } })
     wepy.$instance.globalData.xToken = token
     wepy.$instance.globalData.xAries = _aries
-    event.$emit('ready', true)
+    this._readyStatus = true
     console.log(`code: ${code}\ntoken: ${token}`)
   }
 }
