@@ -1,6 +1,6 @@
-import wepy from 'wepy'
-import base from './base'
-import tips from '@/utils/tips'
+import wepy from 'wepy';
+import base from './base';
+import tips from '@/utils/tips';
 
 export default class auth extends base {
   static _readyStatus = false
@@ -10,7 +10,7 @@ export default class auth extends base {
    * 授权弹窗如果取消 PromiseStatus:pending
    */
   static async ready () {
-    return this._readyStatus ? Promise.resolve() : await this.login()
+    return this._readyStatus ? Promise.resolve() : await this.login();
   }
 
   /**
@@ -18,12 +18,12 @@ export default class auth extends base {
    * 授权弹窗如果取消 PromiseStatus:pending
    */
   static async login () {
-    tips.setLoading()
-    const { authCode: code } = await wepy.getAuthCode({ scopes: 'auth_user' })
-    const { tg_auth: token, _aries } = await this.post(`${this.baseUrl}/api/login`, { data: { code } })
-    wepy.$instance.globalData.xToken = token
-    wepy.$instance.globalData.xAries = _aries
-    this._readyStatus = true
-    console.log(`code: ${code}\ntoken: ${token}`)
+    tips.setLoading();
+    const { authCode: code } = await wepy.getAuthCode( { scopes: 'auth_user' } );
+    const { tg_auth: token, _aries } = await this.post( `${this.baseUrl}/api/login`, { data: { code } } );
+    wepy.$instance.globalData.xToken = token;
+    wepy.$instance.globalData.xAries = _aries;
+    this._readyStatus = true;
+    console.log( `code: ${code}\ntoken: ${token}` );
   }
 }

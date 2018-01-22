@@ -98,12 +98,16 @@ export default class Index extends wepy.page {
     this.rules[2].title = statusRes.desc.desc11;
     this.rules[2].desc = statusRes.desc.desc12;
     this.$apply();
-    console.log( this.detailText );
   }
   /**
    *  支付
    */
   async pay () {
+    if ( !auth._readyStatus ) {
+      await auth.ready();
+      await this.changeDetailStatus();
+    }
+
     if ( this.detailStatus.is_buy === '1' ) {
       return;
     }
@@ -129,16 +133,17 @@ export default class Index extends wepy.page {
     }
   }
   /**
+   *改变购买状态
+   */
+  async changeDetailStatus () {
+    var statusRes = await Detail.getDetailStatus();
+    this.detailStatus = statusRes;
+    this.$apply();
+  }
+  /**
    *  支付成功
    */
   paySucc () {
-    // var pageRouter = getCurrentPages();  // eslint-disable-line
-    // pageRouter.map( item => {
-    //   if ( item.route === 'pages/self/self' || item.route === 'pages/detail/detail' ) {
-    //     item.init();
-    //   }
-    // } );
-    // this.init();
     wepy.navigateTo( {
       url: '../result/result'
     } );
