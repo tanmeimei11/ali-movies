@@ -1,5 +1,5 @@
 <template>
-  <!-- <report> -->
+  <report>
     <view class="container">
      <view class="c-bg">
        <view class="logo"></view>
@@ -62,7 +62,7 @@
           </view>
       </view>
   </view>
-  <!-- </report> -->
+  </report>
 </template>
 <style lang="less" src="./detail.less">
 </style>
