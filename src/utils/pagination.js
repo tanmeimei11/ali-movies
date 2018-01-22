@@ -1,45 +1,45 @@
-import axios from './axios'
+import axios from './axios';
 
 export default class Pagination {
-  constructor (url, processFunc) {
+  constructor ( url, processFunc ) {
     // 数据访问地址
-    this.url = url
+    this.url = url;
     // 数据集合
-    this.list = []
+    this.list = [];
     // 起始数据页码
-    this.start = 1
+    this.start = 1;
     // 加载数据条数
-    this.count = 20
+    this.count = 20;
     // 数据处理函数
-    this.processFunc = processFunc
+    this.processFunc = processFunc;
     // 正在加载中
-    this.loading = false
+    this.loading = false;
     // 是否底部
-    this.reachBottom = false
+    this.reachBottom = false;
     // 是否为空
-    this.empty = true
+    this.empty = true;
     // 是否需要清除
-    this.toClear = false
+    this.toClear = false;
   }
 
   /**
    * 加载下一页数据
    */
-  async next (args) {
+  async next ( args ) {
     const param = {
       page: this.start
-    }
+    };
 
-    if (this.loading) {
-      console.warn('page loading!')
-      return this
+    if ( this.loading ) {
+      console.warn( 'page loading!' );
+      return this;
     }
 
     // 附加参数
-    this.loading = true
+    this.loading = true;
 
     try {
-      Object.assign(param, args)
+      Object.assign( param, args );
       /**
        * 分页数据结构规范
        * current_page   当前页码
@@ -52,39 +52,39 @@ export default class Pagination {
        * prev_page_url
        * total          总项目数量
        */
-      const { current_page, last_page, data } = await axios.get(this.url, { data: param })
+      const { current_page, last_page, data } = await axios.get( this.url, { data: param } );
 
       // 底部判断
-      if (data === null || data.length < 1) {
-        if (this.toClear) {
-          this.clear()
+      if ( data === null || data.length < 1 ) {
+        if ( this.toClear ) {
+          this.clear();
         } else {
-          this.reachBottom = true
+          this.reachBottom = true;
         }
-        return this
+        return this;
       }
 
-      this.empty = false
+      this.empty = false;
 
       // 处理数据
-      this._processData(data)
+      this._processData( data );
 
       // 设置数据
-      if (this.toClear) {
-        this.list = data
-        this.toClear = false
+      if ( this.toClear ) {
+        this.list = data;
+        this.toClear = false;
       } else {
-        this.list = this.list.concat(data)
+        this.list = this.list.concat( data );
       }
 
-      this.start ++
-      if (current_page === last_page) {
-        this.reachBottom = true
+      this.start ++;
+      if ( current_page === last_page ) {
+        this.reachBottom = true;
       }
 
-      return this
+      return this;
     } finally {
-      this.loading = false
+      this.loading = false;
     }
   }
 
@@ -107,12 +107,12 @@ export default class Pagination {
   /**
    * 处理数据（私有）
    */
-  _processData (data) {
-    if (this.processFunc) {
-      for (let i in data) {
-        const result = this.processFunc(data[i])
-        if (result) {
-          data[i] = result
+  _processData ( data ) {
+    if ( this.processFunc ) {
+      for ( let i in data ) {
+        const result = this.processFunc( data[i] );
+        if ( result ) {
+          data[i] = result;
         }
       }
     }
