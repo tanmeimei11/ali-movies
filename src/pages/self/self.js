@@ -23,7 +23,7 @@ export default class Index extends wepy.page {
     },
     cardInfos: [{ // 卡片信息
       id: '',
-      title: '',
+      title: 'in同城趴·电影王卡',
       desc: '可任意次数兑换观影券',
       time: '',
       isApply: false,

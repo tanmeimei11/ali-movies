@@ -7,7 +7,7 @@ import report from '@/components/report-submit';
 
 export default class Index extends wepy.page {
   config = {
-    navigationBarTitleText: '活动页面'
+    navigationBarTitleText: 'in同城趴·电影王卡'
   }
   components = { report }
   mixins = []
@@ -15,7 +15,7 @@ export default class Index extends wepy.page {
     cardNumInfo: {
       title: '专享优惠 名额有限',
       desc: '为保障用户观影体验 限量发售五万张',
-      num: '122/12321',
+      num: '',
       percent: 0
     },
     cinemas: {
@@ -62,7 +62,7 @@ export default class Index extends wepy.page {
       }
     ],
     detailStatus: {
-      is_buy: '1'
+      is_buy: '0'
     },
     detailText: {}
   }

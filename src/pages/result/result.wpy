@@ -179,7 +179,7 @@
       <!-- <view class="icon"></view>
       <text class="getinfo">请关注小程序了解最近进展</text> -->
       <view class="follow">
-        <view class="title">关注in同城趴生活号</view>
+        <view class="title">请关注in同城趴生活号</view>
         <view class="get">获取开始选座提醒</view>
         <view class="icon"></view>
         <view class="name">in同城趴</view>

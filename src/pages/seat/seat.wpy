@@ -18,7 +18,7 @@
 </style>
 <template>
   <view class="seat fake">
-      <view class="mask" @tap="test"></view>
+      <view class="mask"></view>
   </view>
 </template>
 
@@ -42,41 +42,6 @@
     computed = {
     }
 
-    methods = {
-      async test () {
-        await auth.ready()
-        axios.get('http://qacrowdfunding.in66.com')
-      }
-    }
-
-    events = {
-    }
-
-    async onLoad() {
-      // await this.slesp()
-      // console.log('0')
-      // let self = this
-      // this.$parent.getUserInfo(function (userInfo) {
-      //   if (userInfo) {
-      //     self.userInfo = userInfo
-      //   }
-      //   self.normalTitle = '标题已被修改'
-
-      //   self.setTimeoutTitle = '标题三秒后会被修改'
-      //   setTimeout(() => {
-      //     self.setTimeoutTitle = '到三秒了'
-      //     self.$apply()
-      //   }, 3000)
-
-      //   self.$apply()
-      // })
-    }
-    async slesp (params) {
-      // return new Promise((resolve) => {
-      //   setTimeout(() => {
-      //     resolve()
-      //   }, 3000)
-      // })
-    }
+    methods = {}
   }
 </script>

@@ -3,10 +3,9 @@ import Index from '@/api/index';
 
 export default class index extends wepy.page {
   config = {
-    navigationBarTitleText: '我的电影卡'
+    navigationBarTitleText: 'in同城趴·电影'
   }
-  components = {
-  }
+  components = {}
 
   mixins = []
 
@@ -15,8 +14,7 @@ export default class index extends wepy.page {
     texts: {}
   }
 
-  computed = {
-  }
+  computed = {}
 
   methods = {
     toDetail () {
