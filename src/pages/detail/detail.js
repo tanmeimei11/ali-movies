@@ -129,7 +129,7 @@ export default class Index extends wepy.page {
         this.payFail();
       }
     } catch ( e ) {
-
+      console.log( e );
     }
   }
   /**
