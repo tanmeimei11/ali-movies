@@ -184,8 +184,8 @@
         <view class="get">获取开始选座提醒</view>
         <view class="icon"></view>
         <view class="name">in同城趴</view>
-        <view class="btn" a:if="{{contractID}}">关注
-          <lifestyle publicId="{{contractID}}" @tap="alert" class="lifestyle"></lifestyle>  
+        <view class="btn" a:if="{{contractID}}" @tap="alertsub">关注
+          <lifestyle publicId="{{contractID}}" @tap="alertsub" class="lifestyle"></lifestyle>  
         </view>
       </view>
     </view>
@@ -195,13 +195,13 @@
 </template>
 
 <script>
-  import wepy from 'wepy'
-  import Result from '@/api/result'
+  import wepy from 'wepy';
+  import Result from '@/api/result';
   import report from '@/components/report-submit';
 
   export default class result extends wepy.page {
     config = {
-      navigationBarTitleText:  '支付完成'
+      navigationBarTitleText: '支付完成'
     }
     components = { report }
     mixins = []
@@ -210,16 +210,19 @@
     }
     computed = {}
     methods = {
-      alert() {
-        console.log(1111);
+      alertsub () {
+        console.log( '222' );
+      },
+      alert () {
+        console.log( '1111' );
       }
     }
     events = {}
-    async onLoad() {
-      var getContractID = await Result.getContractID()
-      this.contractID = getContractID.contract_id
-      this.$apply()
-      console.log(this.contractID)
+    async onLoad () {
+      // var getContractID = await Result.getContractID();
+      // this.contractID = getContractID.contract_id;
+      // this.$apply();
+      // console.log( this.contractID );
     }
   }
 </script>
