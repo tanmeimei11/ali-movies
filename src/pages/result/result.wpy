@@ -180,12 +180,7 @@
         <view class="get">获取开始选座提醒</view>
         <view class="icon"></view>
         <view class="name">in同城趴</view>
-<<<<<<< HEAD
         <!-- <view class="btn" a:if="{{contractID}}">关注 -->
-=======
-        <view class="btn" a:if="{{contractID}}" @tap="alertsub">关注
-          <lifestyle publicId="{{contractID}}" @tap="alertsub" class="lifestyle"></lifestyle>  
->>>>>>> 4c4999883f65a0dafebf3a3488fcccc83ee52ebf
         </view>
       </view>
     </view>
