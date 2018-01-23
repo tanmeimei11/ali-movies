@@ -1,6 +1,10 @@
 <template>
   <!-- <report> -->
     <view class="container">
+       <!-- 客服 -->
+      <view class="contact">
+        <contact-button session-from="wx_movie_contract"></contact-button>
+      </view>
       <!-- 已购买 -->
       <view class="buy-wrap">
          <view class="pay-btn" @tap="pay">{{detailStatus.is_buy === '1' ? '已购买' : '99元立即抢'}}</view>

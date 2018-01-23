@@ -1,6 +1,6 @@
 
 <template>
-<report>
+<!-- <report> -->
   <view class="container">
     <view class="c-cards">
       <view class="s-avatar-wrap">
@@ -22,7 +22,7 @@
       </view>
     </view>
   </view>
-  </report>
+  <!-- </report> -->
 </template>
 <style lang="less" src="./self.less">
 </style>

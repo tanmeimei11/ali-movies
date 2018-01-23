@@ -18,6 +18,10 @@
   line-height: inherit;
   border-radius: inherit;
 }
+
+.report-button:after {
+  display: none;
+}
 </style>
 
 <script>
