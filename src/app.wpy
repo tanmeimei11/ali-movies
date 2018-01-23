@@ -35,8 +35,7 @@ export default class extends wepy.app {
 
   async onLaunch ( opts ) {
     // 渠道埋点
-    constructor.log( opts );
-    this.globalData.qrcode_from = opts.qrcode_from || '';
+    this.globalData.qrcode_from = opts.query.qrcode_from || '';
     /**
      * try
      *   收集微信机型数据
@@ -79,7 +78,7 @@ export default class extends wepy.app {
   }
 
   config = {
-    pages: ['pages/index/index', 'pages/detail/detail', 'pages/self/self', 'pages/seat/seat', 'pages/result/result'],
+    pages: ['pages/detail/detail', 'pages/index/index', 'pages/self/self', 'pages/seat/seat', 'pages/result/result'],
     tabBar: {
       'textColor': '#4A4A4A',
       'selectedColor': '#D0A661',
