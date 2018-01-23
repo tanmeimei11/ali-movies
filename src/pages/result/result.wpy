@@ -160,8 +160,8 @@
   }
 </style>
 <template>
-<!-- <report> -->
-  <view publicId="{{contractID}}" class="lifestyle"></view>  
+<report>
+  <lifestyle publicId="{{contractID}}" class="lifestyle"></lifestyle>  
   <view class="result">
     <view class="txt">
       <view>支付完成</view>
