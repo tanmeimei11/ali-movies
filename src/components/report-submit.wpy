@@ -12,6 +12,11 @@
   border: none;
   height: auto;
   border-radius: 0;
+  overflow: visible;
+  font-size: inherit;
+  text-align: inherit;
+  line-height: inherit;
+  border-radius: inherit;
 }
 </style>
 
