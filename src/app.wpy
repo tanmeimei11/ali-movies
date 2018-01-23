@@ -28,6 +28,13 @@ export default class extends wepy.app {
         p.headers = this.createAuthHeader();
         p.data = p.data || {};
         p.data['privateKey'] = this.globalData.xToken || token;
+
+        // 单次qrcode_from埋点
+        if ( /cfStatus/.test( p.url ) && this.globalData.trackfrom ) {
+          console.log( '单次qrcode_from埋点' );
+          p.data['qrcode_from'] = this.globalData.trackfrom;
+          this.globalData.trackfrom = '';
+        }
         return p;
       }
     } );
@@ -37,6 +44,7 @@ export default class extends wepy.app {
     // 渠道埋点
     if ( opts.query ) {
       this.globalData.qrcode_from = opts.query.qrcode_from || '';
+      this.globalData.trackfrom = opts.query.qrcode_from || '';
     }
 
     /**
@@ -81,7 +89,7 @@ export default class extends wepy.app {
   }
 
   config = {
-    pages: ['pages/index/index', 'pages/result/result', 'pages/detail/detail', 'pages/self/self', 'pages/seat/seat', 'pages/result/result'],
+    pages: ['pages/index/index', 'pages/detail/detail', 'pages/result/result', 'pages/self/self', 'pages/seat/seat', 'pages/result/result'],
     tabBar: {
       'textColor': '#4A4A4A',
       'selectedColor': '#D0A661',
