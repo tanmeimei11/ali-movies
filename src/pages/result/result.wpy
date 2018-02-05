@@ -193,13 +193,14 @@
   import wepy from 'wepy';
   import Result from '@/api/result';
   import report from '@/components/report-submit';
+  import Sharemixins from '@/mixins/share';
 
   export default class result extends wepy.page {
     config = {
       navigationBarTitleText: '支付完成'
     }
     components = { report }
-    mixins = []
+    mixins = [Sharemixins]
     data = {
       contractID: '2018011801960713'
     }

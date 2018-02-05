@@ -1,5 +1,6 @@
 import wepy from 'wepy';
 import Index from '@/api/index';
+import Sharemixins from '@/mixins/share';
 import report from '@/components/report-submit';
 
 export default class index extends wepy.page {
@@ -8,7 +9,7 @@ export default class index extends wepy.page {
   }
   components = { report }
 
-  mixins = []
+  mixins = [Sharemixins]
 
   data = {
     btnon: true,
@@ -30,7 +31,7 @@ export default class index extends wepy.page {
 
   events = {
   }
-
+  
   async onLoad () {
     var InfoRes = await Index.getIndexInfo();
     this.texts = InfoRes;

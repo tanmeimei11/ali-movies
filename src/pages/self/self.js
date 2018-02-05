@@ -3,12 +3,14 @@ import auth from '@/api/auth';
 import Self from '@/api/self';
 import tips from '@/utils/tips';
 import report from '@/components/report-submit';
+import Sharemixins from '@/mixins/share';
 
 export default class Index extends wepy.page {
   config = {
     navigationBarTitleText: '我的电影卡'
   }
   components = { report }
+  mixins = [Sharemixins]
 
   data = {
     btninfo: {},

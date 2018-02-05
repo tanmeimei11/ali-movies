@@ -4,13 +4,14 @@ import Detail from '@/api/detail';
 import tips from '@/utils/tips';
 import report from '@/components/report-submit';
 // import loadingMixin from '@/mixins/loadingMixin'
+import Sharemixins from '@/mixins/share';
 
 export default class Index extends wepy.page {
   config = {
     navigationBarTitleText: 'in同城趴·电影王卡'
   }
   components = { report }
-  mixins = []
+  mixins = [Sharemixins]
   data = {
     cardNumInfo: {
       title: '专享优惠 名额有限',
