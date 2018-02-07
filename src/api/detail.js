@@ -6,18 +6,26 @@ export default class Detail extends Pagebase {
   /**
    *  获取众筹状态接口
    */
-  static async getDetailStatus () {
+  static async getDetailStatus ( queryObj ) {
+    var _data = {
+      product_id: 159,
+      ...queryObj
+    };
+    // if ( shareCode ) {
+    //   _data.share_code = shareCode;
+    // }
     return await this.request( {
-      url: '/mnp/product/cfStatus',
-      data: { product_id: 159 }
+      url: '/mnp/product/cfStatus2',
+      data: _data
     } );
   }
   /**
    *  获取详情页数据接口
    */
-  static async getDetailData () {
+  static async getDetailData ( data ) {
     return await this.request( {
-      url: '/info/cinemas'
+      url: '/info/cinemas',
+      data: data
     } );
   }
   static initCardNum ( data ) {
@@ -46,6 +54,14 @@ export default class Detail extends Pagebase {
     };
   }
   /**
+   * 获取分享信息
+   */
+  static async getShareInfo () {
+    return await this.request( {
+      url: '/mnp/share/wechat/img'
+    } );
+  }
+  /**
    *
    * 初始化电影
    * @static
@@ -66,12 +82,17 @@ export default class Detail extends Pagebase {
   /**
    * 创建订单接口
    */
-  static async creatOrder () {
+  static async creatOrder ( buyNumber, _data ) {
+    // ticketId && ( _data.tikect_id = ticketId );
+    console.log( wepy.$instance.globalData );
     return await this.request( {
       url: '/mnp/order/create',
       data: {
+        ..._data,
         product_id: 159,
-        pay_channel: paymentChannel
+        pay_channel: paymentChannel,
+        buy_num: buyNumber,
+        qrcode_from: wepy.$instance.globalData.qrcode_from || ''
       }
     } );
   }
@@ -93,6 +114,34 @@ export default class Detail extends Pagebase {
     return await this.request( {
       url: payUrl,
       data: _data
+    } );
+  }
+  /**
+   * @static 获得卡的信息
+   * @param {any} code
+   * @memberof Detail
+   */
+  static async getCardInfo ( code ) {
+    return await this.request( {
+      url: '/mnp/card/reward_info',
+      data: {
+        reward_code: code
+      }
+    } );
+  }
+  /**
+   *
+   * @param {*} code
+   * @param {*} phone
+   */
+  static async receiveCard ( code, phone ) {
+    return await this.request( {
+      url: '/mnp/card/fetch',
+      method: 'POST',
+      data: {
+        reward_code: code,
+        phone: phone
+      }
     } );
   }
 }

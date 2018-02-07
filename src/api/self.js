@@ -6,7 +6,7 @@ export default class Self extends Pagebase {
    */
   static async getMyInfo () {
     return await this.request( {
-      url: '/mnp/user/my'
+      url: '/mnp/user/my2'
     } );
   }
 
@@ -25,21 +25,16 @@ export default class Self extends Pagebase {
    * @param {*} defaultCard  默认卡
    */
   static initCardInfo ( cards, defaultCard ) {
-    if ( !cards || !cards.length ) {
-      return [{
-        title: defaultCard.name,
-        desc: defaultCard.desc,
-        num: `NO.${defaultCard.card_no}`,
-        isApply: true
-      }];
-    }
     return cards.map( ( item ) => {
       return {
         id: item.id,
         title: item.name,
         desc: item.desc,
         time: this.getCardTime( item.start_date, item.end_date ),
-        num: `NO.${item.card_no}`
+        num: `NO.${item.card_no}`,
+        reward_from_info: item.reward_from_info,
+        reward_to_info: item.reward_to_info,
+        reward_btn: item.reward_btn
       };
     } );
   }
@@ -64,5 +59,16 @@ export default class Self extends Pagebase {
       return [];
     }
     return rules;
+  }
+
+  /**
+   * 获取我的信息接口
+   */
+  static async cardChange ( data ) {
+    return await this.request( {
+      url: '/mnp/card/change',
+      method: 'POST',
+      data
+    } );
   }
 }

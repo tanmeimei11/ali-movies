@@ -2,10 +2,12 @@ page{
     background: #19033b;
 }
 .content{
+    display: block;
     background: #19033b;
     overflow: hidden;
     // height: 100%;
-    background: url('http://inimg05.jiuyan.info/in/2018/01/20/EEF770C7-CED0-18E3-4E2B-D6747272A88E.jpg') no-repeat;
+    background-repeat: no-repeat;
+    // background: url('https://inimg05.jiuyan.info/in/2018/01/26/D79557A6-9FBD-C33A-2298-C262E84FA7CA.png') no-repeat;
     background-size: 100% auto;
     background-position: top;
 }
@@ -15,6 +17,18 @@ page{
     top: 0;
     left: 0;
     width: 100%;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 28rpx;
+      left: 28rpx;
+      width: 176rpx;
+      height: 45rpx;
+      background: url('https://inimg01.jiuyan.info/in/2018/01/25/6DA6612B-F3AA-F84E-06CD-87D48414EE6F.jpg') no-repeat;
+      background-size: 100% auto;
+    }
+
     .txt{
         margin: 702rpx auto 0;
         position: relative;

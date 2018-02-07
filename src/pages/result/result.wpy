@@ -1,13 +1,14 @@
 <style lang="less">
-  page{
+  page {
     background: #19033b;
   }
-  .result {
-    position: absolute;
+
+  .container {
+    /* position: absolute;
     width: 100%;
-    height: 100%;
-    background: url('http://inimg05.jiuyan.info/in/2018/01/20/03C3B4F8-DCA2-0A83-2F29-B51B0B494A76.jpg') no-repeat;
-    background-size: contain;
+    height: 100%; */
+    background: url('https://inimg05.jiuyan.info/in/2018/01/20/03C3B4F8-DCA2-0A83-2F29-B51B0B494A76.jpg') no-repeat;
+    background-size: cover;
     background-position: top;
   }
 
@@ -19,64 +20,65 @@
     height: 100rpx;
     align-items: center;
     justify-content: center;
-    view{
+    view {
       color: #fff;
       text-align: center;
       border-radius: 50%;
       line-height: 50rpx;
     }
-    view:nth-child(1):before{
+    view:nth-child(1):before {
       content: '';
       display: inline-block;
       vertical-align: middle;
       width: 48rpx;
       height: 55rpx;
       margin-right: 14rpx;
-      background: url('http://inimg01.jiuyan.info/in/2018/01/16/3FCE52B0-F4A0-CBDF-8D0C-55DCA3CDA729.png') no-repeat;
+      background: url('https://inimg01.jiuyan.info/in/2018/01/16/3FCE52B0-F4A0-CBDF-8D0C-55DCA3CDA729.png') no-repeat;
       background-size: contain;
       background-position: top;
     }
-    .tips{
+    .tips {
       margin-top: 8rpx;
       font-size: 30rpx;
       color: #fff;
       opacity: 0.7;
     }
   }
-  .content{
+
+  .content {
     margin: 130rpx auto 48rpx;
     width: 594rpx;
     height: 726rpx;
     background: #fff;
     border-radius: 12rpx;
     position: relative;
-    .card{
+    .card {
       width: 526rpx;
       height: 310rpx;
       position: absolute;
       top: -93rpx;
       left: 34rpx;
-      background: url('http://inimg05.jiuyan.info/in/2018/01/20/2DA09EFC-0C64-7D16-217F-CDFB83064A8C.png') no-repeat;
+      background: url('https://inimg01.jiuyan.info/in/2018/01/25/31F09241-BE48-CDC5-AED9-94D5FC27EF25.png') no-repeat;
       background-size: contain;
       background-position: center;
-      .yuan{
-        width: 105rpx;
+      .yuan {
+        width: 216rpx;
         height: 109rpx;
         position: absolute;
         top: 69rpx;
         left: 50rpx;
-        background: url('http://inimg01.jiuyan.info/in/2018/01/16/77A3BF31-4DBB-BF3E-86A1-B59B78435D1A.png') no-repeat;
+        background-repeat: no-repeat;
         background-size: contain;
         background-position: center;
       }
-      .cardname{
+      .cardname {
         font-size: 24rpx;
         color: #cb953e;
         position: absolute;
         top: 13rpx;
         left: 362rpx;
       }
-      .cardinfo{
+      .cardinfo {
         font-size: 36rpx;
         color: #fff;
         position: absolute;
@@ -90,47 +92,118 @@
       position: absolute;
       top: 306rpx;
       left: 197rpx;
-      background: url('http://inimg02.jiuyan.info/in/2018/01/16/6CC87130-75B9-66C6-9579-81440AE5FC80.png') no-repeat;
+      background: url('https://inimg02.jiuyan.info/in/2018/01/16/6CC87130-75B9-66C6-9579-81440AE5FC80.png') no-repeat;
       background-size: contain;
       background-position: center;
     } */
-    .follow{
+    .follow, .succ {
       position: absolute;
-      top: 286rpx;
+      top: 287rpx;
       left: 0;
-      width: 100%;
+      width: 526rpx;
       text-align: center;
-      .title{
+      padding: 0 34rpx;
+      text-align: left;
+      .text{
+        font-size: 32rpx;
+        color: #666;
+      }
+      input{
+        width: 526rpx;
+        height: 70rpx;
+        background: #f7f7f7;
+        border: none;
+        border-radius: 8rpx;
+        font-size: 28rpx;
+        color: #333;
+        padding-left: 20rpx;
+        margin-top: 12rpx;
+      }
+      .tips{
+        font-size: 20rpx;
+        color: #b0b0b0;
+        margin-top: 10rpx;
+      }
+      .title {
         font-size: 36rpx;
         font-weight: bold;
-        color: rgba(0,0,0,0.87);
+        color: rgba(0, 0, 0, 0.87);
         line-height: 36rpx;
       }
-      .get{
+      .get {
         margin-top: 10rpx;
         font-size: 28rpx;
         line-height: 32rpx;
         color: #b0b0b0;
       }
-      .icon{
+      .icon {
         margin: 28rpx auto 8rpx;
         width: 124rpx;
         height: 124rpx;
-        background: url('http://inimg02.jiuyan.info/in/2018/01/17/A8F8059C-235A-E923-3FD5-D2010866F774.png') no-repeat;
+        background: url('https://inimg02.jiuyan.info/in/2018/01/17/A8F8059C-235A-E923-3FD5-D2010866F774.png') no-repeat;
         background-size: contain;
         background-position: center;
       }
-      .name{
+      .name {
         font-size: 24rpx;
         color: #333;
       }
-      .btn{
-        margin-top: 28rpx;
+      .btn {
+        width: 400rpx;
+        height: 88rpx;
+        margin: 90rpx auto 0;
+        line-height: 88rpx;
+        font-size: 32rpx;
         color: #fff;
+        text-align: center;
         background-image: linear-gradient(90deg, #FD9C6C 0%, #F95557 100%);
+        border-radius: 65rpx;
+        position: relative;
+        opacity: 0.3;
+        &.on{
+          opacity: 1
+        }
+      }
+      .qrcode {
+        width: 300rpx;
+        height: 300rpx;
+        margin: 0 auto;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+      .user {
+        margin: 34rpx auto;
+        font-size: 28rpx;
+        color: #333;
+        line-height: 40rpx;
+        view {
+          display: inline-block;
+          vertical-align: middle;
+        }
+        .avatar {
+          width: 40rpx;
+          height: 40rpx;
+          margin-right: 10rpx;
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-position: center;
+          border-radius: 50%;
+        }
       }
     }
-    .getinfo{
+    .succ{
+      text-align: center;
+      .succIcon{
+        width: 140rpx;
+        height: 140rpx;
+        margin: 20rpx auto;
+        background: url('http://inimg05.jiuyan.info/in/2018/01/25/D6FF7CFF-69FB-C5F2-401F-5160DEFFAA83.png') no-repeat;
+        background-position: center;
+        background-size: contain;
+      }
+    }
+    .getinfo {
       position: absolute;
       top: 538rpx;
       left: 0;
@@ -140,83 +213,134 @@
       text-align: center;
     }
   }
-  .btn{
-    width: 400rpx;
-    height: 88rpx;
-    margin: 0 auto;
-    line-height: 88rpx;
-    font-size: 32rpx;
-    color: #a8433d;
-    text-align: center;
-    background-image: linear-gradient(90deg, #FD9C6C 0%, #F95557 100%);
-    border-radius: 65rpx;
-    position: relative;
-    .lifestyle{
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      background: #000;
-      transform-origin: 0 0;
-      width: 100%!important;
-      height: 100%!important;
-      /* opacity: 0; */
-    }
-  }
+
 </style>
 <template>
-  <view class="result">
-    <view class="txt">
-      <view>支付完成</view>
-      <!-- <view class="tips">分享朋友圈 抽免单机会</view> -->
-    </view>
-    <view class="content">
-      <view class="card">
-        <view class="yuan"></view>
-        <!-- <text class="cardname">in同城趴·电影王卡</text> -->
-        <text class="cardinfo">三个月电影免费看</text>
-      </view>
-      <!-- <view class="icon"></view>
-      <text class="getinfo">请关注小程序了解最近进展</text> -->
-      <view class="follow">
-        <view class="title">请关注in同城趴生活号</view>
-        <view class="get">获取开始选座提醒</view>
-        <view class="icon"></view>
-        <view class="name">in同城趴</view>
-        <view class="btn" a:if="{{contractID}}">关注
-          <lifestyle publicId="{{contractID}}" @tap="alert" class="lifestyle"></lifestyle>  
+  <report>
+    <view class="container">
+      <view class="result">
+        <view class="txt">
+          <view>支付完成</view>
         </view>
+        <view class="content">
+          <view class="card">
+            <view class="yuan" style="background-image: url({{share_card_img}});"></view>
+            <!-- <text class="cardname">in同城趴·电影王卡</text> -->
+            <text class="cardinfo">三个月电影免费看</text>
+          </view>
+          <!-- <view class="icon"></view>
+          <text class="getinfo">请关注小程序了解最近进展</text> -->
+          <view class="follow" wx:if="{{!succ}}">
+            <view class="text">请留下你的联系方式</view>
+            <input bindinput="bindKeyInput" placeholder="输入手机号" type="number" maxlength="11" value="{{phone}}"/>
+            <view class="tips">＊开放选座后将及时提醒你</view>
+            <view class="btn {{isFull ? 'on' : ''}}" @tap="submit">确认提交</view>
+            <!-- <view class="qrcode" style="background-image: url({{qrinfo.qrcode}});"></view>
+            <view class="user">
+              <view class="avatar" style="background-image: url({{qrinfo.avatar}});"></view>
+              <view>{{qrinfo.nickname}}</view>
+            </view> -->
+          </view>
+          <view class="succ" wx:if="{{succ}}">
+            <view class="succIcon"></view>
+            <view class="succTxt">提交成功</view>
+          </view>
+        </view>
+        <!-- <view class="btn" @tap="compose">保存至相册</view> -->
       </view>
     </view>
-    <!-- <view class="btn">保存至相册</view> -->
-  </view>
+  </report>
 </template>
 
 <script>
-  import wepy from 'wepy'
-  import Result from '@/api/result'
+  import wepy from 'wepy';
+  import Result from '@/api/result';
+  import report from '@/components/report-submit';
+  import track from '@/utils/track';
+  // import compose from '@/utils/compose'
+  import util from '@/utils/util'
+  // import images from './image.js'
+  import tips from '@/utils/tips';
+  import auth from '@/api/auth';
+  import { request } from '@/utils/request';
 
   export default class result extends wepy.page {
     config = {
-      navigationBarTitleText:  '支付完成'
+      navigationBarTitleText: '支付完成'
     }
-    components = {}
+    components = { report }
     mixins = []
     data = {
-      contractID: '2018011801960713'
+      succ: false,
+      isFull: false,
+      num: '',
+      orderNo: '',
+      contractID: '2018011801960713',
+      qrinfo: {},
+      phone: '',
+      share_card_img: ''
     }
     computed = {}
     methods = {
-      alert() {
-        console.log(1111);
+      alert () {
+        console.log( 1111 );
+      },
+      bindKeyInput ( e ) {
+        this.num = e.detail.value;
+        if ( e.detail.value.length === 11 ) {
+          if (!util.verifyPhone(this.num)) {
+            return 
+          }
+          this.isFull = true;
+        } else {
+          this.isFull = false;
+        }
+      },
+      async submit () {
+        console.log( Result );
+        if ( this.isFull ) {
+          tips.loading();
+          track( 'result_page_submit' );
+          var res = await request( {
+            url: '/mnp/card/add_phone',
+            method: 'POST',
+            data: {
+              order_no: this.orderNo,
+              phone: this.num
+            }
+          } );
+          if ( res.succ ) {
+            tips.loaded();
+            this.succ = true;
+            this.$apply();
+            setTimeout(()=>{
+              wepy.switchTab( {
+                url: `/pages/self/self`
+              } );
+            },1000)
+           
+          } else {
+            tips.loaded();
+            tips.error( '网络错误' );
+          }
+        }
       }
     }
+  
     events = {}
-    async onLoad() {
-      var getContractID = await Result.getContractID()
-      this.contractID = getContractID.contract_id
+    async onLoad ( option ) {
+      track( 'result_page' );
+      this.orderNo = option.orderNo;
+      await auth.ready();
+      var res = await Result.getContractID()
+      this.phone = res.phone
+      if (this.phone) {
+        this.num = this.phone
+        this.isFull = true
+      }
+      this.share_card_img = res.share_card_img
       this.$apply()
-      console.log(this.contractID)
+      console.log(res)
     }
   }
 </script>

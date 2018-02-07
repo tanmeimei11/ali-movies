@@ -3,8 +3,8 @@ module.exports = {
   'succ': true,
   'data': {
     'desc': {
-      'desc01':'',
-      'desc06':['',''],
+      'desc01': '',
+      'desc06': ['', '']
     },
     'texts': [
       '全面覆盖杭州15大影院'     // 文字列表
@@ -27,16 +27,20 @@ module.exports = {
     'movies': [
       {
         'name': '勇敢者的游戏',
-        'movie_img_url': 'http://inimg02.jiuyan.info/in/2018/01/18/BEBD80A5-ECEE-F40B-DE51-1CD8FD90CC8F.jpg'
+        'movie_img_url': 'https://inimg02.jiuyan.info/in/2018/01/18/BEBD80A5-ECEE-F40B-DE51-1CD8FD90CC8F.jpg'
       },
       {
         'name': '勇敢者的游戏',
-        'movie_img_url': 'http://inimg02.jiuyan.info/in/2018/01/18/BEBD80A5-ECEE-F40B-DE51-1CD8FD90CC8F.jpg'
+        'movie_img_url': 'https://inimg02.jiuyan.info/in/2018/01/18/BEBD80A5-ECEE-F40B-DE51-1CD8FD90CC8F.jpg'
       }
     ],
-    'all_cinema_addr_img': 'http://inimg01.jiuyan.info/in/2018/01/18/0DB172F7-09B5-212A-F0B4-DA26F44762AB.png', // 所有影院位置的图
+    'all_cinema_addr_img': 'https://inimg01.jiuyan.info/in/2018/01/18/0DB172F7-09B5-212A-F0B4-DA26F44762AB.png', // 所有影院位置的图
     'total_person_count': '50000',
-    'current_person_count': '12345'
+    'current_person_count': '12345',
+    pay_price: '109',
+    pay_notice: '＊可购买多张转赠给他人使用，瑞机说啥就说睡觉还是交换机的环境',
+    'bg_img_01': 'https://inimg01.jiuyan.info/in/2018/01/25/572169AF-DAAC-DDAF-0E40-EF7BEC4DAB57.jpg',
+    'bg_imgs': ['https://inimg01.jiuyan.info/in/2018/01/31/0E2EB360-EE37-AC5D-F774-1CF34BB7EB1F.jpg', 'https://inimg01.jiuyan.info/in/2018/01/31/8FE47727-3E04-D365-B657-D9D7C79D11FE.jpg', 'https://inimg01.jiuyan.info/in/2018/01/31/625DF2A0-FCD4-C1BD-6582-FF19E578781D.jpg']
   },
   'code': '0',
   'msg': ''
