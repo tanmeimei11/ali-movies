@@ -130,14 +130,6 @@ export default class ticket extends wepy.page {
       } );
     }
   }
-  /**
-   * 设置分享的shareticket
-   */
-  setShare () {
-    wepy.showShareMenu( {
-      withShareTicket: true // 要求小程序返回分享目标信息
-    } );
-  }
 
   async openCard () {
     var thisTicket = this.cardInfo.ticket
@@ -198,7 +190,6 @@ export default class ticket extends wepy.page {
   }
   async onLoad ( options ) {
     // track( 'my_page_enter' );
-    this.setShare();
     if ( options.qrcode_from ) {
       this.$parent.globalData.qrcode_from = options.qrcode_from;
     }

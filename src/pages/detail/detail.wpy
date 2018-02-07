@@ -1,5 +1,5 @@
 <template>
-  <report>
+  <!-- <report> -->
     <scroll-view class="container" scroll-y scroll-with-animation scroll-into-view="{{toView}}">
       <!-- 活动规则 -->
       <view class="anch" @tap="gotoBottom">活动规则</view>
@@ -83,7 +83,7 @@
     <!-- 其他渠道红包（比如滴滴） -->
     <channelModal wx:if="{{channelModalInfo.show}}" :channelModalInfo.sync="channelModalInfo"></channelModal>
     <notice wx:if="{{noticeInfo.show}}" :noticeInfo.sync="noticeInfo"></notice>
-  </report>
+  <!-- </report> -->
 </template>
 <style lang="less" src="./detail.less"></style>
 <script src="./detail.js"></script>

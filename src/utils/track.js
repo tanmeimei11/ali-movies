@@ -1,5 +1,5 @@
 import wepy from 'wepy';
-import {GoogleAnalytics, HitBuilders} from '@/lib/ga.js';
+// import {GoogleAnalytics, HitBuilders} from '@/lib/ga.js';
 const trackPrefix = 'h5_tcpa_movie_';
 const trackUrl = 'https://stats1.jiuyan.info/onepiece/router.html';
 var GAtracker = null;
@@ -19,12 +19,12 @@ export default async function track ( action, params ) {
   };
 
   // in埋点
-  wepy.request( {
-    url: trackUrl,
-    data: _data
-  } );
+  // wepy.request( {
+  //   url: trackUrl,
+  //   data: _data
+  // } );
   // ga埋点
-  GAtrackReq( _data );
+  // GAtrackReq( _data );
 }
 
 /**
@@ -36,7 +36,7 @@ function initGaTrack () {
   .setAppName( 'in同城趴电影' )
   .newTracker( 'UA-113017547-1' ); // 用你的 Tracking ID 代替
 }
-GAtracker = initGaTrack();
+// GAtracker = initGaTrack();
 
 /**
  *
@@ -56,5 +56,5 @@ function GAtrackReq ( data ) {
         .setAction( `${wepy.$instance.globalData.qrcode_from || 'none'}` );
         // .setLabel( `from_${wepy.$instance.globalData.qrcode_from}` ); // 可选
   }
-  GAtracker.send( GAtrackerAct );
+  // GAtracker.send( GAtrackerAct );
 };

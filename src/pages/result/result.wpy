@@ -216,7 +216,7 @@
 
 </style>
 <template>
-  <report>
+  <!-- <report> -->
     <view class="container">
       <view class="result">
         <view class="txt">
@@ -249,7 +249,7 @@
         <!-- <view class="btn" @tap="compose">保存至相册</view> -->
       </view>
     </view>
-  </report>
+  <!-- </report> -->
 </template>
 
 <script>

@@ -218,7 +218,6 @@ export default class Index extends wepy.page {
   async onLoad ( options ) {
     track( 'page_screen' );
     this.initOptions( options );
-    this.setShare();
     track( 'page_enter' );
     await this.init();
   }
@@ -389,14 +388,6 @@ export default class Index extends wepy.page {
     }
 
     this.getDetailStatusQuery();
-  }
-  /**
-   * 设置分享的shareticket
-   */
-  setShare () {
-    wepy.showShareMenu( {
-      withShareTicket: true // 要求小程序返回分享目标信息
-    } );
   }
   /**
    *  支付

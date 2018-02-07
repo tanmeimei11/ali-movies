@@ -1,5 +1,5 @@
 <template>
-  <report>
+  <!-- <report> -->
     <view class="container">
       <view class="banner">
         <view class="rule" @tap="openRules">活动细则</view>
@@ -73,7 +73,7 @@
     </view>
     <!-- 接收失败 -->
     <receiveFaildModal :receiveFaildInfo.sync="receiveFaildInfo" wx:if="{{receiveFaildInfo.show}}"></receiveFaildModal>
-  </report>
+  <!-- </report> -->
 </template>
 <style lang="less" src="./ticket.less">
 </style>
