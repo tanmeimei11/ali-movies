@@ -1,16 +1,14 @@
-import wepy from 'wepy';
 /**
  * 提示与加载工具类
  */
 export default class Tips {
   static isLoading = false
-  static pause = false
 
   /**
    * 弹出提示框
    */
   static success ( title, duration = 1500 ) {
-    wepy.showToast( {
+    my.showToast( {
       title: title,
       icon: 'success',
       mask: true,
@@ -24,35 +22,15 @@ export default class Tips {
   /**
    * 弹出确认窗口
    */
-  static modal ( text, title = '提示' ) {
-    return new Promise( ( resolve, reject ) => {
-      wepy.showModal( {
-        title: title,
-        content: text,
-        showCancel: false,
-        success: res => {
-          resolve( res );
-        },
-        fail: res => {
-          reject( res );
-        }
-      } );
-    } );
-  }
-
-  /**
-   * 弹出确认窗口
-   */
   static confirm ( text, payload = {}, title = '提示' ) {
     return new Promise( ( resolve, reject ) => {
-      wepy.showModal( {
+      my.confirm( {
         title: title,
         content: text,
-        showCancel: true,
         success: res => {
           if ( res.confirm ) {
             resolve( payload );
-          } else if ( res.cancel ) {
+          } else {
             reject( payload );
           }
         },
@@ -64,10 +42,9 @@ export default class Tips {
   }
 
   static toast ( title, onHide, icon = 'success' ) {
-    wepy.showToast( {
-      title: title,
-      icon: icon,
-      mask: true,
+    my.showToast( {
+      content: title,
+      type: icon,
       duration: 1500
     } );
     // 隐藏结束回调
@@ -79,30 +56,12 @@ export default class Tips {
   }
 
   /**
-   * 警告框
-   */
-  static alert ( title ) {
-    wepy.showToast( {
-      title: title,
-      image: '/images/icons/alert.png',
-      mask: true,
-      duration: 500
-    } );
-    return new Promise( ( resolve, reject ) => {
-      setTimeout( () => {
-        resolve();
-      }, 500 );
-    } );
-  }
-
-  /**
    * 错误框
    */
   static error ( title, onHide ) {
-    wepy.showToast( {
-      title: title,
-      image: '/images/icons/error.png',
-      mask: true,
+    my.showToast( {
+      content: title,
+      type: 'fail',
       duration: 1500
     } );
     // 隐藏结束回调
@@ -117,18 +76,9 @@ export default class Tips {
    * 弹出加载提示
    */
   static loading ( title = '加载中', force = false ) {
-    if ( this.isLoading && !force ) {
-      return;
-    }
+    if ( this.isLoading && !force ) { return; }
     this.isLoading = true;
-    if ( wepy.showLoading ) {
-      wepy.showLoading( {
-        title: title,
-        mask: true
-      } );
-    } else {
-      wepy.showNavigationBarLoading();
-    }
+    my.showLoading( { content: title } );
   }
 
   /**
@@ -137,56 +87,8 @@ export default class Tips {
   static loaded () {
     if ( this.isLoading ) {
       this.isLoading = false;
-      if ( wepy.hideLoading ) {
-        wepy.hideLoading();
-      } else {
-        wepy.hideNavigationBarLoading();
-      }
+      my.hideLoading();
     }
-  }
-
-  /**
-   * 弹出下拉动作栏
-   */
-  static action ( ...items ) {
-    return new Promise( ( resolve, reject ) => {
-      wepy.showActionSheet( {
-        itemList: items,
-        success: function ( res ) {
-          const result = {
-            index: res.tapIndex,
-            text: items[res.tapIndex]
-          };
-          resolve( result );
-        },
-        fail: function ( res ) {
-          reject( res.errMsg );
-        }
-      } );
-    } );
-  }
-
-  static actionWithFunc ( items, ...functions ) {
-    wepy.showActionSheet( {
-      itemList: items,
-      success: function ( res ) {
-        const index = res.tapIndex;
-        if ( index >= 0 && index < functions.length ) {
-          functions[index]();
-        }
-      }
-    } );
-  }
-
-  static share ( title, url, desc ) {
-    return {
-      title: title,
-      path: url,
-      desc: desc,
-      success: function ( res ) {
-        Tips.toast( '分享成功' );
-      }
-    };
   }
 
   static setLoading () {

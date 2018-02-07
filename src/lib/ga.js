@@ -11,17 +11,17 @@
 import wepy from 'wepy';
 function GoogleAnalytics ( app ) {
   this.app = app; // 小程序App实例
-  this.systemInfo = wx.getSystemInfoSync();
+  this.systemInfo = wepy.getSystemInfoSync();
   this.trackers = []; // 可以有多个跟踪器，第一个为默认跟踪器
   this.appName = 'Mini Program';
   this.appVersion = '1';
 
   var cidKey = '_ga_cid'; // 存用户身份(UUID)
 
-  var cid = wx.getStorageSync( cidKey ) || false;
+  var cid = wepy.getStorageSync( cidKey ) || false;
   if ( !cid ) {
     cid = getUUID();
-    wx.setStorageSync( cidKey, cid );
+    wepy.setStorageSync( cidKey, cid );
   }
   this.cid = cid;
   this.userAgent = buildUserAgentFromSystemInfo( this.systemInfo );
@@ -247,7 +247,7 @@ Tracker.prototype._do_send = function () {
   } else {
     // console.log(["ga.queue.send.collect", payloadData]);
   }
-  wx.request( {
+  wepy.request( {
     url: apiUrl,
     data: payloadData,
     method: 'POST',

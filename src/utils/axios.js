@@ -30,7 +30,7 @@ export default class http {
   static async request ( config ) {
     tips.loading();
     this._fixRequest( config ); // 支付宝小程序特有
-    const myres = await wepy.request( config );
+    const myres = await wepy.httpRequest( config );
     tips.loaded();
     if ( this.isSuccess( myres ) ) {
       return myres.data.data;
@@ -43,9 +43,9 @@ export default class http {
   /**
    * 判断请求是否成功
    */
-  static isSuccess ( { statusCode, data } ) {
+  static isSuccess ( { status, data } ) {
     // 微信请求错误
-    if ( statusCode !== 200 ) {
+    if ( status !== 200 ) {
       return false;
     }
     // 服务响应错误
@@ -55,13 +55,13 @@ export default class http {
   /**
    * 异常
    */
-  static requestException ( { statusCode, data } ) {
+  static requestException ( { status, data } ) {
     const error = {};
-    error.statusCode = statusCode;
+    error.statusCode = status;
     const serverData = data.data;
     if ( serverData ) {
       error.serverCode = data.code;
-      error.message = data.msg || data.message;
+      error.message = data.message;
       error.serverData = serverData;
     }
     return error;
