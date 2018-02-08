@@ -113,30 +113,6 @@
             } );
           }
         }
-      },
-      async apply () {
-        track('page_share_apply_withdrawal')
-        var res = await request( {
-          url: '/mnp/account/withdraw',
-          method: 'POST'
-        } );
-        // tips.modal(res.msg).then((res)=>{
-        //   console.log(res)
-        // }
-        wepy.showModal( {
-          title: '提示',
-          content: res.msg,
-          showCancel: false,
-          success: res => {
-            if ( res.confirm ) {
-              this.amount = '0.00';
-              this.$apply();
-            }
-          }
-        } );
-        if ( res.succ ) {
-          this.$emit( 'initShare' );
-        }
       }
     }
   }

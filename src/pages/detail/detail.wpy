@@ -1,9 +1,10 @@
 <template>
-  <report>
+  <!-- <report> -->
     <scroll-view class="container" scroll-y scroll-with-animation scroll-into-view="{{toView}}">
       <!-- 活动规则 -->
-      <view class="anch" @tap="gotoBottom">活动规则</view>
-      <view class="c-bg" style="{{bgStyle}}"></view>
+      <view class="c-bg" style="{{bgStyle}}">
+        <view class="anch" @tap="gotoBottom">活动规则</view>
+      </view>
       <view class="c-part" style="background-image:url({{partBg}})">
          <moviePart :moviesSections.sync="moviesSections" :detailText.sync="detailText" :movieImg.sync="movieImg"></moviePart>
          <!-- 电影部分 -->
@@ -60,16 +61,16 @@
     <view class="get-movies-ticket" wx:if="{{detailStatus.fetch_ticket}}" @tap="getMovieTicket"></view>
     <!--fix 按钮-->
     <view class="some-btn-wrap">
-      <view class="btn-icon btn-index" @tap="toIndex">首页</view>
+      <!-- <view class="btn-icon btn-index" @tap="toIndex">首页</view>
       <view class="btn-icon btn-contract" @tap="trackContact"> <contact-button session-from="wx_movie_contract"></contact-button>客服</view>
-      <view class="btn btn-cut" @tap="sharePay">{{fixBtnText[0]}}</view>
+      <view class="btn btn-cut" @tap="sharePay">{{fixBtnText[0]}}</view> -->
       <view class="btn btn-origin" @tap="openBuyMutiModal">{{fixBtnText[1]}}</view>
     </view>
 
     <!-- 其他渠道红包（比如滴滴） -->
     <channelModal wx:if="{{channelModalInfo.show}}" :channelModalInfo.sync="channelModalInfo"></channelModal>
     <notice wx:if="{{noticeInfo.show}}" :noticeInfo.sync="noticeInfo"></notice>
-  </report>
+  <!-- </report> -->
 </template>
 <style lang="less" src="./detail.less"></style>
 <script src="./detail.js"></script>
