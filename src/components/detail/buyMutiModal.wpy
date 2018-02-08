@@ -1,7 +1,7 @@
 <template>
   <view class="c-modal c-buymuti-modal">
     <view class="c-wrap">
-      <view class="s-close" @tap.stop="close"></view>
+      <view class="s-close" @tap="close"></view>
       <!-- <view class="s-header" style="background-image:url({{cardImg}})"> -->
       <view class="s-header" style="background-image:url('https://inimg07.jiuyan.info/in/2018/02/07/7D546BB7-C97B-2080-95C2-B27EFB8C3301.jpg')">
         <!-- <view class="tips">NO.xxxxxxxxxxxxxxxxxx</view>
@@ -10,9 +10,9 @@
       <view class="s-main pay-wrap">
         <view class="s-desc-text ">购买数量
           <view class="op-wrap">
-              <view class="op jian" @tap.stop="opJian"></view>
+              <view class="op jian" @tap="opJian"></view>
               <view class="number">{{number}}</view>
-              <view class="op jia" @tap.stop="opJia"></view>
+              <view class="op jia" @tap="opJia"></view>
           </view>
         </view>
         <view class="s-desc-text all">合计金额
@@ -28,7 +28,7 @@
         </block>
         <view class="money-desc" >{{buyMutiModalInfo.baseDesc}}</view>
       </view>
-      <view class="s-btn" @tap.stop="pay">立即支付</view>
+      <view class="s-btn" @tap="pay">立即支付</view>
     </view>
   </view>
 </template>
