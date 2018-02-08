@@ -155,6 +155,11 @@ export default class Index extends wepy.page {
     }
   }
   methods = {
+    toIndex () {
+      wepy.switchTab( {
+        url: `/pages/index/index`
+      } );
+    },
     closeBuyMutiModal () {
       this.buyMutiModalInfo.show = false;
     },
@@ -212,7 +217,7 @@ export default class Index extends wepy.page {
     return {
       title: this.shareInfo.alipay_share_title,
       desc: this.shareInfo.alipay_share_desc,
-      path: `/pages/index/index?directTo=detail&qrcode_from=${this.shareInfo.qrcode_from}`,
+      path: `/pages/detail/detail?qrcode_from=${this.shareInfo.qrcode_from}`,
       imageUrl: this.shareInfo.share_img
       // 'http://inimg07.jiuyan.info/in/2018/01/26/20A52317-E4EB-3657-E024-F2EF040B2E86.jpg'
     };

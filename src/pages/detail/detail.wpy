@@ -3,6 +3,7 @@
     <scroll-view class="container" scroll-y  scroll-into-view="{{toView}}">
       <!-- 活动规则 -->
       <view class="anch" @tap="gotoBottom">活动规则</view>
+      <view class="toIndex" @tap="toIndex"></view>
       <view class="c-bg" style="{{bgStyle}}"></view>
       <view class="c-part" style="background-image:url({{partBg}})">
          <moviePart :moviesSections.sync="moviesSections" :detailText.sync="detailText" :movieImg.sync="movieImg"></moviePart>
