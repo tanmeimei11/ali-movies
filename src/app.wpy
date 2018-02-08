@@ -80,6 +80,10 @@ export default class extends wepy.app {
 
     this.intercept('httpRequest', {
       config (p) {
+        if(/google-analytics/.test(p.url)){
+          return  p
+        }
+
         p.headers = this.createAuthHeader()
         p.data = p.data || {}
         p.data['privateKey'] = this.globalData.xToken || token
