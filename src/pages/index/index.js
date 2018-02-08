@@ -41,7 +41,8 @@ export default class index extends wepy.page {
 
   onShareAppMessage ( res ) {
     return {
-      title: this.shareInfo.share_txt,
+      title: this.texts.share_txt,
+      desc: '小程序官方示例Demo，展示已支持的接口能力及组件。',
       path: `/pages/index/index?qrcode_from=${this.qrcode}`,
       // imageUrl: this.shareInfo.share_img
       // 'http://inimg07.jiuyan.info/in/2018/01/26/20A52317-E4EB-3657-E024-F2EF040B2E86.jpg'
@@ -70,5 +71,6 @@ export default class index extends wepy.page {
     this.btnon = InfoRes.cf_start !== 'false';
     this.bgImage = InfoRes.bg_img;
     this.$apply();
+    console.log(this.shareInfo)
   }
 }
