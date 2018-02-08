@@ -12,6 +12,10 @@ import wepy from 'wepy';
 function GoogleAnalytics ( app ) {
   this.app = app; // 小程序App实例
   this.systemInfo = wepy.getSystemInfoSync();
+  if ( Object.keys( this.systemInfo ).length === 0) {
+    // 默认iphone 7 plug
+    this.systemInfo = { 'system': '11.2.2', 'version': '10.1.15.312', 'currentBattery': '67%', 'brand': 'iPhone', 'windowHeight':623, 'pixelRatio':3, 'platform': 'iOS', 'screenHeight': 736, 'language': 'zh-Hans', 'storage': '119.20 GB', 'windowWidth':414, 'model': 'iPhone9,2', 'screenWidth': 414, 'fontSizeSetting': 16 };
+  }
   this.trackers = []; // 可以有多个跟踪器，第一个为默认跟踪器
   this.appName = 'Mini Program';
   this.appVersion = '1';
