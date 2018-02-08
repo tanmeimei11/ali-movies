@@ -54,15 +54,18 @@ export default class index extends wepy.page {
   }
 
   async onLoad ( option ) {
-    if ( option.qrcode_from ) {
-      this.$parent.globalData.qrcode_from = option.qrcode_from;
+    console.log(wepy.$instance.globalData.query.ass)
+    var newOption = wepy.$instance.globalData.query
+    if ( newOption.qrcode_from ) {
+      wepy.$instance.globalData.query.qrcode_from = newOption.qrcode_from;
     }
-    if ( option.directTo === 'detail' ) {
+    if ( newOption.directTo === 'detail' ) {
+      var cardCode = newOption.cardCode || ''
       wepy.navigateTo( {
-        url: `/pages/detail/detail`
+        url: `/pages/detail/detail?cardCode=${cardCode}`
       } );
     }
-    if ( option.showWin === 'research' ) {
+    if ( newOption.showWin === 'research' ) {
       this.showResearchWindow = true;
       this.researchInfo = await Index.getResearchInfo();
     }

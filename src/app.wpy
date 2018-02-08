@@ -95,7 +95,7 @@ export default class extends wepy.app {
   async onLaunch(opts) {
     this.globalData.query = opts.query || ''
     // 渠道埋点
-    this.globalData.from = opts.query.qrcode_from || ''
+    this.globalData.from = this.globalData.query.qrcode_from || ''
     /**
      * try
      *   收集微信机型数据
