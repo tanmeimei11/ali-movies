@@ -54,7 +54,6 @@ export default class index extends wepy.page {
   }
 
   async onLoad ( option ) {
-    console.log(wepy.$instance.globalData.query.ass)
     var newOption = wepy.$instance.globalData.query
     if ( newOption.qrcode_from ) {
       wepy.$instance.globalData.query.qrcode_from = newOption.qrcode_from;
