@@ -1,25 +1,11 @@
 <template>
-  <!-- <report> -->
+  <report>
     <scroll-view class="container" scroll-y scroll-with-animation scroll-into-view="{{toView}}">
       <!-- 活动规则 -->
       <view class="anch" @tap="gotoBottom">活动规则</view>
       <view class="c-bg" style="{{bgStyle}}"></view>
       <view class="c-part" style="background-image:url({{partBg}})">
-         <!-- 电影部分 -->
-         <view class="c-one-part movie">
-            <view class="s-mid-title movie1">{{detailText.desc11}}</view>
-            <view class="s-title">{{detailText.desc12[0]}}</view>
-            <view class="s-desc">{{detailText.desc12[1]}}</view>
-            <view class="s-info-wrap">
-              <view class="movies-wrap"  >
-                <view class="movie" wx:for="{{movies}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
-                  <image class="movie-paper" src="{{item.url}}"></image>
-                  <view class="movie-name">{{item.name}}</view>
-                </view>
-              </view>
-            </view>
-            <view class="s-tips">(页面仅展示部分电影，更多电影无限畅看)</view>
-          </view>
+         <moviePart :moviesSections.sync="moviesSections" :detailText.sync="detailText" :movieImg.sync="movieImg"></moviePart>
          <!-- 电影部分 -->
         <view class="c-one-part movie">
           <view class="s-mid-title movie">{{detailText.desc09}}</view>
@@ -69,21 +55,21 @@
     <!-- 接收失败 -->
     <receiveFaildModal :receiveFaildInfo.sync="receiveFaildInfo" wx:if="{{receiveFaildInfo.show}}"></receiveFaildModal>
     <!-- 支付 -->
-    <buyMutiModal :BuyMutiModalInfo.sync="BuyMutiModalInfo" wx:if="{{BuyMutiModalInfo.show}}" :discountInfo.sync="discountInfo" ></buyMutiModal>
+    <buyMutiModal :buyMutiModalInfo.sync="buyMutiModalInfo" :cardImg.sync="cardImg" wx:if="{{buyMutiModalInfo.show}}" :discountInfo.sync="discountInfo" ></buyMutiModal>
      <!--fix 获得电影卡-->
     <view class="get-movies-ticket" wx:if="{{detailStatus.fetch_ticket}}" @tap="getMovieTicket"></view>
     <!--fix 按钮-->
     <view class="some-btn-wrap">
       <view class="btn-icon btn-index" @tap="toIndex">首页</view>
       <view class="btn-icon btn-contract" @tap="trackContact"> <contact-button session-from="wx_movie_contract"></contact-button>客服</view>
-      <view class="btn btn-cut" @tap="sharePay">分享得现金</view>
-      <view class="btn btn-origin" @tap="openBuyMutiModal">{{BuyMutiModalInfo.basePrice}}元购买</view>
+      <view class="btn btn-cut" @tap="sharePay">{{fixBtnText[0]}}</view>
+      <view class="btn btn-origin" @tap="openBuyMutiModal">{{fixBtnText[1]}}</view>
     </view>
 
     <!-- 其他渠道红包（比如滴滴） -->
     <channelModal wx:if="{{channelModalInfo.show}}" :channelModalInfo.sync="channelModalInfo"></channelModal>
     <notice wx:if="{{noticeInfo.show}}" :noticeInfo.sync="noticeInfo"></notice>
-  <!-- </report> -->
+  </report>
 </template>
 <style lang="less" src="./detail.less"></style>
 <script src="./detail.js"></script>
