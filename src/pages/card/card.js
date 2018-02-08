@@ -26,16 +26,17 @@ export default class cards extends wepy.page {
   }
 
   onShareAppMessage ( res ) {
-    var query = '';
+    // console.log(res)
+    // var query = '';
     var fun = () => {};
-    if ( res.from === 'button' ) {
-      query = `?cardCode=${this.cardCode}`;
+    // if ( res.from === 'button' ) {
+      var query = `?cardCode=${this.cardCode}`;
       var that = this;
       fun = this.shareCallBack( that );
-    }
+    // }
     return {
       title: '送你一张in同城趴电影王卡，杭州三个月电影无限看！',
-      path: `/pages/detail/detail${query}`,
+      path: `pages/detail/detail${query}`,
       imageUrl: 'https://inimg01.jiuyan.info/in/2018/01/25/FB5D55FB-986F-6433-18B8-BAF8C0C797E3.jpg',
       success: fun
     };

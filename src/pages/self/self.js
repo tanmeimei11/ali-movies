@@ -71,7 +71,11 @@ export default class self extends wepy.page {
         if ( res.succ ) {
           tips.loaded();
           this.userInfo.phone = this.num;
-          await tips.success( this.type + '成功' );
+          my.showToast({
+            type: 'success',
+            content: this.type + '成功',
+            duration: 3000
+          });
           this.isShowMobile = false;
           this.$apply();
         } else {
@@ -166,7 +170,6 @@ export default class self extends wepy.page {
     var myInfoRes = await Self.getMyInfo();
     this.btninfo = myInfoRes;
     this.cards = myInfoRes.cards;
-    console.log( myInfoRes.cards );
     this.cardInfos = Self.initCardInfo( myInfoRes.cards );
     this.userInfo = Self.initUserInfo( myInfoRes );
     this.rules = Self.initRules( myInfoRes.texts );
