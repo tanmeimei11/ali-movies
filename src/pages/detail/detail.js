@@ -230,7 +230,6 @@ export default class Index extends wepy.page {
     var res = await Detail.getDetailData( this.detailCode );
     this.cinemas = Detail.initCinemas( res.cinemas, res.all_cinema_addr_img );
     this.moviesSections = Detail.initMovies( res.movie_sections );
-
     this.detailText = this.initBuyText( res );
     this.rules = this.initRulesText( res.desc );
     this.initBuyInfo( res );
@@ -385,24 +384,26 @@ export default class Index extends wepy.page {
    * @param {*} options
    */
   initOptions ( options ) {
-    this.detailCode = options;
-    if ( options.qrcode_from ) {
-      this.$parent.globalData.qrcode_from = options.qrcode_from;
-      this.data.qrcode_from = options.qrcode_from;
+    console.log(wepy.$instance.globalData.query)
+    this.detailCode = Object.assign({},wepy.$instance.globalData.query);
+    var newoptions = wepy.$instance.globalData.query
+    if ( newoptions.qrcode_from ) {
+      wepy.$instance.globalData.query.qrcode_from = newoptions.qrcode_from;
+      this.data.qrcode_from = newoptions.qrcode_from;
     }
-    this.data.shareId = options.share_uid || '';
-    this.cardCode = options.cardCode || '';
-    if ( options.ticketId ) {  // 立即升级点过来
-      this.discountInfo.ticketId = options.ticketId;
+    this.data.shareId = newoptions.share_uid || '';
+    this.cardCode = newoptions.cardCode || '';
+    if ( newoptions.ticketId ) {  // 立即升级点过来
+      this.discountInfo.ticketId = newoptions.ticketId;
       this.discountInfo.show = true;
     }
-    if ( options.shareCode ) { // 由别人分享电影票点进来
-      this.receiveTicketInfo.shareCode = options.shareCode;
+    if ( newoptions.shareCode ) { // 由别人分享电影票点进来
+      this.receiveTicketInfo.shareCode = newoptions.shareCode;
     }
-    if ( options.rp_code ) {
-      this.channelModalInfo.rp_code = options.rp_code;
+    if ( newoptions.rp_code ) {
+      this.channelModalInfo.rp_code = newoptions.rp_code;
     }
-
+    this.$apply()
     this.getDetailStatusQuery();
   }
   /**
