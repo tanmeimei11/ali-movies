@@ -60,7 +60,7 @@
       <view class="window">
         <view class="close" @tap="closePhone"></view>
         <view class="bind">绑定手机号</view>
-        <input bindinput="bindKeyInput" placeholder="输入手机号" type="number" maxlength="11" placeholder-style="color: #E0E0E0"/>
+        <input onInput="bindKeyInput" placeholder="输入手机号" type="number" maxlength="11" placeholder-style="color: #E0E0E0"/>
         <view class="btn {{isFull ? 'on' : ''}}" @tap.stop="submit">确认</view>
       </view>
     </view>
