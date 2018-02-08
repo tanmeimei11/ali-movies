@@ -1,5 +1,5 @@
 <template>
-  <form @submit="formSubmit" report-submit>
+  <form @Submit="formSubmit" report-submit>
     <button class="report-button" formType="submit">
       <slot />
     </button>
@@ -17,10 +17,6 @@
   text-align: inherit;
   line-height: inherit;
   border-radius: inherit;
-}
-
-.report-button:after {
-  display: none;
 }
 </style>
 
