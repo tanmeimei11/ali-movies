@@ -210,8 +210,8 @@ export default class Index extends wepy.page {
   onShareAppMessage ( res ) {
     console.log(this.shareInfo)
     return {
-      title: this.shareInfo.share_txt,
-      desc: '小程序官方示例Demo，展示已支持的接口能力及组件。',
+      title: this.shareInfo.alipay_share_title,
+      desc: this.shareInfo.alipay_share_desc,
       path: `/pages/index/index?directTo=detail&qrcode_from=${this.shareInfo.qrcode_from}`,
       imageUrl: this.shareInfo.share_img
       // 'http://inimg07.jiuyan.info/in/2018/01/26/20A52317-E4EB-3657-E024-F2EF040B2E86.jpg'

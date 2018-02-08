@@ -1,5 +1,5 @@
 <template>
-  <!-- <report> -->
+  <report>
     <view class="container">
       <view class="c-cards">
         <view class="s-avatar-wrap">
@@ -62,7 +62,7 @@
         <button disabled="{{exchangeDisabled}}" @tap="exchange">确认兑换</button>
       </view>
     </view>
-  <!-- </report> -->
+  </report>
 </template>
 <style lang="less" src="./self.less">
 </style>
