@@ -419,7 +419,10 @@ export default class Index extends wepy.page {
 
       var getOrderRes = await Detail.getOrderDetail( createRes );
       track( 'page_wx_pay_start' );
-      await wepy.tradePay( { orderStr: getOrderRes.sign } );
+      const { resultCode } = await wepy.tradePay( { orderStr: getOrderRes.sign } );
+      if (resultCode.toString() !== '9000') {
+        throw new Error('支付失败');
+      }
       track( 'page_pay_successful' );
       this.paySucc( createRes.order_no );
     } catch ( e ) {
