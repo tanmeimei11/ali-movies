@@ -1,10 +1,9 @@
 <template>
   <!-- <report> -->
-    <scroll-view class="container" scroll-y scroll-with-animation scroll-into-view="{{toView}}">
+    <scroll-view class="container" scroll-y  scroll-into-view="{{toView}}">
       <!-- 活动规则 -->
-      <view class="c-bg" style="{{bgStyle}}">
-        <view class="anch" @tap="gotoBottom">活动规则</view>
-      </view>
+      <view class="anch" @tap="gotoBottom">活动规则</view>
+      <view class="c-bg" style="{{bgStyle}}"></view>
       <view class="c-part" style="background-image:url({{partBg}})">
          <moviePart :moviesSections.sync="moviesSections" :detailText.sync="detailText" :movieImg.sync="movieImg"></moviePart>
          <!-- 电影部分 -->
@@ -27,7 +26,7 @@
             </view>
           </view>
         </view>
-       
+
         <!-- 观看时间部分 -->
         <view class="c-one-part look">
           <view class="s-mid-title">{{detailText.desc13}}</view>
