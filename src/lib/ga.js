@@ -802,23 +802,15 @@ function getUUID () {
 }
 
 function buildUserAgentFromSystemInfo ( si ) {
-  var isAndroid = si.system.toLowerCase().indexOf( 'android' ) > -1;
-  var isIPad = !isAndroid && si.model.toLowerCase().indexOf( 'iphone' ) == -1;
-  // console.log([isAndroid, isIPad]);
+  var isAndroid = si.platform.toLowerCase() === 'android';
   if ( isAndroid ) {
-    return 'Mozilla/5.0 (Linux; U; ' + si.system + '; ' + si.model + ' Build/000000) AppleWebKit/537.36 (KHTML, like Gecko)Version/4.0 Chrome/49.0.0.0 Mobile Safari/537.36 MicroMessenger/' + si.version;
-  } else if ( !isIPad ) {
+    return 'Mozilla/5.0 (Linux; U; ' + si.platform + '; ' + si.model + ' Build/000000) AppleWebKit/537.36 (KHTML, like Gecko)Version/4.0 Chrome/49.0.0.0 Mobile Safari/537.36 MicroMessenger/' + si.version;
+  } else {
     // iOS
-    var v = si.system.replace( /^.*?([0-9.]+).*?$/, function ( x, y ) {
+    var v = si.model.replace( /^.*?([0-9.]+).*?$/, function ( x, y ) {
       return y;
     } ).replace( /\./g, '_' );
     return 'Mozilla/5.0 (iPhone; CPU iPhone OS ' + v + ' like Mac OS X) AppleWebKit/602.3.12 (KHTML, like Gecko) Mobile/14C92 MicroMessenger/' + si.version;
-  } else {
-    // iPad
-    var v = si.system.replace( /^.*?([0-9.]+).*?$/, function ( x, y ) {
-      return y;
-    } ).replace( /\./g, '_' );
-    return 'Mozilla/5.0 (iPad; CPU OS ' + v + ' like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Mobile/10A406 MicroMessenger/' + si.version;
   }
 }
 
