@@ -44,7 +44,7 @@ export default class index extends wepy.page {
     return {
       title: this.texts.alipay_share_title,
       desc: this.texts.alipay_share_desc,
-      path: `pages/index/index?qrcode_from=${this.qrcode}`,
+      path: `${this.texts.share_path}qrcode_from=${this.qrcode}`,
       imageUrl: this.texts.bg_img
       // 'http://inimg07.jiuyan.info/in/2018/01/26/20A52317-E4EB-3657-E024-F2EF040B2E86.jpg'
     };

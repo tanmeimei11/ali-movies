@@ -16,7 +16,7 @@
           <input placeholder="输入手机号" type="number" value="{{phoneNum}}" maxlength="11" onInput="getPhoneNum" placeholder-style="color:#B0B0B0"/>
         </view>
       </view>
-      <view class="s-btn {{receiveGiftInfo.btnStatus ? '':'disabled'}}" bindtap="receive">确认接收</view>
+      <view class="s-btn {{receiveGiftInfo.btnStatus ? '':'disabled'}}" @tap="receive">确认接收</view>
     </view>
   </view>
 </template>
