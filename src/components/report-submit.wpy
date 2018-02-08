@@ -17,6 +17,13 @@
   text-align: inherit;
   line-height: inherit;
   border-radius: inherit;
+  text-overflow: inherit;
+  word-break: inherit;
+  white-space: inherit;
+}
+
+.report-button:after {
+  display: none;
 }
 </style>
 
