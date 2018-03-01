@@ -5,7 +5,7 @@ import tips from '@/utils/tips';
 import { request } from '@/utils/request';
 import report from '@/components/report-submit';
 import track from '@/utils/track';
-import util from "@/utils/util";
+import util from '@/utils/util';
 
 export default class self extends wepy.page {
   config = {
@@ -50,8 +50,8 @@ export default class self extends wepy.page {
     bindKeyInput ( e ) {
       this.num = e.detail.value;
       if ( e.detail.value.length === 11 ) {
-        if (!util.verifyPhone(this.num)) {
-          return 
+        if ( !util.verifyPhone( this.num ) ) {
+          return;
         }
         this.isFull = true;
       } else {
@@ -71,11 +71,11 @@ export default class self extends wepy.page {
         if ( res.succ ) {
           tips.loaded();
           this.userInfo.phone = this.num;
-          my.showToast({
+          my.showToast( {
             type: 'success',
             content: this.type + '成功',
             duration: 3000
-          });
+          } );
           this.isShowMobile = false;
           this.$apply();
         } else {
@@ -128,7 +128,7 @@ export default class self extends wepy.page {
           phone: this.phone
         } );
         // 兑换成功
-        this.isShowExchange = false
+        this.isShowExchange = false;
         await this.init();
       } catch ( e ) {
         // 兑换失败
@@ -158,8 +158,9 @@ export default class self extends wepy.page {
       }
     },
 
-    closePopup ( force = 'false', e ) {
-      if ( e.target.id === 'exchangePopup' || force === 'true' ) {
+    closePopup ( e ) {
+      console.log( e );
+      if ( e.target.dataset.force === '1' || e.target.id === 'exchangePopup' ) {
         this.cdkeyError = '';
         this.isShowExchange = false;
       }

@@ -40,9 +40,9 @@
       </view>
     </view>
     <!-- 兑换弹窗 -->
-    <view class="exchangePopup" wx:if="{{isShowExchange}}" id="exchangePopup" @tap="closePopup(false)">
+    <view class="exchangePopup" wx:if="{{isShowExchange}}" id="exchangePopup" @tap="closePopup" data-force='2'>
       <view class="content">
-        <view class="close" @tap="closePopup(true)"></view>
+        <view class="close" @tap="closePopup" data-force='1'></view>
         <view class="title">兑换电影王卡</view>
         <view class="input-frame {{cdkeyError}}">
           <input
