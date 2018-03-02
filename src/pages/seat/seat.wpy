@@ -54,7 +54,6 @@
 <template>
   <report>
     <view class="container fake">
-      <!-- <view class="con"></view> -->
       <lifestyle publicId="{{contractID}}" class="lifestyle"></lifestyle>
     </view>
   </report>
