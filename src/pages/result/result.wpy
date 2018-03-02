@@ -258,7 +258,7 @@
   import report from '@/components/report-submit';
   import track from '@/utils/track';
   // import compose from '@/utils/compose'
-  import util from '@/utils/util'
+  import util from '@/utils/util';
   // import images from './image.js'
   import tips from '@/utils/tips';
   import auth from '@/api/auth';
@@ -288,8 +288,8 @@
       bindKeyInput ( e ) {
         this.num = e.detail.value;
         if ( e.detail.value.length === 11 ) {
-          if (!util.verifyPhone(this.num)) {
-            return 
+          if ( !util.verifyPhone( this.num ) ) {
+            return;
           }
           this.isFull = true;
         } else {
@@ -313,13 +313,12 @@
             tips.loaded();
             this.succ = true;
             this.$apply();
-            setTimeout(()=>{
+            setTimeout( () => {
               wepy.switchTab( {
                 url: `/pages/self/self`
               } );
-            },1000)
-           
-          } else {
+            }, 1000 );
+        } else {
             tips.loaded();
             tips.error( '网络错误' );
           }
@@ -332,15 +331,15 @@
       track( 'result_page' );
       this.orderNo = option.orderNo;
       await auth.ready();
-      var res = await Result.getContractID()
-      this.phone = res.phone
-      if (this.phone) {
-        this.num = this.phone
-        this.isFull = true
+      var res = await Result.getContractID();
+      this.phone = res.phone;
+      if ( this.phone ) {
+        this.num = this.phone;
+        this.isFull = true;
       }
-      this.share_card_img = res.share_card_img
-      this.$apply()
-      console.log(res)
+      this.share_card_img = res.share_card_img;
+      this.$apply();
+      console.log( res );
     }
   }
 </script>

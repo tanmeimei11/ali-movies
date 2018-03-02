@@ -10,13 +10,15 @@
     }
   }
   .container {
+    box-sizing:border-box;
     /* position: absolute;
     width: 100%;
     height: 100%; */
     // background: url('https://inimg02.jiuyan.info/in/2018/01/27/7E13DF45-19C0-0D75-3D8A-A7009B0931FC.jpg') no-repeat;
     width: 750rpx;
     height: 100%;
-    background: url('https://inimg05.jiuyan.info/in/2018/02/28/4DBA7BC0-6513-C255-60E5-C04381A3E3CB.png') no-repeat;
+    // background: url('https://inimg05.jiuyan.info/in/2018/02/28/4DBA7BC0-6513-C255-60E5-C04381A3E3CB.png') no-repeat;
+    background: url('https://inimg01.jiuyan.info/in/2018/03/02/7F7996C8-55E1-4280-0A01-C67C7A68B33C.jpg') no-repeat;
     background-size: 100% auto;
     background-color: #fff;
     background-position: top;
@@ -30,11 +32,30 @@
       background-position: bottom;
     }
   }
+  .con{
+    height: 400rpx;
+    width: 100%;
+    background: #000;
+  }
+  lifestyle{
+    position: fixed;
+    width: 550rpx;
+    // width: 750rpx;
+    white-space: nowrap;
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    // height: 300rpx; 
+    top:415rpx;
+    left:100rpx;
+    // left:0rpx;
+  }
 </style>
 <template>
   <report>
     <view class="container fake">
-        <view class="mask"></view>
+      <!-- <view class="con"></view> -->
+      <lifestyle publicId="{{contractID}}" class="lifestyle"></lifestyle>
     </view>
   </report>
 </template>
@@ -45,6 +66,9 @@
   export default class result extends wepy.page {
     config = {
       navigationBarTitleText: '选座'
+    }
+    data = {
+      contractID: '2018011801960713'
     }
     components = { report }
   }
