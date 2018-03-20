@@ -243,6 +243,7 @@ export default class Index extends wepy.page {
     this.$apply();
     await auth.ready();
     track( 'page_entry' );
+    console.log(this.statusQuery)
     this.detailStatus = await Detail.getDetailStatus( this.statusQuery );
     this.initReceiveTicketInfo( this.detailStatus );
     this.initChannelDiscount( this.detailStatus );
@@ -266,7 +267,8 @@ export default class Index extends wepy.page {
     this.receiveTicketInfo.shareCode && ( _data.share_code = this.receiveTicketInfo.shareCode );
     this.discountInfo.ticketId && ( _data.ticket_id = this.discountInfo.ticketId );
     this.channelModalInfo.rp_code && ( _data.rp_code = this.channelModalInfo.rp_code );
-    this.statusQuery = _data;
+    Object.assign(_data, wepy.$instance.globalData.query)
+    this.statusQuery = _data
     this.$apply();
     return _data;
   }
@@ -389,7 +391,7 @@ export default class Index extends wepy.page {
    * @param {*} options
    */
   initOptions ( options ) {
-    console.log(wepy.$instance.globalData.query)
+    // console.log(wepy.$instance.globalData.query)
     this.detailCode = Object.assign({}, options, wepy.$instance.globalData.query);
     // var this.detailCode =  Object.assign({}, options, wepy.$instance.globalData.query)
     if ( this.detailCode.qrcode_from ) {
