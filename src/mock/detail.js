@@ -13,13 +13,13 @@ module.exports = {
     'cinemas': [
       {
         'address': '影院的地址在这里在这里',     // 影院地址
-        'address_img': 'http:\/\/inimg01.jiuyan.info\/in\/2018\/01\/18\/0DB172F7-09B5-212A-F0B4-DA26F44762AB.png',  // 影院地址图片
+        'address_img': 'http:／／inimg01.jiuyan.info/in/2018/01/18/0DB172F7-09B5-212A-F0B4-DA26F44762AB.png',  // 影院地址图片
         'gps': '30.2731058471,120.1249247789',  // 影院的gps经度在前,维度在后  如120,30)
         'name': '九言科技影院'                 // 影院名称
       },
       {
         'address': '影院的地址在这里在这里',
-        'address_img': 'http:\/\/inimg01.jiuyan.info\/in\/2018\/01\/18\/0DB172F7-09B5-212A-F0B4-DA26F44762AB.png',
+        'address_img': 'http://nimg01.jiuyan.info/in/2018/01/18/0DB172F7-09B5-212A-F0B4-DA26F44762AB.png',
         'gps': '30.2731058471,120.1249247789',
         'name': '九言科技影院'
       }
