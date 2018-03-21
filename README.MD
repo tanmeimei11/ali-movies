@@ -7,3 +7,5 @@
 2.修改选座诱导下载app
 ### part-6 3.7
 1.detail 红包页面的bug
+### part-7
+1.首页 花呗 弹窗 @xiangxiang
