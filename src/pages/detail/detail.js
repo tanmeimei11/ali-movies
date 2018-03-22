@@ -213,7 +213,7 @@ export default class Index extends wepy.page {
     }
   }
   onShareAppMessage ( res ) {
-    console.log(this.shareInfo)
+    console.log( this.shareInfo );
     return {
       title: this.shareInfo.alipay_share_title,
       desc: this.shareInfo.alipay_share_desc,
@@ -389,8 +389,8 @@ export default class Index extends wepy.page {
    * @param {*} options
    */
   initOptions ( options ) {
-    console.log(wepy.$instance.globalData.query)
-    this.detailCode = Object.assign({}, options, wepy.$instance.globalData.query);
+    console.log( wepy.$instance.globalData.query );
+    this.detailCode = Object.assign( {}, options, wepy.$instance.globalData.query );
     // var this.detailCode =  Object.assign({}, options, wepy.$instance.globalData.query)
     if ( this.detailCode.qrcode_from ) {
       wepy.$instance.globalData.query.qrcode_from = this.detailCode.qrcode_from;
@@ -408,7 +408,7 @@ export default class Index extends wepy.page {
     if ( this.detailCode.rp_code ) {
       this.channelModalInfo.rp_code = this.detailCode.rp_code;
     }
-    this.$apply()
+    this.$apply();
     this.getDetailStatusQuery();
   }
   /**
@@ -426,8 +426,8 @@ export default class Index extends wepy.page {
       var getOrderRes = await Detail.getOrderDetail( createRes );
       track( 'page_wx_pay_start' );
       const { resultCode } = await wepy.tradePay( { orderStr: getOrderRes.sign } );
-      if (resultCode.toString() !== '9000') {
-        throw new Error('支付失败');
+      if ( resultCode.toString() !== '9000' ) {
+        throw new Error( '支付失败' );
       }
       track( 'page_pay_successful' );
       this.paySucc( createRes.order_no );

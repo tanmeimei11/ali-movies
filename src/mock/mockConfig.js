@@ -20,5 +20,7 @@ module.exports = {
   [`${DOMAIN}/mnp/ticket/my`]: 'ticketInfo',
   [`${DOMAIN}/mnp/ticket/share`]: 'share',
   [`${DOMAIN}/mnp/ticket/fetch`]: 'fetch',
+  [`${DOMAIN}/mnp/alipay/fetchHuabeiProfit`]: 'fetchHuabeiProfit',
+  [`${DOMAIN}/mnp/alipay/frontpage`]: 'frontpage',
   [`${payUrl}`]: 'signature'
 };

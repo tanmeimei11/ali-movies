@@ -1,0 +1,162 @@
+<template>
+  <view class="c-modal c-receive-modal">
+    <view class="c-wrap">
+      <view class="s-close" @tap="close" ></view>
+      <text class="s-title">恭喜你获得花呗权益卡</text>
+      <view class="s-text">畅享电影无限看</view>
+      <view class="s-header">
+        <view class="tips">NO.xxxxxxxxxxxxxxxxxx</view>
+        <view class="time">{{huabeiInfo.card.start}}-{{huabeiInfo.card.end}}</view>
+      </view>
+      <view class="s-main">
+        <!-- 手机号输入 -->
+        <view class="phone-wrap">
+          <!-- <view class="desc">请输入手机号接收礼物</view> -->
+          <input placeholder="输入手机号领取" type="number" value="{{this.huabeiInfo.phone || phoneNum}}" maxlength="11" onInput="getPhoneNum" placeholder-style="color:#B0B0B0"/>
+        </view>
+      </view>
+      <view class="s-btn {{huabeiInfo.btnStatus ? '':'disabled'}}" @tap="receive">确认接收</view>
+    </view>
+  </view>
+</template>
+<style type="less">
+
+.c-receive-modal {
+  .c-wrap{
+    padding-bottom: 50rpx;
+    padding-top: 55rpx;
+  }
+  .s-close {
+    /* background-image: url("https://inimg07.jiuyan.info/in/2017/11/05/071B5DFD-47BA-4F0B-F965-1D65BC5DA2D2.jpg"); */
+  }
+
+  .s-title{
+    text-align: center;
+    font-size: 36rpx;
+    color:#1697DB;
+    line-height: 1.5;
+  }
+  .s-text{
+    color: #333333;
+     font-size: 28rpx;
+    text-align: center;
+    line-height: 2;
+  }
+
+  .s-header {
+    position: relative;
+    width:450rpx;
+    height: 270rpx;
+    background-image: url('https://inimg01.jiuyan.info/in/2018/03/21/223D0866-304B-D4BF-18F3-22D89ED4C828.jpg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    color: #fff;
+    margin: 0 auto ; 
+    .tips{
+      font-size: 16rpx;
+      position: absolute;
+      top: 92rpx;
+      left: 45rpx;
+      color: #fff;
+    }
+    .time{
+      position: absolute;
+      bottom: 50rpx;
+      left: 45rpx;
+      height: 26rpx;
+      font-size: 24rpx;
+      padding-left: 30rpx;
+      background: url('https://inimg01.jiuyan.info/in/2018/01/17/9DD8E8EA-327C-85E7-94D2-5C64C7E06DC8.png') no-repeat;
+      background-size: 25rpx 25rpx;
+      background-position: left 50%;
+      color: #fff;
+      opacity: 0.8;
+    }
+  }
+  .s-main{
+    text-align: left;
+    .phone-wrap{
+      width: 100%;
+      box-sizing:border-box;
+      padding: 50rpx ;
+      color: #666666;
+      font-size:28rpx;
+      .desc{
+       margin-bottom: 12rpx;
+      }
+      input{
+        height: 70rpx;
+        background-color: #F7F7F7;
+         box-sizing:border-box;
+        padding: 0 10rpx ;
+        border: none;
+        width: 100%;
+      }
+    }
+  }
+  .s-btn {
+    width: 460rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    font-size: 28rpx;
+    text-align: center;
+    margin: 0 auto 0;
+    border-radius: 200rpx;
+    color: #fff;
+    background-image: linear-gradient(90deg, #fd9c6c 0%, #f95557 100%);
+    border-radius: 100px;
+    font-size: 28rpx;
+    position: relative;
+     &.disabled{
+       pointer-events: none;
+     }
+    &.disabled:before{
+      content: '';
+      position: absolute;
+      left: 0;
+      top:0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.7)
+    }
+  }
+}
+</style>
+<script>
+import wepy from 'wepy';
+import util from '@/utils/util';
+// import { request } from '@/utils/request';
+// import tips from '@/utils/tips';
+// import track from '@/utils/track';
+
+export default class receiveCardModal extends wepy.component {
+  props = {
+    huabeiInfo: Object
+  };
+  data = {
+    phoneNum: ''
+  };
+  methods = {
+    getPhoneNum ( v ) {
+      this.phoneNum = v.detail.value;
+    },
+    receive () {
+      this.$emit( 'receive' );
+    },
+    close () {
+      this.$emit( 'closeReceiveCardModal' );
+    }
+  };
+  watch = {
+    phoneNum ( newVal, oldVal ) {
+      if ( util.verifyPhone( newVal ) && !this.huabeiInfo.btnStatus ) {
+        this.$emit( 'changeReceBtnStatus', true, newVal );
+      } else {
+        this.huabeiInfo.btnStatus && this.$emit( 'changeReceBtnStatus', false, newVal );
+      }
+    }
+  }
+}
+</script>
