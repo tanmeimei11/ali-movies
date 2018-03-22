@@ -12,7 +12,7 @@
         <!-- 手机号输入 -->
         <view class="phone-wrap">
           <!-- <view class="desc">请输入手机号接收礼物</view> -->
-          <input placeholder="输入手机号领取" type="number" value="{{this.huabeiInfo.phone || phoneNum}}" maxlength="11" onInput="getPhoneNum" placeholder-style="color:#B0B0B0"/>
+          <input placeholder="输入手机号领取" type="number" value="{{huabeiInfo.phone || phoneNum}}" maxlength="11" onInput="getPhoneNum" placeholder-style="color:#B0B0B0"/>
         </view>
       </view>
       <view class="s-btn {{huabeiInfo.btnStatus ? '':'disabled'}}" @tap="receive">确认接收</view>

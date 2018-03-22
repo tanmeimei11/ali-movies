@@ -23,7 +23,7 @@ export default class index extends wepy.page {
       fromHuabei: 0,
       isShow: false,
       btnStatus: false,
-      phone: '123',
+      phone: '',
       card: {
         start: '',
         end: ''
@@ -55,6 +55,7 @@ export default class index extends wepy.page {
         phone: this.huabeiInfo.phone
       } );
       this.huabeiInfo.isShow = false;
+      this.$apply();
     }
   }
 
@@ -95,7 +96,10 @@ export default class index extends wepy.page {
     this.huabeiInfo = Object.assign( {}, this.huabeiInfo, {card: {
       start: _data.huabei_profit_info.validity_date,
       end: _data.huabei_profit_info.expiration_date
-    }}, {isShow: true} );
+    },
+      phone: _data.huabei_profit_info.phone,
+      isShow: this.huabeiInfo.fromHuabei == 1
+    } );
     this.$apply();
   }
 

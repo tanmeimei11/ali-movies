@@ -112,6 +112,7 @@
               url: tplData.landing_path
             } );
           } else {
+            console.log(tplData.landing_path)
             wepy.navigateTo( {
               url: tplData.landing_path
             } );

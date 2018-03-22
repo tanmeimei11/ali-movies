@@ -31,6 +31,7 @@ export default class Index extends Pagebase {
   static async submitHuabeiCardInfo ( data ) {
     return await this.request( {
       url: '/mnp/alipay/fetchHuabeiProfit',
+      method: 'POST',
       data: data
     } );
   }
