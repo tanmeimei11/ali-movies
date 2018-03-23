@@ -65,37 +65,38 @@ form{
 </style>
 
 <script>
-import wepy from 'wepy'
-import { token } from './utils/config.js'
+import wepy from 'wepy';
+import { token } from './utils/config.js';
 // 支付宝小程序 ES next 语法转换: async await
 // import 'wepy-async-function'
 
 export default class extends wepy.app {
   constructor () {
-    super()
+    super();
     // 修复小程序请求并发问题。
-    this.use('requestfix')
+    this.use( 'requestfix' );
     // 使用wepy.xxx的方式请求小程序原生API都将Promise化。
-    this.use('promisify')
+    this.use( 'promisify' );
 
-    this.intercept('httpRequest', {
-      config (p) {
-        if(/google-analytics/.test(p.url)){
-          return  p
+    this.intercept( 'httpRequest', {
+      config ( p ) {
+        if ( /google-analytics/.test( p.url ) ) {
+          return p;
         }
 
-        p.headers = this.createAuthHeader()
-        p.data = p.data || {}
-        p.data['privateKey'] = this.globalData.xToken || token
-        return p
+        p.headers = this.createAuthHeader();
+        p.data = p.data || {};
+        p.data['privateKey'] = this.globalData.xToken || token;
+        return p;
       }
-    })
+    } );
   }
 
-  async onLaunch(opts) {
-    this.globalData.query = opts.query || ''
+  async onLaunch ( opts ) {
+    this.globalData.query = opts.query || {};
+    console.log(wepy.$instance.globalData.query)
     // 渠道埋点
-    this.globalData.from = this.globalData.query.qrcode_from || ''
+    this.globalData.from = this.globalData.query.qrcode_from || '';
     /**
      * try
      *   收集微信机型数据
@@ -103,29 +104,29 @@ export default class extends wepy.app {
      *   none 不提供机型标识信息
      */
     try {
-      const { model, platform, version, system, SDKVersion } = wepy.getSystemInfoSync()
-      const meta = { model, platform, version, system, SDKVersion }
-      this.globalData.AntApp = Object.keys(meta).map(key => `${key}=${meta[key]}`).join(';')
+      const { model, platform, version, system, SDKVersion } = wepy.getSystemInfoSync();
+      const meta = { model, platform, version, system, SDKVersion };
+      this.globalData.AntApp = Object.keys( meta ).map( key => `${key}=${meta[key]}` ).join( ';' );
     } finally { /* none */ }
   }
 
   /**
    * 构造权限头部
    */
-  createAuthHeader() {
-    const { AntApp, xToken, xAries, from } = this.globalData
-    const headers = { 'AntApp': AntApp }
-    console.log(xToken)
-    if (xToken) {
-      headers['tg_auth'] = xToken
-      headers['_aries'] = xAries
+  createAuthHeader () {
+    const { AntApp, xToken, xAries, from } = this.globalData;
+    const headers = { 'AntApp': AntApp };
+    console.log( xToken );
+    if ( xToken ) {
+      headers['tg_auth'] = xToken;
+      headers['_aries'] = xAries;
     }
 
-    if (from) {
-      headers['from'] = from
+    if ( from ) {
+      headers['from'] = from;
     }
 
-    return headers
+    return headers;
   }
 
   globalData = {

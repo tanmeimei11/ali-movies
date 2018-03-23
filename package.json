@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/app.js",
   "scripts": {
-    "dev": "wepy build --output ant --watch",
+    "dev": "wepy build --output ant --watch --no-cache",
     "build": "cross-env NODE_ENV=production wepy build --output ant --no-cache",
     "upload": "node assets/qiniu",
     "tiny": "node assets/tiny"
