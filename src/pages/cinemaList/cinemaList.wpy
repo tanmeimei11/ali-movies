@@ -2,15 +2,12 @@
   <!-- <view class="page" :class="{noData: noDataFalg && !dateList.length}"> -->
   <view class="page">
     <adBanner :banner="info.banner"></adBanner>
-    <view class="cinema-info">
-      <view class="cinema-name">{{info.name}}</view>
-      <view class="cinema-location">{{info.address}}</view>
-    </view>
+     <movie :movieInfo.sync="movieInfo" ></movie>
     <view class="no-movie-wrap" wx:if="{{noDataFalg && !dateList.length}}">
       <view class="no-movie">
         <view class="icon"></view>
-        <view>当前影院正在排片中</view>
-        <view>将于<text>2月28日19:00</text>正式开放选座</view>
+        <view class="icon-text">当前影院正在排片中</view>
+        <view class="icon-text">将于<text>2月28日19:00</text>正式开放选座</view>
       </view>
     </view>
     <view wx:else>
@@ -19,8 +16,14 @@
         <view class="icon"></view>
         <text class="text">{{movieTip}}</text>
       </view>
-      <repeat  wx:for="{{movieList}}" wx:for-index="index" wx:for-item="item" wx:key="index">
-        <movie :movieInfo.sync="item" :key.sync="`movie_${index}`" ></movie>
+      <repeat  wx:for="{{cinemaList}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+         <view class="cinema-info">
+          <view class="cinema-name">
+            {{item.cinema_info.name}}
+            <view class="span" wx:if="item.cinema_info.recently_visited">最近去过</view>
+          </view>
+          <view class="cinema-location">{{item.cinema_info.address}}</view>
+        </view>
         <schedule :scheduleList.sync="item.schedule_list" :activeDay.sync="active" :key.sync="`schedule_${index}`" :isBiz="info.is_biz"></schedule>
       </repeat>
       <view class="toMovie" @click="toMovie">查看其它热门电影 ></view>
@@ -36,7 +39,7 @@
   // import DialogModal from 'components/DialogModal'
   import wepy from 'wepy';
   import report from '@/components/report-submit';
-  import MoviesList from '@/api/moviesList';
+  import CimenaList from '@/api/cimenaList';
   import auth from '@/api/auth';
   import adBanner from '@/components/adBanner';
 
@@ -62,10 +65,10 @@
         desc: '电影王卡仅在周一到周四可以使用，请在前一天晚上19点来选座吧~',
         btnTxt: '我知道了'
       },
-      movieList:[],
-      movieTip:''
+      cinemaList:[],
+      movieTip:'',
+      movieInfo:''
     }
-
     
     methods =  {
       toMovie () {
@@ -97,7 +100,7 @@
       this.initQrcodeFrom(options)
       this.initPageDate()
       await auth.ready()
-      const data = await MoviesList.getSchedule({cinema_id: this.getQuery(options,'id') || ''})
+      const data = await CimenaList.getSchedule({movie_id: this.getQuery(options,'id') || ''})
       this.initPageData(data)
       console.log(this.dateList)
       this.updateMoviesList()
@@ -107,8 +110,9 @@
     initPageData(data){
       this.info = data
       this.noDataFalg = true
-      if (data.date_list && data.date_list.length) {
-        data.date_list.map(item => {
+      this.movieInfo = data.movie_info
+      if (data.scheduled_date_cinemas && data.scheduled_date_cinemas.length) {
+        data.scheduled_date_cinemas.map(item => {
           this.dateList.push(item.date)
         })
       }
@@ -124,15 +128,20 @@
     }
 
     updateMoviesList () {
-      var _dataList = this.info.date_list
-      if(_dataList && _dataList[this.active])
-      this.movieList = _dataList[this.active].movie_list || []
-      this.movieTip =  _dataList[this.active].movie_tip ||  ''
+      console.log(this.active)
+      var _dataList = this.info.scheduled_date_cinemas
+      if(_dataList.length && _dataList[this.active]){
+        this.cinemaList = _dataList[this.active].scheduled_cinemas || []
+        this.movieTip =  _dataList[this.active].movie_tip ||  ''
+      }
     }
   }
 
 </script>
 <style lang="scss">
+  page{
+    background: #F7F7F7;
+  }
   .page {
     width: 100%;
     min-height: 100%;
@@ -149,38 +158,53 @@
         padding-top: 1rpx;
         text-align: center;
         .icon{
-          margin: 240rpx auto 0;
+          margin: 140rpx auto 0;
           width: 200rpx;
           height: 200rpx;
-          background: url(../../assets/img/empty-data.png) top center no-repeat;
           background-size: 100% auto;
         }
-        p{
+        .icon-text{
           font-size: 24rpx;
           color: #b0b0b0;
           text{
             color: #000;
           }
         }
-        p:nth-child(2){
+        .icon-text:nth-child(2){
           margin-top: 15rpx;
         }
       }
     }
     .cinema-info {
-      padding: 24rpx 40rpx;
+      padding: 40rpx;
       background-color: #FFF;
       .cinema-name {
+        font-family: PingFangSC-Medium;
         font-size: 34rpx;
         line-height: 48rpx;
+        height: 48rpx;
         color: #333333;
+        overflow: hidden;
+        .span{
+          margin-left: 5rpx;
+          margin-bottom: 10rpx;
+          display: inline-block;
+          font-size: 20rpx;
+          line-height: 1.3;
+          color: #ff5e51;
+          border: 1rpx solid #ff5e51;
+          border-radius: 20rpx;
+          padding: 4rpx 10rpx;
+        }
       }
       .cinema-location {
+        font-family: PingFangSC-Regular;
         font-size: 24rpx;
-        color: #666666;
+        color: #b0b0b0;
         line-height: 34rpx;
       }
     }
+    
     .movie-tip{
       background-color: #fff;
       overflow: hidden;

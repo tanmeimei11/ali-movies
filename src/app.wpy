@@ -94,7 +94,7 @@ export default class extends wepy.app {
 
   async onLaunch ( opts ) {
     this.globalData.query = opts.query || {};
-    console.log(wepy.$instance.globalData.query)
+    console.log( wepy.$instance.globalData.query );
     // 渠道埋点
     this.globalData.from = this.globalData.query.qrcode_from || '';
     /**
@@ -139,7 +139,7 @@ export default class extends wepy.app {
   }
 
   config = {
-    pages: ['pages/index/index','pages/moviesList/moviesList','pages/cinema/cinema','pages/self/self','pages/card/card','pages/index/index', 'pages/self/self', 'pages/detail/detail', 'pages/seat/seat', 'pages/result/result', 'pages/card/card', 'pages/ticket/ticket'],
+    pages: ['pages/cinemaList/cinemaList', 'pages/moviesList/moviesList', 'pages/cinema/cinema', 'pages/self/self', 'pages/card/card', 'pages/index/index', 'pages/self/self', 'pages/detail/detail', 'pages/seat/seat', 'pages/result/result', 'pages/card/card', 'pages/ticket/ticket'],
     tabBar: {
       'textColor': '#4A4A4A',
       'selectedColor': '#D0A661',

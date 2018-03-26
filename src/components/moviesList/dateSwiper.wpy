@@ -1,7 +1,7 @@
 <template>
   <view class="swiper-wrap">
     <view class="date-slide"  wx:for="{{dateList}}" wx:for-index="index" wx:for-item="item" wx:key="index">
-      <view class="slide-item {{active === index ? 'active' : '' }}"  @tap="changeActive(index)">
+      <view class="slide-item {{active === index ? 'active' : '' }}"  @tap="changeActive()" data-idx="{{index}}">
         <text class="date-txt">{{item}}</text>
         <view class="bottom-border"></view>
       </view>
@@ -24,9 +24,10 @@
       activeIndex: this.active
     }
     methods =  {
-      changeActive (index) {
-        this.$track('cinema_page_date')
-        this.$emit('dateChange', index)
+      changeActive (e) {
+        // this.$track('cinema_page_date')
+        console.log('1', e.target.dataset.idx)
+        this.$emit('dateChange', e.target.dataset.idx)
       }
     }
     watch =  {
@@ -45,7 +46,9 @@
     height: 80rpx;
     line-height: 80rpx;
     overflow-x: scroll;
+    white-space: nowrap;
     .date-slide {
+      display: inline-block;
       margin-left: 40rpx;
       width: 170rpx; 
       text-align: center;
