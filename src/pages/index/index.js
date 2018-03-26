@@ -3,7 +3,7 @@ import Index from '@/api/index';
 import report from '@/components/report-submit';
 import researchWindow from '@/components/researchWindow';
 import receiveCardModal from '@/components/index/receiveCardModal';
-import adBanner from '@/components/index/adBanner';
+import adBanner from '@/components/adBanner';
 import qrcodeFromMixin from '@/mixins/qrcodeFromMixin';
 import auth from '@/api/auth';
 // import track from '@/utils/track';

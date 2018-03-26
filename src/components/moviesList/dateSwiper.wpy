@@ -1,0 +1,108 @@
+<template>
+  <view class="swiper-wrap">
+    <view >
+      <view class="date-slide" v-for="(date, index) in dateList" :key="index">
+        <view class="slide-item {{active === index ? 'active' : '' }}"  @tap="changeActive(index)">
+          <text class="date-txt">{{date}}</text>
+          <view class="bottom-border"></view>
+        </view>
+      </view>
+    </view>
+  </view> 
+</template>
+<script>
+  export default class dateSwiper extends wepy.component{
+    props = {
+      dateList: {
+        type: Array,
+        default () {
+          return [
+            '今天01-23',
+            '今天01-23',
+            '今天01-23',
+            '今天01-23',
+            '今天01-23',
+            '今天01-23',
+            '今天01-23',
+            '今天01-23',
+            '今天01-23',
+            '今天01-23',
+            '今天01-23'
+          ]
+        }
+      },
+      active: {
+        type: Number,
+        default: 0
+      }
+    }
+    data = {
+      swiperOption: {
+        freeMode: true,
+        slidesPerView: 'auto',
+        initialSlide: this.active
+      },
+      activeIndex: this.active
+    }
+    methods =  {
+      changeActive (index) {
+        this.$track('cinema_page_date')
+        this.$emit('date-change', index)
+      }
+    }
+    watch =  {
+      active (newVal) {
+        this.activeIndex = newVal
+      }
+    }
+  }
+</script>
+<style lang="scss" scoped>
+  .swiper-wrap {
+    margin-top: 16rpx;
+    width: 100%;
+    border-bottom: 2rpx solid #E0E0E0;
+    background-color: #FFF;
+    height: 80rpx;
+    line-height: 80rpx;
+    .date-slide {
+      margin-left: 40rpx;
+      width: 170rpx; // 124
+      text-align: center;
+      &:last-child {
+        margin-right: 40rpx;
+      }
+      .slide-item {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex-flow: column;
+        &.active {
+          .date-txt {
+            color: #EF5B4C;
+          }
+          .bottom-border {
+            display: block;
+          }
+        }
+        .date-txt {
+          font-family: PingFangSC-Regular;
+          font-size: 24rpx;
+          color: #666666;
+          overflow: hidden;
+          white-space: nowrap;
+          width: 100%;
+          text-overflow: ellipsis;
+        }
+        .bottom-border {
+          width: 80rpx; //72
+          height: 6rpx;
+          background: #FF5E51;
+          border-radius: 16rpx;
+          margin-top: -4rpx;
+          display: none;
+        }
+      }
+    }
+  }
+</style>

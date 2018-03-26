@@ -4,7 +4,7 @@ import {getParamV} from '@/utils/common';
 export default class qrcodeFromMixin extends wepy.mixin {
   initQrcodeFrom ( options ) {
     console.log( options );
-    var qf = options.qrcode_from || wepy.$instance.globalData.query.qrcode_fro || getParamV( options, 'qf' );
+    var qf = options.qrcode_from || wepy.$instance.globalData.query.qrcode_from || getParamV( options, 'qf' );
     wepy.$instance.globalData.qrcode_from = qf;
   }
 
