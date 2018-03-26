@@ -14,14 +14,13 @@ export default class self extends wepy.page {
   components = { report }
 
   data = {
+    list: [],
     num: '',
     type: '',
-    btninfo: {},
     isShowMobile: false,
     isFull: false,
     cards: [],
     cardNum: 0,
-    rules: [], // 规则文案
     userInfo: { // 用户信息
       avatar: '',
       name: '',
@@ -35,6 +34,19 @@ export default class self extends wepy.page {
       isApply: true,
       num: ''
     }],
+    listName: {
+      "movie_ticket": "电影票",
+      "movie_card": "电影卡",
+      "union_select_seat": "关联选座",
+      "redeem_movie_card": "兑换电影王卡",
+      "contact_cs": "联系客服"
+    },
+    userTitle: {
+      '0': 'normal',
+      '1': 'wangka',
+      '2': 'huabei'
+    },
+    contractID: '2018011801960713',
 
     isShowExchange: false,
     exchangeDisabled: true,
@@ -47,6 +59,17 @@ export default class self extends wepy.page {
   }
 
   methods = {
+    app () {
+      var link = `https://h5.in66.com/inpromo/in-movies/movieList.html`;
+      wepy.navigateTo( {
+        url: `/pages/webview/webview?h5url=${encodeURIComponent( link )}`
+      } );
+    },
+    selfLink (e) {
+      var type = e.currentTarget.dataset.type
+      
+      console.log(e.currentTarget.dataset.type)
+    },
     bindKeyInput ( e ) {
       this.num = e.detail.value;
       if ( e.detail.value.length === 11 ) {
@@ -100,10 +123,6 @@ export default class self extends wepy.page {
       } );
     },
     apply () {
-      if ( this.btninfo.cf_start === 'false' ) {
-        tips.error( this.btninfo.cf_start_desc );
-        return;
-      }
       wepy.navigateTo( {
         url: '/pages/detail/detail'
       } );
@@ -169,11 +188,9 @@ export default class self extends wepy.page {
 
   async init () {
     var myInfoRes = await Self.getMyInfo();
-    this.btninfo = myInfoRes;
-    this.cards = myInfoRes.cards;
-    this.cardInfos = Self.initCardInfo( myInfoRes.cards );
-    this.userInfo = Self.initUserInfo( myInfoRes );
-    this.rules = Self.initRules( myInfoRes.texts );
+    console.log(myInfoRes)
+    this.list = myInfoRes.feature_list;
+    this.userInfo = myInfoRes.profile;
     // 读取手机号
     this.isfirst = !this.userInfo.phone;
     this.phone = this.userInfo.phone;
