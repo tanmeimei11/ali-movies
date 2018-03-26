@@ -1,40 +1,19 @@
 <template>
   <view class="swiper-wrap">
-    <view >
-      <view class="date-slide" v-for="(date, index) in dateList" :key="index">
-        <view class="slide-item {{active === index ? 'active' : '' }}"  @tap="changeActive(index)">
-          <text class="date-txt">{{date}}</text>
-          <view class="bottom-border"></view>
-        </view>
+    <view class="date-slide"  wx:for="{{dateList}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+      <view class="slide-item {{active === index ? 'active' : '' }}"  @tap="changeActive(index)">
+        <text class="date-txt">{{item}}</text>
+        <view class="bottom-border"></view>
       </view>
     </view>
   </view> 
 </template>
 <script>
+  import wepy from 'wepy';
   export default class dateSwiper extends wepy.component{
     props = {
-      dateList: {
-        type: Array,
-        default () {
-          return [
-            '今天01-23',
-            '今天01-23',
-            '今天01-23',
-            '今天01-23',
-            '今天01-23',
-            '今天01-23',
-            '今天01-23',
-            '今天01-23',
-            '今天01-23',
-            '今天01-23',
-            '今天01-23'
-          ]
-        }
-      },
-      active: {
-        type: Number,
-        default: 0
-      }
+      dateList: [],
+      active: Number
     }
     data = {
       swiperOption: {
@@ -47,7 +26,7 @@
     methods =  {
       changeActive (index) {
         this.$track('cinema_page_date')
-        this.$emit('date-change', index)
+        this.$emit('dateChange', index)
       }
     }
     watch =  {
@@ -65,9 +44,10 @@
     background-color: #FFF;
     height: 80rpx;
     line-height: 80rpx;
+    overflow-x: scroll;
     .date-slide {
       margin-left: 40rpx;
-      width: 170rpx; // 124
+      width: 170rpx; 
       text-align: center;
       &:last-child {
         margin-right: 40rpx;

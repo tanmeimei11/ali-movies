@@ -9,6 +9,14 @@ export default class qrcodeFromMixin extends wepy.mixin {
   }
 
   getQuery ( options, key ) {
-    return options[key] || wepy.$instance.globalData.query[key] || getParamV( options, key );
+    return ( options && options[key] ) || wepy.$instance.globalData.query[key] || getParamV( options, key );
+  }
+
+  getGlobalData ( key ) {
+    return wepy.$instance.globalData.query[key];
+  }
+
+  setGlobalData ( key, val ) {
+    wepy.$instance.globalData.query[key] = val;
   }
 }

@@ -8,29 +8,15 @@
         <view class="movie-director text-clip">{{movieInfo.director}}</view>
         <view class="movie-actor text-clip">{{movieInfo.actors}}</view>
       </view>
-      <!-- <a href="javascript:;" class="douban-link" v-if="movieInfo.douban_url" @click="goDouban">豆瓣影评</a> -->
+      <view href="javascript:;" class="douban-link" v-if="movieInfo.douban_url"></view>
     </view>
   </view>
 </template>
 <script>
+import wepy from 'wepy';
   export default  class movie extends wepy.component{
     props =  {
-      movieInfo: {
-        type: Object,
-        default () {
-          return {
-            'id': '1rPXZy',
-            'name': '移动迷宫3.0',
-            'duration': '145分钟',
-            'director': '芝麻',
-            'actors': '芝麻,花生=还有好多人没有写出来sdfsfsfsf',
-            'version': '2D', 
-            'movie_type': '剧情',
-            'poster_url': 'https://inimg01.jiuyan.info/in/2018/02/27/D00D0529-E5FC-B0C7-790E-9A4E9F96EEF7.jpeg',
-            'douban_url': 'https://movie.douban.com/subject/26942674/?from=showing'
-          }
-        }
-      }
+      movieInfo: {}
     }
     data = {
     }

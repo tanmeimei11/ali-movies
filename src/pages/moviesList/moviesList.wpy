@@ -14,15 +14,15 @@
       </view>
     </view>
     <view wx:else>
-      <!-- <dateSwiper :date-list="dateList" :active="active" @date-change="dateChange"></dateSwiper> -->
+      <dateSwiper :dateList.sync="dateList" :active.sync="active" @dateChange="dateChange"></dateSwiper>
       <view class="movie-tip" wx:if="{{movieTip}}">
         <view class="icon"></view>
         <text class="text">{{movieTip}}</text>
       </view>
-      <view  wx:for="{{movieList}}" wx:for-index="index" wx:for-item="item" wx:key="index">
-        <!-- <movie :movie-info="item" :key="`movie_${index}`" ></movie> -->
-        <!-- <schedule :schedule-list="item.schedule_list" :activeDay="active" :key="`schedule_${index}`" :isBiz="info.is_biz"></schedule> -->
-      </view>
+      <repeat  wx:for="{{movieList}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+        <movie :movieInfo.sync="item" :key.sync="`movie_${index}`" ></movie>
+        <schedule :scheduleList.sync="item.schedule_list" :activeDay.sync="active" :key.sync="`schedule_${index}`" :isBiz="info.is_biz"></schedule>
+      </repeat>
       <view class="toMovie" @click="toMovie">查看其它热门电影 ></view>
     </view>  
     <!-- <dialog-modal :dialog-info="dialogInfo" @toggle-dialog-modal="toggleDialogModal"></dialog-modal> -->
@@ -61,29 +61,12 @@
         title: '还没到时间哦',
         desc: '电影王卡仅在周一到周四可以使用，请在前一天晚上19点来选座吧~',
         btnTxt: '我知道了'
-      }
+      },
+      movieList:[],
+      movieTip:''
     }
 
-    computed =  {
-      movieList () {
-        console.log(this.info.date_list && this.info.date_list[this.active])
-        if (this.info.date_list && this.info.date_list[this.active]) {
-          return this.info.date_list[this.active].movie_list || []
-        } else {
-          return []
-        }
-      },
-      movieTip () {
-        if (this.info.date_list && this.info.date_list[this.active]) {
-          return this.info.date_list[this.active].movie_tip
-        } else {
-          return null
-        }
-      },
-      dialogFlag () {
-
-      }
-    }
+    
     methods =  {
       toMovie () {
         console.log('movie')
@@ -108,7 +91,16 @@
 
     async onLoad (options) {
       this.initQrcodeFrom(options)
-      const data = await MoviesList.schedule({cinema_id: this.$common.query.id || ''})
+      this.initPageDate()
+      await auth.ready()
+      const data = await MoviesList.getSchedule({cinema_id: this.getQuery(options,'id') || ''})
+      this.initPageData(data)
+      console.log(this.dateList)
+      this.updateMoviesList()
+      this.$apply()
+    }
+
+    initPageData(data){
       this.info = data
       this.noDataFalg = true
       if (data.date_list && data.date_list.length) {
@@ -116,15 +108,21 @@
           this.dateList.push(item.date)
         })
       }
-      var _idx = parseInt(common.cookie.pagedayidx)
+    }
+
+    initPageDate(){
+      var _idx = parseInt(this.getGlobalData('pagedayidx'))
       if (_idx) {
         this.active = _idx
-        common.cookie = {
-          name: 'pagedayidx',
-          value: 0
-        }
+        this.getGlobalData('pagedayidx',0)
       }
-      this.$apply()
+    }
+
+    updateMoviesList () {
+      var _dataList = this.info.date_list
+      if(_dataList && _dataList[this.active])
+      this.movieList = _dataList[this.active].movie_list || []
+      this.movieTip =  _dataList[this.active].movie_tip ||  ''
     }
   }
 

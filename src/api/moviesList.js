@@ -8,12 +8,10 @@ export default class MoviesList extends Pagebase {
       url: '/h5/cinema/list'
     } );
   }
-  /**
-   * 获取我的信息接口
-   */
-  static async getSchedule () {
+  static async getSchedule ( data ) {
     return await this.request( {
-      url: '/h5/cinema/schedule'
+      url: '/h5/cinema/schedule',
+      data: data
     } );
   }
 }

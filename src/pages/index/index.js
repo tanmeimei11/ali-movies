@@ -93,13 +93,13 @@ export default class index extends wepy.page {
     } );
     this.movieList = _data.movies;
     this.bannerInfo = _data.ad_info;
-    this.huabeiInfo = Object.assign( {}, this.huabeiInfo, {card: {
+    this.huabeiInfo.fromHuabei && ( this.huabeiInfo = Object.assign( {}, this.huabeiInfo, {card: {
       start: _data.huabei_profit_info.validity_date,
       end: _data.huabei_profit_info.expiration_date
     },
       phone: _data.huabei_profit_info.phone,
       isShow: this.huabeiInfo.fromHuabei == 1
-    } );
+    } ) );
     this.$apply();
   }
 
