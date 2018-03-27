@@ -23,7 +23,7 @@
         <movie :movieInfo.sync="item" :key.sync="`movie_${index}`" ></movie>
         <schedule :scheduleList.sync="item.schedule_list" :activeDay.sync="active" :key.sync="`schedule_${index}`" :isBiz="info.is_biz"></schedule>
       </repeat>
-      <view class="toMovie" @click="toMovie">查看其它热门电影 ></view>
+      <!-- <view class="toMovie" @click="toMovie">查看其它热门电影 ></view> -->
     </view>  
     <!-- <dialog-modal :dialog-info="dialogInfo" @toggle-dialog-modal="toggleDialogModal"></dialog-modal> -->
   </view>

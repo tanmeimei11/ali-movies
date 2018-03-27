@@ -26,7 +26,7 @@
         </view>
         <schedule :scheduleList.sync="item.schedule_list" :activeDay.sync="active" :key.sync="`schedule_${index}`" :isBiz="info.is_biz"></schedule>
       </repeat>
-      <view class="toMovie" @click="toMovie">查看其它热门电影 ></view>
+      <!-- <view class="toMovie" @click="toMovie">查看其它热门电影 ></view> -->
     </view>  
     <!-- <dialog-modal :dialog-info="dialogInfo" @toggle-dialog-modal="toggleDialogModal"></dialog-modal> -->
   </view>
@@ -86,7 +86,8 @@
     events = {
       dateChange ( index) {
         // index 为1时需要判断是否有排片
-        if (index >= 1 && (!this.info.date_list[index].movie_list || !this.info.date_list[index].movie_list.length)) {
+        var _dateList = this.info.scheduled_date_cinemas
+        if (index >= 1 && (!_dateList[index].scheduled_cinemas || !_dateList[index].scheduled_cinemas.length)) {
           this.dialogInfo.show = true
         } else {
           this.active = index

@@ -8,7 +8,7 @@
         <view class="movie-director text-clip">{{movieInfo.director}}</view>
         <view class="movie-actor text-clip">{{movieInfo.actors}}</view>
       </view>
-      <view href="javascript:;" class="douban-link" v-if="movieInfo.douban_url"></view>
+      <!-- <view href="javascript:;" class="douban-link" v-if="movieInfo.douban_url">豆瓣影评</view> -->
     </view>
   </view>
 </template>
@@ -38,7 +38,7 @@ import wepy from 'wepy';
     .movie-content {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
       .movie-img {
         width: 127rpx;
         height: 180rpx;
@@ -50,6 +50,7 @@ import wepy from 'wepy';
         width: 364rpx;
         font-size: 24rpx;
         line-height: 34rpx;
+        margin-left: 30rpx;
         color: #666;
         &.noDouban {
           width: 522rpx;
