@@ -6,11 +6,11 @@ export default class Card extends Pagebase {
    */
   static async getCardInfo ( cardId ) {
     return await this.request( {
-      url: '/mnp/card/reward',
-      method: 'POST',
-      data: {
-        card_id: cardId
-      }
+      url: '/mnp/user/mycards',
+      method: 'POST'
+      // data: {
+        // card_id: cardId
+      // }
     } );
   }
   /**
@@ -54,6 +54,7 @@ export default class Card extends Pagebase {
   static initCardInfo ( item ) {
     return {
       id: item.id,
+      type: item.type,
       title: item.name,
       desc: item.desc,
       time: this.getCardTime( item.start_date, item.end_date ),

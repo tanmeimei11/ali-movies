@@ -6,6 +6,7 @@ import receiveCardModal from '@/components/index/receiveCardModal';
 import adBanner from '@/components/adBanner';
 import qrcodeFromMixin from '@/mixins/qrcodeFromMixin';
 import auth from '@/api/auth';
+import util from '@/utils/util';
 // import track from '@/utils/track';
 
 export default class index extends wepy.page {
@@ -103,7 +104,8 @@ export default class index extends wepy.page {
       end: _huabeiInfo.expiration_date
     },
       phone: _huabeiInfo.phone,
-      isShow: _huabeiInfo.popup
+      isShow: _huabeiInfo.popup,
+      btnStatus: util.verifyPhone( _huabeiInfo.phone )
     } ) );
     this.$apply();
   }
