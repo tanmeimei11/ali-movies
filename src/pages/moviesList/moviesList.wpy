@@ -1,0 +1,218 @@
+<template>
+  <!-- <view class="page" :class="{noData: noDataFalg && !dateList.length}"> -->
+  <view class="page">
+    <adBanner :banner="info.banner"></adBanner>
+    <view class="cinema-info">
+      <view class="cinema-name">{{info.name}}</view>
+      <view class="cinema-location">{{info.address}}</view>
+    </view>
+    <view class="no-movie-wrap" wx:if="{{noDataFalg && !dateList.length}}">
+      <view class="no-movie">
+        <view class="icon"></view>
+        <view>当前影院正在排片中</view>
+        <view>将于<text>2月28日19:00</text>正式开放选座</view>
+      </view>
+    </view>
+    <view wx:else>
+      <dateSwiper :dateList.sync="dateList" :active.sync="active" ></dateSwiper>
+      <view class="movie-tip" wx:if="{{movieTip}}">
+        <view class="icon"></view>
+        <text class="text">{{movieTip}}</text>
+      </view>
+      <repeat  wx:for="{{movieList}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+        <movie :movieInfo.sync="item" :key.sync="`movie_${index}`" ></movie>
+        <schedule :scheduleList.sync="item.schedule_list" :activeDay.sync="active" :key.sync="`schedule_${index}`" :isBiz="info.is_biz"></schedule>
+      </repeat>
+      <!-- <view class="toMovie" @click="toMovie">查看其它热门电影 ></view> -->
+    </view>  
+    <!-- <dialog-modal :dialog-info="dialogInfo" @toggle-dialog-modal="toggleDialogModal"></dialog-modal> -->
+  </view>
+</template>
+<script>
+  import qrcodeFromMixin from '@/mixins/qrcodeFromMixin'
+  import dateSwiper from '@/components/moviesList/dateSwiper'
+  import movie from '@/components/moviesList/movie'
+  import schedule from '@/components/moviesList/schedule'
+  // import DialogModal from 'components/DialogModal'
+  import wepy from 'wepy';
+  import report from '@/components/report-submit';
+  import MoviesList from '@/api/moviesList';
+  import auth from '@/api/auth';
+  import adBanner from '@/components/adBanner';
+
+  export default class moviesList extends wepy.page{
+    mixins = [qrcodeFromMixin]
+    components =  {
+      report,
+      dateSwiper,
+      movie,
+      schedule,
+      // DialogModal,
+      adBanner
+    }
+
+    data = {
+      info: {},
+      dateList: [],
+      active: 0,
+      noDataFalg: false,
+      dialogInfo: {
+        show: false,
+        title: '还没到时间哦',
+        desc: '电影王卡仅在周一到周四可以使用，请在前一天晚上19点来选座吧~',
+        btnTxt: '我知道了'
+      },
+      movieList:[],
+      movieTip:''
+    }
+
+    
+    methods =  {
+      toMovie () {
+        console.log('movie')
+        // location.href = `index.html?sharebtnhidden=1`
+      },
+      toggleDialogModal (show) {
+        this.$track('cinema_page_comelater_expo')
+        this.dialogInfo.show = false
+      },
+      goSpMovies () {
+        location.href = `movies.html?id=1dR&sharebtnhidden=1`
+      }
+    }
+    events = {
+      dateChange ( index) {
+        // index 为1时需要判断是否有排片
+        if (index >= 1 && (!this.info.date_list[index].movie_list || !this.info.date_list[index].movie_list.length)) {
+          this.dialogInfo.show = true
+        } else {
+          this.active = index
+        }
+
+        this.updateMoviesList()
+      },
+    }
+
+    async onLoad (options) {
+      this.initQrcodeFrom(options)
+      this.initPageDate()
+      await auth.ready()
+      const data = await MoviesList.getSchedule({cinema_id: this.getQuery(options,'id') || ''})
+      this.initPageData(data)
+      console.log(this.dateList)
+      this.updateMoviesList()
+      this.$apply()
+    }
+
+    initPageData(data){
+      this.info = data
+      this.noDataFalg = true
+      if (data.date_list && data.date_list.length) {
+        data.date_list.map(item => {
+          this.dateList.push(item.date)
+        })
+      }
+    //  [].push.apply( this.dateList, this.dateList)
+    }
+
+    initPageDate(){
+      var _idx = parseInt(this.getGlobalData('pagedayidx'))
+      if (_idx) {
+        this.active = _idx
+        this.getGlobalData('pagedayidx',0)
+      }
+    }
+
+    updateMoviesList () {
+      var _dataList = this.info.date_list
+      if(_dataList && _dataList[this.active])
+      this.movieList = _dataList[this.active].movie_list || []
+      this.movieTip =  _dataList[this.active].movie_tip ||  ''
+    }
+  }
+
+</script>
+<style lang="scss">
+  .page {
+    width: 100%;
+    min-height: 100%;
+    background: #F7F7F7;
+    &.noData {
+      background: #FFF;
+    }
+    .no-movie-wrap {
+      background: #F7F7F7;
+      padding-top: 16rpx;
+      .no-movie {
+        width: 100%;
+        background: #fff;
+        padding-top: 1rpx;
+        text-align: center;
+        .icon{
+          margin: 240rpx auto 0;
+          width: 200rpx;
+          height: 200rpx;
+          background: url(../../assets/img/empty-data.png) top center no-repeat;
+          background-size: 100% auto;
+        }
+        p{
+          font-size: 24rpx;
+          color: #b0b0b0;
+          text{
+            color: #000;
+          }
+        }
+        p:nth-child(2){
+          margin-top: 15rpx;
+        }
+      }
+    }
+    .cinema-info {
+      padding: 24rpx 40rpx;
+      background-color: #FFF;
+      .cinema-name {
+        font-size: 34rpx;
+        line-height: 48rpx;
+        color: #333333;
+      }
+      .cinema-location {
+        font-size: 24rpx;
+        color: #666666;
+        line-height: 34rpx;
+      }
+    }
+    .movie-tip{
+      background-color: #fff;
+      overflow: hidden;
+      padding: 57rpx 40rpx;
+      font-size: 0;
+      .icon{
+        display: inline-block;
+        vertical-align: middle;
+        width: 50rpx;
+        height: 50rpx;
+        background-image: url(https://inimg07.jiuyan.info/in/2018/03/11/DB45B799-6140-DB21-C404-84980E1CCEEA.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+      }
+      .text{
+        display: inline-block;
+        vertical-align: middle;
+        width: 600rpx;
+        margin-left: 20rpx;
+        font-size: 24rpx;
+        color: #70CCFF;
+        line-height: 1.2;
+      }
+    }
+  }
+  .toMovie{
+    font-size: 28rpx;
+    color: #70CCFF;
+    background: #fff;
+    text-align: center;
+    line-height: 140rpx;
+    height: 140rpx;
+  }
+</style>

@@ -1,0 +1,102 @@
+<template>
+  <view class="cinema-page">
+     <adBanner wx:if="{{bannerInfo && bannerInfo.length > 0}}" :bannerInfo.sync="bannerInfo"></adBanner>
+    <view class="cinemas">
+      <view class="line" wx:for="{{cinemaList}}" wx:for-index="idx" wx:for-item="item" wx:key="idx" @tap="goMovie" data-item="{{item}}">
+        <view class="title">{{item.name}}</view>
+        <!-- 可能直接取address -->
+        <view class="address"> {{item.city}}{{item.district}}{{item.address}} </view>
+        <view class="tags" wx:if="{{item.tags && item.tags.length}}">
+          <view class="one-tag" wx:for="{{item.tags || []}}" wx:for-index="_idx" wx:for-item="tag" wx:key="_idx" style="background: {{tag.color}}">{{tag.name}}</view>
+        </view>
+        <view class="desc">{{item.desc}}</view>
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+  import wepy from 'wepy';
+  import report from '@/components/report-submit';
+  import Cinema from '@/api/cinema';
+  import auth from '@/api/auth';
+  import adBanner from '@/components/adBanner';
+  export default class result extends wepy.page {
+     config = {
+      navigationBarTitleText: '电影王卡院线中心'
+    }
+    components = { report, adBanner }
+    data = {
+        cinemaList: [],
+        bannerInfo: {},
+        contractID: '2018011801960713'
+    }
+    methods = {
+      goMovie (e) {
+        const item = e.target.dataset.item;
+        wepy.navigateTo( {
+          url: `/pages/moviesList/moviesList?id=${item.id}`
+        } );
+      }
+    }
+    async onLoad () {
+      await auth.ready();
+      var _data = await Cinema.getCinemaList()
+      this.cinemaList = _data.cinema_list
+      this.bannerInfo = _data.ad_info
+      this.$apply()
+    }
+    
+  }
+
+</script>
+<style lang="scss" scoped>
+  .cinema-page {
+    padding-bottom: 100rpx;
+    box-sizing: border-box;
+    .c-banner-wrap{
+      height: 140rpx;
+    }
+    .cinemas {
+      &>.line {
+        padding: 24rpx 0 22rpx 40rpx;
+        /*dpr*/
+        border-bottom: 1rpx solid #f0f0f0;
+      }
+    }
+    .title {
+      font-size: 34rpx;
+      color: #333333;
+      letter-spacing: 0;
+      line-height: 48rpx;
+    }
+    .address {
+      font-size: 24rpx;
+      color: #666666;
+      letter-spacing: 0;
+      line-height: 40rpx;
+    }
+    .tags {
+      padding: 8rpx 0 0;
+      font-size: 0;
+      min-height: 32rpx;
+      .one-tag {
+        display: inline-block;
+        border-radius: 3rpx;
+        font-size: 20rpx;
+        color: #FFFFFF;
+        line-height: 32rpx;
+        height: 32rpx;
+        margin-right: 12rpx;
+        padding: 0 8rpx;
+      }
+    }
+    .desc {
+      margin-top: 20rpx;
+      font-size: 20rpx;
+      color: #4A90E2;
+      letter-spacing: 0;
+      line-height: 28rpx;
+    }
+  }
+
+</style>

@@ -9,3 +9,7 @@
 1.detail 红包页面的bug
 ### part-7
 1.首页 花呗 弹窗 @xiangxiang
+2.影院迁移 @xiangxiang
+3.电影列表选座 @xiangxiang
+4.电影院选座 @xiangxiang
+5.埋点 @xiangxiang   // todo

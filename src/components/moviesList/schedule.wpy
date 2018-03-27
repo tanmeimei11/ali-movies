@@ -1,0 +1,101 @@
+<template>
+  <view class="schedule-wrap">
+    <view class="schedule-item">
+      <view class="schedule-content" wx:for="{{scheduleList}}" wx:for-index="index" wx:for-item="item" wx:key="index" >
+        <view class="time">
+          <view class="start">{{item.start_time}}</view>
+          <view class="end">{{item.end_time}}</view>
+        </view>
+        <view class="hall-name">{{item.hall_name}}</view>
+        <view class="language">{{item.language_type}}{{item.version}}</view>
+        <view href="javascript:;" class="select-btn" :class="{end: item.status == 0 || item.status == 4}" @click="goSelectSeat(item)">{{statusText[item.status]}}</view>
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+import wepy from 'wepy';
+export default  class schedule extends wepy.component{
+  props = {
+    isBiz: Boolean,
+    activeDay: Number,
+    scheduleList: Array
+  }
+  
+  data = {
+    statusText: {
+      '0': '结束',
+      '1': '选座',
+      '4': '未开放'
+    }
+  }
+  methods =  {
+    goSelectSeat (item) {
+      if (+item.status === 0 || +item.status === 4) return
+      common.cookie = {
+        name: 'pagedayidx',
+        value: this.activeDay
+      }
+      this.$track('cinema_page_pick')
+      location.href = `seat.html?schedule_id=${item.id}&sharebtnhidden=1&is_biz=${this.isBiz}`
+    }
+  }
+}
+</script>
+<style lang="scss" scoped>
+  .schedule-wrap {
+    width: 100%;
+    border-bottom: 2rpx solid #E0E0E0;
+  }
+  .schedule-item {
+    width: 100%;
+    padding-left: 40rpx;
+    box-sizing: border-box;
+    background-color: #FFF;
+    .schedule-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20rpx 0;
+      border-bottom: 2rpx solid #E0E0E0;
+      font-family: PingFangSC-Regular;
+      font-size: 28rpx;
+      color: #333333;
+      line-height: 40rpx;
+      &:last-child {
+        border-bottom: none;
+      }
+      .time {
+        .start {
+          font-family: PingFangSC-Medium;
+          font-size: 48rpx;
+          color: #333333;
+          line-height: 56rpx;
+        }
+        .end {
+          font-family: PingFangSC-Regular;
+          font-size: 24rpx;
+          color: #B0B0B0;
+          margin-top: 4rpx;
+        }
+      }
+      .hall-name {}
+      .language {}
+      .select-btn {
+        margin-right: 40rpx;
+        background-image: linear-gradient(0deg, #FF7869 0%, #FF4338 100%);
+        border-radius: 200rpx;
+        width: 120rpx;
+        height: 52rpx;
+        line-height: 54rpx;
+        text-align: center;
+        color: #FFF;
+        font-family: PingFangSC-Regular;
+        font-size: 28rpx;
+        &.end {
+          background: #E0E0E0;
+        }
+      }
+    }
+  }
+</style>

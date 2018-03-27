@@ -14,7 +14,7 @@
             <view class="movie-director text-clip">{{item.director}}</view>
             <view class="movie-actor text-clip">{{item.actors}}</view>
           </view>
-          <view class="cinema-link {{ (item.status === '0' || item.status == '4') ? 'end' :''}}" @tap="goChooseSeat(item)">{{statusText[item.status]}}</view>
+          <view class="cinema-link {{ (item.status === '0' || item.status == '4') ? 'end' :''}}" @tap="goChooseSeat" data-item="{{item}}">{{statusText[item.status]}}</view>
         </view>
       </view>
     </view>

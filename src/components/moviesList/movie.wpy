@@ -1,0 +1,100 @@
+<template>
+  <view class="movie-wrap">
+    <view class="movie-content">
+      <view class="movie-img" style="background-image: url({{movieInfo.poster_url}})"></view>
+      <view class="movie-info {{!movieInfo.douban_url ? 'noDouban':'' }}" >
+        <view class="movie-name">{{movieInfo.name}}</view>
+        <view class="movie-other">{{movieInfo.duration}}/{{movieInfo.movie_type}}</view>
+        <view class="movie-director text-clip">{{movieInfo.director}}</view>
+        <view class="movie-actor text-clip">{{movieInfo.actors}}</view>
+      </view>
+      <!-- <view href="javascript:;" class="douban-link" v-if="movieInfo.douban_url">豆瓣影评</view> -->
+    </view>
+  </view>
+</template>
+<script>
+import wepy from 'wepy';
+  export default  class movie extends wepy.component{
+    props =  {
+      movieInfo: {}
+    }
+    data = {
+    }
+    methods = {
+      goDouban () {
+        this.$track('cinema_page_douban')
+        location.href = this.movieInfo.douban_url
+      }
+    }
+  }
+</script>
+<style lang="scss" scoped>
+  .movie-wrap {
+    width: 100%;
+    padding: 40rpx;
+    padding-bottom: 14rpx;
+    box-sizing: border-box;
+    background-color: #FFF;
+    .movie-content {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      .movie-img {
+        width: 127rpx;
+        height: 180rpx;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+      }
+      .movie-info {
+        width: 364rpx;
+        font-size: 24rpx;
+        line-height: 34rpx;
+        margin-left: 30rpx;
+        color: #666;
+        &.noDouban {
+          width: 522rpx;
+        }
+        .movie-name {
+          font-weight: bold;
+          font-size: 32rpx;
+          line-height: 44rpx;
+          color: #333333;
+        }
+        .movie-other {
+          font-family: PingFangSC-Regular;
+          color: #333333;
+          margin-top: 4rpx;
+        }
+        .movie-director {
+          margin-top: 22rpx;
+        }
+        .movie-actor {
+          margin-top: 4rpx;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+      .douban-link {
+        font-family: PingFangSC-Regular;
+        font-size: 24rpx;
+        color: #00B51E;
+        &::after {
+          content: '';
+          display: inline-block;
+          margin-left: 6rpx;
+          width: 12rpx;
+          height: 20rpx;
+          background: url(../../assets/img/arrow-right-green.png) center no-repeat;
+          background-size: cover;
+        }
+      }
+    }
+  }
+  .text-clip {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+</style>

@@ -1,0 +1,91 @@
+<template>
+  <view class="swiper-wrap">
+    <view class="date-slide"  wx:for="{{dateList}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+      <view class="slide-item {{active === index ? 'active' : '' }}"  @tap="changeActive()" data-idx="{{index}}">
+        <text class="date-txt">{{item}}</text>
+        <view class="bottom-border"></view>
+      </view>
+    </view>
+  </view> 
+</template>
+<script>
+  import wepy from 'wepy';
+  export default class dateSwiper extends wepy.component{
+    props = {
+      dateList: [],
+      active: Number
+    }
+    data = {
+      swiperOption: {
+        freeMode: true,
+        slidesPerView: 'auto',
+        initialSlide: this.active
+      },
+      activeIndex: this.active
+    }
+    methods =  {
+      changeActive (e) {
+        // this.$track('cinema_page_date')
+        console.log('1', e.target.dataset.idx)
+        this.$emit('dateChange', e.target.dataset.idx)
+      }
+    }
+    watch =  {
+      active (newVal) {
+        this.activeIndex = newVal
+      }
+    }
+  }
+</script>
+<style lang="scss" scoped>
+  .swiper-wrap {
+    margin-top: 16rpx;
+    width: 100%;
+    border-bottom: 2rpx solid #E0E0E0;
+    background-color: #FFF;
+    height: 80rpx;
+    line-height: 80rpx;
+    overflow-x: scroll;
+    white-space: nowrap;
+    .date-slide {
+      display: inline-block;
+      margin-left: 40rpx;
+      width: 170rpx; 
+      text-align: center;
+      &:last-child {
+        margin-right: 40rpx;
+      }
+      .slide-item {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex-flow: column;
+        &.active {
+          .date-txt {
+            color: #EF5B4C;
+          }
+          .bottom-border {
+            display: block;
+          }
+        }
+        .date-txt {
+          font-family: PingFangSC-Regular;
+          font-size: 24rpx;
+          color: #666666;
+          overflow: hidden;
+          white-space: nowrap;
+          width: 100%;
+          text-overflow: ellipsis;
+        }
+        .bottom-border {
+          width: 80rpx; //72
+          height: 6rpx;
+          background: #FF5E51;
+          border-radius: 16rpx;
+          margin-top: -4rpx;
+          display: none;
+        }
+      }
+    }
+  }
+</style>
