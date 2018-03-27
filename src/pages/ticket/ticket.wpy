@@ -1,79 +1,46 @@
 <template>
-  <report>
+  <!-- <report> -->
     <view class="container">
-      <view class="banner">
-        <view class="rule" @tap="openRules">活动细则</view>
+      <view class="tabbar">
+        <view class="{{ticket ? 'on' : ''}}" @tap="ticketOn">
+          <view>电影票</view>
+        </view>
+        <view class="{{ticket ? '' : 'on'}}" @tap="ticketOff">
+          <view>赠票</view>
+        </view>
       </view>
-      <view class="myTicket">
-        <view class="title">我的电影票</view>
-        <view class="ticket status{{item.ticket_status}} {{(item.ticket_status === '2' || item.ticket_status === '4') ? 'received' : ''}}" wx:for="{{tickets}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
-          <view wx:if="{{item.ticket_status === '0'}}" @tap="alert">
-            <button open-type="share" data-id="{{item.share_code}}" data-index="{{idx}}" data-code="{{item.id}}" wx:if="{{!ticket_switch}}"></button>
+      <view class="tickets" wx:if="{{ticket}}">
+        <view wx:for="{{list}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+          <view class="poster" style="background-image:url({{item.poster_url}})"></view>
+          <view class="name">{{item.movie_name}}</view>
+          <view class="desc">{{item.movie_duration}}/{{item.movie_version}}/{{item.movie_type}}</view>
+          <view class="info">
+            <view>{{item.movie_start_time}}</view>
+            <view>{{item.cinema_name}}</view>
           </view>
-          <view wx:if="{{item.ticket_status === '1'}}">
-            <view wx:if="{{!item.receive}}">
-              <view class="cards">
-                <view wx:for="{{cardsbg}}" wx:for-index="idx2" wx:for-item="item2" wx:key="idx2" @tap="havePhone" data-index="{{idx2}}" data-ticket="{{idx}}" data-ticketid="{{item.id}}"></view>
-              </view>
-              <view class="choosetxt">- 选择一张电影票 -</view>
+          <!--status 0:无效 1:可用 2:已核销 2:已取消 -->
+          <view class="btn-use" wx:if="{{item.status==='1'}}">查看详情</view>
+          <view class="btn-expired" wx:if="{{item.status==='0'}}">已失效</view>
+          <view class="btn-expired" wx:if="{{item.status==='2'}}">已核销</view>
+          <view class="btn-expired" wx:if="{{item.status==='3'}}">已取消</view>
+        </view>
+      </view>
+      <view wx:else>
+        <view class="lottery">
+          <view wx:for="{{list2}}" wx:for-index="idx" wx:for-item="item" wx:key="idx" class="{{['use'][item.status] || ''}}">
+            <view class="title">{{item.name}} </view>
+            <view class="desc">
+              <view>有效时间: {{item.valid_time}}</view>
+              <view>指定时段: {{item.assign_time_frame}}</view>
             </view>
-            <view wx:else>
-              <view class="opencards">
-                <view class="{{item3.has_fetch ? 'on' : ''}}" wx:for="{{cards[idx]}}" wx:for-index="idx3" wx:for-item="item3" wx:key="idx3">
-                  <text class="type">{{item3.desc}}</text>
-                  <text>电影票</text>
-                  <text class="delivered">已送出{{item3.delivered_count}}张</text>
-                </view>
-              </view>
-              <view class="receive" data-ticket="{{idx}}">{{item.countDown}}秒自动收下</view>
-            </view>
+            <view class="btn-use" wx:if="{{item.status<2}}" @tap="use" data-item="{{item}}">{{['立即使用','已使用'][item.status]}}</view>
+            <!-- <view class="btn-use">立即使用</view> -->
+            <view class="btn-expired" wx:else>已过期</view>
           </view>
-          <view wx:if="{{item.ticket_status === '2' || item.ticket_status === '4'}}">
-            <view class="t-title">{{item.title}}</view>
-            <view class="remark">{{item.remark}}</view>
-            <view class="up" wx:if="{{item.ticket_status === '2'}}">升级为<text>3个月全天</text>电影无限看</view>
-            <view class="tipsArea" wx:if="{{item.ticket_status === '2'}}">
-              <text class="tips">{{item.tips}}</text>
-              <view class="jiao"></view>
-            </view>
-            <view class="btn" @tap="showUpgrade" data-ticket="{{item.id}}" wx:if="{{item.ticket_status === '2'}}">立即升级</view>
-          </view>
-          <view wx:if="{{item.ticket_status === '3'}}" @tap="toSelf"></view>
         </view>
       </view>
     </view>
-    <view class="rules" wx:if="{{rulesShow}}">
-      <view class="bg" @tap="close"></view>
-      <view class="window">
-        <view class="banner">
-          <view class="close" @tap="close"></view>
-        </view>
-        <scroll-view scroll-y>
-          <view wx:for="{{rules}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
-            {{item}}
-          </view>
-        </scroll-view>
-      </view>
-    </view>
-    <view class="changeMobile" wx:if="{{isShowMobile}}">
-      <view class="bg" @tap="closePhone"></view>
-      <view class="window">
-        <view class="close" @tap="closePhone"></view>
-        <view class="bind">绑定手机号</view>
-        <input onInput="bindKeyInput" placeholder="输入手机号" type="number" maxlength="11" placeholder-style="color: #E0E0E0"/>
-        <view class="btn {{isFull ? 'on' : ''}}" @tap="submit">确认</view>
-      </view>
-    </view>
-    <view class="upgradeWindow" wx:if="{{isShowUpgrade}}">
-      <view class="bg" @tap="close"></view>
-      <view class="window" style="background-image: url({{upgrade_img}});">
-        <view class="toDetail" @tap="toDetail"></view>
-        <view class="close" @tap="close"></view>
-      </view>
-    </view>
-    <!-- 接收失败 -->
-    <receiveFaildModal :receiveFaildInfo.sync="receiveFaildInfo" wx:if="{{receiveFaildInfo.show}}"></receiveFaildModal>
-  </report>
+  <!-- </report> -->
 </template>
 <style lang="less" src="./ticket.less">
 </style>

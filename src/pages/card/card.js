@@ -65,8 +65,8 @@ export default class cards extends wepy.page {
    * 初始化页面信息
    */
   async init () {
-    var page = getCurrentPages()[0].data;
-    this.rules = page.rules;
+    // var page = getCurrentPages()[0].data;
+    // this.rules = page.rules;
     await this.initCardInfo( this.cardId );
     this.$apply();
   }
@@ -79,6 +79,7 @@ export default class cards extends wepy.page {
     this.cardCode = res.reward_code;
     this.giveGiftInfo.tips = res.prompt_txt;
     this.cartStatusText = res.btn_txt;
+    this.rules = res.prompt_txt
     if ( res.card && res.card.reward_from_info ) {
       res.reward_status = 3;
     }

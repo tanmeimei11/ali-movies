@@ -67,8 +67,27 @@ export default class self extends wepy.page {
     },
     selfLink (e) {
       var type = e.currentTarget.dataset.type
-      
-      console.log(e.currentTarget.dataset.type)
+      switch (type) {
+        case 'movie_ticket':
+          wepy.navigateTo( {
+            url: `/pages/ticket/ticket`
+          } );
+          break;
+        case 'movie_card':
+          wepy.navigateTo( {
+            url: `/pages/card/card`
+          } );
+          break;
+        case 'union_select_seat':
+          break;
+        case 'redeem_movie_card':
+          this.isShowExchange = true;
+          break;
+        case 'contact_cs':
+          break;
+        case 'alipay_life_app':
+          break;
+      }
     },
     bindKeyInput ( e ) {
       this.num = e.detail.value;
@@ -126,10 +145,6 @@ export default class self extends wepy.page {
       wepy.navigateTo( {
         url: '/pages/detail/detail'
       } );
-    },
-
-    triggerExchange () {
-      this.isShowExchange = true;
     },
 
     /**

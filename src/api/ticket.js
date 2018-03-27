@@ -9,6 +9,14 @@ export default class Ticket extends Pagebase {
     } );
   }
   /**
+   * 获取我的赠票接口
+   */
+  static async getMyLottery () {
+    return await this.request( {
+      url: '/h5/my/tickets'
+    } );
+  }
+  /**
    * 初始化卡片信息
    * @param {*} cards  已经获得的卡片
    * @param {*} defaultCard  默认卡

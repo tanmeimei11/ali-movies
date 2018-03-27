@@ -1,0 +1,46 @@
+<template>
+  <!-- <report> -->
+    <view class="container">
+      <view class="seat-area">
+        <!-- <view class="movie-info">
+          <h3>{{movie_name}}</h3>
+          <p>{{movie_detail}}</p>
+          <p class="verifyBtn" v-if="is_biz==='true'" @click="toCheck">核销情况</p>
+        </view> -->
+
+        <!-- <view class="manifest" v-if="!checking">
+          <view v-if="!bindingUserData" class="binding-tip" @click="goBindingPage">想帮朋友一起选座？</view>
+          <template v-if="selected.length == 0">
+            <ul class="seat-intro">
+              <li><span class="seat active"></span>可选</li>
+              <li><span class="seat disabled"></span>已售</li>
+              <li><span class="seat selected"></span>已选</li>
+            </ul>
+            <button class="btn disabled">请先选座</button>
+          </template>
+          <template v-else>
+            <view class="binding-user" v-if="bindingUserData">
+              <span>你可替</span>
+              <img :src="bindingUserData.avatar">
+              <p>{{bindingUserData.nick_name}}</p>
+              <span>一起选座</span>  
+            </view>
+            <view class="seat-tips">您已选定（{{selected.length}}/{{maxSeat}}）</view>
+            <ul class="seat-list">
+              <li v-for="v of selectList">{{v}}</li>
+            </ul>
+            <button class="btn" @click="preSubmit">确定选座</button>
+          </template>
+        </view>
+        <view class="checkInfo" v-if="checking">
+          <view>本场已出票：{{choosed_seat_count}}/{{total_seat_count}}</view>
+          <view>情侣座单座按2张核销</view>
+        </view> -->
+      </view>
+    </view>
+  <!-- </report> -->
+</template>
+<style lang="less" src="./select.less">
+</style>
+<script src="./select.js">
+</script>
