@@ -2,7 +2,7 @@
   <view class="cinema-page">
      <adBanner wx:if="{{bannerInfo && bannerInfo.length > 0}}" :bannerInfo.sync="bannerInfo"></adBanner>
     <view class="cinemas">
-      <view class="line" wx:for="{{cinemaList}}" wx:for-index="idx" wx:for-item="item" wx:key="idx" @tap="goMovie(item)">
+      <view class="line" wx:for="{{cinemaList}}" wx:for-index="idx" wx:for-item="item" wx:key="idx" @tap="goMovie" data-item="{{item}}">
         <view class="title">{{item.name}}</view>
         <!-- 可能直接取address -->
         <view class="address"> {{item.city}}{{item.district}}{{item.address}} </view>
@@ -31,9 +31,11 @@
         contractID: '2018011801960713'
     }
     methods = {
-      goMovie (item) {
-        // track('cinema_click', [`type=${item.name}`])
-        // location.href = `movies.html?id=${item.id}&sharebtnhidden=1`
+      goMovie (e) {
+        const item = e.target.dataset.item;
+        wepy.navigateTo( {
+          url: `/pages/moviesList/moviesList?id=${item.id}`
+        } );
       }
     }
     async onLoad () {

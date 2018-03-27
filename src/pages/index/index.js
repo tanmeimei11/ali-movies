@@ -60,8 +60,12 @@ export default class index extends wepy.page {
   }
 
   methods = {
-    goChooseSeat ( item ) {
+    goChooseSeat ( e ) {
+      const item = e.target.dataset.item;
       if ( item.status === '1' ) {
+        wepy.navigateTo( {
+          url: `/pages/cinemaList/cinemaList?id=${item.id}`
+        } );
         console.log( 'goChooseSeat' );
       }
     }
