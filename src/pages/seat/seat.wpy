@@ -56,19 +56,22 @@
     <view class="container fake">
       <lifestyle publicId="{{contractID}}" class="lifestyle"></lifestyle>
     </view>
+    <tabbbar :page.sync="pageName"></tabbbar>
   </report>
 </template>
 
 <script>
   import wepy from 'wepy';
+  import tabbbar from '@/components/tabbbar';
   import report from '@/components/report-submit';
   export default class result extends wepy.page {
     config = {
       navigationBarTitleText: '选座'
     }
     data = {
+      pageName:'seat',
       contractID: '2018011801960713'
     }
-    components = { report }
+    components = { report,tabbbar }
   }
 </script>

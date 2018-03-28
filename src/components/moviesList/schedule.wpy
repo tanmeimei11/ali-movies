@@ -37,7 +37,7 @@ export default  class schedule extends wepy.component{
         value: this.activeDay
       }
       this.$track('cinema_page_pick')
-      location.href = `seat.html?schedule_id=${item.id}&sharebtnhidden=1&is_biz=${this.isBiz}`
+      // location.href = `seat.html?schedule_id=${item.id}&sharebtnhidden=1&is_biz=${this.isBiz}`
     }
   }
 }

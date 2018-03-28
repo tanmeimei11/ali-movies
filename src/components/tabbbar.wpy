@@ -1,7 +1,8 @@
 <template lang="wxml">
   <view class="c-tabber-wrap" >
     <view class="btn-icon btn-index {{page==='index' ? 'on':''}}" @tap="reLaunchPage" data-page="index">首页</view>
-    <view class="btn-icon btn-cinema {{page==='cinema' ? 'on':''}}" @tap="reLaunchPage" data-page="cinema">影院</view>
+    <!-- <view class="btn-icon btn-cinema {{page==='cinema' ? 'on':''}}" @tap="reLaunchPage" data-page="cinema">影院</view> -->
+    <view class="btn-icon btn-cinema {{page==='seat' ? 'on':''}}" @tap="reLaunchPage" data-page="seat">选座</view>
     <view class="btn-icon btn-self {{page==='self' ? 'on':''}}" @tap="reLaunchPage" data-page="self">我的</view>
   </view>
 </template>
