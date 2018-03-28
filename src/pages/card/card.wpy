@@ -1,5 +1,5 @@
 <template>
-  <!-- <report> -->
+  <report>
     <view class="container">
       <block wx:if="{{swiperLen > 0}}">
       <view class="c-bg"></view>
@@ -14,7 +14,7 @@
                   <image class="s-avatar" mode="aspectFill" src="{{userInfo.avatar}}"></image>
                   <view class="s-name">{{userInfo.name}}</view>
                 </view>
-                <view class="s-card {{cardInfo.type !==1 ? 'huabei':''}}">
+                <view class="s-card {{cardInfo.type ==1 ? 'huabei':''}}">
                   <!-- <view class="title">{{cardInfos.title}}</view> -->
                   <view class="time">{{cardInfo.time}}</view>
                   <view class="num">{{cardInfo.num}}</view>
