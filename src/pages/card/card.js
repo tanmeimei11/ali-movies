@@ -14,22 +14,11 @@ export default class cards extends wepy.page {
   components = {report, giveGiftModal}
 
   data = {
-    cardInfos: {},
-    rules: [],
-    cardId: '',
-    cardCode: '',
-    cartStatusText: '',
+    activeCardInfos: {},
+    cardStatusText: '',
     giveGiftInfo: {
       show: false,
       tips: []
-    },
-    swiperOption: {
-      noSwiping: true,
-      direction: 'vertical',
-      speed: 300,
-      disableOnInteraction: false,
-      autoplay: 2000,
-      loop: true
     },
     allCards: [],
     _activeSwiperIdx: 1,
@@ -60,30 +49,40 @@ export default class cards extends wepy.page {
   }
 
   methods = {
-    async oprateCard () {
-      if ( parseInt( this.cardInfos.cardStatus ) === 0 ) {
-        track( 'mycard_transfer' );
-        this.giveGiftInfo.show = true;
-      } else if ( parseInt( this.cardInfos.cardStatus ) === 1 ) {
-        var res = await Card.cancelCardGive( this.cardCode );
-        this.cardCode = res.reward_code;
-        this.changeCardInfo( res.card, res.reward_status );
+    async oprateCard ( e ) {
+      const _activeCardStatus = parseInt( this.activeCardInfos.status );
+      if ( _activeCardStatus === 1 ) { // 取消转增
+        this.cancelGiveCard();
+        console.log( this.activeCardInfos, this.allCards[1] == this.activeCardInfos, this.allCards );
+        this.$apply();
+        return;
       }
+
+      track( 'mycard_transfer' );
+      this.giveGiftInfo = { // 转增
+        show: true,
+        tips: this.activeCardInfos.rules
+      };
     },
     changeSwiper ( event ) {
       var _idx = event.detail.current;
       this._activeSwiperIdx = _idx + 1;
-      this.cardInfos = this.allCards[_idx];
+      this.activeCardInfos = this.allCards[_idx];
       this.$apply();
     }
+  }
+
+  async onLoad ( ) {
+    track( 'mycard_page_screen' );
+    await auth.ready();
+    await this.init();
+    this.$apply();
   }
 
   /**
    * 初始化页面信息
    */
   async init () {
-    // var page = getCurrentPages()[0].data;
-    // this.rules = page.rules;
     await this.initCardInfo( this.cardId );
   }
   /**
@@ -92,63 +91,42 @@ export default class cards extends wepy.page {
    */
   async initCardInfo () {
     const data = await Card.getCardInfo();
-    const card = data.cards[0];
-    const _cardInfo = card.card_info;
-
     this.swiperLen = data.cards.length;
-    this.cartStatusText = data.btn_txt;
-    this.cardCode = card.reward_code;
-    this.giveGiftInfo.tips = card.prompt_txt;
-    this.rules = card.prompt_txt;
-    if ( _cardInfo && _cardInfo.reward_from_info ) {
-      card.reward_status = 3;
-    }
+    this.cardStatusText = data.btn_txt;
 
-    this.allCards = data.cards.map( ( item ) => {
-      var card = item.card_info;
+    this.allCards = data.cards.map( ( item ) => { // 转赠状态 0：未赠送，1：已送出未领取，2：已送出已领取，3：领取了别人的
+      const card = item.card;
       return {
         ...Card.initCardInfo( card ),
-        cardStatus: item.reward_status,
-        cardBtnText: data.btn_txt[ item.reward_status ]
+        code: item.reward_code,
+        status: card.reward_from_info ? 3 : item.reward_status,
+        btnText: data.btn_txt[ item.reward_status ],
+        rules: item.prompt_txt
       };
     } );
-    this.cardInfos = this.allCards[0];
-    console.log( this.allCards );
+
+    this.activeCardInfos = this.allCards[0];
   }
+
   /**
-   *  改变卡的状态
+   * 取消赠送
+   * @memberof cards
    */
-  changeCardInfo ( card, status, text ) {
-    this.cardInfos = Card.initCardInfo( card );
-    this.cardInfos.cardStatus = status;
-    this.cardInfos.cardBtnText = text || this.cartStatusText[status];
+  async cancelGiveCard () {
+    var res = await Card.cancelCardGive( this.activeCardInfos.code );
+    this.activeCardInfos.code = res.reward_code;
+    this.activeCardInfos.status = res.reward_status;
   }
-
-  async onLoad ( options ) {
-    track( 'mycard_page_screen' );
-    await auth.ready();
-    this.cardId = options.card_id;
-    await this.init();
-    this.$apply();
-  }
-
   /**
    * 转增回调
    */
   shareCallBack ( that ) {
     return async ( ) => {
-      if ( that.cardInfos.cardStatus == 0 ) {
-        var res = await Card.giveCard( that.cardCode );
-        that.changeCardInfo( res.card, res.reward_status );
+      var _actCard = that.activeCardInfos;
+      if ( _actCard.status === 0 ) {
+        var res = await Card.giveCard( _actCard.code );
+        _actCard.status = res.reward_status;
       }
     };
-  }
-  /**
-   * 修改转赠状态
-   * @param {*} status
-   */
-  changeCardStatus ( status ) { // 转赠状态 0：未赠送，1：已送出未领取，2：已送出已领取，3：领取了别人的
-    this.cardInfos.cardStatus = status;
-    this.cardInfos.cardBtnText = this.cardInfos.cartStatusText[status];
   }
 }

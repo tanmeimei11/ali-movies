@@ -21,6 +21,36 @@ page{
   transform: translate(-50%,0);
   font-size: 32rpx;
   color: #fff;
+  &.left:before{
+    opacity: .5;
+  }
+  &.right:after{
+    opacity: .5;
+  }
+}
+.c-number:before{
+  content:"";
+  position: absolute;
+  top:0;
+  left: -60rpx;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://inimg01.jiuyan.info/in/2018/03/28/4B7E4070-0B55-02DA-2CB6-D9771FFD42FC.jpg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+.c-number:after{
+  content:"";
+  position: absolute;
+  top:0;
+  right: -60rpx;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://inimg01.jiuyan.info/in/2018/03/28/09B7F4EE-21DA-7478-E06A-803266FF076B.jpg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
 .c-rules{
   width:651rpx;
@@ -92,14 +122,20 @@ swiper{
     background-size: contain;
     background-position: center;
     color:#fff;
+    &.huabei{
+      background-image: url('  https://inimg01.jiuyan.info/in/2018/03/28/BD8C0047-23EA-316F-4E63-8B91E1D4870A.jpg');
+      .shareToOthers{
+        display: none;
+      }
+    }
     .shareToOthers{
       opacity: 0.9;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: bold;
-      color: #D9A554;
-      background: #fff;
+      // color: #D9A554;
+      // background: #fff;
       width: 160rpx;
       height: 60rpx;
       border-radius: 200rpx;
@@ -107,11 +143,9 @@ swiper{
       position: absolute;
       top:293rpx;
       left:450rpx;
-      &.shared{
-        border: 2rpx solid #fff;
-        background: transparent;
-        color: #fff;
-      }
+      border: 2rpx solid #fff;
+      background: transparent;
+      color: #fff;
     }
     .getOthers,.toOthers{
       position: absolute;
