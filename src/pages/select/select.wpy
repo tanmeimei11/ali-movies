@@ -1,12 +1,37 @@
 <template>
   <!-- <report> -->
-    <view class="container">
+    <view>
       <view class="seat-area">
         <!-- <view class="movie-info">
           <h3>{{movie_name}}</h3>
           <p>{{movie_detail}}</p>
           <p class="verifyBtn" v-if="is_biz==='true'" @click="toCheck">核销情况</p>
         </view> -->
+        <view class="container">
+          <!-- todo：左上角提示 -->
+          <view class="indicator" style="opacity:0;"></view>
+          <!-- 座位区域 -->
+          <view class="seat-wrapper" id="wrapper">
+            <scroll-view class="seat-scroller">
+              <view class="h3">银幕</view>
+              <view class="seats">
+                <view class="p" wx:for="{{seat_list}}" wx:for-index="rowIndex" wx:for-item="rowArray" wx:key="rowIndex">
+                  <block wx:for="{{rowArray}}" wx:for-index="colIndex" wx:for-item="colItem">
+                    <view class="span" class="seat" wx:if="{{colItem.status == 0}}"></view>
+                    <view class="seat active a {{colItem.status == 2 ? 'disabled' : ''}} {{selected.indexOf(`${rowIndex},${colIndex}`) >= 0 ? 'selected' : ''}} {{colItem.status == 2 && checking ? 'checked' : ''}}"
+                      wx:else
+                      @tap="select" data-row="rowIndex" data-col="colIndex" data-status="colItem.status"></view>
+                  </block>
+                </view>
+              </scroll-view>
+
+              <!-- 座位排号 -->
+              <!-- <view class="row" :style="{transform: `translate(${scrollX * -1}px, 0px) translateZ(0px)`}">
+                <view class="ol"><view class="li" wx:for="(item, index) of row_list" :key="index">{{item}}</view></view>
+              </view> -->
+            </view>
+          </view>
+        </view>
 
         <!-- <view class="manifest" v-if="!checking">
           <view v-if="!bindingUserData" class="binding-tip" @click="goBindingPage">想帮朋友一起选座？</view>

@@ -19,6 +19,7 @@ module.exports = {
   [`${DOMAIN}/mnp/card/gifts`]: 'cancelGift',
   [`${DOMAIN}/mnp/ticket/my`]: 'ticketInfo',
   [`${DOMAIN}/h5/my/tickets`]: 'ticketInfo2',
+  [`${DOMAIN}/h5/seat/list`]: 'seat',
   [`${DOMAIN}/mnp/ticket/share`]: 'share',
   [`${DOMAIN}/mnp/ticket/fetch`]: 'fetch',
   [`${DOMAIN}/mnp/alipay/fetchHuabeiProfit`]: 'fetchHuabeiProfit',
