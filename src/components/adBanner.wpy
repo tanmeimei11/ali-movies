@@ -62,12 +62,12 @@
         this.$apply()
       },
       goRedrect () {
-        track( `${page}_page_ad_swiper_${this._idx}_click` );
+        track( `${this.page}_page_ad_swiper_${this._idx}_click` );
         var info = this.swiperInfo || this.bannerInfo[0];
         this.redirect(info)
       },
       goBnner () {
-        track( `${page}_page_ad_click` );
+        track( `${this.page}_page_ad_click` );
         this.redirect(this.bannerInfo[0])
       }
     }
