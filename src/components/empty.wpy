@@ -39,7 +39,7 @@
   export default class empty extends wepy.component {
     props = {
       text:{
-        type:'你还没有赠票',
+        type:String,
         default:'你还没有哦～'
       }
     }

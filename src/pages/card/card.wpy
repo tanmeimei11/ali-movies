@@ -45,7 +45,7 @@
       </block>
       <block wx:else>
         <view class="empty-block"> 
-           <empty></empty>
+           <empty :text.sync="emptyText"></empty>
         </view>
       </block>
       <giveGiftModal wx:if="{{giveGiftInfo.show}}" :giveGiftInfo.sync="giveGiftInfo"></giveGiftModal>

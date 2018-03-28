@@ -15,6 +15,7 @@ export default class cards extends wepy.page {
   components = {report, giveGiftModal, empty}
 
   data = {
+    emptyText: '你还没有电影王卡哦～',
     activeCardInfos: {},
     cardStatusText: '',
     giveGiftInfo: {
