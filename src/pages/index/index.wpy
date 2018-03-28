@@ -3,7 +3,7 @@
   <view>
     <view class="index-wap">
       <!-- banner -->
-      <adBanner wx:if="{{bannerInfo && bannerInfo.length > 0}}" :bannerInfo.sync="bannerInfo"></adBanner>
+      <adBanner wx:if="{{bannerInfo && bannerInfo.length > 0}}" :bannerInfo.sync="bannerInfo" :page.sync="pageName"></adBanner>
       <!-- movieList -->
       <view class="cinemas">
         <view  wx:for="{{movieList}}" wx:for-index="idx" wx:for-item="item" wx:key="idx" >

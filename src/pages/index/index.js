@@ -8,7 +8,7 @@ import tabbbar from '@/components/tabbbar';
 import qrcodeFromMixin from '@/mixins/qrcodeFromMixin';
 import auth from '@/api/auth';
 import util from '@/utils/util';
-// import track from '@/utils/track';
+import track from '@/utils/track';
 
 export default class index extends wepy.page {
   config = {
@@ -53,10 +53,15 @@ export default class index extends wepy.page {
       this.huabeiInfo.phone = phone;
     },
     async receive ( phone ) {
-      console.log( 'verify succ start submit' );
+      var _query = wepy.$instance.globalData.query;
       await Index.submitHuabeiCardInfo( {
-        phone: this.huabeiInfo.phone
+        phone: this.huabeiInfo.phone,
+        fromHuabei: 1,
+        tag: _query.tag,
+        userId: _query.userId,
+        voucherId: _query.voucherId
       } );
+      track( 'pickseat_huabei_card_get' );
       this.huabeiInfo.isShow = false;
       this.$apply();
     }
@@ -85,6 +90,7 @@ export default class index extends wepy.page {
   }
 
   async onLoad ( options ) {
+    track( 'index_page_screen' );
     var _options = Object.assign( {}, options, wepy.$instance.globalData.query );
     this.initQrcodeFrom( _options );
     this.initHuabei( _options );
@@ -100,15 +106,21 @@ export default class index extends wepy.page {
     } );
     this.movieList = _data.movies;
     this.bannerInfo = _data.ad_info;
+    if ( _data.ad_info.length ) {
+      track( 'pickseat_index_banner_expo' );
+    }
     const _huabeiInfo = _data.huabei_profit_info;
-    this.huabeiInfo.fromHuabei && _huabeiInfo && ( this.huabeiInfo = Object.assign( {}, this.huabeiInfo, {card: {
-      start: _huabeiInfo.validity_date,
-      end: _huabeiInfo.expiration_date
-    },
-      phone: _huabeiInfo.phone,
-      isShow: _huabeiInfo.popup,
-      btnStatus: util.verifyPhone( _huabeiInfo.phone )
-    } ) );
+    if ( this.huabeiInfo.fromHuabei && _huabeiInfo ) {
+      this.huabeiInfo = Object.assign( {}, this.huabeiInfo, {card: {
+        start: _huabeiInfo.validity_date,
+        end: _huabeiInfo.expiration_date
+      },
+        phone: _huabeiInfo.phone,
+        isShow: _huabeiInfo.popup,
+        btnStatus: util.verifyPhone( _huabeiInfo.phone )
+      } );
+      track( 'pickseat_huabei_card_expo' );
+    }
     this.$apply();
   }
 

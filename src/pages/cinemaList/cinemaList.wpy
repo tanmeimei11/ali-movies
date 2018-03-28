@@ -28,7 +28,7 @@
       </repeat>
       <!-- <view class="toMovie" @click="toMovie">查看其它热门电影 ></view> -->
     </view>  
-    <!-- <dialog-modal :dialog-info="dialogInfo" @toggle-dialog-modal="toggleDialogModal"></dialog-modal> -->
+     <dialogModal :dialogInfo.sync="dialogInfo"></dialogModal>
   </view>
 </template>
 <script>
@@ -36,7 +36,7 @@
   import dateSwiper from '@/components/moviesList/dateSwiper'
   import movie from '@/components/moviesList/movie'
   import schedule from '@/components/moviesList/schedule'
-  // import DialogModal from 'components/DialogModal'
+  import dialogModal from '@/components/moviesList/dialogModal'
   import wepy from 'wepy';
   import report from '@/components/report-submit';
   import CimenaList from '@/api/cimenaList';
@@ -50,7 +50,7 @@
       dateSwiper,
       movie,
       schedule,
-      // DialogModal,
+      dialogModal,
       adBanner
     }
 
@@ -75,10 +75,6 @@
         console.log('movie')
         // location.href = `index.html?sharebtnhidden=1`
       },
-      toggleDialogModal (show) {
-        this.$track('cinema_page_comelater_expo')
-        this.dialogInfo.show = false
-      },
       goSpMovies () {
         location.href = `movies.html?id=1dR&sharebtnhidden=1`
       }
@@ -94,6 +90,10 @@
         }
 
         this.updateMoviesList()
+      },
+       toggleDialogModal (show) {
+        track('cinema_page_comelater_expo')
+        this.dialogInfo.show = false
       },
     }
 

@@ -42,6 +42,10 @@
         type: Object,
         default: {}
       },
+      page:{
+        type: '',
+        default: 'default'
+      }
     }
     data = {
       _idx:0,
@@ -58,12 +62,12 @@
         this.$apply()
       },
       goRedrect () {
-        track( `page_ad_swiper_${this._idx}_click` );
+        track( `${page}_page_ad_swiper_${this._idx}_click` );
         var info = this.swiperInfo || this.bannerInfo[0];
         this.redirect(info)
       },
       goBnner () {
-        track( 'page_ad_click' );
+        track( `${page}_page_ad_click` );
         this.redirect(this.bannerInfo[0])
       }
     }
