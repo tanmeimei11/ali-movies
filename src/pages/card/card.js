@@ -3,6 +3,7 @@ import auth from '@/api/auth';
 // import { request } from '@/utils/request';
 // import tips from '@/utils/tips';
 import giveGiftModal from '@/components/card/giveGiftModal';
+import empty from '@/components/empty';
 import report from '@/components/report-submit';
 import track from '@/utils/track';
 import Card from '@/api/card';
@@ -11,7 +12,7 @@ export default class cards extends wepy.page {
   config = {
     navigationBarTitleText: '我的电影卡'
   }
-  components = {report, giveGiftModal}
+  components = {report, giveGiftModal, empty}
 
   data = {
     activeCardInfos: {},

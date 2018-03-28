@@ -12,7 +12,7 @@ import track from '@/utils/track';
 
 export default class index extends wepy.page {
   config = {
-    navigationBarTitleText: 'in同城趴·电影'
+    navigationBarTitleText: '电影中心'
   }
   components = {report, researchWindow, receiveCardModal, adBanner, tabbbar}
 

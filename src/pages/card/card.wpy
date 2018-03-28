@@ -1,6 +1,7 @@
 <template>
-  <!-- <report> -->
+  <report>
     <view class="container">
+      <block wx:if="{{swiperLen > 0}}">
       <view class="c-bg"></view>
       <view class="c-number {{_activeSwiperIdx == 1 ? 'left':''}} {{_activeSwiperIdx == swiperLen ? 'right':''}}">
         {{_activeSwiperIdx}}/{{swiperLen}}
@@ -41,9 +42,15 @@
             </view>
           </swiper-item>
       </swiper>
+      </block>
+      <block wx:else>
+        <view class="empty-block"> 
+           <empty></empty>
+        </view>
+      </block>
       <giveGiftModal wx:if="{{giveGiftInfo.show}}" :giveGiftInfo.sync="giveGiftInfo"></giveGiftModal>
     </view>
-  <!-- </report> -->
+  </report>
 </template>
 <style lang="less" src="./card.less">
 </style>
