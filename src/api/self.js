@@ -6,7 +6,7 @@ export default class Self extends Pagebase {
    */
   static async getMyInfo () {
     return await this.request( {
-      url: '/mnp/user/my2'
+      url: '/mnp/user/mine'
     } );
   }
 

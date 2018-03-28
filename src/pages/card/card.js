@@ -22,14 +22,25 @@ export default class cards extends wepy.page {
     giveGiftInfo: {
       show: false,
       tips: []
-    }
+    },
+    swiperOption: {
+      noSwiping: true,
+      direction: 'vertical',
+      speed: 300,
+      disableOnInteraction: false,
+      autoplay: 2000,
+      loop: true
+    },
+    allCards: [],
+    _activeSwiperIdx: 1,
+    swiperLen: 0
   }
 
   onShareAppMessage ( res ) {
     // console.log(res)
     var fun = () => {};
     // if ( res.from === 'button' ) {
-    console.log(this.cardCode)
+    console.log( this.cardCode );
     var that = this;
     fun = this.shareCallBack( that );
     // }
@@ -50,14 +61,20 @@ export default class cards extends wepy.page {
 
   methods = {
     async oprateCard () {
-      if ( this.cardInfos.cardStatus == 0 ) {
+      if ( parseInt( this.cardInfos.cardStatus ) === 0 ) {
         track( 'mycard_transfer' );
         this.giveGiftInfo.show = true;
-      } else if ( this.cardInfos.cardStatus == 1 ) {
+      } else if ( parseInt( this.cardInfos.cardStatus ) === 1 ) {
         var res = await Card.cancelCardGive( this.cardCode );
         this.cardCode = res.reward_code;
         this.changeCardInfo( res.card, res.reward_status );
       }
+    },
+    changeSwiper ( event ) {
+      var _idx = event.detail.current;
+      this._activeSwiperIdx = _idx + 1;
+      this.cardInfos = this.allCards[_idx];
+      this.$apply();
     }
   }
 
@@ -68,22 +85,35 @@ export default class cards extends wepy.page {
     // var page = getCurrentPages()[0].data;
     // this.rules = page.rules;
     await this.initCardInfo( this.cardId );
-    this.$apply();
   }
   /**
    * 初始化卡信息
    * @param {*} id
    */
-  async initCardInfo ( id ) {
-    var res = await Card.getCardInfo( id );
-    this.cardCode = res.reward_code;
-    this.giveGiftInfo.tips = res.prompt_txt;
-    this.cartStatusText = res.btn_txt;
-    this.rules = res.prompt_txt
-    if ( res.card && res.card.reward_from_info ) {
-      res.reward_status = 3;
+  async initCardInfo () {
+    const data = await Card.getCardInfo();
+    const card = data.cards[0];
+    const _cardInfo = card.card_info;
+
+    this.swiperLen = data.cards.length;
+    this.cartStatusText = data.btn_txt;
+    this.cardCode = card.reward_code;
+    this.giveGiftInfo.tips = card.prompt_txt;
+    this.rules = card.prompt_txt;
+    if ( _cardInfo && _cardInfo.reward_from_info ) {
+      card.reward_status = 3;
     }
-    this.changeCardInfo( res.card, res.reward_status, res.btn_txt[ res.reward_status ] );
+
+    this.allCards = data.cards.map( ( item ) => {
+      var card = item.card_info;
+      return {
+        ...Card.initCardInfo( card ),
+        cardStatus: item.reward_status,
+        cardBtnText: data.btn_txt[ item.reward_status ]
+      };
+    } );
+    this.cardInfos = this.allCards[0];
+    console.log( this.allCards );
   }
   /**
    *  改变卡的状态
@@ -92,7 +122,6 @@ export default class cards extends wepy.page {
     this.cardInfos = Card.initCardInfo( card );
     this.cardInfos.cardStatus = status;
     this.cardInfos.cardBtnText = text || this.cartStatusText[status];
-    this.$apply();
   }
 
   async onLoad ( options ) {
