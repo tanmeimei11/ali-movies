@@ -103,10 +103,8 @@ export default class index extends wepy.page {
     await this.initShowWin( _options );
   }
 
-  async initPageInfo () {
-    var _data = await Index.getIndexInfo( {
-      fromHuabei: this.huabeiInfo.fromHuabei
-    } );
+  async initPageInfo (_options) {
+    var _data = await Index.getIndexInfo(_options);
     this.movieList = _data.movies;
     this.bannerInfo = _data.ad_info;
     if ( _data.ad_info.length ) {
