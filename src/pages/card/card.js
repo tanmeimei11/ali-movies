@@ -28,17 +28,13 @@ export default class cards extends wepy.page {
   }
 
   onShareAppMessage ( res ) {
-    // console.log(res)
     var fun = () => {};
-    // if ( res.from === 'button' ) {
-    console.log( this.cardCode );
     var that = this;
     fun = this.shareCallBack( that );
-    // }
     return {
       title: '送你一张电影王卡',
       desc: 'in同城趴电影王卡，让你三个月杭州电影无限看！',
-      path: `/pages/detail/detail?directTo=detail&cardCode=${this.cardCode}`,
+      path: `/pages/detail/detail?directTo=detail&cardCode=${this.activeCardInfos.code}`,
       imageUrl: 'https://inimg01.jiuyan.info/in/2018/01/25/FB5D55FB-986F-6433-18B8-BAF8C0C797E3.jpg',
       success: fun
     };
@@ -101,7 +97,7 @@ export default class cards extends wepy.page {
       return {
         ...Card.initCardInfo( card ),
         code: item.reward_code,
-        status: card.reward_from_info ? 3 : item.reward_status,
+        status: card.reward_from_info ? 3 : parseInt( item.reward_status ),
         btnText: data.btn_txt[ item.reward_status ],
         rules: item.prompt_txt
       };
@@ -128,6 +124,7 @@ export default class cards extends wepy.page {
       if ( _actCard.status === 0 ) {
         var res = await Card.giveCard( _actCard.code );
         _actCard.status = res.reward_status;
+        that.$apply();
       }
     };
   }

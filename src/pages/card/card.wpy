@@ -29,7 +29,7 @@
                       <view class="avatar" style="background-image:url({{cardInfo.reward_to_info.avatar}})"></view>
                       <text class="name">{{cardInfo.reward_to_info.nick_name}}</text>
                   </view>
-                  <view class="shareToOthers" wx:else @tap="oprateCard">
+                  <view class="shareToOthers" wx:elif="{{cardInfo.status == 0 || cardInfo.status == 1}}" @tap="oprateCard">
                       {{cardStatusText[cardInfo.status]}}
                   </view>
                 </view>
