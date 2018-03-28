@@ -4,6 +4,7 @@ import report from '@/components/report-submit';
 import researchWindow from '@/components/researchWindow';
 import receiveCardModal from '@/components/index/receiveCardModal';
 import adBanner from '@/components/adBanner';
+import tabbbar from '@/components/tabbbar';
 import qrcodeFromMixin from '@/mixins/qrcodeFromMixin';
 import auth from '@/api/auth';
 import util from '@/utils/util';
@@ -13,11 +14,12 @@ export default class index extends wepy.page {
   config = {
     navigationBarTitleText: 'in同城趴·电影'
   }
-  components = {report, researchWindow, receiveCardModal, adBanner}
+  components = {report, researchWindow, receiveCardModal, adBanner, tabbbar}
 
   mixins = [qrcodeFromMixin]
 
   data = {
+    pageName: 'index',
     showResearchWindow: false,
     researchInfo: {},
     huabeiInfo: {

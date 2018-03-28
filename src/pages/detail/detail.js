@@ -130,7 +130,7 @@ export default class Index extends wepy.page {
       try {
         track( 'page_receive_box_confirm' );
         await Detail.receiveCard( this.cardCode, this.receiveGiftInfo.phoneNum );
-        wepy.switchTab( {
+        wepy.reLaunch( {
           url: `/pages/self/self`
         } );
       } catch ( e ) {
@@ -156,7 +156,7 @@ export default class Index extends wepy.page {
   }
   methods = {
     toIndex () {
-      wepy.switchTab( {
+      wepy.reLaunch( {
         url: `/pages/index/index`
       } );
     },
@@ -170,11 +170,6 @@ export default class Index extends wepy.page {
         track( 'page_buy' );
       }
       this.buyMutiModalInfo.show = true;
-    },
-    toIndex () {
-      wepy.switchTab( {
-        url: `/pages/index/index`
-      } );
     },
     gotoBottom () {
       track( 'page_rule' );

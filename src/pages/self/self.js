@@ -6,14 +6,16 @@ import { request } from '@/utils/request';
 import report from '@/components/report-submit';
 import track from '@/utils/track';
 import util from '@/utils/util';
+import tabbbar from '@/components/tabbbar';
 
 export default class self extends wepy.page {
   config = {
     navigationBarTitleText: '我的电影卡'
   }
-  components = { report }
+  components = {report, tabbbar}
 
   data = {
+    pageName: 'self',
     list: [],
     num: '',
     type: '',
@@ -35,11 +37,11 @@ export default class self extends wepy.page {
       num: ''
     }],
     listName: {
-      "movie_ticket": "电影票",
-      "movie_card": "电影卡",
-      "union_select_seat": "关联选座",
-      "redeem_movie_card": "兑换电影王卡",
-      "contact_cs": "联系客服"
+      'movie_ticket': '电影票',
+      'movie_card': '电影卡',
+      'union_select_seat': '关联选座',
+      'redeem_movie_card': '兑换电影王卡',
+      'contact_cs': '联系客服'
     },
     userTitle: {
       '0': 'normal',
@@ -65,9 +67,9 @@ export default class self extends wepy.page {
         url: `/pages/webview/webview?h5url=${encodeURIComponent( link )}`
       } );
     },
-    selfLink (e) {
-      var type = e.currentTarget.dataset.type
-      switch (type) {
+    selfLink ( e ) {
+      var type = e.currentTarget.dataset.type;
+      switch ( type ) {
         case 'movie_ticket':
           wepy.navigateTo( {
             url: `/pages/ticket/ticket`
@@ -203,7 +205,7 @@ export default class self extends wepy.page {
 
   async init () {
     var myInfoRes = await Self.getMyInfo();
-    console.log(myInfoRes)
+    console.log( myInfoRes );
     this.list = myInfoRes.feature_list;
     this.userInfo = myInfoRes.profile;
     // 读取手机号

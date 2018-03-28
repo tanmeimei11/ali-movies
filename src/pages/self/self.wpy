@@ -73,6 +73,8 @@
         <button disabled="{{exchangeDisabled}}" @tap="exchange">确认兑换</button>
       </view>
     </view>
+
+    <tabbbar :page.sync="pageName"></tabbbar>
   </view>
   <!-- </report> -->
 </template>

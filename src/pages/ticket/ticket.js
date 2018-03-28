@@ -17,16 +17,16 @@ export default class ticket extends wepy.page {
 
   methods = {
     ticketOn () {
-      this.ticket = true
-      this.$apply()
+      this.ticket = true;
+      this.$apply();
     },
     ticketOff () {
-      this.ticket = false
-      this.$apply()
+      this.ticket = false;
+      this.$apply();
     },
-    use (e) {
-      if (e.currentTarget.dataset.item.status !== '0') return
-      wepy.switchTab( {
+    use ( e ) {
+      if ( e.currentTarget.dataset.item.status !== '0' ) return;
+      wepy.reLaunch( {
         url: `/pages/index/index`
       } );
     }
@@ -35,8 +35,8 @@ export default class ticket extends wepy.page {
   async init () {
     var myInfoRes = await Ticket.getMyInfo();
     var myLotteryRes = await Ticket.getMyLottery();
-    this.list = myInfoRes.ticket_list
-    this.list2 = myLotteryRes.ticket_list
+    this.list = myInfoRes.ticket_list;
+    this.list2 = myLotteryRes.ticket_list;
     this.$apply();
   }
   async onLoad ( options ) {

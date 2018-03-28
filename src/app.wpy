@@ -139,28 +139,28 @@ export default class extends wepy.app {
   }
 
   config = {
-    pages: ['pages/card/card', 'pages/self/self', 'pages/index/index','pages/moviesList/moviesList','pages/cinemaList/cinemaList',  'pages/cinema/cinema', 'pages/card/card',  'pages/self/self', 'pages/detail/detail', 'pages/seat/seat', 'pages/result/result', 'pages/card/card', 'pages/ticket/ticket'],
-    tabBar: {
-      'textColor': '#4A4A4A',
-      'selectedColor': '#FF5E51',
-      'backgroundColor': '#F5F5F9',
-      items: [{
-        'pagePath': 'pages/index/index',
-        'icon': 'image/icon_index.png',
-        'activeIcon': 'image/icon_index_on.png',
-        'name': '首页'
-      }, {
-        'pagePath': 'pages/cinema/cinema',
-        'icon': 'image/icon_seat.png',
-        'activeIcon': 'image/icon_seat_on.png',
-        'name': '影院'
-      }, {
-        'pagePath': 'pages/self/self',
-        'icon': 'image/icon_self.png',
-        'activeIcon': 'image/icon_self_on.png',
-        'name': '我的'
-      }]
-    }
+    pages: ['pages/index/index','pages/card/card', 'pages/self/self', 'pages/moviesList/moviesList','pages/cinemaList/cinemaList',  'pages/cinema/cinema', 'pages/card/card',  'pages/self/self', 'pages/detail/detail', 'pages/seat/seat', 'pages/result/result', 'pages/card/card', 'pages/ticket/ticket'],
+    // tabBar: {
+    //   'textColor': '#4A4A4A',
+    //   'selectedColor': '#FF5E51',
+    //   'backgroundColor': '#F5F5F9',
+    //   items: [{
+    //     'pagePath': 'pages/index/index',
+    //     'icon': 'image/icon_index.png',
+    //     'activeIcon': 'image/icon_index_on.png',
+    //     'name': '首页'
+    //   }, {
+    //     'pagePath': 'pages/cinema/cinema',
+    //     'icon': 'image/icon_seat.png',
+    //     'activeIcon': 'image/icon_seat_on.png',
+    //     'name': '影院'
+    //   }, {
+    //     'pagePath': 'pages/self/self',
+    //     'icon': 'image/icon_self.png',
+    //     'activeIcon': 'image/icon_self_on.png',
+    //     'name': '我的'
+    //   }]
+    // }
   }
 }
 </script>

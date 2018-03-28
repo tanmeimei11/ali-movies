@@ -18,6 +18,7 @@
         </view>
       </view>
     </view>
+    <tabbbar :page.sync="pageName"></tabbbar>
     <researchWindow wx:if="{{showResearchWindow}}" :researchInfo.sync="researchInfo"></researchWindow>
     <receiveCardModal wx:if="{{huabeiInfo.isShow}}" :huabeiInfo.sync="huabeiInfo"></receiveCardModal>
   </view>

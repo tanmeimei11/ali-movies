@@ -12,10 +12,12 @@
         <view class="desc">{{item.desc}}</view>
       </view>
     </view>
+    <tabbbar :page.sync="pageName"></tabbbar>
   </view>
 </template>
 <script>
   import wepy from 'wepy';
+  import tabbbar from '@/components/tabbbar';
   import report from '@/components/report-submit';
   import Cinema from '@/api/cinema';
   import auth from '@/api/auth';
@@ -24,11 +26,12 @@
      config = {
       navigationBarTitleText: '电影王卡院线中心'
     }
-    components = { report, adBanner }
+    components = { report, adBanner, tabbbar }
     data = {
-        cinemaList: [],
-        bannerInfo: {},
-        contractID: '2018011801960713'
+      pageName:"cinema",
+      cinemaList: [],
+      bannerInfo: {},
+      contractID: '2018011801960713'
     }
     methods = {
       goMovie (e) {
