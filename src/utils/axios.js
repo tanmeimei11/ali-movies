@@ -28,7 +28,9 @@ function getQueryParams ( str ) {
  */
 export default class http {
   static async request ( config ) {
-    tips.loading();
+    if (config.url.indexOf('h5/user/ticket/qr_code') === -1) {
+      tips.loading();
+    }
     this._fixRequest( config ); // 支付宝小程序特有
     const myres = await wepy.httpRequest( config );
     tips.loaded();
