@@ -174,7 +174,7 @@ export default class ticket extends wepy.page {
 
     if (!this.query.schedule_id) {
       alert('该场次停止售票，请选择其他场次')
-      history.back()
+      // history.back()
       return
     }
 

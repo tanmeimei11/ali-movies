@@ -3,9 +3,10 @@ export default class Select extends Pagebase {
   /**
    * 获取我的信息接口
    */
-  static async getSeatInfo () {
+  static async getSeatInfo (data) {
     return await this.request( {
-      url: '/h5/seat/list'
+      url: '/h5/seat/list',
+      data: data
     } );
   }
   /**

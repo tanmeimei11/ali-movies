@@ -8,13 +8,14 @@
         </view>
         <view class="hall-name">{{item.hall_name}}</view>
         <view class="language">{{item.language_type}}{{item.version}}</view>
-        <view class="select-btn" :class="{end: item.status == 0 || item.status == 4}" @click="goSelectSeat(item)">{{statusText[item.status]}}</view>
+        <view class="select-btn" :class="{end: item.status == 0 || item.status == 4}" @tap="goSelectSeat" data-item="{{item}}">{{statusText[item.status]}}</view>
       </view>
     </view>
   </view>
 </template>
 <script>
 import wepy from 'wepy';
+import track from '@/utils/track';
 export default  class schedule extends wepy.component{
   props = {
     isBiz: Boolean,
@@ -30,14 +31,17 @@ export default  class schedule extends wepy.component{
     }
   }
   methods =  {
-    goSelectSeat (item) {
+    goSelectSeat (e) {
+      var item = e.currentTarget.dataset.item
       if (+item.status === 0 || +item.status === 4) return
-      common.cookie = {
-        name: 'pagedayidx',
-        value: this.activeDay
-      }
-      this.$track('cinema_page_pick')
-      // location.href = `seat.html?schedule_id=${item.id}&sharebtnhidden=1&is_biz=${this.isBiz}`
+      // common.cookie = {
+      //   name: 'pagedayidx',
+      //   value: this.activeDay
+      // }
+      track('cinema_page_pick')
+      wepy.navigateTo( {
+        url: `/pages/select/select?schedule_id=${item.id}&sharebtnhidden=1&is_biz=${this.isBiz}`
+      } );
     }
   }
 }
