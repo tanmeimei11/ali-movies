@@ -16,7 +16,7 @@ export default class ticket extends wepy.page {
     ticket: true
   }
 
-  components = {report, empty}
+  components = {report, empty, empty1: empty}
 
   methods = {
     ticketOn () {

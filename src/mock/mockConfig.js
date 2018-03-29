@@ -28,6 +28,6 @@ module.exports = {
   [`${DOMAIN}/mnp/alipay/frontpage`]: 'frontpage',
   [`${DOMAIN}/h5/movie/movieScheduledCinemas`]: 'movieScheduledCinemas',
   [`${DOMAIN}/h5/cinema/list`]: 'cinemaList',
-  [`${DOMAIN}/h5/cinema/schedule'`]: 'schedule',
+  [`${DOMAIN}/h5/cinema/schedule`]: 'schedule',
   [`${payUrl}`]: 'signature'
 };

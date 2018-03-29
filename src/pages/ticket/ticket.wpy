@@ -1,5 +1,5 @@
 <template>
-  <report>
+  <!-- <report> -->
     <view class="container">
       <view class="tabbar">
         <view class="{{ticket ? 'on' : ''}}" @tap="ticketOn">
@@ -10,7 +10,7 @@
         </view>
       </view>
       <view class="tickets" wx:if="{{ticket}}">
-        <view wx:for="{{list}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+        <view class="one-ticket" wx:if="{{list.length >0}}" wx:for="{{list}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
           <view class="poster" style="background-image:url({{item.poster_url}})"></view>
           <view class="name">{{item.movie_name}}</view>
           <view class="desc">{{item.movie_duration}}/{{item.movie_version}}/{{item.movie_type}}</view>
@@ -24,11 +24,10 @@
           <view class="btn-expired" wx:if="{{item.status==='2'}}">已核销</view>
           <view class="btn-expired" wx:if="{{item.status==='3'}}">已取消</view>
         </view>
-        <empty wx:else text="你还没有电影票哦～"></empty>
+        <empty1 wx:else text="你还没有电影票哦～"></empty1>
       </view>
-      <view wx:else>
-        <view class="lottery">
-          <view wx:for="{{list2}}" wx:for-index="idx" wx:for-item="item" wx:key="idx" class="{{['use'][item.status] || ''}}">
+        <view class="lottery" wx:else>
+          <view class="one-ticket" wx:if="{{list2.length>0}}" wx:for="{{list2}}" wx:for-index="idx" wx:for-item="item" wx:key="idx" class="{{['use'][item.status] || ''}}">
             <view class="title">{{item.name}} </view>
             <view class="desc">
               <view>有效时间: {{item.valid_time}}</view>
@@ -41,8 +40,7 @@
           <empty wx:else text="你还没赠票哦～"></empty>
         </view>
       </view>
-    </view>
-  </report>
+  <!-- </report> -->
 </template>
 <style lang="less" src="./ticket.less">
 </style>
