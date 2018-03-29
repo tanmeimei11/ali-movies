@@ -71,13 +71,13 @@ export default class index extends wepy.page {
     goChooseSeat ( e ) {
       const item = e.target.dataset.item;
       if ( item.status === '1' ) {
-        // wepy.navigateTo( {
-        //   url: `/pages/cinemaList/cinemaList?id=${item.id}`
-        // } );
-        wepy.reLaunch( {
-          url: `/pages/seat/seat`
+        wepy.navigateTo( {
+          url: `/pages/cinemaList/cinemaList?id=${item.id}`
         } );
-        console.log( 'goChooseSeat' );
+        // 临时上新版本 part－8
+        // wepy.reLaunch( {
+        //   url: `/pages/seat/seat`
+        // } );
       }
     }
   }

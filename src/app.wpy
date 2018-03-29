@@ -139,7 +139,7 @@ export default class extends wepy.app {
   }
 
   config = {
-    pages: ['pages/index/index','pages/card/card', 'pages/self/self', 'pages/moviesList/moviesList','pages/cinemaList/cinemaList',  'pages/cinema/cinema', 'pages/card/card',  'pages/self/self', 'pages/detail/detail', 'pages/seat/seat', 'pages/result/result', 'pages/card/card', 'pages/ticket/ticket'],
+    pages: ['pages/self/self','pages/index/index',  'pages/moviesList/moviesList','pages/cinemaList/cinemaList',  'pages/cinema/cinema',    'pages/detail/detail', 'pages/seat/seat', 'pages/result/result', 'pages/card/card', 'pages/ticket/ticket'],
     // tabBar: {
     //   'textColor': '#4A4A4A',
     //   'selectedColor': '#FF5E51',
