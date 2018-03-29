@@ -2,7 +2,7 @@
   <!-- <report> -->
     <view class="container">
       <block wx:if="{{swiperLen > 0}}">
-      <view class="c-bg"></view>
+      <view class="c-bg {{activeCardInfos.type === 0 ? '':'huabei'}}"></view>
       <view class="c-number {{_activeSwiperIdx == 1 ? 'left':''}} {{_activeSwiperIdx == swiperLen ? 'right':''}}">
         {{_activeSwiperIdx}}/{{swiperLen}}
       </view>

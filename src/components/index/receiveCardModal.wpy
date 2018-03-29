@@ -56,7 +56,7 @@
     width:450rpx;
     height: 270rpx;
     /* background-image: url('https://inimg01.jiuyan.info/in/2018/03/21/223D0866-304B-D4BF-18F3-22D89ED4C828.jpg'); */
-    background-image: url('https://inimg01.jiuyan.info/in/2018/03/29/5F42CBC7-9331-DF4A-65BD-74BADDE09AE0.jpg');
+    background-image: url('https://inimg01.jiuyan.info/in/2018/03/29/B4B1A087-2850-F62D-778C-37D7FDC65654.jpg');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
