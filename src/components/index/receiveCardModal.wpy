@@ -2,11 +2,11 @@
   <view class="c-modal c-receive-modal">
     <view class="c-wrap">
       <view class="s-close" @tap="close" ></view>
-      <text class="s-title">恭喜你获得花呗权益卡</text>
-      <view class="s-text">畅享电影无限看</view>
+      <text class="s-title">恭喜你获得花呗观影神券</text>
+      <view class="s-text">这月电影不花钱</view>
       <view class="s-header">
-        <view class="tips">NO.xxxxxxxxxxxxxxxxxx</view>
-        <view class="time">{{huabeiInfo.card.start}}-{{huabeiInfo.card.end}}</view>
+        <!-- <view class="tips">NO.xxxxxxxxxxxxxxxxxx</view> -->
+        <!-- <view class="time">{{huabeiInfo.card.start}}-{{huabeiInfo.card.end}}</view> -->
       </view>
       <view class="s-main">
         <!-- 手机号输入 -->
@@ -55,7 +55,8 @@
     position: relative;
     width:450rpx;
     height: 270rpx;
-    background-image: url('https://inimg01.jiuyan.info/in/2018/03/21/223D0866-304B-D4BF-18F3-22D89ED4C828.jpg');
+    /* background-image: url('https://inimg01.jiuyan.info/in/2018/03/21/223D0866-304B-D4BF-18F3-22D89ED4C828.jpg'); */
+    background-image: url('https://inimg01.jiuyan.info/in/2018/03/29/5F42CBC7-9331-DF4A-65BD-74BADDE09AE0.jpg');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;

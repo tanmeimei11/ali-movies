@@ -32,5 +32,6 @@ module.exports = {
   [`${DOMAIN}/h5/movie/movieScheduledCinemas`]: 'movieScheduledCinemas',
   [`${DOMAIN}/h5/cinema/list`]: 'cinemaList',
   [`${DOMAIN}/h5/cinema/schedule`]: 'schedule',
+  [`${DOMAIN}/info/ad/imgs`]: 'imgsList',
   [`${payUrl}`]: 'signature'
 };
