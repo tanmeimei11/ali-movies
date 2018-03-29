@@ -45,6 +45,12 @@ export default class ticketDetail extends wepy.page {
         track('ticket_qrcode_page_confirm')
         tips.toast('取消成功')
         this.cancelWindow = false
+        var pageList = getCurrentPages()
+        pageList.forEach((item,i) => {
+          if (item.route.indexOf('ticket/ticket') >= 0) {
+            item.init()
+          }
+        })
         this.init()
       } catch (error) {
         console.log(error)
