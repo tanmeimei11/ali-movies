@@ -17,8 +17,7 @@
                 <view class="p" wx:for="{{seat_list}}" wx:for-index="rowIndex" wx:for-item="rowArray" wx:key="rowIndex">
                   <block wx:for="{{rowArray}}" wx:for-index="colIndex" wx:for-item="colItem">
                     <view class="span" class="seat" wx:if="{{colItem.status == 0}}"></view>
-                    <!-- <view class="seat active a {{colItem.status == 2 ? 'disabled' : ''}} {{selected.indexOf((rowIndex,colIndex)) >= 0 ? 'selected' : (rowIndex,colIndex)}} {{colItem.status == 2 && checking ? 'checked' : ''}} flag{{colItem.flag ? colItem.flag : ''}}" -->
-                    <view class="seat active a {{colItem.status == 2 ? 'disabled' : ''}} {{ticket.selectIndex}} {{colItem.status == 2 && checking ? 'checked' : ''}} flag{{colItem.flag ? colItem.flag : ''}}"
+                    <view class="seat active a {{colItem.status == 2 ? 'disabled' : ''}} {{selected.indexOf(''+rowIndex+','+colIndex) >= 0 ? 'selected' : ''}} {{colItem.status == 2 && checking ? 'checked' : ''}} flag{{colItem.flag ? colItem.flag : ''}}"
                       wx:else
                       @tap="select" data-row="{{rowIndex}}" data-col="{{colIndex}}" data-status="{{colItem.status}}"></view>
                   </block>
@@ -35,7 +34,7 @@
         </view>
 
         <view class="manifest">
-          <block wx:if="selected.length == 0">
+          <block wx:if="{{selected.length == 0}}">
             <view class="seat-intro ul">
               <view class="li"><view class="span seat active"></view>可选</view>
               <view class="li"><view class="span seat disabled"></view>已售</view>

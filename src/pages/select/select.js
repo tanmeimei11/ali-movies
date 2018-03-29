@@ -105,16 +105,17 @@ export default class ticket extends wepy.page {
 
         try {
           var res = await this.$api.ordercreate({ schedule_id: this.schedule_id, seat_id: seatIds.join(',') })
-          console.log(succ, data, msg, code)
+          // console.log(succ, data, msg, code)
           this.confirm.show = false
-          if (!succ) return this.$toast(msg)
-          if (!data.result.is_succ) return this.showModal({ title: data.result.title, content: data.result.message, confirmText: data.result.button_desc, redirect: data.result.redirect_url })
+          this.$apply()
+          if (!res.result.is_succ) return this.showModal({ title: res.result.title, content: res.result.message, confirmText: res.result.button_desc, redirect: res.result.redirect_url })
           // 抢座成功 data.result.movie_ticket_id
-          location.href = 'ticketDetail.html?id=' + data.result.movie_ticket_id
+          location.href = 'ticketDetail.html?id=' + res.result.movie_ticket_id
         } catch (error) {
-          this.$toast(error)
+          console.log(error)
         } finally {
           this.submitLoading = false
+          this.$apply()
         }
       },
     goBindingPage () {
@@ -139,7 +140,7 @@ export default class ticket extends wepy.page {
         if (this.selected.length < this.maxSeat) {
           this.selected.push(value)
         } else {
-          tips.toast(`一次最多选择${this.maxSeat}个座位`)
+          tips.error(`一次最多选择${this.maxSeat}个座位`)
         }
       } else {
         this.selected.splice(index, 1)
