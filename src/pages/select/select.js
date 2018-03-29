@@ -31,7 +31,7 @@ function formatList (list) {
   return rst
 }
 
-export default class ticket extends wepy.page {
+export default class select extends wepy.page {
   config = {
     navigationBarTitleText: '选座'
   }
