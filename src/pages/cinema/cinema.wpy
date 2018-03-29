@@ -1,7 +1,7 @@
 <template>
 <report>
   <view class="cinema-page">
-     <adBanner wx:if="{{bannerInfo && bannerInfo.length > 0}}" :bannerInfo.sync="bannerInfo"></adBanner>
+    <adBanner wx:if="{{bannerInfo && bannerInfo.length > 0}}" :bannerInfo.sync="bannerInfo"></adBanner>
     <view class="cinemas">
       <view class="line" wx:for="{{cinemaList}}" wx:for-index="idx" wx:for-item="item" wx:key="idx" @tap="goMovie" data-item="{{item}}">
         <view class="title">{{item.name}}</view>
@@ -59,7 +59,7 @@
   }
 
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
   .cinema-page {
     padding-bottom: 100rpx;
     box-sizing: border-box;
