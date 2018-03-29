@@ -1,5 +1,5 @@
 <template>
-  <!-- <report> -->
+  <report>
   <view class="container">
     <view class="detail-pagination">
       <!-- <view class="current-page">{{activeIndex + 1}}</view>
@@ -55,7 +55,7 @@
       </view>
     </view>
   </view>
-  <!-- </report> -->
+  </report>
 </template>
 <style lang="less" src="./ticketDetail.less">
 </style>
