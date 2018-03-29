@@ -1,6 +1,6 @@
 <template>
-  <report>
-  <!-- <view> -->
+  <!-- <report> -->
+  <view>
     <view class="index-wap">
       <!-- banner -->
       <adBanner wx:if="{{bannerInfo && bannerInfo.length > 0}}" :bannerInfo.sync="bannerInfo" :page.sync="pageName"></adBanner>
@@ -21,8 +21,8 @@
     <tabbbar :page.sync="pageName"></tabbbar>
     <researchWindow wx:if="{{showResearchWindow}}" :researchInfo.sync="researchInfo"></researchWindow>
     <receiveCardModal wx:if="{{huabeiInfo.isShow}}" :huabeiInfo.sync="huabeiInfo"></receiveCardModal>
-  <!-- </view> -->
-  </report>
+  </view>
+  <!-- </report> -->
 </template>
 <style lang="less" src="./index.less">
 </style>

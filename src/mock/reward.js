@@ -6,7 +6,7 @@ module.exports = {
     'cards': [
       {
         'card': {
-          'type': 1,
+          'type': 0,
           'card_no': '0034996978',
           'desc': '可任意次数兑换观影劵',
           'end_date': 1527696000000,
@@ -25,7 +25,7 @@ module.exports = {
         'reward_status': '0'
       }, {
         'card': {
-          'type': 1,
+          'type': 0,
           'card_no': '0034996978',
           'desc': '可任意次数兑换观影劵',
           'end_date': 1527696000000,
@@ -42,7 +42,7 @@ module.exports = {
         'reward_status': '1'
       }, {
         'card': {
-          'type': 2,
+          'type': 1,
           'card_no': '0034996978',
           'desc': '可任意次数兑换观影劵',
           'end_date': 1527696000000,
@@ -59,7 +59,7 @@ module.exports = {
         'reward_status': '0'
       }, {
         'card': {
-          'type': 1,
+          'type': 0,
           'card_no': '0034996978',
           'desc': '可任意次数兑换观影劵',
           'end_date': 1527696000000,
@@ -80,7 +80,7 @@ module.exports = {
         'reward_status': '2'
       }, {
         'card': {
-          'type': 1,
+          'type': 0,
           'card_no': '0034996978',
           'desc': '可任意次数兑换观影劵',
           'end_date': 1527696000000,

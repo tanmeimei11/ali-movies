@@ -9,6 +9,7 @@ import qrcodeFromMixin from '@/mixins/qrcodeFromMixin';
 import auth from '@/api/auth';
 import util from '@/utils/util';
 import track from '@/utils/track';
+import tips from '@/utils/tips';
 
 export default class index extends wepy.page {
   config = {
@@ -53,6 +54,7 @@ export default class index extends wepy.page {
       this.huabeiInfo.phone = phone;
     },
     async receive ( phone ) {
+      tips.loading();
       var _query = wepy.$instance.globalData.query;
       await Index.submitHuabeiCardInfo( {
         phone: this.huabeiInfo.phone,
@@ -62,8 +64,10 @@ export default class index extends wepy.page {
         voucherId: _query.voucherId
       } );
       track( 'pickseat_huabei_card_get' );
+      tips.loaded();
       this.huabeiInfo.isShow = false;
       this.$apply();
+      tips.toast( '领取成功' );
     }
   }
 
@@ -71,13 +75,13 @@ export default class index extends wepy.page {
     goChooseSeat ( e ) {
       const item = e.target.dataset.item;
       if ( item.status === '1' ) {
-        // wepy.navigateTo( {
-        //   url: `/pages/cinemaList/cinemaList?id=${item.id}`
-        // } );
-        wepy.reLaunch( {
-          url: `/pages/seat/seat`
+        wepy.navigateTo( {
+          url: `/pages/cinemaList/cinemaList?id=${item.id}`
         } );
-        console.log( 'goChooseSeat' );
+        // 临时上新版本 part－8
+        // wepy.reLaunch( {
+        //   url: `/pages/seat/seat`
+        // } );
       }
     }
   }
@@ -94,13 +98,18 @@ export default class index extends wepy.page {
 
   async onLoad ( options ) {
     track( 'index_page_screen' );
+    track( 'index_page_enter' );
     var _options = Object.assign( {}, options, wepy.$instance.globalData.query );
     this.initQrcodeFrom( _options );
-    this.initHuabei( _options );
+    this.initHuabeiOptions( _options );
     this.initRedirect( _options );
-    await auth.ready();
     await this.initPageInfo( _options );
     await this.initShowWin( _options );
+    this.$apply();
+
+    await auth.ready();
+    await this.initHuabeiInfo( _options );
+    this.$apply();
   }
 
   async initPageInfo ( _options ) {
@@ -110,8 +119,14 @@ export default class index extends wepy.page {
     if ( _data.ad_info.length ) {
       track( 'pickseat_index_banner_expo' );
     }
-    const _huabeiInfo = _data.huabei_profit_info;
-    if ( this.huabeiInfo.fromHuabei && _huabeiInfo ) {
+  }
+
+  async initHuabeiInfo ( _options ) {
+    if ( this.huabeiInfo.fromHuabei !== 1 ) {
+      return;
+    }
+    var _huabeiInfo = await Index.getHuaBeiInfo( _options );
+    if ( _huabeiInfo.popup ) {
       this.huabeiInfo = Object.assign( {}, this.huabeiInfo, {card: {
         start: _huabeiInfo.validity_date,
         end: _huabeiInfo.expiration_date
@@ -122,7 +137,6 @@ export default class index extends wepy.page {
       } );
       track( 'pickseat_huabei_card_expo' );
     }
-    this.$apply();
   }
 
   async initShowWin ( options ) {
@@ -140,8 +154,8 @@ export default class index extends wepy.page {
     }
   }
 
-  async initHuabei ( options ) {
-    this.huabeiInfo.fromHuabei = this.getQuery( options, 'fromHuabei' ) || 0;
-    wepy.$instance.globalData.query.fromHuabei = 0;
+  async initHuabeiOptions ( options ) {
+    this.huabeiInfo.fromHuabei = parseInt( this.getQuery( options, 'fromHuabei' ) || 0 );
+    // wepy.$instance.globalData.query.fromHuabei = 0;
   }
 }

@@ -39,6 +39,7 @@
   import MoviesList from '@/api/moviesList';
   import auth from '@/api/auth';
   import adBanner from '@/components/adBanner';
+  import track from '@/utils/track';
 
   export default class moviesList extends wepy.page{
     mixins = [qrcodeFromMixin]
@@ -88,7 +89,7 @@
         this.updateMoviesList()
       },
        toggleDialogModal (show) {
-        this.$track('cinema_page_comelater_expo')
+        track('cinema_page_comelater_expo')
         this.dialogInfo.show = false
       },
     }
@@ -98,6 +99,7 @@
       this.initPageDate()
       await auth.ready()
       const data = await MoviesList.getSchedule({cinema_id: this.getQuery(options,'id') || ''})
+       console.log(this.data)
       this.initPageData(data)
       console.log(this.dateList)
       this.updateMoviesList()

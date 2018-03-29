@@ -10,10 +10,6 @@ module.exports = {
         type: 'h5'
       }
     ],
-    huabei_profit_info: {
-      validity_date: '2018-04-01',
-      expiration_date: '2018-05-01'
-    },
     movies: [
       {
         actors: '主演：王宝强/刘昊然/肖央/刘承羽/尚语贤',
