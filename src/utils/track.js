@@ -34,7 +34,7 @@ function initGaTrack () {
   // 初始化GoogleAnalytics Tracker
   return GoogleAnalytics.getInstance( )
   .setAppName( 'in同城趴电影' )
-  .newTracker( 'UA-113017547-1' ); // 用你的 Tracking ID 代替
+  .newTracker( 'UA-113788720-1' ); // 用你的 Tracking ID 代替
 }
 GAtracker = initGaTrack();
 

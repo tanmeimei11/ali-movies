@@ -7,7 +7,7 @@ module.exports = {
     "movie_detail":"今天 2月22日 17:05场 原版2D",
     "total_seat_count":56,
     "choosed_seat_count":22,
-    "selectable_count": 2,
+    "selectable_count": 1,
     "selectable_another_one": {
         "avatar":"https://inimg02.jiuyan.info/in/2016/08/05/4D28D73B-9C3B-1EA9-1525-DD2E40E03E11-1BavMgW.jpg?imageMogr2/format/jpg/thumbnail/180x%3E/quality/80!",
         "nick_name":"一休"

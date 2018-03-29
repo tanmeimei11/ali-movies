@@ -23,6 +23,7 @@ module.exports = {
   [`${DOMAIN}/h5/seat/list`]: 'seat',
   [`${DOMAIN}/mnp/ticket/share`]: 'share',
   [`${DOMAIN}/mnp/ticket/fetch`]: 'fetch',
+  [`${DOMAIN}/h5/seat/ordercreate`]: 'order',
   [`${DOMAIN}/mnp/alipay/fetchHuabeiProfit`]: 'fetchHuabeiProfit',
   [`${DOMAIN}/mnp/alipay/frontpage`]: 'frontpage',
   [`${DOMAIN}/h5/movie/movieScheduledCinemas`]: 'movieScheduledCinemas',

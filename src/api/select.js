@@ -8,4 +8,16 @@ export default class Select extends Pagebase {
       url: '/h5/seat/list'
     } );
   }
+  /**
+   *  获取卡信息的数据接口
+   */
+  static async submitSeat ( cardId ) {
+    return await this.request( {
+      url: '/h5/seat/ordercreate',
+      method: 'POST'
+      // data: {
+        // card_id: cardId
+      // }
+    } );
+  }
 }

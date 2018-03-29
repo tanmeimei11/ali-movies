@@ -1,68 +1,80 @@
 <template>
   <!-- <report> -->
-    <view>
+    <scroll-view scroll-x='true' class="box">
+      <view class="movie-info">
+        <view class="h3">{{movie_name}}</view>
+        <view class="p">{{movie_detail}}</view>
+      </view>
       <view class="seat-area">
-        <!-- <view class="movie-info">
-          <h3>{{movie_name}}</h3>
-          <p>{{movie_detail}}</p>
-          <p class="verifyBtn" v-if="is_biz==='true'" @click="toCheck">核销情况</p>
-        </view> -->
         <view class="container">
           <!-- todo：左上角提示 -->
           <view class="indicator" style="opacity:0;"></view>
           <!-- 座位区域 -->
-          <view class="seat-wrapper" id="wrapper">
-            <scroll-view class="seat-scroller">
+          <scroll-view class="seat-wrapper" scroll-y='true' style="width:{{wrapperWidth}}">
+            <view class="seat-scroller">
               <view class="h3">银幕</view>
               <view class="seats">
                 <view class="p" wx:for="{{seat_list}}" wx:for-index="rowIndex" wx:for-item="rowArray" wx:key="rowIndex">
                   <block wx:for="{{rowArray}}" wx:for-index="colIndex" wx:for-item="colItem">
                     <view class="span" class="seat" wx:if="{{colItem.status == 0}}"></view>
-                    <view class="seat active a {{colItem.status == 2 ? 'disabled' : ''}} {{selected.indexOf(`${rowIndex},${colIndex}`) >= 0 ? 'selected' : ''}} {{colItem.status == 2 && checking ? 'checked' : ''}}"
+                    <view class="seat active a {{colItem.status == 2 ? 'disabled' : ''}} {{selected.indexOf(''+rowIndex+','+colIndex) >= 0 ? 'selected' : ''}} {{colItem.status == 2 && checking ? 'checked' : ''}} flag{{colItem.flag ? colItem.flag : ''}}"
                       wx:else
-                      @tap="select" data-row="rowIndex" data-col="colIndex" data-status="colItem.status"></view>
+                      @tap="select" data-row="{{rowIndex}}" data-col="{{colIndex}}" data-status="{{colItem.status}}"></view>
                   </block>
                 </view>
-              </scroll-view>
+              </view>
 
               <!-- 座位排号 -->
-              <!-- <view class="row" :style="{transform: `translate(${scrollX * -1}px, 0px) translateZ(0px)`}">
-                <view class="ol"><view class="li" wx:for="(item, index) of row_list" :key="index">{{item}}</view></view>
-              </view> -->
+              <view class="row">
+                <view class="ol"><view class="li" wx:for="{{row_list}}" wx:key="index" wx:for-item="item">{{item}}</view></view>
+              </view>
             </view>
+          </scroll-view>
           </view>
         </view>
 
-        <!-- <view class="manifest" v-if="!checking">
-          <view v-if="!bindingUserData" class="binding-tip" @click="goBindingPage">想帮朋友一起选座？</view>
-          <template v-if="selected.length == 0">
-            <ul class="seat-intro">
-              <li><span class="seat active"></span>可选</li>
-              <li><span class="seat disabled"></span>已售</li>
-              <li><span class="seat selected"></span>已选</li>
-            </ul>
-            <button class="btn disabled">请先选座</button>
-          </template>
-          <template v-else>
-            <view class="binding-user" v-if="bindingUserData">
-              <span>你可替</span>
-              <img :src="bindingUserData.avatar">
-              <p>{{bindingUserData.nick_name}}</p>
-              <span>一起选座</span>  
+        <view class="manifest">
+          <block wx:if="{{selected.length == 0}}">
+            <view class="seat-intro ul">
+              <view class="li"><view class="span seat active"></view>可选</view>
+              <view class="li"><view class="span seat disabled"></view>已售</view>
+              <view class="li"><view class="span seat selected"></view>已选</view>
             </view>
+            <view class="btn disabled button">请先选座</view>
+          </block>
+          <block wx:else>
             <view class="seat-tips">您已选定（{{selected.length}}/{{maxSeat}}）</view>
-            <ul class="seat-list">
-              <li v-for="v of selectList">{{v}}</li>
-            </ul>
-            <button class="btn" @click="preSubmit">确定选座</button>
-          </template>
+            <view class="seat-list ul">
+              <view class="li" wx:for="{{selectList}}" wx:for-item="v">{{v}}</view>
+            </view>
+            <view class="btn button" @tap="preSubmit">确定选座</view>
+          </block>
         </view>
-        <view class="checkInfo" v-if="checking">
-          <view>本场已出票：{{choosed_seat_count}}/{{total_seat_count}}</view>
-          <view>情侣座单座按2张核销</view>
-        </view> -->
-      </view>
-    </view>
+        <!-- 提交电影座位票 -->
+        <view class="loading-mask" wx:if="{{submitLoading}}">
+          <view class="loading-container">
+            <view class="ball-clip-rotate"></view>
+            <view>正在确认订票信息，请稍后</view>
+          </view>
+        </view>
+        <!-- Modal -->
+        <view class="modal-mask" wx:if="{{modal.show}}">
+          <view class="modal-container">
+            <view class="a" @tap="hideModal"></view>
+            <view class="modal-title">{{modal.title}}</view>
+            <view class="modal-content">{{modal.content}}</view>
+            <view class="modal-button button" @tap="hideModal(true)">{{modal.confirmText}}</view>
+          </view>
+        </view>
+        <view class="modal-mask" wx:if="{{confirm.show}}">
+          <view class="modal-container">
+            <view class="modal-title">确定选座</view>
+            <view class="modal-content">确定选座后请在电影开场前45分钟内去影城售票处人工取票</view>
+            <view class="modal-button cancel button" @tap="hideModal">放弃选座</view>
+            <view class="modal-button confirm button" @tap="submit">确认选座</view>
+          </view>
+        </view>
+    </scroll-view>
   <!-- </report> -->
 </template>
 <style lang="less" src="./select.less">

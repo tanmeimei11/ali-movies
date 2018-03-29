@@ -36,6 +36,7 @@ export default class ticket extends wepy.page {
     navigationBarTitleText: '选座'
   }
   data = {
+    wrapperWidth: '',
     query: {},
     is_biz: false,
     schedule_id: 0, // 排片id
@@ -61,10 +62,92 @@ export default class ticket extends wepy.page {
     confirm: {
       show: false
     },
-    scrollX: 0
+    scrollX: 0,
+    selectIndex: function(rowIndex,colIndex){
+      return 'selected'
+    }
   }
 
   methods = {
+    hideModal (ok) {
+      if (ok === true) {
+        if (this.modal.redirect) location.href = this.modal.redirect
+      }
+      this.modal.show = false
+      this.confirm.show = false
+      this.modal.redirect = ''
+    },
+    showModal ({ title, content, confirmText, redirect }) {
+      this.modal.title = title
+      this.modal.content = content
+      this.modal.confirmText = confirmText
+      this.modal.redirect = redirect
+      this.modal.show = true
+    },
+    /**
+     * 提交座位信息
+     */
+    preSubmit () {
+      this.confirm.show = true
+    },
+      async submit () {
+        if (this.submitLoading) return
+        // this.$track('seat_page_comfirm')
+        this.submitLoading = true
+
+        let seatIds = []
+
+        this.selected.forEach(value => {
+          let coord = value.split(',')
+          let itm = this.seat_list[coord[0]][coord[1]]
+          seatIds.push(itm.id)
+        })
+
+        try {
+          var res = await this.$api.ordercreate({ schedule_id: this.schedule_id, seat_id: seatIds.join(',') })
+          // console.log(succ, data, msg, code)
+          this.confirm.show = false
+          this.$apply()
+          if (!res.result.is_succ) return this.showModal({ title: res.result.title, content: res.result.message, confirmText: res.result.button_desc, redirect: res.result.redirect_url })
+          // 抢座成功 data.result.movie_ticket_id
+          location.href = 'ticketDetail.html?id=' + res.result.movie_ticket_id
+        } catch (error) {
+          console.log(error)
+        } finally {
+          this.submitLoading = false
+          this.$apply()
+        }
+      },
+    goBindingPage () {
+      // this.$track('seat_page_binding')
+      // setTimeout(() => {
+      //   location.href = 'binding.html?sharebtnhidden=1'
+      // }, 100)
+    },
+    /**
+     * 选择座位
+     */
+    select (e) {
+      let colIndex = e.currentTarget.dataset.col
+      let rowIndex = e.currentTarget.dataset.row
+      let status = e.currentTarget.dataset.status
+
+      if (status != '1') return
+      let value = `${rowIndex},${colIndex}`
+      let index = this.selected.indexOf(value)
+
+      if (index === -1) {
+        if (this.selected.length < this.maxSeat) {
+          this.selected.push(value)
+        } else {
+          tips.error(`一次最多选择${this.maxSeat}个座位`)
+        }
+      } else {
+        this.selected.splice(index, 1)
+      }
+      this.$apply()
+      console.log(this.selected)
+    },
   }
 
   async init (isBiz) {
@@ -94,6 +177,14 @@ export default class ticket extends wepy.page {
           }
         }
       })
+      let maxRow = 0  // 最大行数
+      let maxCol = 0  // 最大列数
+
+      this.seat_list.forEach((rows, rowIndex) => {
+        maxRow = Math.max(rowIndex + 1, maxRow)
+        maxCol = Math.max(rows.length, maxCol)
+      })
+      this.wrapperWidth = `${(maxCol * (50 + 5 * 2) + 70 * 2)/100}rem`
       this.$apply()
       // this.$nextTick(this.dataReady)
     } catch (error) {
@@ -103,6 +194,7 @@ export default class ticket extends wepy.page {
   async onLoad ( options ) {
     this.query = Object.assign( {}, options, wepy.$instance.globalData.query );
     this.$apply()
+    console.log(this)
     await auth.ready();
     await this.init();
   }

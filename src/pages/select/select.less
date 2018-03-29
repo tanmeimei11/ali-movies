@@ -2,35 +2,44 @@
 body {
     background: #f7f7f7;
   }
-  .seat-area{
-    .movie-info{
-      height: 120rpx;
-      padding: 18rpx 40rpx;
-      box-sizing: border-box;
-      overflow: hidden;
-      background: #ffffff;
-      position: relative;
-      .h3 {
-        font-size: 32rpx;
-        color: #333;
-      }
-  
-      .p{
-        font-size: 24rpx;
-        color: #666;
-      }
-      .verifyBtn{
-        position: absolute;
-        top: 20rpx;
-        right: 40rpx;
-        font-size: 28rpx;
-        color: #ff5e51;
-      }
+  .box{
+      width: 100%;
+      height: 100vh;
+  }
+  .movie-info{
+    top: 0;
+    left: 0;
+    height: 120rpx;
+    padding: 18rpx 40rpx;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    background: #ffffff;
+    position: fixed;
+    .h3 {
+      font-size: 32rpx;
+      color: #333;
     }
+
+    .p{
+      font-size: 24rpx;
+      color: #666;
+    }
+    .verifyBtn{
+      position: absolute;
+      top: 20rpx;
+      right: 40rpx;
+      font-size: 28rpx;
+      color: #ff5e51;
+    }
+  }
+  .seat-area{
+    margin-top: 120rpx;
     .container{
       position: relative;
       padding-top: 140rpx;
       max-height: 8rem;
+      min-height: 8rem;
     }
   }
   
@@ -113,65 +122,65 @@ body {
   }
   
   .seat.active {
-    background-image: url(../../assets/img/seat/active.png);
+    background-image: url(https://inimg05.jiuyan.info/in/2018/03/28/8BB103EF-D6E7-5A46-DB0D-929BC1F95F93.png);
   }
   
   .seat.selected {
-    background-image: url(../../assets/img/seat/selected.png);
+    background-image: url(https://inimg02.jiuyan.info/in/2018/03/28/A6E9D01E-C2F1-E2F9-6F7E-182D0EC46472.png);
   }
   
   .seat.disabled {
-    background-image: url(../../assets/img/seat/disabled.png);
+    background-image: url(https://inimg05.jiuyan.info/in/2018/03/28/6C64C2A6-0701-E1E7-360D-07A5745E2635.png);
   }
   
   .seat.checked {
-    background-image: url(../../assets/img/seat/checked.png);
+    background-image: url(https://inimg01.jiuyan.info/in/2018/03/28/88D16986-3D29-C409-76FD-1C4F69387BFB.png);
   }
   
-  .seat[flag]{
+  .seat.flag1,.seat.flag2{
     width: 55rpx;
     background-size: 200%;
   }
   
-  .seat[flag="1"]{
+  .seat.flag1{
     margin-right: 0;
   }
   
-  .seat[flag="2"] {
+  .seat.flag2 {
     margin-left: 0;
     background-position: right 0;
   }
   
-  .seat.active[flag="1"] {
-    background-image: url(../../assets/img/seat/duet-active.png);
+  .seat.active.flag1 {
+    background-image: url(https://inimg01.jiuyan.info/in/2018/03/28/5EFB014C-43D5-1317-E473-E44F3FC70AAB.png);
   }
   
-  .seat.active[flag="2"] {
-    background-image: url(../../assets/img/seat/duet-active.png);
+  .seat.active.flag2 {
+    background-image: url(https://inimg01.jiuyan.info/in/2018/03/28/5EFB014C-43D5-1317-E473-E44F3FC70AAB.png);
   }
   
-  .seat.selected[flag="1"] {
-    background-image: url(../../assets/img/seat/duet-selected.png);
+  .seat.selected.flag1 {
+    background-image: url(https://inimg02.jiuyan.info/in/2018/03/28/9CEE8283-D7E9-C8AE-F6AE-9BBBB560B31B.png);
   }
   
-  .seat.selected[flag="2"] {
-    background-image: url(../../assets/img/seat/duet-selected.png);
+  .seat.selected.flag2 {
+    background-image: url(https://inimg02.jiuyan.info/in/2018/03/28/9CEE8283-D7E9-C8AE-F6AE-9BBBB560B31B.png);
   }
   
-  .seat.disabled[flag="1"] {
-    background-image: url(../../assets/img/seat/duet-disabled.png);
+  .seat.disabled.flag1 {
+    background-image: url(https://inimg02.jiuyan.info/in/2018/03/28/4FC114BE-9EDE-BE4D-5243-34FA9F1219EC.png);
   }
   
-  .seat.disabled[flag="2"] {
-    background-image: url(../../assets/img/seat/duet-disabled.png);
+  .seat.disabled.flag2 {
+    background-image: url(https://inimg02.jiuyan.info/in/2018/03/28/4FC114BE-9EDE-BE4D-5243-34FA9F1219EC.png);
   }
   
-  .seat.checked[flag="1"] {
-    background-image: url(../../assets/img/seat/duet-checked.png);
+  .seat.checked.flag1 {
+    background-image: url(https://inimg07.jiuyan.info/in/2018/03/28/0FD2C24B-29EB-A8C1-FBD0-F7E72C2938D5.png);
   }
   
-  .seat.checked[flag="2"] {
-    background-image: url(../../assets/img/seat/duet-checked.png);
+  .seat.checked.flag2 {
+    background-image: url(https://inimg07.jiuyan.info/in/2018/03/28/0FD2C24B-29EB-A8C1-FBD0-F7E72C2938D5.png);
   }
   
   .manifest {
@@ -180,7 +189,7 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    min-height: 200rpx;
+    min-height: 250rpx;
     background: #fff;
     transition: all .5s;
   }
@@ -232,7 +241,7 @@ body {
     background-image: linear-gradient(90deg, #FD9C6C 0%, #F95557 100%);
     border-radius: 100rpx;
     border: 0;
-  
+    text-align: center;
     &.disabled {
       opacity: .3;
     }
@@ -387,7 +396,7 @@ body {
       right: 0;
       width: 80rpx;
       height: 80rpx;
-      background: url(../../assets/img/seat/close.png) 50% no-repeat;
+      background: url(https://inimg01.jiuyan.info/in/2018/03/28/F146EB4F-E70D-276D-FDAF-6AD635FAD1C0.png) 50% no-repeat;
       background-size: 50%;
     }
   }
