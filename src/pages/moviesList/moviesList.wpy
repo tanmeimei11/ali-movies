@@ -1,7 +1,7 @@
 <template>
   <!-- <view class="page" :class="{noData: noDataFalg && !dateList.length}"> -->
   <view class="page">
-    <adBanner :banner="info.banner"></adBanner>
+    <!-- <adBanner :banner="info.banner"></adBanner> -->
     <view class="cinema-info">
       <view class="cinema-name">{{info.name}}</view>
       <view class="cinema-location">{{info.address}}</view>
