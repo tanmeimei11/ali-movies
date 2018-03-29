@@ -5,7 +5,8 @@ export default class Ticket extends Pagebase {
    */
   static async getMyInfo () {
     return await this.request( {
-      url: '/mnp/ticket/my'
+      url: '/h5/movie/tickets',
+      data: {page: 1}
     } );
   }
   /**
@@ -69,7 +70,7 @@ export default class Ticket extends Pagebase {
    * 换票
    */
   static async exchangeTicket ( tickets, oldTicket_id ) {
-    var data = Object.assign(tickets, oldTicket_id)
+    var data = Object.assign( tickets, oldTicket_id );
     return await this.request( {
       url: '/mnp/ticket/share',
       data: data

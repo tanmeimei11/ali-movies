@@ -18,7 +18,7 @@ module.exports = {
   [`${DOMAIN}/mnp/user/mycards`]: 'reward',
   [`${DOMAIN}/mnp/card/cancelreward`]: 'cancelGift',
   [`${DOMAIN}/mnp/card/gifts`]: 'cancelGift',
-  [`${DOMAIN}/mnp/ticket/my`]: 'ticketInfo',
+  [`${DOMAIN}/mnp/ticket/my4`]: 'ticketInfo',
   [`${DOMAIN}/h5/my/tickets`]: 'ticketInfo2',
   [`${DOMAIN}/h5/seat/list`]: 'seat',
   [`${DOMAIN}/h5/user/ticket/cancel`]: 'cancelTicket',

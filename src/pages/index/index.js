@@ -39,7 +39,8 @@ export default class index extends wepy.page {
       '0': '已结束',
       '1': '选座',
       '4': '排片中'
-    }
+    },
+    isHiddenPage: false
   }
 
   events = {
@@ -48,6 +49,7 @@ export default class index extends wepy.page {
     },
     closeReceiveCardModal () {
       this.huabeiInfo.isShow = false;
+      this.isHiddenPage = false;
     },
     changeReceBtnStatus ( type, phone ) {
       this.huabeiInfo.btnStatus = type;
@@ -68,6 +70,7 @@ export default class index extends wepy.page {
       this.huabeiInfo.isShow = false;
       this.$apply();
       tips.toast( '领取成功' );
+      this.isHiddenPage = false;
     }
   }
 
@@ -87,7 +90,6 @@ export default class index extends wepy.page {
   }
 
   onShareAppMessage ( res ) {
-    console.log( this.texts );
     return {
       title: this.texts.alipay_share_title,
       desc: this.texts.alipay_share_desc,
@@ -105,6 +107,7 @@ export default class index extends wepy.page {
     this.initRedirect( _options );
     await this.initPageInfo( _options );
     await this.initShowWin( _options );
+    this.clearOptions();
     this.$apply();
 
     await auth.ready();
@@ -126,6 +129,7 @@ export default class index extends wepy.page {
       return;
     }
     var _huabeiInfo = await Index.getHuaBeiInfo( _options );
+    this.isHiddenPage = true;
     if ( _huabeiInfo.popup ) {
       this.huabeiInfo = Object.assign( {}, this.huabeiInfo, {card: {
         start: _huabeiInfo.validity_date,
@@ -157,5 +161,11 @@ export default class index extends wepy.page {
   async initHuabeiOptions ( options ) {
     this.huabeiInfo.fromHuabei = parseInt( this.getQuery( options, 'fromHuabei' ) || 0 );
     // wepy.$instance.globalData.query.fromHuabei = 0;
+  }
+
+  clearOptions () {
+    if ( wepy.$instance.globalData.query.directTo === 'detail' ) {
+      wepy.$instance.globalData.query.directTo = '';
+    }
   }
 }

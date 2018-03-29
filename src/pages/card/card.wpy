@@ -1,5 +1,5 @@
 <template>
-  <report>
+  <!-- <report> -->
     <view class="container">
       <block wx:if="{{swiperLen > 0}}">
       <view class="c-bg"></view>
@@ -48,7 +48,7 @@
       </view>
       <giveGiftModal wx:if="{{giveGiftInfo.show}}" :giveGiftInfo.sync="giveGiftInfo"></giveGiftModal>
     </view>
-  </report>
+  <!-- </report> -->
 </template>
 <style lang="less" src="./card.less">
 </style>
