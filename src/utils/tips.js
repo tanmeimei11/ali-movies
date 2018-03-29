@@ -7,7 +7,7 @@ export default class Tips {
   /**
    * 弹出提示框
    */
-  static success ( title, duration = 1500 ) {
+  static success ( title, duration = 50000 ) {
     my.showToast( {
       title: title,
       icon: 'success',

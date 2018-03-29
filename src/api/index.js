@@ -17,11 +17,20 @@ export default class Index extends Pagebase {
     } );
   }
   /**
-   *  获取花呗弹窗数据接口
+   *  获取页面数据接口
    */
   static async getIndexInfo ( data ) {
     return await this.request( {
-      url: '/mnp/alipay/frontpage',
+      url: '/info/alipay/frontpage',
+      data: data
+    } );
+  }
+  /**
+   *  获取花呗弹窗数据接口
+   */
+  static async getHuaBeiInfo ( data ) {
+    return await this.request( {
+      url: '/mnp/alipay/checkhuabei',
       data: data
     } );
   }
