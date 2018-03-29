@@ -1,5 +1,5 @@
 <template>
-  <!-- <report> -->
+  <report>
     <view class="container">
       <view class="tabbar">
         <view class="{{ticket ? 'on' : ''}}" @tap="ticketOn">
@@ -24,6 +24,7 @@
           <view class="btn-expired" wx:if="{{item.status==='2'}}">已核销</view>
           <view class="btn-expired" wx:if="{{item.status==='3'}}">已取消</view>
         </view>
+        <empty wx:else text="你还没有电影票哦～"></empty>
       </view>
       <view wx:else>
         <view class="lottery">
@@ -37,10 +38,11 @@
             <!-- <view class="btn-use">立即使用</view> -->
             <view class="btn-expired" wx:else>已过期</view>
           </view>
+          <empty wx:else text="你还没赠票哦～"></empty>
         </view>
       </view>
     </view>
-  <!-- </report> -->
+  </report>
 </template>
 <style lang="less" src="./ticket.less">
 </style>

@@ -314,7 +314,7 @@
             this.succ = true;
             this.$apply();
             setTimeout( () => {
-              wepy.switchTab( {
+              wepy.reLaunch( {
                 url: `/pages/self/self`
               } );
             }, 1000 );

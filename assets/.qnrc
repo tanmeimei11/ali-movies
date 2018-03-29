@@ -78,5 +78,45 @@
 	"花呗卡@2x.png": {
 		"hash": "FrnxeHSPO7rK_DlusFcH6V7nfg82",
 		"qiniuUrl": "https://inimg01.jiuyan.info/in/2018/03/21/223D0866-304B-D4BF-18F3-22D89ED4C828.jpg"
+	},
+	"花呗卡@2x 2.png": {
+		"hash": "Fk34Vll1qNngTZvbgQvuM6QOLQkm",
+		"qiniuUrl": "https://inimg01.jiuyan.info/in/2018/03/28/BD8C0047-23EA-316F-4E63-8B91E1D4870A.jpg"
+	},
+	"arrow_left_white@2x.png": {
+		"hash": "FieX2j_eSCVSAla4hzkwE-56N3ZX",
+		"qiniuUrl": "https://inimg01.jiuyan.info/in/2018/03/28/4B7E4070-0B55-02DA-2CB6-D9771FFD42FC.jpg"
+	},
+	"arrow_right_white@2x.png": {
+		"hash": "FpWyegUcAeexcruYxJG74IHMboJA",
+		"qiniuUrl": "https://inimg01.jiuyan.info/in/2018/03/28/09B7F4EE-21DA-7478-E06A-803266FF076B.jpg"
+	},
+	"icon_self.png": {
+		"hash": "FrHnycc2_5v9Qx0t4rvWmxnEjTfg",
+		"qiniuUrl": "https://inimg01.jiuyan.info/in/2018/03/28/844DA6B6-C274-5A6F-D2A7-FA1D0C086F4B.jpg"
+	},
+	"icon_index_on.png": {
+		"hash": "FjcaXJ2o-FXKtkB6EQeNlhTwbZLv",
+		"qiniuUrl": "https://inimg01.jiuyan.info/in/2018/03/28/1082F2DE-7876-2B35-811A-94CD3E53B38F.jpg"
+	},
+	"icon_index.png": {
+		"hash": "FiRE78VWfIomhL1K4ScP7f_5-j5C",
+		"qiniuUrl": "https://inimg01.jiuyan.info/in/2018/03/28/D5142FE8-754F-E8A8-961E-719BFEF8E5B3.jpg"
+	},
+	"icon_seat_on.png": {
+		"hash": "Ft9NRnsCqa82OROeKEDLrIhjpjed",
+		"qiniuUrl": "https://inimg01.jiuyan.info/in/2018/03/28/D5C1FEEC-35FC-4557-1EE0-C5C0D09A4333.jpg"
+	},
+	"icon_self_on.png": {
+		"hash": "FqBYdvbXP7kThx2qtcMzM77hbZJV",
+		"qiniuUrl": "https://inimg01.jiuyan.info/in/2018/03/28/509A761D-F645-0FB2-1F5F-C81029FC290F.jpg"
+	},
+	"icon_seat.png": {
+		"hash": "FngRd8vBgPVdAcgIY4nNpx0O9kLv",
+		"qiniuUrl": "https://inimg01.jiuyan.info/in/2018/03/28/654B9A2C-B2AE-64DA-E001-D8676CCFFC03.jpg"
+	},
+	"payou-empty@2x.png": {
+		"hash": "FsPbWIeyeASFjYbG-vsSMJxLbjRA",
+		"qiniuUrl": "https://inimg01.jiuyan.info/in/2018/03/28/9B96A4B2-FF1E-5E02-07BC-3697E7F0F8FC.jpg"
 	}
 }

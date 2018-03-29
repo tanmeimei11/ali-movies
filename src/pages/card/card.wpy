@@ -1,11 +1,12 @@
 <template>
-  <!-- <report> -->
+  <report>
     <view class="container">
+      <block wx:if="{{swiperLen > 0}}">
       <view class="c-bg"></view>
-      <view class="c-number">
+      <view class="c-number {{_activeSwiperIdx == 1 ? 'left':''}} {{_activeSwiperIdx == swiperLen ? 'right':''}}">
         {{_activeSwiperIdx}}/{{swiperLen}}
       </view>
-      <swiper  @change="changeSwiper">
+      <swiper @change="changeSwiper">
           <swiper-item wx:for="{{allCards}}" wx:for-index="idx" wx:for-item="cardInfo" wx:key="idx">
            <view class="cardList">
               <view class="c-cards">
@@ -13,38 +14,41 @@
                   <image class="s-avatar" mode="aspectFill" src="{{userInfo.avatar}}"></image>
                   <view class="s-name">{{userInfo.name}}</view>
                 </view>
-                <view class="s-card">
+                <view class="s-card {{cardInfo.type ==1 ? 'huabei':''}}">
                   <!-- <view class="title">{{cardInfos.title}}</view> -->
                   <view class="time">{{cardInfo.time}}</view>
                   <view class="num">{{cardInfo.num}}</view>
-                  <view class="getOthers" wx:if="{{cardInfo.cardStatus == 3}}">
+                  <view class="getOthers" wx:if="{{cardInfo.status == 3}}">
                     <text>来自</text>
                     <view class="avatar" style="background-image:url({{cardInfo.reward_from_info.avatar}})"></view>
                     <text class="name">{{cardInfo.reward_from_info.nick_name}}</text>
                   </view>
-                  <view class="toOthers" wx:elif="{{cardInfo.cardStatus == 2}}">
+                  <view class="toOthers" wx:elif="{{cardInfo.status == 2}}">
                       <view class="icon"></view>
                       <text>送给</text>
                       <view class="avatar" style="background-image:url({{cardInfo.reward_to_info.avatar}})"></view>
                       <text class="name">{{cardInfo.reward_to_info.nick_name}}</text>
                   </view>
-                  <view class="shareToOthers {{cardInfo.cardStatus !== 0 ? 'shared' : ''}}" wx:else @tap="oprateCard">
-                      {{cardInfo.cardBtnText}}
+                  <view class="shareToOthers" wx:elif="{{cardInfo.status == 0 || cardInfo.status == 1}}" @tap="oprateCard">
+                      {{cardStatusText[cardInfo.status]}}
                   </view>
                 </view>
               </view>
               <view class="c-rules">
-                <view class="rule" wx:for="{{rules}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
-                  {{item}}
+                <view class="rule" wx:for="{{cardInfo.rules}}" wx:for-index="_idx" wx:for-item="rule" wx:key="_idx">
+                  {{rule}}
                 </view>
               </view>
             </view>
           </swiper-item>
       </swiper>
-     
+      </block>
+      <view class="empty-block" wx:else> 
+          <empty text="你还没有电影王卡哦～"></empty>
+      </view>
       <giveGiftModal wx:if="{{giveGiftInfo.show}}" :giveGiftInfo.sync="giveGiftInfo"></giveGiftModal>
     </view>
-  <!-- </report> -->
+  </report>
 </template>
 <style lang="less" src="./card.less">
 </style>

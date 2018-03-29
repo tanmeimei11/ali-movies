@@ -54,7 +54,7 @@ export default class Card extends Pagebase {
   static initCardInfo ( item ) {
     return {
       id: item.id,
-      type: item.type,
+      type: parseInt( item.type ),
       title: item.name,
       desc: item.desc,
       time: this.getCardTime( item.start_date, item.end_date ),

@@ -42,6 +42,10 @@
         type: Object,
         default: {}
       },
+      page:{
+        type: '',
+        default: 'default'
+      }
     }
     data = {
       _idx:0,
@@ -58,12 +62,12 @@
         this.$apply()
       },
       goRedrect () {
-        track( `page_ad_swiper_${this._idx}_click` );
+        track( `${this.page}_page_ad_swiper_${this._idx}_click` );
         var info = this.swiperInfo || this.bannerInfo[0];
         this.redirect(info)
       },
       goBnner () {
-        track( 'page_ad_click' );
+        track( `${this.page}_page_ad_click` );
         this.redirect(this.bannerInfo[0])
       }
     }
@@ -108,7 +112,7 @@
         case 'path':
           var tab = ['index', 'seat', 'self'];
           if ( tab.indexOf( tplData.landing_path.split( '/' )[2] ) > -1 ) {
-            wepy.switchTab( {
+            wepy.reLaunch( {
               url: tplData.landing_path
             } );
           } else {

@@ -1,0 +1,85 @@
+<template lang="wxml">
+  <view class="c-tabber-wrap" >
+    <view class="btn-icon btn-index {{page==='index' ? 'on':''}}" @tap="reLaunchPage" data-page="index">首页</view>
+    <!-- <view class="btn-icon btn-cinema {{page==='cinema' ? 'on':''}}" @tap="reLaunchPage" data-page="cinema">影院</view> -->
+    <view class="btn-icon btn-cinema {{page==='seat' ? 'on':''}}" @tap="reLaunchPage" data-page="seat">选座</view>
+    <view class="btn-icon btn-self {{page==='self' ? 'on':''}}" @tap="reLaunchPage" data-page="self">我的</view>
+  </view>
+</template>
+
+<style lang="scss">
+ .c-tabber-wrap{
+    position: fixed;
+    z-index: 99;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100rpx;
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    z-index: 1000;
+    box-shadow: 0 -4rpx 16rpx 0 rgba(219,219,219,0.35);
+    .btn-icon{
+      flex:1;
+      font-size: 18rpx;
+      color: #666666;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-top:60rpx;
+      background-repeat: no-repeat;
+      background-size: 48rpx auto ;
+      background-position: top center;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-index{
+      background-image: url('https://inimg01.jiuyan.info/in/2018/03/28/D5142FE8-754F-E8A8-961E-719BFEF8E5B3.jpg');
+      &.on{
+        background-image: url('https://inimg01.jiuyan.info/in/2018/03/28/1082F2DE-7876-2B35-811A-94CD3E53B38F.jpg');
+      }
+    }
+    .btn-cinema{
+      background-image: url('https://inimg01.jiuyan.info/in/2018/03/28/654B9A2C-B2AE-64DA-E001-D8676CCFFC03.jpg');
+       &.on{
+        background-image: url('https://inimg01.jiuyan.info/in/2018/03/28/D5C1FEEC-35FC-4557-1EE0-C5C0D09A4333.jpg');
+      }
+    }
+    .btn-self{
+      background-image: url('https://inimg01.jiuyan.info/in/2018/03/28/844DA6B6-C274-5A6F-D2A7-FA1D0C086F4B.jpg');
+       &.on{
+        background-image: url('https://inimg01.jiuyan.info/in/2018/03/28/509A761D-F645-0FB2-1F5F-C81029FC290F.jpg');
+      }
+    }
+  }
+</style>
+
+<script>
+  import wepy from 'wepy';
+  import track from '@/utils/track';
+  export default class tabbbar extends wepy.component {
+    props = {
+      page:String
+    }
+    data = {}
+    watch ={}
+    methods = {
+      reLaunchPage(e) {
+         console.log(e,this.page)
+        const _curPage = e.target.dataset.page
+        if(this.page === _curPage){
+          return 
+        }
+
+        wepy.reLaunch({
+          url:`/pages/${_curPage}/${_curPage}`
+        })
+      }
+    }
+  }
+</script>

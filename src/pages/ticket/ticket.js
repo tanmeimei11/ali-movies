@@ -1,9 +1,10 @@
 import wepy from 'wepy';
 import auth from '@/api/auth';
 import Ticket from '@/api/ticket';
-import tips from '@/utils/tips';
+// import tips from '@/utils/tips';
 import report from '@/components/report-submit';
-import track from '@/utils/track';
+import empty from '@/components/empty';
+// import track from '@/utils/track';
 
 export default class ticket extends wepy.page {
   config = {
@@ -15,18 +16,20 @@ export default class ticket extends wepy.page {
     ticket: true
   }
 
+  components = {report, empty}
+
   methods = {
     ticketOn () {
-      this.ticket = true
-      this.$apply()
+      this.ticket = true;
+      this.$apply();
     },
     ticketOff () {
-      this.ticket = false
-      this.$apply()
+      this.ticket = false;
+      this.$apply();
     },
-    use (e) {
-      if (e.currentTarget.dataset.item.status !== '0') return
-      wepy.switchTab( {
+    use ( e ) {
+      if ( e.currentTarget.dataset.item.status !== '0' ) return;
+      wepy.reLaunch( {
         url: `/pages/index/index`
       } );
     }
@@ -35,8 +38,8 @@ export default class ticket extends wepy.page {
   async init () {
     var myInfoRes = await Ticket.getMyInfo();
     var myLotteryRes = await Ticket.getMyLottery();
-    this.list = myInfoRes.ticket_list
-    this.list2 = myLotteryRes.ticket_list
+    this.list = myInfoRes.ticket_list;
+    this.list2 = myLotteryRes.ticket_list;
     this.$apply();
   }
   async onLoad ( options ) {

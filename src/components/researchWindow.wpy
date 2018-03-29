@@ -104,7 +104,7 @@
           var tab = ['index', 'seat', 'self']
           console.log(tab.indexOf(this.researchInfo.action.path.split('/')[2]) )
           if (tab.indexOf(this.researchInfo.action.path.split('/')[2]) > -1 ){
-            wepy.switchTab( {
+            wepy.reLaunch( {
               url: this.researchInfo.action.path
             } );
           } else {

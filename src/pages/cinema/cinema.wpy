@@ -12,23 +12,27 @@
         <view class="desc">{{item.desc}}</view>
       </view>
     </view>
+    <tabbbar :page.sync="pageName"></tabbbar>
   </view>
 </template>
 <script>
   import wepy from 'wepy';
+  import tabbbar from '@/components/tabbbar';
   import report from '@/components/report-submit';
   import Cinema from '@/api/cinema';
   import auth from '@/api/auth';
   import adBanner from '@/components/adBanner';
+  import track from '@/utils/track';
   export default class result extends wepy.page {
      config = {
       navigationBarTitleText: '电影王卡院线中心'
     }
-    components = { report, adBanner }
+    components = { report, adBanner, tabbbar }
     data = {
-        cinemaList: [],
-        bannerInfo: {},
-        contractID: '2018011801960713'
+      pageName:"cinema",
+      cinemaList: [],
+      bannerInfo: {},
+      contractID: '2018011801960713'
     }
     methods = {
       goMovie (e) {
@@ -39,10 +43,14 @@
       }
     }
     async onLoad () {
+      track('cinema_page_screen')
       await auth.ready();
       var _data = await Cinema.getCinemaList()
       this.cinemaList = _data.cinema_list
       this.bannerInfo = _data.ad_info
+      if(this.bannerInfo.length){
+        track('pickseat_cinema_page_banner_expo')
+      }
       this.$apply()
     }
     
