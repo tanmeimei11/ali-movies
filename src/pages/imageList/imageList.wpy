@@ -1,7 +1,9 @@
 <template>
+<report>
   <view class="c-images-page">
     <image class="image" wx:for="{{imageList}}" wx:for-index="idx" wx:for-item="url" wx:key="idx" mode="widthFix" src="{{url}}"></image>
   </view>
+</report>
 </template>
 <script>
   import wepy from 'wepy';

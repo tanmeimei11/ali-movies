@@ -1,4 +1,5 @@
 <template>
+<report>
   <!-- <view class="page" :class="{noData: noDataFalg && !dateList.length}"> -->
   <view class="page">
     <!-- <adBanner :banner="info.banner"></adBanner> -->
@@ -27,6 +28,7 @@
     </view>  
     <dialogModal :dialogInfo.sync="dialogInfo"></dialogModal>
   </view>
+</report>
 </template>
 <script>
   import wepy from 'wepy';

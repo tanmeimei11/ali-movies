@@ -1,6 +1,6 @@
 <template>
-  <!-- <report> -->
-    <view>
+  <report>
+    <!-- <view> -->
      <view class="movie-info">
         <view class="h3">{{movie_name}}</view>
         <view class="p">{{movie_detail}}</view>
@@ -76,8 +76,8 @@
             <view class="modal-button confirm button" @tap="submit">确认选座</view>
           </view>
         </view>
-     </view>
-  <!-- </report> -->
+     <!-- </view> -->
+  </report>
 </template>
 <style lang="less" src="./select.less">
 </style>

@@ -48,7 +48,7 @@
       </view>
       <giveGiftModal wx:if="{{giveGiftInfo.show}}" :giveGiftInfo.sync="giveGiftInfo"></giveGiftModal>
     </view>
-  <!-- </report> -->
+  </report>
 </template>
 <style lang="less" src="./card.less">
 </style>
