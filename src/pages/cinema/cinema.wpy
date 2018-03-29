@@ -49,13 +49,11 @@
       await auth.ready();
       var _data = await Cinema.getCinemaList()
       this.cinemaList = _data.cinema_list
-      setTimeout(() => {
-        this.bannerInfo = _data.ad_info
-        if(this.bannerInfo.length){
-          track('pickseat_cinema_page_banner_expo')
-          this.$apply()
-        }
-      }, 1000);
+      this.bannerInfo = _data.ad_info
+      if(this.bannerInfo.length){
+        track('pickseat_cinema_page_banner_expo')
+        this.$apply()
+      }
       this.$apply()
     }
     
@@ -68,8 +66,6 @@
     padding-bottom: 100rpx;
     box-sizing: border-box;
     .c-banner-wrap{
-      // height: 140rpx;
-      // overflow: hidden;
       .slide-image-view{
         height: 140rpx;
       }
