@@ -10,7 +10,7 @@ export default class ticketDetail extends Pagebase {
     } );
   }
   /**
-   *  获取卡信息的数据接口
+   *  取消电影票
    */
   static async cancelTicket ( data ) {
     return await this.request( {
@@ -19,4 +19,14 @@ export default class ticketDetail extends Pagebase {
       data: data
     } );
   }
+  /**
+   * 获取二维码
+   */
+  static async getQRcode (data) {
+    return await this.request( {
+      url: '/h5/user/ticket/qr_code',
+      data: data
+    } );
+  }
+
 }

@@ -58,34 +58,45 @@ export default class ticketDetail extends wepy.page {
       }
     }
   }
-
   async getTicketQRCode() {
-      let flag = false
-      // const option = {
-      //     name: 'getTicketQRCode',
-      //     params: { ticket_id: this.query.id },
-      //     interval: 5000,
-      //     succ: (res) => {
-      //         const {
-      //             data,
-      //             succ,
-      //             msg
-      //         } = res
-      //         if (!succ) {
-      //             flag = true // 轮询结束？？
-      //             return this.$toast(msg)
-      //         }
-      //         this.detail.qr_code = data.qr_code
-      //         if (data.verify == '1') { // eslint-disable-line
-      //             this.verify = true
-      //         }
-      //     },
-      //     isStop: () => {
-      //         return flag || this.verify
-      //     }
-      // }
-      // this.polling(option)
+    var res = await TicketDetail.getQRcode({ticket_id: this.query.id})
+    this.detail.qr_code = res.qr_code
+    if (res.verify == '1') {
+      this.verify = true
+      this.$apply()
+      return
+    }
+    setTimeout(() => {
+      this.getTicketQRCode()
+    }, 5000);
   }
+  // async getTicketQRCode() {
+  //     let flag = false
+  //     const option = {
+  //         name: 'getTicketQRCode',
+  //         params: { ticket_id: this.query.id },
+  //         interval: 5000,
+  //         succ: (res) => {
+  //             const {
+  //                 data,
+  //                 succ,
+  //                 msg
+  //             } = res
+  //             if (!succ) {
+  //                 flag = true // 轮询结束？？
+  //                 return this.$toast(msg)
+  //             }
+  //             this.detail.qr_code = data.qr_code
+  //             if (data.verify == '1') { // eslint-disable-line
+  //                 this.verify = true
+  //             }
+  //         },
+  //         isStop: () => {
+  //             return flag || this.verify
+  //         }
+  //     }
+  //     this.polling(option)
+  // }
 
   async init () {
     try {
