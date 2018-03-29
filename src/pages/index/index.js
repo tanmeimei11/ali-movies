@@ -21,6 +21,7 @@ export default class index extends wepy.page {
 
   data = {
     texts: {},
+    tips: '',
     pageName: 'index',
     showResearchWindow: false,
     researchInfo: {},
@@ -121,6 +122,8 @@ export default class index extends wepy.page {
     this.movieList = _data.movies;
     this.bannerInfo = _data.ad_info;
     this.texts = _data.share_info;
+    this.tips = _data.none_desc;
+    this.$apply();
     if ( _data.ad_info.length ) {
       track( 'pickseat_index_banner_expo' );
     }
