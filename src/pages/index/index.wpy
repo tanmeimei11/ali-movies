@@ -1,5 +1,5 @@
-// <template>
-  <!-- <report> -->
+<template>
+  <report>
   <!-- <view> -->
     <view class="index-wap {{isHiddenPage ? 'hidden':''}}">
       <!-- banner -->

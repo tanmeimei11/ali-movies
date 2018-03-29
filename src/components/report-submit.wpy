@@ -1,13 +1,14 @@
 <template>
-  <form @Submit="formSubmit" report-submit>
-    <button class="report-button" formType="submit">
+  <form @Submit="formSubmit" report-submit class="form-submit">
+    <button class="report-button" formType="submit" hover-class="none">
       <slot />
     </button>
   </form>
 </template>
 
 <style>
-.report-button {
+.form-submit,.report-button {
+  -webkit-text-size-adjust: 100%;
   background: transparent;
   border: none;
   height: auto;
@@ -21,10 +22,10 @@
   word-break: inherit;
   white-space: inherit;
 }
-
+button-hover{background-color: rgba(0, 0, 0, 0);}
 .report-button:after {
   display: none;
-}
+} */
 </style>
 
 <script>

@@ -10,7 +10,7 @@ import tabbbar from '@/components/tabbbar';
 
 export default class self extends wepy.page {
   config = {
-    navigationBarTitleText: '我的电影卡'
+    navigationBarTitleText: '我的'
   }
   components = {report, tabbbar}
 

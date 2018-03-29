@@ -49,26 +49,37 @@
       await auth.ready();
       var _data = await Cinema.getCinemaList()
       this.cinemaList = _data.cinema_list
-      this.bannerInfo = _data.ad_info
-      if(this.bannerInfo.length){
-        track('pickseat_cinema_page_banner_expo')
-      }
+      setTimeout(() => {
+        this.bannerInfo = _data.ad_info
+        if(this.bannerInfo.length){
+          track('pickseat_cinema_page_banner_expo')
+          this.$apply()
+        }
+      }, 1000);
       this.$apply()
     }
     
   }
 
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
+page{
+   width: 100%;
+    min-height: 100%;
+    background: #F7F7F7;
+}
   .cinema-page {
     padding-bottom: 100rpx;
     box-sizing: border-box;
     .c-banner-wrap{
-      height: 140rpx;
-      overflow: hidden;
+      // height: 140rpx;
+      // overflow: hidden;
+      .slide-image-view{
+        height: 140rpx;
+      }
     }
     .cinemas {
-      &>.line {
+      .line {
         padding: 24rpx 0 22rpx 40rpx;
         /*dpr*/
         border-bottom: 1rpx solid #f0f0f0;

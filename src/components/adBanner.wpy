@@ -4,21 +4,24 @@
       <view @tap="goRedrect" wx:else>
       <swiper indicator-dots='true' autoplay indicator-color='#d8d8d8' indicator-active-color='#fff'  @change="changeSwiper">
           <swiper-item wx:for="{{bannerInfo}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
-            <image src="{{item.img_url}}" mode="widthFix" class="slide-image" ></image>
+            <!-- <image src="{{item.img_url}}" class="slide-image" ></image> -->
+            <view class="slide-image-view"  style="background-image:url({{item.img_url}})"></view>
           </swiper-item>
       </swiper>
       </view>
     </view>
-  
 </template>
 
 <style lang="scss">
  .c-banner-wrap{
    width: 100%;
+   >view{
+     width: 100%;
+     height: 100%;
+   }
    .img{
      display: block;
      width: 750rpx;
-     height:0rpx;
    }
   swiper{
     width: 100%;
@@ -26,6 +29,12 @@
     swiper-item{
       width: 100%;
       height: 100%;
+    }
+    .slide-image-view{
+      width: 100%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
     }
     .slide-image{
       width: 100%;
