@@ -20,7 +20,7 @@
          <view class="cinema-info">
           <view class="cinema-name">
             {{item.cinema_info.name}}
-            <view class="span" wx:if="item.cinema_info.recently_visited">最近去过</view>
+            <view class="span" wx:if="{{item.cinema_info.recently_visited}}">最近去过</view>
           </view>
           <view class="cinema-location">{{item.cinema_info.address}}</view>
         </view>

@@ -1,7 +1,7 @@
 <template>
   <!-- <report> -->
   <view>
-    <view class="index-wap">
+    <view class="index-wap {{isHiddenPage ? 'hidden':''}}">
       <!-- banner -->
       <adBanner wx:if="{{bannerInfo && bannerInfo.length > 0}}" :bannerInfo.sync="bannerInfo" :page.sync="pageName"></adBanner>
       <!-- movieList -->
