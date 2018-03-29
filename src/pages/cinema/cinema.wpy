@@ -25,7 +25,7 @@
   import track from '@/utils/track';
   export default class result extends wepy.page {
      config = {
-      navigationBarTitleText: '电影王卡院线中心'
+      navigationBarTitleText: '院线中心'
     }
     components = { report, adBanner, tabbbar }
     data = {
@@ -63,6 +63,7 @@
     box-sizing: border-box;
     .c-banner-wrap{
       height: 140rpx;
+      overflow: hidden;
     }
     .cinemas {
       &>.line {

@@ -20,6 +20,7 @@ export default class index extends wepy.page {
   mixins = [qrcodeFromMixin]
 
   data = {
+    texts: {},
     pageName: 'index',
     showResearchWindow: false,
     researchInfo: {},
@@ -119,6 +120,7 @@ export default class index extends wepy.page {
     var _data = await Index.getIndexInfo( _options );
     this.movieList = _data.movies;
     this.bannerInfo = _data.ad_info;
+    this.texts = _data.share_info;
     if ( _data.ad_info.length ) {
       track( 'pickseat_index_banner_expo' );
     }

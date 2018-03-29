@@ -1,7 +1,7 @@
 <template>
   <!-- <view class="page" :class="{noData: noDataFalg && !dateList.length}"> -->
   <view class="page">
-    <adBanner :banner="info.banner"></adBanner>
+    <!-- <adBanner :banner="info.banner"></adBanner> -->
      <movie :movieInfo.sync="movieInfo" ></movie>
     <view class="no-movie-wrap" wx:if="{{noDataFalg && !dateList.length}}">
       <view class="no-movie">
