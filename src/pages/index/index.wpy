@@ -4,6 +4,7 @@
     <view class="index-wap {{isHiddenPage ? 'hidden':''}}">
       <!-- banner -->
       <adBanner wx:if="{{bannerInfo && bannerInfo.length > 0}}" :bannerInfo.sync="bannerInfo" :page.sync="pageName"></adBanner>
+      <view class="tips" wx:if="{{tips}}">{{tips}}</view>
       <!-- movieList -->
       <view class="cinemas">
         <view  wx:for="{{movieList}}" wx:for-index="idx" wx:for-item="item" wx:key="idx" >

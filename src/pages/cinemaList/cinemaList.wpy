@@ -62,7 +62,7 @@
       dialogInfo: {
         show: false,
         title: '还没到时间哦',
-        desc: '电影王卡仅在周一到周四可以使用，请在前一天晚上19点来选座吧~',
+        desc: '请在前一天晚上19点来选座吧~',
         btnTxt: '我知道了'
       },
       cinemaList:[],

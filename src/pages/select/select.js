@@ -62,10 +62,7 @@ export default class ticket extends wepy.page {
     confirm: {
       show: false
     },
-    scrollX: 0,
-    selectIndex: function(rowIndex,colIndex){
-      return 'selected'
-    }
+    scrollX: 0
   }
 
   computed = {
