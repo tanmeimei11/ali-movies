@@ -1,5 +1,5 @@
 <template>
-  <!-- <report> -->
+  <report>
     <view class="container">
       <view class="tabbar">
         <view class="{{ticket ? 'on' : ''}}" @tap="ticketOn">
