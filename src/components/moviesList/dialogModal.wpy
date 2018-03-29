@@ -10,6 +10,7 @@
 </template>
 <script>
   import wepy from 'wepy';
+  import track from '@/utils/track';
   export default class dialogModal extends wepy.component{
   props = {
     dialogInfo: {
@@ -30,7 +31,7 @@
     },
     btnClick () {
      this.$emit('toggleDialogModal', false)
-      // this.$track('cinema_page_comelater_click')
+     track('cinema_page_comelater_click')
       // this.$emit('dialog-btn-click')
     }
   }

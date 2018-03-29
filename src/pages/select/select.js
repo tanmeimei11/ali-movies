@@ -107,10 +107,11 @@ export default class ticket extends wepy.page {
      */
     preSubmit () {
       this.confirm.show = true
+      track('seat_page_confirm_expo')
     },
     async submit () {
       if (this.submitLoading) return
-      // this.$track('seat_page_comfirm')
+      track('seat_page_comfirm')
       this.submitLoading = true
 
       let seatIds = []
@@ -139,7 +140,7 @@ export default class ticket extends wepy.page {
       }
     },
     goBindingPage () {
-      // this.$track('seat_page_binding')
+      // track('seat_page_binding')
       // setTimeout(() => {
       //   location.href = 'binding.html?sharebtnhidden=1'
       // }, 100)
