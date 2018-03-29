@@ -21,6 +21,8 @@ module.exports = {
   [`${DOMAIN}/mnp/ticket/my`]: 'ticketInfo',
   [`${DOMAIN}/h5/my/tickets`]: 'ticketInfo2',
   [`${DOMAIN}/h5/seat/list`]: 'seat',
+  [`${DOMAIN}/h5/user/ticket/cancel`]: 'cancelTicket',
+  [`${DOMAIN}/h5/user/ticket/newdetail`]: 'ticketDetail',
   [`${DOMAIN}/mnp/ticket/share`]: 'share',
   [`${DOMAIN}/mnp/ticket/fetch`]: 'fetch',
   [`${DOMAIN}/h5/seat/ordercreate`]: 'order',

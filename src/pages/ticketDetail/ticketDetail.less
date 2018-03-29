@@ -1,0 +1,395 @@
+page{
+    background-image: linear-gradient(to right bottom, rgba(250, 138, 83, 1), rgba(250, 84, 86, 1));
+}
+  .detail-pagination {
+    padding: 24rpx 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    // align-items: flex-start;
+    .div {
+      height: 38rpx;
+    }
+    .current-page {
+      font-size: 32rpx;
+      color: #FFF;
+      margin-right: 2rpx;
+      line-height: 1.1;
+      margin-top: -4rpx;
+    }
+    .page-gap {
+      width: 20rpx;
+      // background: url(../../assets/img/page-gap.png) center no-repeat;
+    }
+    .total-page {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 20rpx;
+      line-height: 58rpx;
+    }
+  }
+  .detail-swiper {}
+  .detail-swiper-slide {
+    width: 590rpx;
+    height: 900rpx;
+  }
+  .container {
+    width: 100%;
+    min-height: 100%;
+    // padding-top: 88rpx;
+    box-sizing: border-box;
+    // background-image: linear-gradient(to right bottom, rgba(250, 138, 83, 1), rgba(250, 84, 86, 1));
+    &.tab{
+      padding-bottom:140rpx;
+    }
+    .modal-mask {
+      position: fixed;
+      z-index: 9999;
+      background: rgba(0,0,0,0.5);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .modal-container {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 560rpx;
+      padding: 60rpx;
+      border-radius: 8rpx;
+      box-sizing: border-box;
+      text-align: center;
+      background-color: #fff;
+      .modal-content {
+        font-size: 28rpx;
+        color: #666666;
+        margin: 12rpx 0 40rpx;
+      }
+      .a {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 80rpx;
+        height: 80rpx;
+        /* background: url(../../assets/img/seat/close.png) 50% no-repeat; */
+        background-size: 50%;
+      }
+    }
+
+    .modal-button {
+      display: block;
+      font-size: 28rpx;
+      color: #FFFFFF;
+      background-image: linear-gradient(0deg, #FF7869 0%, #FF4338 99%);
+      border-radius: 50rpx;
+      width: 100%;
+      height: 80rpx;
+      border: 0;
+      line-height: 80rpx;
+    }
+    .tips {
+      padding: 60rpx 48rpx 32rpx;
+      text-align: center;
+      color: #FFFFFF;
+      .tip-title {
+        font-size: 26rpx;
+        line-height: 36rpx;
+        height: 36rpx;
+        width: 100%;
+        position: relative;
+        &::before, &::after {
+          content: '';
+          display: block;
+          width: 240rpx;
+          height: 1rpx;
+          background-color: #FFF;
+          position: absolute;
+          // margin-top: 18rpx; // 设置会不可见？？
+          top: 0;
+          transform: translateY(18rpx);
+        }
+        &::before {
+          left: 0;
+        }
+        &::after {
+          right: 0;
+        }
+      }
+      .tip-desc {
+        margin-top: 18rpx;
+        text-align: left;
+        opacity: 0.8;
+        font-family: PingFangSC-Regular;
+        font-size: 24rpx;
+        line-height: 36rpx;
+      }
+    }
+  }
+  .textClip {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .textCenter {
+    text-align: center;
+  }
+  .ticket-wrap {
+      margin: 0 auto;
+      width: 295 * 2rpx;
+      height: 450 * 2rpx;
+      background-color: #FFF; 
+      /* // box-shadow: 0 4rpx 30rpx 0 rgba(0,0,0,0.15); */
+      border-radius: 8rpx;
+      overflow: hidden;
+      position: relative;
+      &::before,
+      &::after {
+          content: '';
+          position: absolute;
+          width: 28rpx;
+          height: 28rpx;
+          border-radius: 100%;
+          top: 306rpx;
+      }
+      &::before {
+          left: -14rpx;
+          background-color: #FF7E5B;
+      }
+      &::after {
+          right: -14rpx;
+          background-color: #FF6B5B;
+      }
+  }
+
+  .ticket-top {
+      padding-top: 50rpx;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .cover-img {
+          width: 150rpx;
+          height: 213rpx;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover;
+      }
+      .movie-detail {
+          margin-left: 30rpx;
+          width: 310rpx;
+          font-size: 28rpx;
+          line-height: 40rpx;
+          color: #666666;
+          .date {
+              line-height: 24rpx;
+              font-size: 24rpx;
+              color: #333333;
+          }
+          .time {
+              line-height: 60rpx;
+              font-size: 60rpx;
+              color: #333333;
+              margin-top: 6rpx;
+          }
+          .name {
+              margin-top: 5rpx;
+          }
+          .cinema-name,
+          .address {
+              font-size: 24rpx;
+              line-height: 24rpx;
+              margin-top: 21rpx;
+              opacity: 0.9;
+          }
+          .address {
+              margin-top: 12rpx;
+          }
+      }
+  }
+
+  .ticket-middle {
+      margin: 0 auto;
+      margin-top: 56rpx;
+      width: 510rpx;
+      height: 2rpx;
+      background: #E5E5E5;
+      box-shadow: 0 4rpx 30rpx 0 rgba(0, 0, 0, 0.15);
+      border-radius: 1rpx;
+  }
+
+  .mask {
+      position: absolute;
+      top: 340rpx;
+      left: 0;
+      width: 100%;
+      height: 600rpx;
+      background: #fff;
+      text-align: center;
+      .p {
+          font-weight: bold;
+          font-size: 32rpx;
+          color: #333;
+          margin-top: 10rpx;
+          &:nth-child(1) {
+              margin-top: 180rpx;
+          }
+          .span {
+              display: inline;
+              color: #ff6053;
+          }
+      }
+      .btn {
+          margin: 36rpx auto 0;
+          background: #ff5e51;
+          color: #fff;
+          border-radius: 100rpx;
+          font-size: 28rpx;
+          color: #fff;
+          text-align: center;
+          line-height: 64rpx;
+          height: 64rpx;
+          width: 280rpx;
+      }
+  }
+
+  .seat {
+      margin-top: 40rpx;
+      font-size: 32rpx;
+      color: #333333;
+      line-height: 40rpx;
+      font-family: PingFangSC-Medium;
+  }
+
+  .tipstxt {
+      margin-top: 7rpx;
+      color: #000;
+      text-align: center;
+  }
+
+  .tipstxt2 {
+      color: #f16659;
+      text-align: center;
+  }
+
+  .qrImgWrap {
+      width: 240rpx;
+      height: 240rpx;
+      margin-top: 16rpx;
+      margin-left: 176rpx;
+      position: relative;
+      .qrImg {
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+      }
+      .checked {
+          text-align: center;
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          font-family: PingFangSC-Medium;
+          font-size: 40rpx;
+          color: #666666;
+          line-height: 300rpx;
+          background-color: rgba(255, 255, 255, 0.91);
+      }
+  }
+
+  .code {
+      margin-top: 15rpx;
+      opacity: 0.9;
+      font-family: PingFangSC-Regular;
+      font-size: 28rpx;
+      color: #333333;
+  }
+
+  .cancel {
+      margin: 22rpx auto 0;
+      width: 160rpx;
+      height: 52rpx;
+      background: #fff;
+      border: 2rpx solid #ff5e51;
+      border-radius: 100rpx;
+      color: #ff5e51;
+      text-align: center;
+      line-height: 52rpx;
+      font-size: 24rpx;
+  }
+
+  .tips {
+      padding: 60rpx 48rpx 32rpx;
+      text-align: center;
+      color: #FFFFFF;
+      .tip-title {
+          font-size: 26rpx;
+          line-height: 36rpx;
+          height: 36rpx;
+          width: 100%;
+          position: relative;
+          &::before,
+          &::after {
+              content: '';
+              display: block;
+              width: 240rpx;
+              height: 1rpx;
+              background-color: #FFF;
+              position: absolute; 
+              /* // margin-top: 18rpx; // 设置会不可见？？ */
+              top: 0;
+              transform: translateY(18rpx);
+          }
+          &::before {
+              left: 0;
+          }
+          &::after {
+              right: 0;
+          }
+      }
+      .tip-desc {
+          margin-top: 18rpx;
+          text-align: left;
+          opacity: 0.8;
+          font-family: PingFangSC-Regular;
+          font-size: 24rpx;
+          line-height: 36rpx;
+      }
+  }
+
+  .show-qr-img {
+      margin: 0 auto;
+      margin-top: 52rpx;
+      width: 200rpx;
+      height: 200rpx;
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      &.smile {
+          /* background-image: url(../../assets/img/tip-smile-icon.png); */
+      }
+      &.cry {
+          /* background-image: url(../../assets/img/tip-cry-icon.png); */
+      }
+  }
+
+  .show-qr-desc {
+      width: 490rpx;
+      margin: 0 auto;
+      margin-top: 28rpx;
+      font-size: 32rpx;
+      color: #333333;
+      line-height: 52rpx;
+  }
+
+  .textClip {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+  }
+
+  .textCenter {
+      text-align: center;
+  }
