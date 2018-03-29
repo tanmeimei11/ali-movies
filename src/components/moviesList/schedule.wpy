@@ -46,7 +46,7 @@ export default  class schedule extends wepy.component{
   }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
   .schedule-wrap {
     width: 100%;
     border-bottom: 2rpx solid #E0E0E0;
