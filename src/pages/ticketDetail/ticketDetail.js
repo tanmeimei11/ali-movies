@@ -21,6 +21,7 @@ export default class ticketDetail extends wepy.page {
     detail: {},
     cancelWindow: false,
     activeIndex: 0,
+    cancelTxt: ''
   }
 
   components = {report}
