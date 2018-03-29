@@ -29,7 +29,7 @@ import track from '@/utils/track';
     }
   }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
   .movie-wrap {
     width: 100%;
     padding: 40rpx;

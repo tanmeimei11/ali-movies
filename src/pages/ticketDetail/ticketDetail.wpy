@@ -50,7 +50,7 @@
     <view class="modal-mask" wx:if="{{cancelWindow}}">
       <view class="modal-container">
         <view class="a" @tap="cancelWindowOff"></view>
-        <view class="modal-content">确认取消吗，本次你可无责取消，取消次数过多将会被系统关进小黑屋噢？</view>
+        <view class="modal-content">{{cancelTxt}}</view>
         <view class="modal-button button" @tap="cancel">确认取消</view>
       </view>
     </view>

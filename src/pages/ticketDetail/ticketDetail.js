@@ -43,7 +43,7 @@ export default class ticketDetail extends wepy.page {
       try {
         var res = await TicketDetail.cancelTicket({ticket_id: this.query.id})
         track('ticket_qrcode_page_confirm')
-        tips.toast('取消成功')
+        tips.toast(res.cancel_result_msg)
         this.cancelWindow = false
         var pageList = getCurrentPages()
         pageList.forEach((item,i) => {
@@ -104,6 +104,7 @@ export default class ticketDetail extends wepy.page {
       var res = await TicketDetail.getNewTicketDetail({ticket_id: this.query.id})
       // if (!succ) return this.$toast(msg)
       this.detail = res.tickets[0] || []
+      this.cancelTxt = res.cancel_confirm_msg
       if (this.detail.verify == '1') { // eslint-disable-line
           // 电影票已经核销,不需要轮询
           this.verify = true
