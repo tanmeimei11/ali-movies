@@ -1,9 +1,10 @@
 import wepy from 'wepy';
 import auth from '@/api/auth';
 import Ticket from '@/api/ticket';
-import tips from '@/utils/tips';
+// import tips from '@/utils/tips';
 import report from '@/components/report-submit';
-import track from '@/utils/track';
+import empty from '@/components/empty';
+// import track from '@/utils/track';
 
 export default class ticket extends wepy.page {
   config = {
@@ -14,6 +15,8 @@ export default class ticket extends wepy.page {
     list2: [],
     ticket: true
   }
+
+  components = {report, empty}
 
   methods = {
     ticketOn () {
