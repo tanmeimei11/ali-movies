@@ -44,7 +44,7 @@
 
     <view class="tips">
       <view class="tip-title">温馨提示</view>
-      <view class="tip-desc">请提前到达影城，在售票处换取纸质票检票入场。如有疑问请在“选座入口-我的-意见反馈”中联系我们。</view>
+      <view class="tip-desc">影城售票处将在电影开场前45分钟开始提供取票服务，请合理安排出行时间。</view>
     </view>
     <!-- Modal -->
     <view class="modal-mask" wx:if="{{cancelWindow}}">

@@ -61,6 +61,7 @@ export default class ticketDetail extends wepy.page {
   async getTicketQRCode() {
     var res = await TicketDetail.getQRcode({ticket_id: this.query.id})
     this.detail.qr_code = res.qr_code
+    this.$apply()
     if (res.verify == '1') {
       this.verify = true
       this.$apply()
