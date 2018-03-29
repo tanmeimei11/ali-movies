@@ -4,8 +4,8 @@ module.exports = {
   'succ': true,
   'data': {
     'has_next': false,
-    ticket_list: [],
-    'ticket_list1':
+    "ticket_list1": [],
+    'ticket_list':
     [
       {
         'ticket_id': '1PXZy',

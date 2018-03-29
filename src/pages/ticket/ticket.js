@@ -4,7 +4,7 @@ import Ticket from '@/api/ticket';
 // import tips from '@/utils/tips';
 import report from '@/components/report-submit';
 import empty from '@/components/empty';
-// import track from '@/utils/track';
+import track from '@/utils/track';
 
 export default class ticket extends wepy.page {
   config = {
@@ -19,6 +19,14 @@ export default class ticket extends wepy.page {
   components = {report, empty, empty1: empty}
 
   methods = {
+    goTicketDetail (e) {
+      var item = e.currentTarget.dataset.item
+      if (item.status !== '1') return
+      track('ticket_page_use')
+      wepy.navigateTo( {
+        url: '/pages/ticketDetail/ticketDetail?id=' + item.ticket_id
+      } );
+    },
     ticketOn () {
       this.ticket = true;
       this.$apply();
@@ -37,9 +45,9 @@ export default class ticket extends wepy.page {
 
   async init () {
     var myInfoRes = await Ticket.getMyInfo();
-    var myLotteryRes = await Ticket.getMyLottery();
+    // var myLotteryRes = await Ticket.getMyLottery();
     this.list = myInfoRes.ticket_list;
-    this.list2 = myLotteryRes.ticket_list;
+    // this.list2 = myLotteryRes.ticket_list;
     this.$apply();
   }
   async onLoad ( options ) {

@@ -10,7 +10,7 @@
         </view>
       </view>
       <view class="tickets" wx:if="{{ticket}}">
-        <view class="one-ticket" wx:if="{{list.length >0}}" wx:for="{{list}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+        <view class="one-ticket" wx:if="{{list.length >0}}" wx:for="{{list}}" wx:for-index="idx" wx:for-item="item" wx:key="idx" @tap="goTicketDetail" data-item="{{item}}">
           <view class="poster" style="background-image:url({{item.poster_url}})"></view>
           <view class="name">{{item.movie_name}}</view>
           <view class="desc">{{item.movie_duration}}/{{item.movie_version}}/{{item.movie_type}}</view>
