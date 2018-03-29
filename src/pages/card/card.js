@@ -58,7 +58,7 @@ export default class cards extends wepy.page {
       track( 'mycard_transfer' );
       this.giveGiftInfo = { // 转增
         show: true,
-        tips: this.activeCardInfos.rules
+        tips: this.activeCardInfos.notice
       };
     },
     changeSwiper ( event ) {
@@ -98,7 +98,8 @@ export default class cards extends wepy.page {
         code: item.reward_code,
         status: card.reward_from_info ? 3 : parseInt( item.reward_status ),
         btnText: data.btn_txt[ item.reward_status ],
-        rules: item.prompt_txt
+        notice: item.prompt_txt,
+        rules: item.texts
       };
     } );
 
