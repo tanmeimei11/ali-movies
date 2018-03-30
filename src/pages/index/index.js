@@ -134,8 +134,8 @@ export default class index extends wepy.page {
       return;
     }
     var _huabeiInfo = await Index.getHuaBeiInfo( _options );
-    this.isHiddenPage = true;
     if ( _huabeiInfo.popup ) {
+      this.isHiddenPage = true;
       this.huabeiInfo = Object.assign( {}, this.huabeiInfo, {card: {
         start: _huabeiInfo.validity_date,
         end: _huabeiInfo.expiration_date
