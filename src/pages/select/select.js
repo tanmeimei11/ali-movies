@@ -93,16 +93,15 @@ export default class select extends wepy.page {
 
   methods = {
     hideModal ( ok ) {
-      if ( ok === true ) {
-        if ( this.modal.redirect ) {
-          wepy.navigateTo( {
-            url: this.modal.redirect
-          } );
-        }
+      if ( this.modal.redirect ) {
+        wepy.navigateTo( {
+          url: this.modal.redirect
+        } );
       }
       this.modal.show = false;
       this.confirm.show = false;
       this.modal.redirect = '';
+      this.$apply()
     },
     /**
      * 提交座位信息
