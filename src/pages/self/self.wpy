@@ -20,7 +20,7 @@
             <view class="tips" wx:if="{{item === 'union_select_seat'}}">和朋友一起选座</view>
             <view wx:if="{{item === 'contact_cs'}}">
               <view class="cstxt">联系客服请进入in同城趴生活号</view>
-              <lifestyle publicId="{{contractID}}" class="lifestyle"></lifestyle>
+              <!-- <lifestyle publicId="{{contractID}}" class="lifestyle"></lifestyle> -->
               <!-- <view publicId="{{contractID}}" class="lifestyle" wx:if="{{item === 'contact_cs'}}"></view> -->
             </view>
           </view>

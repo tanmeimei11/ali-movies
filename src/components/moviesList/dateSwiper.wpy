@@ -1,7 +1,7 @@
 <template>
   <view class="swiper-wrap">
     <view class="date-slide"  wx:for="{{dateList}}" wx:for-index="index" wx:for-item="item" wx:key="index">
-      <view class="slide-item {{active === index ? 'active' : '' }}"  @tap="changeActive()" data-idx="{{index}}">
+      <view class="slide-item {{active === index ? 'active' : '' }}"  @tap="changeActive" data-idx="{{index}}">
         <text class="date-txt">{{item}}</text>
         <view class="bottom-border"></view>
       </view>

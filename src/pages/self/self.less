@@ -57,7 +57,7 @@ page{
       color: #333;
       position: relative;
       font-size: 32rpx;
-      border-bottom: 1PX solid #e0e0e0;
+      border-bottom: .5rpx solid #e0e0e0;
       .name{
         display: inline;
       }
@@ -208,7 +208,7 @@ page{
       border-radius: 50%;
     }
     .s-name {
-      margin-top: 36rpx;
+      margin-top: 15rpx;
       font-size: 36rpx;
       height: 45rpx;
       line-height: 45rpx;
@@ -217,8 +217,7 @@ page{
     }
   }
   .s-mobilebtn{
-    margin-top: 36rpx;
-    margin: auto;
+    margin:12rpx auto 0;
     width: 168rpx;
     height: 54rpx;
     background: rgba(255,255,255,0.20);
@@ -401,8 +400,9 @@ page{
 
   .input-frame input {
     width: 90%;
-    padding-left: 10%;
+    padding-left: 16rpx;
     border: none;
+    margin-top:5rpx;
     box-sizing: border-box;
     height: 70rpx;
     line-height: 70rpx;
@@ -434,6 +434,7 @@ page{
     line-height: 80rpx;
     background-image: linear-gradient(90deg, #FD9C6C 0%, #F95557 100%);
     border-radius: 100px;
+    border:none;
   }
 
   wx-button[disabled]:not([type]) {

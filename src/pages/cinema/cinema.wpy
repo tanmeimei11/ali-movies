@@ -74,7 +74,7 @@
       .line {
         padding: 24rpx 0 22rpx 40rpx;
         /*dpr*/
-        border-bottom: 1rpx solid #f0f0f0;
+        border-bottom: 0.5rpx solid #f0f0f0;
       }
     }
     .title {

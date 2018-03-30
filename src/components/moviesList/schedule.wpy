@@ -49,7 +49,7 @@ export default  class schedule extends wepy.component{
 <style lang="scss">
   .schedule-wrap {
     width: 100%;
-    border-bottom: 2rpx solid #E0E0E0;
+    border-bottom: .5rpx solid #E0E0E0;
   }
   .schedule-item {
     width: 100%;
@@ -61,7 +61,7 @@ export default  class schedule extends wepy.component{
       align-items: center;
       justify-content: space-between;
       padding: 20rpx 0;
-      border-bottom: 2rpx solid #E0E0E0;
+      border-bottom: .5rpx solid #E0E0E0;
       font-family: PingFangSC-Regular;
       font-size: 28rpx;
       color: #333333;
