@@ -15,3 +15,6 @@
 5.埋点 @xiangxiang 
 
 ### part-8 from part-7 临时分支 v:0.3.0
+
+### part-9
+去掉授权

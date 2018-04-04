@@ -7,9 +7,9 @@
       <!-- 头像信息-->
       <view class="c-rules">
         <view class="s-avatar-wrap">
-          <image class="s-avatar" mode="aspectFill" src="{{userInfo.avatar}}"></image>
-          <view class="type {{userTitle[userInfo.user_title_type]}}"></view>
-          <view class="s-name">{{userInfo.nickname}}</view>
+          <!-- <image class="s-avatar" mode="aspectFill" src="{{userInfo.avatar}}"></image> -->
+          <!-- <view class="type {{userTitle[userInfo.user_title_type]}}"></view> -->
+          <!-- <view class="s-name">{{userInfo.nickname}}</view> -->
         </view>
         <view class="s-mobilebtn" wx:if="{{userInfo.avatar && !userInfo.phone}}" data-type="绑定" @tap="open">绑定手机号</view>
         <view class="s-mobile" wx:if="{{userInfo.avatar && userInfo.phone}}" @tap="open" data-type="修改">{{userInfo.phone}}</view>
