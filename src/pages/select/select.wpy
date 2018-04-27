@@ -71,7 +71,7 @@
         <view class="modal-mask" wx:if="{{confirm.show}}">
           <view class="modal-container">
             <view class="modal-title">温馨提示</view>
-            <view class="modal-content">确认选座后请及时到影城售票处人工取票，开场15分钟后将无法取票进场</view>
+            <view class="modal-content">确认选座后请及时到影城售票处人工取票，<view>开场15分钟后将无法取票进场</view></view>
             <view class="modal-button cancel button" @tap="hideModal">放弃选座</view>
             <view class="modal-button confirm button" @tap="submit">确认选座</view>
           </view>
