@@ -1,5 +1,5 @@
 module.exports = {
-  _v: '0.3.1',
+  _v: '0.3.2',
   isMock: false,
   isTrack: false,
   DOMAIN: 'https://crowdfunding.in66.com',

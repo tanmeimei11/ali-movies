@@ -130,7 +130,7 @@ export default class index extends wepy.page {
   }
 
   async initHuabeiInfo ( _options ) {
-    if ( this.huabeiInfo.fromHuabei !== 1 ) {
+    if ( this.huabeiInfo.fromHuabei === 0 ) {
       return;
     }
     var _huabeiInfo = await Index.getHuaBeiInfo( _options );
