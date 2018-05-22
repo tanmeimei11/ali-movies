@@ -21,3 +21,6 @@
 
 ### master @xiangxiang
 1.花呗过来from_huabei 可以更改值
+
+### master @xiangxiang v:0.3.3
+1.空态页面不兼容的bug wx:else 不生效

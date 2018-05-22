@@ -24,22 +24,22 @@
           <view class="btn-expired" wx:if="{{item.status==='2'}}">已核销</view>
           <view class="btn-expired" wx:if="{{item.status==='3'}}">已取消</view>
         </view>
-        <empty1 wx:else text="你还没有电影票哦～"></empty1>
+        <empty1 wx:if="{{list.length <=0}}" text="你还没有电影票哦～"></empty1>
       </view>
-        <view class="lottery" wx:else>
-          <view class="one-ticket" wx:if="{{list2.length>0}}" wx:for="{{list2}}" wx:for-index="idx" wx:for-item="item" wx:key="idx" class="{{['use'][item.status] || ''}}">
-            <view class="title">{{item.name}} </view>
-            <view class="desc">
-              <view>有效时间: {{item.valid_time}}</view>
-              <view>指定时段: {{item.assign_time_frame}}</view>
-            </view>
-            <view class="btn-use" wx:if="{{item.status<2}}" @tap="use" data-item="{{item}}">{{['立即使用','已使用'][item.status]}}</view>
-            <!-- <view class="btn-use">立即使用</view> -->
-            <view class="btn-expired" wx:else>已过期</view>
+      <view class="lottery" wx:else>
+        <view class="one-ticket" wx:if="{{list2.length>0}}" wx:for="{{list2}}" wx:for-index="idx" wx:for-item="item" wx:key="idx" class="{{['use'][item.status] || ''}}">
+          <view class="title">{{item.name}} </view>
+          <view class="desc">
+            <view>有效时间: {{item.valid_time}}</view>
+            <view>指定时段: {{item.assign_time_frame}}</view>
           </view>
-          <empty wx:else text="你还没赠票哦～"></empty>
+          <view class="btn-use" wx:if="{{item.status<2}}" @tap="use" data-item="{{item}}">{{['立即使用','已使用'][item.status]}}</view>
+          <!-- <view class="btn-use">立即使用</view> -->
+          <view class="btn-expired" wx:else>已过期</view>
         </view>
+        <empty wx:if="{{list2.length <=0}}" text="你还没赠票哦～"></empty>
       </view>
+    </view>
   </report>
 </template>
 <style lang="less" src="./ticket.less">
