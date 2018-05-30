@@ -24,3 +24,6 @@
 
 ### master @xiangxiang v:0.3.3
 1.空态页面不兼容的bug wx:else 不生效
+
+### part-10 @xiaofu v:0.3.4
+支付宝购卡新页面
