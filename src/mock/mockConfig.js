@@ -1,4 +1,4 @@
-import {DOMAIN, payUrl} from '@/utils/config';
+import { DOMAIN, payUrl } from '@/utils/config';
 module.exports = {
   [`${DOMAIN}/mnp/order/create`]: 'orderCreate',
   [`${DOMAIN}/mnp/user/mine`]: 'my',
@@ -34,5 +34,6 @@ module.exports = {
   [`${DOMAIN}/h5/cinema/list`]: 'cinemaList',
   [`${DOMAIN}/h5/cinema/schedule`]: 'schedule',
   [`${DOMAIN}/info/ad/imgs`]: 'imgsList',
+  [`${DOMAIN}/info/product/detail_common_new`]: 'detailBuy',
   [`${payUrl}`]: 'signature'
 };

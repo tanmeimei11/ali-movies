@@ -16,7 +16,7 @@ export default class Last extends Pagebase {
     // }
     return await this.request( {
       url: '/info/product/detail_common_new',
-    //   url: '/h5/info/detail_common',
+      //   url: '/h5/info/detail_common',
       data: _data
     } );
   }
@@ -40,15 +40,19 @@ export default class Last extends Pagebase {
    * @param {*} createRes  创建订单的res
    */
   static async getOrderDetail ( createRes ) {
+    createRes.open_id = '2088602098036893';
     var _data = {
       _token: wepy.$instance.globalData.xToken,
-      payment_channel: paymentChannel,
-      business_party: businessParty,
-      order_detail: createRes.order_detail,
-      extend_params: JSON.stringify( {
-        open_id: createRes.open_id
-      } )
+      payment_channel: createRes.paymentChannel || paymentChannel,
+      business_party: createRes.businessParty || businessParty,
+      order_detail: createRes.order_detail
     };
+
+    if ( createRes.open_id ) {
+      _data.extend_params = JSON.stringify( {
+        open_id: createRes.open_id
+      } );
+    }
     return await this.request( {
       url: payUrl,
       data: _data

@@ -15,7 +15,7 @@ export default class index extends wepy.page {
   config = {
     navigationBarTitleText: '电影中心'
   }
-  components = {report, researchWindow, receiveCardModal, adBanner, tabbbar}
+  components = { report, researchWindow, receiveCardModal, adBanner, tabbbar }
 
   mixins = [qrcodeFromMixin]
 
@@ -111,9 +111,10 @@ export default class index extends wepy.page {
     await this.initShowWin( _options );
     this.clearOptions();
     this.$apply();
-
+    track( 'index_page_enter_login' );
     await auth.ready();
     await this.initHuabeiInfo( _options );
+
     this.$apply();
   }
 
@@ -136,10 +137,11 @@ export default class index extends wepy.page {
     var _huabeiInfo = await Index.getHuaBeiInfo( _options );
     if ( _huabeiInfo.popup ) {
       this.isHiddenPage = true;
-      this.huabeiInfo = Object.assign( {}, this.huabeiInfo, {card: {
-        start: _huabeiInfo.validity_date,
-        end: _huabeiInfo.expiration_date
-      },
+      this.huabeiInfo = Object.assign( {}, this.huabeiInfo, {
+        card: {
+          start: _huabeiInfo.validity_date,
+          end: _huabeiInfo.expiration_date
+        },
         phone: _huabeiInfo.phone,
         isShow: _huabeiInfo.popup,
         btnStatus: util.verifyPhone( _huabeiInfo.phone )
