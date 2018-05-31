@@ -110,7 +110,7 @@ module.exports = {
       },
       {
         date: '周一(04月02日)',
-        movie_list: [ ]
+        movie_list: []
       }
     ],
     id: '1Nq',
