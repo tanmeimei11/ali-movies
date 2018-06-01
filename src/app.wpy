@@ -7,20 +7,19 @@
   justify-content: space-between;
   box-sizing: border-box;
 }
-button{
-  padding:0;
-  margin:0;
+button {
+  padding: 0;
+  margin: 0;
   position: relative;
   min-height: 100%;
-
 }
-page{
- /* min-height: 100%; */
- position: relative;
+page {
+  /* min-height: 100%; */
+  position: relative;
 }
-form{
+form {
   min-height: 100%;
- position: relative;
+  position: relative;
 }
 
 /* 弹窗 */
@@ -139,7 +138,7 @@ export default class extends wepy.app {
   }
 
   config = {
-    pages: ['pages/index/index', 'pages/card/card', 'pages/self/self', 'pages/moviesList/moviesList', 'pages/cinemaList/cinemaList', 'pages/cinema/cinema', 'pages/card/card', 'pages/self/self', 'pages/detail/detail', 'pages/seat/seat', 'pages/result/result', 'pages/card/card', 'pages/ticket/ticket', 'pages/select/select', 'pages/ticketDetail/ticketDetail', 'pages/imageList/imageList', 'pages/last/last']
+    pages: ['pages/index/index', 'pages/cinema/cinema', 'pages/cinemaList/cinemaList', 'pages/last/last', 'pages/moviesList/moviesList', 'pages/detail/detail', 'pages/seat/seat', 'pages/result/result', 'pages/card/card', 'pages/ticket/ticket', 'pages/select/select', 'pages/ticketDetail/ticketDetail', 'pages/imageList/imageList']
     // tabBar: {
     //   'textColor': '#4A4A4A',
     //   'selectedColor': '#FF5E51',

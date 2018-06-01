@@ -1,16 +1,16 @@
 <template>
-  <report>
-  <!-- <view> -->
+  <!-- <report> -->
+  <view>
     <view class="index-wap {{isHiddenPage ? 'hidden':''}}">
       <!-- banner -->
       <adBanner wx:if="{{bannerInfo && bannerInfo.length > 0}}" :bannerInfo.sync="bannerInfo" :page.sync="pageName"></adBanner>
       <view class="tips" wx:if="{{tips}}">{{tips}}</view>
       <!-- movieList -->
       <view class="cinemas">
-        <view  wx:for="{{movieList}}" wx:for-index="idx" wx:for-item="item" wx:key="idx" >
+        <view wx:for="{{movieList}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
           <view class="movie-img" style="background-image: url({{item.poster_url}})"></view>
           <view class="movie-info">
-              <view class="movie-name">{{item.name}}</view>
+            <view class="movie-name">{{item.name}}</view>
             <view class="movie-other">{{item.duration}}/{{item.movie_type}}</view>
             <view class="movie-director text-clip">{{item.director}}</view>
             <view class="movie-actor text-clip">{{item.actors}}</view>
@@ -22,8 +22,9 @@
     <tabbbar :page.sync="pageName"></tabbbar>
     <researchWindow wx:if="{{showResearchWindow}}" :researchInfo.sync="researchInfo"></researchWindow>
     <receiveCardModal wx:if="{{huabeiInfo.isShow}}" :huabeiInfo.sync="huabeiInfo"></receiveCardModal>
-  <!-- </view> -->
-  </report>
+    <buyCard></buyCard>
+  </view>
+  <!-- </report> -->
 </template>
 <style lang="less" src="./index.less">
 </style>
