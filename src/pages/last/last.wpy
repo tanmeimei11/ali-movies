@@ -102,6 +102,7 @@
           </view>
         </view>
       </view>
+      <view class="ok" @tap="startBuy">点击立即抢购</view>
     </view>
   </view>
   <view class="c-modal c-buymuti-modal succOne" wx:if="{{succOne}}">
