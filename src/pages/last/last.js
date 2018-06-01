@@ -9,6 +9,7 @@ export default class Index extends wepy.page {
   config = {
     navigationBarTitleText: 'in同城趴·电影王卡'
   }
+  components = { report }
   data = {
     equitybar: [],
     rpTips: false,
