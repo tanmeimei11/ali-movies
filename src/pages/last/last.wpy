@@ -1,5 +1,5 @@
 <template>
-  <!-- <report> -->
+  <report>
   <view class="top">
     <view class="ruleBtn" @tap="openRule"></view>
     <view class="total">限量{{detailInfo.total_card_count}}张</view>
@@ -102,6 +102,7 @@
           </view>
         </view>
       </view>
+      <view class="ok" @tap="startBuy">点击立即抢购</view>
     </view>
   </view>
   <view class="c-modal c-buymuti-modal succOne" wx:if="{{succOne}}">
@@ -120,7 +121,7 @@
       <view class="ok" @tap="closePay">我知道了</view>
     </view>
   </view>
-  <!-- </report> -->
+  </report>
 </template>
 <style lang="less" src="./last.less"></style>
 <script src="./last.js"></script>

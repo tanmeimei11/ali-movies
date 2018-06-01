@@ -9,6 +9,7 @@ export default class Index extends wepy.page {
   config = {
     navigationBarTitleText: 'in同城趴·电影王卡'
   }
+  components = { report }
   data = {
     equitybar: [],
     rpTips: false,
@@ -53,6 +54,10 @@ export default class Index extends wepy.page {
   events = {
   }
   methods = {
+    startBuy () {
+      this.ruleModal = false
+      this.payModal = true
+    },
     call () {
       my.makePhoneCall( { number: '0571-86009012' } );
     },
