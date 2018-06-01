@@ -1,6 +1,6 @@
 <template>
   <report>
-  <!-- <view> -->
+    <!-- <view> -->
     <view class="container">
       <!-- 天空背景 -->
       <view class="c-bg"></view>
@@ -25,6 +25,7 @@
             </view>
           </view>
         </view>
+        <adBanner :bannerInfo.sync="bannerInfo"></adBanner>
       </view>
     </view>
     <!-- 修改手机号弹窗 -->
@@ -33,7 +34,7 @@
       <view class="window">
         <view class="close" @tap="close"></view>
         <view class="bind">{{type}}手机号</view>
-        <input onInput="bindKeyInput" placeholder="输入手机号" type="number" maxlength="11" placeholder-style="color: #E0E0E0" value="{{userInfo.phone}}"/>
+        <input onInput="bindKeyInput" placeholder="输入手机号" type="number" maxlength="11" placeholder-style="color: #E0E0E0" value="{{userInfo.phone}}" />
         <view class="btn {{isFull ? 'on' : ''}}" @tap="submit">确认</view>
       </view>
     </view>
@@ -43,25 +44,18 @@
         <view class="close" @tap="closePopup" data-force='1'></view>
         <view class="title">兑换电影王卡</view>
         <view class="input-frame {{cdkeyError}}">
-          <input
-            placeholder="请输入你的兑换码"
-            placeholder-style="color:#e0e0e0;"
-            @input="cdkeyInput" />
+          <input placeholder="请输入你的兑换码" placeholder-style="color:#e0e0e0;" @input="cdkeyInput" />
           <text>{{cdkeyText}}</text>
         </view>
         <view class="input-frame {{phoneError}}" wx:if="{{isfirst}}">
-          <input
-            placeholder="请输入你的手机号"
-            placeholder-style="color:#e0e0e0;"
-            maxlength="11"
-            @input="phoneInput"/>
+          <input placeholder="请输入你的手机号" placeholder-style="color:#e0e0e0;" maxlength="11" @input="phoneInput" />
           <text>请输入正确的手机号</text>
         </view>
         <button disabled="{{exchangeDisabled}}" @tap="exchange">确认兑换</button>
       </view>
     </view>
     <tabbbar :page.sync="pageName"></tabbbar>
-  <!-- </view> -->
+    <!-- </view> -->
   </report>
 </template>
 <style lang="less" src="./self.less">

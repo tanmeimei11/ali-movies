@@ -7,12 +7,13 @@ import report from '@/components/report-submit';
 import track from '@/utils/track';
 import util from '@/utils/util';
 import tabbbar from '@/components/tabbbar';
+import adBanner from '@/components/adBanner';
 
 export default class self extends wepy.page {
   config = {
     navigationBarTitleText: '我的'
   }
-  components = {report, tabbbar}
+  components = { report, tabbbar, adBanner }
 
   data = {
     pageName: 'self',
@@ -57,7 +58,12 @@ export default class self extends wepy.page {
     isfirst: true,
     cdkeyError: '',
     cdkeyText: '',
-    phoneError: ''
+    phoneError: '',
+    bannerInfo: [{
+      type: 'path',
+      landing_path: '/pages/last/last',
+      img_url: 'https://inimg07.jiuyan.info/in/2018/05/31/0915E6ED-5449-39D0-B22A-B07B90AEF51B.jpg'
+    }]
   }
 
   methods = {

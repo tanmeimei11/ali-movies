@@ -1,5 +1,6 @@
 <template>
-  <report>
+  <!-- <report> -->
+  <view>
     <view class="cinema-page">
       <adBanner wx:if="{{bannerInfo && bannerInfo.length > 0}}" :bannerInfo.sync="bannerInfo"></adBanner>
       <adBanner2 :bannerInfo.sync="bannerInfo2"></adBanner2>
@@ -16,7 +17,8 @@
       </view>
       <tabbbar :page.sync="pageName"></tabbbar>
     </view>
-  </report>
+  </view>
+  <!-- </report> -->
 </template>
 <script>
   import wepy from 'wepy';
