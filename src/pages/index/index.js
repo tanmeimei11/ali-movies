@@ -108,12 +108,11 @@ export default class index extends wepy.page {
     this.initQrcodeFrom( _options );
     this.initHuabeiOptions( _options );
     this.initRedirect( _options );
+    await auth.ready();
+    console.log( '111' );
     await this.initPageInfo( _options );
     await this.initShowWin( _options );
     this.clearOptions();
-    this.$apply();
-
-    await auth.ready();
     await this.initHuabeiInfo( _options );
     this.$apply();
   }

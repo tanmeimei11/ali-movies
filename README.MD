@@ -34,4 +34,8 @@
 ### part-12 @xiangxian v:0.3.6
 1.拍片中文案修改
 
-### part-13
+### part-13 @xiangxiang  // 没上 
+1.弹窗
+2.banner
+3.我的 banner
+### part-14 @xiangxiang 
