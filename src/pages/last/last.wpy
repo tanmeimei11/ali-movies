@@ -80,9 +80,8 @@
     <view class="c-wrap">
       <view class="s-close" @tap="closePay"></view>
       <view class="title">亲爱的用户</view>
-      <view class="desc">由于之前观影用户超过
-        <text>12万人</text>，造成很多用户不太良好的观影体验，我们本着从用户体验的角度出发，本月只限量销售
-        <text>3万张</text>月卡，售完为止。</view>
+      <view class="desc">in·同城趴电影五月持卡用户破10万啦！感谢大家的支持！因用户激增，导致选座困难，小in深感抱歉。本月起，
+        <text>为保障观影体验，限量3万</text>张电影月卡，影迷们快上车！</view>
       <view class="bottom">
         <view class="title">包月三大特权</view>
         <view class="list">
