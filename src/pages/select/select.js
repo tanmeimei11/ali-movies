@@ -35,7 +35,7 @@ export default class select extends wepy.page {
   config = {
     navigationBarTitleText: '选座'
   }
-  components={report}
+  components = { report }
   data = {
     wrapperWidth: '',
     query: {},
@@ -51,6 +51,10 @@ export default class select extends wepy.page {
     selected: [],   // 选中座位，数组类型，便于扩展
     maxSeat: 2,     // 权限，现不开放多人选座
     bindingUserData: null,
+    logo: '',
+    coupleLogo: '',
+    // logo: 'https://inimg07.jiuyan.info/in/2018/06/01/AC398321-A213-4E82-CDBC-7AE6D994EDE2.png',
+    // coupleLogo: 'https://inimg01.jiuyan.info/in/2018/06/01/091696FF-2E34-F983-8604-5FDB3E739F38.png',
 
     submitLoading: false,
     modal: {
@@ -101,7 +105,7 @@ export default class select extends wepy.page {
       this.modal.show = false;
       this.confirm.show = false;
       this.modal.redirect = '';
-      this.$apply()
+      this.$apply();
     },
     /**
      * 提交座位信息
@@ -182,6 +186,8 @@ export default class select extends wepy.page {
     try {
       var res = await Select.getSeatInfo( { schedule_id: this.query.schedule_id, is_biz: isBiz ? this.query.is_biz : '' } );
       this.schedule_id = this.query.schedule_id;
+      res.logo && ( this.logo = res.logo );
+      res.couple_logo && ( this.coupleLogo = res.couple_logo );
       this.movie_name = res.movie_name;
       this.movie_detail = res.movie_detail;
       this.total_seat_count = res.total_seat_count;

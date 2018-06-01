@@ -57,7 +57,7 @@
       await auth.ready();
       var _data = await Cinema.getCinemaList();
       this.cinemaList = _data.cinema_list;
-      this.bannerInfo = _data.ad_info;
+      this.bannerInfo = _data.ad_info || {};
       if ( this.bannerInfo.length ) {
         track( 'pickseat_cinema_page_banner_expo' );
         this.$apply();
