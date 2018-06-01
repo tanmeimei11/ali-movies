@@ -434,6 +434,13 @@
   justify-content: center;
   align-content: center;
   color: #fff;
+  &.fix-btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;;
+  }
   .submit{
     width: 300rpx;
     flex-grow: 1;
@@ -442,6 +449,27 @@
     font-size: 36rpx;
     background-image: linear-gradient(90deg, #fa4949 0%, #ff5454 100%);
   }
+}
+.btn-icon{
+  font-size: 18rpx;
+  color: #666666;
+  width: 96rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top:60rpx;
+  background-repeat: no-repeat;
+  background-size: 45rpx auto ;
+  background-position: center 30%;
+  position: relative;
+  overflow: hidden;
+}
+.btn-contract{
+  background-image: url('https://inimg01.jiuyan.info/in/2018/02/03/70FE5E8A-722B-A9DE-08A9-1F645D905D7D.jpg');
+}
+.btn-index{
+  background-image: url('https://inimg01.jiuyan.info/in/2018/02/03/1946BAF7-B680-9C02-27F8-F24BA8E50CCB.jpg');
 }
 .c-buymuti-modal.payModal {
   .c-wrap{

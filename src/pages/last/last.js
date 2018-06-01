@@ -49,14 +49,24 @@ export default class Index extends wepy.page {
     detailInfo: {},
     rule: {},
     num: 0,
-    width: 0
+    width: 0,
+    payAfter: {
+      text: '前往“in同城趴电影”小程序选座',
+      btnText: '前去选座'
+    }
   }
   events = {
   }
   methods = {
+    toIndex () {
+      console.log( 'shouye' );
+      wepy.reLaunch( {
+        url: `/pages/index/index`
+      } );
+    },
     startBuy () {
-      this.ruleModal = false
-      this.payModal = true
+      this.ruleModal = false;
+      this.payModal = true;
     },
     call () {
       my.makePhoneCall( { number: '0571-86009012' } );
@@ -66,6 +76,9 @@ export default class Index extends wepy.page {
       this.ruleModal = false;
       this.succOne = false;
       this.succTwo = false;
+      wepy.reLaunch( {
+        url: `/pages/index/index`
+      } );
     },
     openPay () {
       this.payModal = true;
@@ -127,6 +140,12 @@ export default class Index extends wepy.page {
   }
   async init () {
     var data = await Detail.getDetailStatus();
+    console.log( data );
+    this.payAfter = {
+      text: data.win_msg || '前往“in同城趴电影”小程序首页即可观影选座',
+      btnText: data.btn_msg || '前去选座'
+    };
+    this.$apply();
     this.btn_tips = data.btn_tips;
     this.productId = data.product_id;
     this.detailInfo = data;
