@@ -22,7 +22,7 @@
     <tabbbar :page.sync="pageName"></tabbbar>
     <researchWindow wx:if="{{showResearchWindow}}" :researchInfo.sync="researchInfo"></researchWindow>
     <receiveCardModal wx:if="{{huabeiInfo.isShow}}" :huabeiInfo.sync="huabeiInfo"></receiveCardModal>
-    <buyCard></buyCard>
+    <buyCard :isShow.sync="isShowPop"></buyCard>
   </view>
   <!-- </report> -->
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <view class="selling-wrap" wx:if="{{isShow}}">
+  <view class="selling-wrap" wx:if="{{isShow && showComponent}}">
     <view class="img">
       <image src="https://inimg05.jiuyan.info/in/2018/05/29/5CBAA693-FA8C-46AC-B4C5-948E286B5449.png" mode="widthFix"></image>
       <view class="close" @tap="close"></view>
@@ -49,11 +49,14 @@
 import wepy from 'wepy';
 export default class buyCard extends wepy.component {
   data = {
-    isShow: true
+    showComponent:true
+  } 
+  props = {
+    isShow: Boolean
   }
   methods = {
     close () {
-      this.isShow = false;
+      this.showComponent = false;
       this.$apply();
     },
     goSelling () {

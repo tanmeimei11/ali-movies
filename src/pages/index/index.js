@@ -43,7 +43,8 @@ export default class index extends wepy.page {
       '1': '选座',
       '4': '排片中'
     },
-    isHiddenPage: false
+    isHiddenPage: false,
+    isShowPop: true
   }
 
   events = {
@@ -109,7 +110,6 @@ export default class index extends wepy.page {
     this.initHuabeiOptions( _options );
     this.initRedirect( _options );
     await auth.ready();
-    console.log( '111' );
     await this.initPageInfo( _options );
     await this.initShowWin( _options );
     this.clearOptions();
@@ -123,6 +123,7 @@ export default class index extends wepy.page {
     this.bannerInfo = _data.ad_info;
     this.texts = _data.share_info;
     this.tips = _data.none_desc;
+    this.isShowPop = _data.show_pop;
     this.$apply();
     if ( _data.ad_info.length ) {
       track( 'pickseat_index_banner_expo' );
