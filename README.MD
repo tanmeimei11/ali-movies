@@ -28,8 +28,15 @@
 ### part-10 @xiaofu v:0.3.4
 支付宝购卡新页面
 
-### part-11 @xiangxian v:0.3.5
+### part-11 @xiangxian v:0.3.5 // 在调试
 1.包月 没上 因为 签约带扣没有申请
 
-### part-11 @xiangxian v:0.3.6
+### part-12 @xiangxian v:0.3.6
 1.拍片中文案修改
+
+### part-13 @xiangxiang  // 没上 
+1.弹窗
+2.banner
+3.我的 banner
+
+### part-14 @xiangxiang 
