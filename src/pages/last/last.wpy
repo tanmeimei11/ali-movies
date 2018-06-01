@@ -116,7 +116,7 @@
         <view class="txt1">{{payAfter.text}}</view>
         <!-- <view class="txt2"> -->
         <!-- <text>in同城趴</text>，观影选座</view> -->
-        <view class="ok" @tap="closePay">{{payAfter.btnText}}</view>
+        <view class="ok" @tap="closePayBtn">{{payAfter.btnText}}</view>
       </view>
     </view>
     <view class="c-modal c-buymuti-modal succTwo" wx:if="{{succTwo}}">

@@ -71,7 +71,7 @@ export default class Index extends wepy.page {
     call () {
       my.makePhoneCall( { number: '0571-86009012' } );
     },
-    closePay () {
+    closePayBtn () {
       this.payModal = false;
       this.ruleModal = false;
       this.succOne = false;
@@ -79,6 +79,12 @@ export default class Index extends wepy.page {
       wepy.reLaunch( {
         url: `/pages/index/index`
       } );
+    },
+    closePay () {
+      this.payModal = false;
+      this.ruleModal = false;
+      this.succOne = false;
+      this.succTwo = false;
     },
     openPay () {
       this.payModal = true;
