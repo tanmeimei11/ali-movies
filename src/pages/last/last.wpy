@@ -60,9 +60,14 @@
         <view class="p" wx:for="{{rule[2].desc}}">{{item}}</view>
       </view>
     </view>
-    <view class="btn">
+    <view class="btn fix-btn">
+      <view class="btn-icon btn-index" @tap="toIndex">首页</view>
       <view class="submit" @tap="openPay">立即购买 ></view>
     </view>
+    <!-- <view class="btn">
+      <view>首页</view>
+      <view class="submit" @tap="openPay">立即购买 ></view>
+    </view> -->
     <view class="c-modal c-buymuti-modal payModal" wx:if="{{payModal}}">
       <view class="c-wrap">
         <view class="s-close" @tap="closePay"></view>
@@ -107,10 +112,10 @@
     </view>
     <view class="c-modal c-buymuti-modal succOne" wx:if="{{succOne}}">
       <view class="c-wrap">
-        <view class="txt1">appstore 或者各大应用市场搜索下载</view>
-        <view class="txt2">
-          <text>in同城趴</text>，观影选座</view>
-        <view class="ok" @tap="closePay">确定</view>
+        <view class="txt1">{{payAfter.text}}</view>
+        <!-- <view class="txt2"> -->
+        <!-- <text>in同城趴</text>，观影选座</view> -->
+        <view class="ok" @tap="closePayBtn">{{payAfter.btnText}}</view>
       </view>
     </view>
     <view class="c-modal c-buymuti-modal succTwo" wx:if="{{succTwo}}">
@@ -121,6 +126,7 @@
         <view class="ok" @tap="closePay">我知道了</view>
       </view>
     </view>
+    <!-- </view> -->
   </report>
 </template>
 <style lang="less" src="./last.less"></style>
