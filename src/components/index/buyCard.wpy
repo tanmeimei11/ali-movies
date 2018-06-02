@@ -1,7 +1,7 @@
 <template>
   <view class="selling-wrap" wx:if="{{isShow && showComponent}}">
     <view class="img">
-      <image src="https://inimg05.jiuyan.info/in/2018/05/29/5CBAA693-FA8C-46AC-B4C5-948E286B5449.png" mode="widthFix"></image>
+      <image src="https://inimg01.jiuyan.info/in/2018/06/02/CC312986-9363-9607-6AD1-92F2D7A1559F.png" mode="widthFix"></image>
       <view class="close" @tap="close"></view>
       <view class="toSelling" @tap="goSelling"></view>
     </view>
