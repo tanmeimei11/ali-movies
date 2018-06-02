@@ -25,7 +25,7 @@
             </view>
           </view>
         </view>
-        <adBanner :bannerInfo.sync="bannerInfo"></adBanner>
+        <adBanner :bannerInfo.sync="bannerInfo" wx:if="{{bannerInfo.length}}"></adBanner>
       </view>
     </view>
     <!-- 修改手机号弹窗 -->

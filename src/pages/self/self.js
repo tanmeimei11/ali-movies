@@ -59,11 +59,7 @@ export default class self extends wepy.page {
     cdkeyError: '',
     cdkeyText: '',
     phoneError: '',
-    bannerInfo: [{
-      type: 'path',
-      landing_path: '/pages/last/last',
-      img_url: 'https://inimg07.jiuyan.info/in/2018/05/31/0915E6ED-5449-39D0-B22A-B07B90AEF51B.jpg'
-    }]
+    bannerInfo: []
   }
 
   methods = {
@@ -214,6 +210,7 @@ export default class self extends wepy.page {
     console.log( myInfoRes );
     this.list = myInfoRes.feature_list;
     this.userInfo = myInfoRes.profile;
+    this.bannerInfo = myInfoRes.ad_infos || [];
     // 读取手机号
     this.isfirst = !this.userInfo.phone;
     this.phone = this.userInfo.phone;

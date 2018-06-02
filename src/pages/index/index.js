@@ -44,7 +44,7 @@ export default class index extends wepy.page {
       '4': '排片中'
     },
     isHiddenPage: false,
-    isShowPop: true
+    isShowPop: false
   }
 
   events = {

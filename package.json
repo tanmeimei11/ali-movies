@@ -7,7 +7,8 @@
     "dev": "wepy build --output ant --watch --no-cache",
     "build": "cross-env NODE_ENV=production wepy build --output ant --no-cache",
     "upload": "node assets/qiniu",
-    "tiny": "node assets/tiny"
+    "tiny": "node assets/tiny",
+    "restart": "rm -r dist && wepy build --output ant --watch --no-cache"
   },
   "author": "",
   "license": "MIT",

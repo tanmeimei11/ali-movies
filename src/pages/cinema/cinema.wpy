@@ -1,9 +1,9 @@
 <template>
-  <!-- <report> -->
-  <view>
+  <report>
+    <!-- <view> -->
     <view class="cinema-page">
       <adBanner wx:if="{{bannerInfo && bannerInfo.length > 0}}" :bannerInfo.sync="bannerInfo"></adBanner>
-      <adBanner2 :bannerInfo.sync="bannerInfo2"></adBanner2>
+      <adBanner2 :bannerInfo.sync="bannerInfo2" wx:if="{{bannerInfo2.length}}"></adBanner2>
       <view class="cinemas">
         <view class="line" wx:for="{{cinemaList}}" wx:for-index="idx" wx:for-item="item" wx:key="idx" @tap="goMovie" data-item="{{item}}">
           <view class="title">{{item.name}}</view>
@@ -17,8 +17,8 @@
       </view>
       <tabbbar :page.sync="pageName"></tabbbar>
     </view>
-  </view>
-  <!-- </report> -->
+    <!-- </view> -->
+  </report>
 </template>
 <script>
   import wepy from 'wepy';
@@ -38,11 +38,7 @@
       cinemaList: [],
       bannerInfo: {},
       contractID: '2018011801960713',
-      bannerInfo2: [ {
-        type: 'path',
-        landing_path: '/pages/last/last',
-        img_url: 'https://inimg01.jiuyan.info/in/2018/06/01/1B248E4C-DE36-CB3B-330D-51A46B6E4F89.png'
-      }]
+      bannerInfo2: [ ]
     }
     methods = {
       goMovie ( e ) {
@@ -58,6 +54,7 @@
       var _data = await Cinema.getCinemaList();
       this.cinemaList = _data.cinema_list;
       this.bannerInfo = _data.ad_info || {};
+      this.bannerInfo2 = _data.ad_info2 || [];
       if ( this.bannerInfo.length ) {
         track( 'pickseat_cinema_page_banner_expo' );
         this.$apply();
