@@ -29,8 +29,8 @@ export default class Last extends Pagebase {
       isBackRes: true,
       method: 'POST',
       data: {
-        ..._data,
-        pay_channel: paymentChannel
+        pay_channel: paymentChannel,
+        ..._data
       }
     } );
   }

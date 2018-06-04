@@ -3,13 +3,14 @@ import auth from '@/api/auth';
 import Detail from '@/api/last';
 import tips from '@/utils/tips';
 import report from '@/components/report-submit';
+import buyMultle from '@/components/last/buyMultle';
 // import track from '@/utils/track';
 
 export default class Index extends wepy.page {
   config = {
     navigationBarTitleText: 'in同城趴·电影王卡'
   }
-  components = { report }
+  components = { report, buyMultle }
   data = {
     equitybar: [],
     rpTips: false,
@@ -51,14 +52,36 @@ export default class Index extends wepy.page {
     num: 0,
     width: 0,
     renewInfo: {}, // 包月
-    payAfter: {
+    payAfter: { // 支付成功后的提示
       text: '前往“in同城趴电影”小程序选座',
       btnText: '前去选座'
+    },
+    buyMulteModal: {// 展示购买多张
+      isShow: false,
+      number: 2,
+      defaultPrice: 59
     }
   }
   events = {
+    changeBuyNum ( val ) {
+      this.buyMulteModal.number = val;
+    },
+    closeBuyMutiModal () {
+      this.buyMulteModal.isShow = false;
+    },
+    payOrder () {
+      this.pay( '/mnp/order/create_common', {
+        'buy_num': this.buyMulteModal.number,
+        'product_id': 359,
+        'deduction_mode': 'fs'
+      } );
+    }
   }
   methods = {
+    openBuyMulteModal () {
+      this.buyMulteModal.defaultPrice = this.detailInfo.double_present_price;
+      this.buyMulteModal.isShow = true;
+    },
     toIndex () {
       console.log( 'shouye' );
       wepy.reLaunch( {
@@ -106,7 +129,9 @@ export default class Index extends wepy.page {
     },
     submitRenew () {
       this.pay( '/agreement/agreement/create', {
-        'product_id': this.renewInfo.product_id
+        'product_id': this.renewInfo.product_id,
+        'paymentChannel': 'aliagreement',
+        'businessParty': 'incrowdfunding_app'
       } );
     }
   }
@@ -134,10 +159,8 @@ export default class Index extends wepy.page {
 
       var _orderDetailData = await Detail.getOrderDetail( {
         ...createRes,
-        paymentChannel: 'aliagreement',
-        businessParty: 'incrowdfunding_app'
+        ..._data
       } );
-      // var _orderDetailData = await Detail.getOrderDetail( createRes );
       const { resultCode } = await wepy.tradePay( { orderStr: _orderDetailData.sign } );
       if ( resultCode.toString() !== '9000' ) {
         return;

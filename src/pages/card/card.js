@@ -12,7 +12,7 @@ export default class cards extends wepy.page {
   config = {
     navigationBarTitleText: '我的电影卡'
   }
-  components = {report, giveGiftModal, empty}
+  components = { report, giveGiftModal, empty }
 
   data = {
     activeCardInfos: {},
@@ -27,19 +27,19 @@ export default class cards extends wepy.page {
   }
 
   onShareAppMessage ( res ) {
-    var fun = () => {};
+    var fun = () => { };
     var that = this;
     fun = this.shareCallBack( that );
     return {
       title: '送你一张电影王卡',
       desc: 'in同城趴电影王卡，让你三个月杭州电影无限看！',
-      path: `/pages/detail/detail?directTo=detail&cardCode=${this.activeCardInfos.code}`,
+      path: `/pages/index/index?directTo=detail&cardCode=${this.activeCardInfos.code}`,
       imageUrl: 'https://inimg01.jiuyan.info/in/2018/01/25/FB5D55FB-986F-6433-18B8-BAF8C0C797E3.jpg',
       success: fun
     };
   }
 
-  events={
+  events = {
     closeGiveGiftModal () {
       this.giveGiftInfo.show = false;
     }
@@ -69,7 +69,7 @@ export default class cards extends wepy.page {
     }
   }
 
-  async onLoad ( ) {
+  async onLoad () {
     track( 'mycard_page_screen' );
     await auth.ready();
     await this.init();
@@ -97,7 +97,7 @@ export default class cards extends wepy.page {
         ...Card.initCardInfo( card ),
         code: item.reward_code,
         status: card.reward_from_info ? 3 : parseInt( item.reward_status ),
-        btnText: data.btn_txt[ item.reward_status ],
+        btnText: data.btn_txt[item.reward_status],
         notice: item.prompt_txt,
         rules: item.texts
       };
@@ -119,7 +119,7 @@ export default class cards extends wepy.page {
    * 转增回调
    */
   shareCallBack ( that ) {
-    return async ( ) => {
+    return async () => {
       var _actCard = that.activeCardInfos;
       if ( _actCard.status === 0 ) {
         var res = await Card.giveCard( _actCard.code );
