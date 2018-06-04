@@ -93,7 +93,7 @@
         this.updateMoviesList();
       },
       toggleDialogModal ( show ) {
-        track( 'cinema_page_comelater_expo' );
+        // track( 'cinema_page_comelater_expo' );
         this.dialogInfo.show = false;
       }
     }

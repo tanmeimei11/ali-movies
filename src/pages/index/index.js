@@ -5,6 +5,7 @@ import researchWindow from '@/components/researchWindow';
 import receiveCardModal from '@/components/index/receiveCardModal';
 import adBanner from '@/components/adBanner';
 import tabbbar from '@/components/tabbbar';
+import buyCard from '@/components/index/buyCard';
 import qrcodeFromMixin from '@/mixins/qrcodeFromMixin';
 import auth from '@/api/auth';
 import util from '@/utils/util';
@@ -15,7 +16,7 @@ export default class index extends wepy.page {
   config = {
     navigationBarTitleText: '电影中心'
   }
-  components = { report, researchWindow, receiveCardModal, adBanner, tabbbar }
+  components = { report, researchWindow, receiveCardModal, adBanner, tabbbar, buyCard }
 
   mixins = [qrcodeFromMixin]
 
@@ -42,7 +43,8 @@ export default class index extends wepy.page {
       '1': '选座',
       '4': '排片中'
     },
-    isHiddenPage: false
+    isHiddenPage: false,
+    isShowPop: false
   }
 
   events = {
@@ -107,12 +109,11 @@ export default class index extends wepy.page {
     this.initQrcodeFrom( _options );
     this.initHuabeiOptions( _options );
     this.initRedirect( _options );
+    await auth.ready();
     await this.initPageInfo( _options );
     await this.initShowWin( _options );
     this.clearOptions();
-    this.$apply();
     track( 'index_page_enter_login' );
-    await auth.ready();
     await this.initHuabeiInfo( _options );
 
     this.$apply();
@@ -124,6 +125,7 @@ export default class index extends wepy.page {
     this.bannerInfo = _data.ad_info;
     this.texts = _data.share_info;
     this.tips = _data.none_desc;
+    this.isShowPop = _data.show_pop;
     this.$apply();
     if ( _data.ad_info.length ) {
       track( 'pickseat_index_banner_expo' );

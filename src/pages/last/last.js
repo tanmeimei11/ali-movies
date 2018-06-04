@@ -2,13 +2,14 @@ import wepy from 'wepy';
 import auth from '@/api/auth';
 import Detail from '@/api/last';
 import tips from '@/utils/tips';
-// import report from '@/components/report-submit';
+import report from '@/components/report-submit';
 // import track from '@/utils/track';
 
 export default class Index extends wepy.page {
   config = {
     navigationBarTitleText: 'in同城趴·电影王卡'
   }
+  components = { report }
   data = {
     equitybar: [],
     rpTips: false,
@@ -49,13 +50,36 @@ export default class Index extends wepy.page {
     rule: {},
     num: 0,
     width: 0,
-    renewInfo: {} // 包月
+    renewInfo: {}, // 包月
+    payAfter: {
+      text: '前往“in同城趴电影”小程序选座',
+      btnText: '前去选座'
+    }
   }
   events = {
   }
   methods = {
+    toIndex () {
+      console.log( 'shouye' );
+      wepy.reLaunch( {
+        url: `/pages/index/index`
+      } );
+    },
+    startBuy () {
+      this.ruleModal = false;
+      this.payModal = true;
+    },
     call () {
       my.makePhoneCall( { number: '0571-86009012' } );
+    },
+    closePayBtn () {
+      this.payModal = false;
+      this.ruleModal = false;
+      this.succOne = false;
+      this.succTwo = false;
+      wepy.reLaunch( {
+        url: `/pages/index/index`
+      } );
     },
     closePay () {
       this.payModal = false;
@@ -113,6 +137,7 @@ export default class Index extends wepy.page {
         paymentChannel: 'aliagreement',
         businessParty: 'incrowdfunding_app'
       } );
+      // var _orderDetailData = await Detail.getOrderDetail( createRes );
       const { resultCode } = await wepy.tradePay( { orderStr: _orderDetailData.sign } );
       if ( resultCode.toString() !== '9000' ) {
         return;
@@ -135,6 +160,11 @@ export default class Index extends wepy.page {
     this.btn_tips = data.btn_tips;
     this.productId = data.product_id;
     this.renewInfo = data.renew_info;
+    this.payAfter = {
+      text: data.win_msg || '前往“in同城趴电影”小程序首页即可观影选座',
+      btnText: data.btn_msg || '前去选座'
+    };
+    this.$apply();
     this.detailInfo = data;
     this.tabbar = data.tabbar;
     this.equitybar = data.equitybar;

@@ -7,12 +7,13 @@ import report from '@/components/report-submit';
 import track from '@/utils/track';
 import util from '@/utils/util';
 import tabbbar from '@/components/tabbbar';
+import adBanner from '@/components/adBanner';
 
 export default class self extends wepy.page {
   config = {
     navigationBarTitleText: '我的'
   }
-  components = {report, tabbbar}
+  components = { report, tabbbar, adBanner }
 
   data = {
     pageName: 'self',
@@ -57,7 +58,8 @@ export default class self extends wepy.page {
     isfirst: true,
     cdkeyError: '',
     cdkeyText: '',
-    phoneError: ''
+    phoneError: '',
+    bannerInfo: []
   }
 
   methods = {
@@ -208,6 +210,7 @@ export default class self extends wepy.page {
     console.log( myInfoRes );
     this.list = myInfoRes.feature_list;
     this.userInfo = myInfoRes.profile;
+    this.bannerInfo = myInfoRes.ad_infos || [];
     // 读取手机号
     this.isfirst = !this.userInfo.phone;
     this.phone = this.userInfo.phone;

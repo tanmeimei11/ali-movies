@@ -1,21 +1,24 @@
 <template>
-<report>
-  <view class="cinema-page">
-    <adBanner wx:if="{{bannerInfo && bannerInfo.length > 0}}" :bannerInfo.sync="bannerInfo"></adBanner>
-    <view class="cinemas">
-      <view class="line" wx:for="{{cinemaList}}" wx:for-index="idx" wx:for-item="item" wx:key="idx" @tap="goMovie" data-item="{{item}}">
-        <view class="title">{{item.name}}</view>
-        <!-- 可能直接取address -->
-        <view class="address"> {{item.city}}{{item.district}}{{item.address}} </view>
-        <view class="tags" wx:if="{{item.tags && item.tags.length}}">
-          <view class="one-tag" wx:for="{{item.tags || []}}" wx:for-index="_idx" wx:for-item="tag" wx:key="_idx" style="background: {{tag.color}}">{{tag.name}}</view>
+  <report>
+    <!-- <view> -->
+    <view class="cinema-page">
+      <adBanner wx:if="{{bannerInfo && bannerInfo.length > 0}}" :bannerInfo.sync="bannerInfo"></adBanner>
+      <adBanner2 :bannerInfo.sync="bannerInfo2" wx:if="{{bannerInfo2.length}}"></adBanner2>
+      <view class="cinemas">
+        <view class="line" wx:for="{{cinemaList}}" wx:for-index="idx" wx:for-item="item" wx:key="idx" @tap="goMovie" data-item="{{item}}">
+          <view class="title">{{item.name}}</view>
+          <!-- 可能直接取address -->
+          <view class="address"> {{item.city}}{{item.district}}{{item.address}} </view>
+          <view class="tags" wx:if="{{item.tags && item.tags.length}}">
+            <view class="one-tag" wx:for="{{item.tags || []}}" wx:for-index="_idx" wx:for-item="tag" wx:key="_idx" style="background: {{tag.color}}">{{tag.name}}</view>
+          </view>
+          <view class="desc">{{item.desc}}</view>
         </view>
-        <view class="desc">{{item.desc}}</view>
       </view>
+      <tabbbar :page.sync="pageName"></tabbbar>
     </view>
-    <tabbbar :page.sync="pageName"></tabbbar>
-  </view>
-</report>
+    <!-- </view> -->
+  </report>
 </template>
 <script>
   import wepy from 'wepy';
@@ -26,18 +29,19 @@
   import adBanner from '@/components/adBanner';
   import track from '@/utils/track';
   export default class result extends wepy.page {
-     config = {
+    config = {
       navigationBarTitleText: '院线中心'
     }
-    components = { report, adBanner, tabbbar }
+    components = { report, adBanner, tabbbar, adBanner2: adBanner }
     data = {
-      pageName:"cinema",
+      pageName: 'cinema',
       cinemaList: [],
       bannerInfo: {},
-      contractID: '2018011801960713'
+      contractID: '2018011801960713',
+      bannerInfo2: [ ]
     }
     methods = {
-      goMovie (e) {
+      goMovie ( e ) {
         const item = e.target.dataset.item;
         wepy.navigateTo( {
           url: `/pages/moviesList/moviesList?id=${item.id}`
@@ -45,72 +49,70 @@
       }
     }
     async onLoad () {
-      track('cinema_page_screen')
+      track( 'cinema_page_screen' );
       await auth.ready();
-      var _data = await Cinema.getCinemaList()
-      this.cinemaList = _data.cinema_list
-      this.bannerInfo = _data.ad_info
-      if(this.bannerInfo.length){
-        track('pickseat_cinema_page_banner_expo')
-        this.$apply()
+      var _data = await Cinema.getCinemaList();
+      this.cinemaList = _data.cinema_list;
+      this.bannerInfo = _data.ad_info || {};
+      this.bannerInfo2 = _data.ad_info2 || [];
+      if ( this.bannerInfo.length ) {
+        track( 'pickseat_cinema_page_banner_expo' );
+        this.$apply();
       }
-      this.$apply()
+      this.$apply();
     }
-    
-  }
+}
 
 </script>
 <style lang="scss">
-
-  .cinema-page {
-    padding-bottom: 100rpx;
-    box-sizing: border-box;
-    .c-banner-wrap{
-      .slide-image-view{
-        height: 140rpx;
-      }
-    }
-    .cinemas {
-      .line {
-        padding: 24rpx 0 22rpx 40rpx;
-        /*dpr*/
-        border-bottom: 0.5rpx solid #f0f0f0;
-      }
-    }
-    .title {
-      font-size: 34rpx;
-      color: #333333;
-      letter-spacing: 0;
-      line-height: 48rpx;
-    }
-    .address {
-      font-size: 24rpx;
-      color: #666666;
-      letter-spacing: 0;
-      line-height: 40rpx;
-    }
-    .tags {
-      padding: 8rpx 0 0;
-      font-size: 0;
-      min-height: 32rpx;
-      .one-tag {
-        display: inline-block;
-        border-radius: 3rpx;
-        font-size: 20rpx;
-        color: #FFFFFF;
-        line-height: 32rpx;
-        height: 32rpx;
-        margin-right: 12rpx;
-        padding: 0 8rpx;
-      }
-    }
-    .desc {
-      margin-top: 20rpx;
-      font-size: 20rpx;
-      color: #4A90E2;
-      letter-spacing: 0;
-      line-height: 28rpx;
+.cinema-page {
+  padding-bottom: 100rpx;
+  box-sizing: border-box;
+  .c-banner-wrap {
+    .slide-image-view {
+      height: 140rpx;
     }
   }
-
+  .cinemas {
+    .line {
+      padding: 24rpx 0 22rpx 40rpx;
+      /*dpr*/
+      border-bottom: 0.5rpx solid #f0f0f0;
+    }
+  }
+  .title {
+    font-size: 34rpx;
+    color: #333333;
+    letter-spacing: 0;
+    line-height: 48rpx;
+  }
+  .address {
+    font-size: 24rpx;
+    color: #666666;
+    letter-spacing: 0;
+    line-height: 40rpx;
+  }
+  .tags {
+    padding: 8rpx 0 0;
+    font-size: 0;
+    min-height: 32rpx;
+    .one-tag {
+      display: inline-block;
+      border-radius: 3rpx;
+      font-size: 20rpx;
+      color: #ffffff;
+      line-height: 32rpx;
+      height: 32rpx;
+      margin-right: 12rpx;
+      padding: 0 8rpx;
+    }
+  }
+  .desc {
+    margin-top: 20rpx;
+    font-size: 20rpx;
+    color: #4a90e2;
+    letter-spacing: 0;
+    line-height: 28rpx;
+  }
+}
 </style>

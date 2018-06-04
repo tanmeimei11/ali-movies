@@ -1,0 +1,69 @@
+<template>
+  <view class="selling-wrap" wx:if="{{isShow && showComponent}}">
+    <view class="img">
+      <image src="https://inimg01.jiuyan.info/in/2018/06/02/CC312986-9363-9607-6AD1-92F2D7A1559F.png" mode="widthFix"></image>
+      <view class="close" @tap="close"></view>
+      <view class="toSelling" @tap="goSelling"></view>
+    </view>
+  </view>
+</template>
+<style lang="scss">
+.selling-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  .img {
+    width: 600rpx;
+    position: absolute;
+    top: 50%;
+    left: 75rpx;
+    transform: translateY(-50%);
+    overflow: hidden;
+    image {
+      width: 100%;
+      height: auto;
+    }
+  }
+  .close {
+    position: absolute;
+    top: 50rpx;
+    right: 0rpx;
+    width: 100rpx;
+    height: 100rpx;
+  }
+  .toSelling {
+    -webkit-tap-highlight-color: transparent;
+    position: absolute;
+    top: 450rpx;
+    left: 60rpx;
+    width: 500rpx;
+    height: 150rpx;
+  }
+}
+</style>
+<script>
+import wepy from 'wepy';
+export default class buyCard extends wepy.component {
+  data = {
+    showComponent:true
+  } 
+  props = {
+    isShow: Boolean
+  }
+  methods = {
+    close () {
+      this.showComponent = false;
+      this.$apply();
+    },
+    goSelling () {
+      wepy.navigateTo( {
+        url: '/pages/last/last'
+      } );
+    }
+  }
+}
+</script>

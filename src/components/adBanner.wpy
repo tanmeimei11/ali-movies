@@ -13,35 +13,35 @@
 </template>
 
 <style lang="scss">
- .c-banner-wrap{
-   width: 100%;
-   >view{
-     width: 100%;
-     height: 100%;
-   }
-   .img{
-     display: block;
-     width: 750rpx;
-   }
-  swiper{
+.c-banner-wrap {
+  width: 100%;
+  > view {
     width: 100%;
     height: 100%;
-    swiper-item{
+  }
+  .img {
+    display: block;
+    width: 750rpx;
+  }
+  swiper {
+    width: 100%;
+    height: 100%;
+    swiper-item {
       width: 100%;
       height: 100%;
     }
-    .slide-image-view{
+    .slide-image-view {
       width: 100%;
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
     }
-    .slide-image{
+    .slide-image {
       width: 100%;
       height: 100%;
     }
   }
- }
+}
 </style>
 
 <script>
@@ -53,38 +53,37 @@
         type: Object,
         default: {}
       },
-      page:{
+      page: {
         type: '',
         default: 'default'
       }
     }
     data = {
-      _idx:0,
-      swiperInfo:null
+      _idx: 0,
+      swiperInfo: null
     }
 
     watch ={}
 
     methods = {
-      changeSwiper (event) {
-        var _idx = event.detail.current
+      changeSwiper ( event ) {
+        var _idx = event.detail.current;
         this.swiperInfo = this.bannerInfo[_idx];
-        this._idx = _idx
-        this.$apply()
+        this._idx = _idx;
+        this.$apply();
       },
       goRedrect () {
         track( `${this.page}_page_ad_swiper_${this._idx}_click` );
         var info = this.swiperInfo || this.bannerInfo[0];
-        this.redirect(info)
+        this.redirect( info );
       },
       goBnner () {
         track( `${this.page}_page_ad_click` );
-        this.redirect(this.bannerInfo[0])
+        this.redirect( this.bannerInfo[0] );
       }
     }
 
-
-    redirect (tplData) {
+    redirect ( tplData ) {
       switch ( tplData.type ) {
         case 'h5':
           if ( wx.canIUse( 'web-view' ) ) {
@@ -127,7 +126,7 @@
               url: tplData.landing_path
             } );
           } else {
-            console.log(tplData.landing_path)
+            console.log( tplData.landing_path );
             wepy.navigateTo( {
               url: tplData.landing_path
             } );
