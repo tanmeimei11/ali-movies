@@ -1,6 +1,6 @@
 import wepy from 'wepy';
 import Pagebase from './page';
-import { paymentChannel, businessParty, payUrl, token } from '@/utils/config';
+import { paymentChannel, businessParty, payUrl, payPrepareUrl } from '@/utils/config';
 
 export default class Last extends Pagebase {
   /**
@@ -24,6 +24,7 @@ export default class Last extends Pagebase {
    * 创建订单接口
    */
   static async creatOrder ( url, _data ) {
+    console.log( '_data', _data );
     return await this.request( {
       url: url,
       isBackRes: true,
@@ -40,7 +41,6 @@ export default class Last extends Pagebase {
    * @param {*} createRes  创建订单的res
    */
   static async getOrderDetail ( createRes ) {
-    createRes.open_id = '2088602098036893';
     var _data = {
       _token: wepy.$instance.globalData.xToken,
       payment_channel: createRes.paymentChannel || paymentChannel,
@@ -55,6 +55,28 @@ export default class Last extends Pagebase {
     }
     return await this.request( {
       url: payUrl,
+      data: _data
+    } );
+  }
+
+  // 支付宝签约代扣
+  static async getOrderPrepare ( createRes ) {
+    var _data = {
+      _token: wepy.$instance.globalData.xToken,
+      payment_channel: createRes.paymentChannel || paymentChannel,
+      business_party: createRes.businessParty || businessParty,
+      order_detail: createRes.order_detail,
+      // order_detail: createRes.order_detail,
+      extend_params: JSON.stringify( { 'return_url': 'http://www.in66.com', 'need_purchase': '1' } )
+    };
+
+    if ( createRes.open_id ) {
+      _data.extend_params = JSON.stringify( {
+        open_id: createRes.open_id
+      } );
+    }
+    return await this.request( {
+      url: payPrepareUrl,
       data: _data
     } );
   }

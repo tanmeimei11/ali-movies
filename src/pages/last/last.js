@@ -70,10 +70,11 @@ export default class Index extends wepy.page {
       this.buyMulteModal.isShow = false;
     },
     payOrder () {
-      this.pay( '/mnp/order/create_common', {
-        'buy_num': this.buyMulteModal.number,
-        'product_id': 359,
-        'deduction_mode': 'fs'
+      this.payPrepare( '/agreement/agreement/create', {
+        'product_id': this.renewInfo.product_id,
+        'pay_channel': 'aliagreement',
+        'paymentChannel': 'aliagreement',
+        'businessParty': 'incrowdfunding_wap'
       } );
     }
   }
@@ -128,10 +129,11 @@ export default class Index extends wepy.page {
       } );
     },
     submitRenew () {
-      this.pay( '/agreement/agreement/create', {
+      this.payPrepare( '/agreement/agreement/create', {
         'product_id': this.renewInfo.product_id,
+        'pay_channel': 'aliagreement',
         'paymentChannel': 'aliagreement',
-        'businessParty': 'incrowdfunding_app'
+        'businessParty': 'incrowdfunding_wap'
       } );
     }
   }
@@ -146,6 +148,39 @@ export default class Index extends wepy.page {
         desc: desc[`desc${item * 2 + 19 + 1}`]
       };
     } );
+  }
+
+  async payPrepare ( _url, _data ) {
+    await auth.ready();
+    try {
+      var createRes = await Detail.creatOrder( _url, _data );
+
+      if ( createRes.code === '4160033001' || createRes.code === '4160033001' ) {
+        tips.error( createRes.msg );
+        return;
+      }
+
+      var _orderDetailData = await Detail.getOrderPrepare( {
+        ...createRes,
+        ..._data
+      } );
+      const { resultCode } = await wepy.paySignCenter( { signStr: _orderDetailData.sign } );
+      if ( resultCode.toString() !== '7000' ) {
+        tips.loaded();
+        return;
+      }
+      this.payModal = false;
+      if ( this.num == 1 ) {
+        this.succOne = true;
+      } else if ( this.num == 2 ) {
+        this.succTwo = true;
+      }
+      this.$apply();
+      // this.refreshUnion()
+    } catch ( error ) {
+      tips.loaded();
+      console.error( error );
+    }
   }
   async pay ( _url, _data ) {
     await auth.ready();

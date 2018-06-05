@@ -10,6 +10,8 @@ module.exports = {
   qnResUrl: 'https://inimg07.jiuyan.info/',
   // payUrl: 'http://qainlove.in66.com/api/payment/signature',
   payUrl: 'https://love.in66.com/api/payment/signature',
+  payPrepareUrl: 'https://love.in66.com/api/payment/agreement/signature',
+  // payPrepareUrl: 'https://qalove.in66.com/api/payment/agreement/signature',
   businessParty: 'incrowdfunding',
   paymentChannel: 'newalipay', // wechatpay weapppay
   token: ''
