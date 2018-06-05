@@ -19,7 +19,7 @@ export default class Index extends wepy.page {
   config = {
     navigationBarTitleText: 'in同城趴·电影王卡'
   }
-  components = {report, receiveGiftModal, buyMutiModal, receiveFaildModal, receiveTicketModal, channelModal, notice, moviePart}
+  components = { report, receiveGiftModal, buyMutiModal, receiveFaildModal, receiveTicketModal, channelModal, notice, moviePart }
   mixins = [shareConnectMixin, loadingMixin]
   data = {
     toView: '',
@@ -36,7 +36,8 @@ export default class Index extends wepy.page {
       ]
     },
     movies: [
-      { name: '',
+      {
+        name: '',
         url: ''
       }
     ],
@@ -99,41 +100,41 @@ export default class Index extends wepy.page {
     fixBtnText: ['', '']// fix按钮的文案
   }
   events = {
-    closeBuyMutiModal () {
+    closeBuyMutiModal() {
       this.buyMutiModalInfo.show = false;
     },
-    changeBuyNum ( num ) {
+    changeBuyNum(num) {
       this.buyMutiModalInfo.number = num;
     },
-    changeReceBtnStatus ( val, phoneNum ) {
+    changeReceBtnStatus(val, phoneNum) {
       this.receiveGiftInfo.btnStatus = val;
-      phoneNum && ( this.receiveGiftInfo.phoneNum = phoneNum );
+      phoneNum && (this.receiveGiftInfo.phoneNum = phoneNum);
     },
-    closeRecevieFaild () {
+    closeRecevieFaild() {
       this.receiveFaildInfo.show = false;
-      if ( this.receiveFaildInfo.type === 'notGetTicket' ) {
-        track( 'fission_other_soldout_iknow' );
+      if (this.receiveFaildInfo.type === 'notGetTicket') {
+        track('fission_other_soldout_iknow');
       }
     },
-    closeReceiveModal () {
+    closeReceiveModal() {
       this.receiveGiftInfo.show = false;
     },
-    closeRecevieTicket () {
+    closeRecevieTicket() {
       this.receiveTicketInfo.show = false;
     },
     // 关闭渠道红包弹窗
-    closeChannelModal () {
+    closeChannelModal() {
       this.channelModalInfo.show = false;
       this.noticeInfo.show = true;
     },
-    async receive () {
+    async receive() {
       try {
-        track( 'page_receive_box_confirm' );
-        await Detail.receiveCard( this.cardCode, this.receiveGiftInfo.phoneNum );
-        wepy.reLaunch( {
+        track('page_receive_box_confirm');
+        await Detail.receiveCard(this.cardCode, this.receiveGiftInfo.phoneNum);
+        wepy.reLaunch({
           url: `/pages/self/self`
-        } );
-      } catch ( e ) {
+        });
+      } catch (e) {
         // 接收失败
         this.receiveGiftInfo.show = false;
         this.receiveFaildInfo = {
@@ -145,70 +146,70 @@ export default class Index extends wepy.page {
         this.$apply();
       }
     },
-    async payOrder () {
+    async payOrder() {
       try {
         this.isPay = true;
-        track( 'page_number_box_pay' );
+        track('page_number_box_pay');
         await this.pay();
-      } catch ( e ) {
+      } catch (e) {
       }
     }
   }
   methods = {
-    toIndex () {
-      wepy.reLaunch( {
+    toIndex() {
+      wepy.reLaunch({
         url: `/pages/index/index`
-      } );
+      });
     },
-    closeBuyMutiModal () {
+    closeBuyMutiModal() {
       this.buyMutiModalInfo.show = false;
     },
-    openBuyMutiModal () {
-      if ( this.discountInfo.ticketId && this.discountInfo.show ) {
-        track( 'fission_minus_50_buy' );
+    openBuyMutiModal() {
+      if (this.discountInfo.ticketId && this.discountInfo.show) {
+        track('fission_minus_50_buy');
       } else {
-        track( 'page_buy' );
+        track('page_buy');
       }
       this.buyMutiModalInfo.show = true;
     },
-    gotoBottom () {
-      track( 'page_rule' );
+    gotoBottom() {
+      track('page_rule');
       this.toView = '';
       this.$apply();
       this.toView = 'details';
       this.$apply();
     },
-    getMovieTicket ( type ) {
-      if ( type === 'lingqu' ) {
+    getMovieTicket(type) {
+      if (type === 'lingqu') {
         // 来自弹窗的领取
-        track( 'fission_other_immediately_receive' );
+        track('fission_other_immediately_receive');
       } else {
-        track( 'fission_immediately_get' );
+        track('fission_immediately_get');
       }
 
-      wepy.navigateTo( {
+      wepy.navigateTo({
         url: `/pages/ticket/ticket`
-      } );
+      });
     },
-    async normalPay () {
+    async normalPay() {
       this.openBuyMutiModal();
     },
-    shareCode () {
-      track( 'page_share_buy' );
+    shareCode() {
+      track('page_share_buy');
     },
-    async sharePay () {
+    async sharePay() {
       this.showShareWindow = true;
-      track( 'page_share_get_cash' );
+      track('page_share_get_cash');
     },
-    closeShareWindow () {
+    closeShareWindow() {
       this.showShareWindow = false;
     },
-    trackContact () {
-      track( 'page_custom_service' );
+    trackContact() {
+      track('page_custom_service');
     }
   }
-  onShareAppMessage ( res ) {
-    console.log( this.shareInfo );
+  onShareAppMessage(res) {
+    console.log(this.shareInfo);
     return {
       title: this.shareInfo.alipay_share_title,
       desc: this.shareInfo.alipay_share_desc,
@@ -217,50 +218,50 @@ export default class Index extends wepy.page {
       // 'http://inimg07.jiuyan.info/in/2018/01/26/20A52317-E4EB-3657-E024-F2EF040B2E86.jpg'
     };
   }
-  onReachBottom () {
-    track( 'page_slide_to_end' );
+  onReachBottom() {
+    track('page_slide_to_end');
   }
-  async onLoad ( options ) {
-    track( 'page_screen' );
-    this.initOptions( options );
-    track( 'page_enter' );
+  async onLoad(options) {
+    track('page_screen');
+    this.initOptions(options);
+    track('page_enter');
     await this.init();
   }
-  async init () {
-    var res = await Detail.getDetailData( this.detailCode );
-    this.cinemas = Detail.initCinemas( res.cinemas, res.all_cinema_addr_img );
-    this.moviesSections = Detail.initMovies( res.movie_sections );
-    this.detailText = this.initBuyText( res );
-    this.rules = this.initRulesText( res.desc );
-    this.initBuyInfo( res );
-    this.initBgImages( res );
-    this.initFixBtnText( res );
+  async init() {
+    var res = await Detail.getDetailData(this.detailCode);
+    this.cinemas = Detail.initCinemas(res.cinemas, res.all_cinema_addr_img);
+    this.moviesSections = Detail.initMovies(res.movie_sections);
+    this.detailText = this.initBuyText(res);
+    this.rules = this.initRulesText(res.desc);
+    this.initBuyInfo(res);
+    this.initBgImages(res);
+    this.initFixBtnText(res);
     this.$apply();
     await auth.ready();
-    track( 'page_entry' );
-    this.detailStatus = await Detail.getDetailStatus( this.statusQuery );
-    this.initReceiveTicketInfo( this.detailStatus );
-    this.initChannelDiscount( this.detailStatus );
+    track('page_entry');
+    this.detailStatus = await Detail.getDetailStatus(this.statusQuery);
+    this.initReceiveTicketInfo(this.detailStatus);
+    this.initChannelDiscount(this.detailStatus);
     this.shareInfo = await Detail.getShareInfo();
-    if ( this.cardCode ) { await this.initCardStatus(); };
+    if (this.cardCode) { await this.initCardStatus(); };
     this.$apply();
   }
   /**
    * 初始化fixed按钮的文案
    * @param {*} res
    */
-  initFixBtnText ( res ) {
+  initFixBtnText(res) {
     this.fixBtnText = res.btn_txts;
   }
   /**
    *  初始化从哪里进来  // 1.立即升级 2.分享送三张电影票 3.红包
    *  返回  createorder cfstatus 接口的参数
    */
-  getDetailStatusQuery () {
+  getDetailStatusQuery() {
     var _data = {};
-    this.receiveTicketInfo.shareCode && ( _data.share_code = this.receiveTicketInfo.shareCode );
-    this.discountInfo.ticketId && ( _data.ticket_id = this.discountInfo.ticketId );
-    this.channelModalInfo.rp_code && ( _data.rp_code = this.channelModalInfo.rp_code );
+    this.receiveTicketInfo.shareCode && (_data.share_code = this.receiveTicketInfo.shareCode);
+    this.discountInfo.ticketId && (_data.ticket_id = this.discountInfo.ticketId);
+    this.channelModalInfo.rp_code && (_data.rp_code = this.channelModalInfo.rp_code);
     this.statusQuery = _data;
     this.$apply();
     return _data;
@@ -269,23 +270,23 @@ export default class Index extends wepy.page {
    * 初始化接收卡的信息
    * @param {*} res
    */
-  initReceiveTicketInfo ( res ) {
-    if ( this.discountInfo.ticketId ) {  // 升级点进来
+  initReceiveTicketInfo(res) {
+    if (this.discountInfo.ticketId) {  // 升级点进来
       this.discountInfo.show = true;
       this.noticeInfo.show = true;
       return;
     }
 
     // 分享三张电影票点进来
-    if ( res.ticket_switch ) { // 票已经领完了
-      track( 'fission_other_soldout_expo' );
+    if (res.ticket_switch) { // 票已经领完了
+      track('fission_other_soldout_expo');
       this.receiveFaildInfo = {
         type: 'notGetTicket',
         show: true,
         msg: res.ticket_desc
       };
-    } else if ( res.fetch_ticket && res.share_user_info && this.receiveTicketInfo.shareCode ) {  // 送你三张电影票
-      track( 'fission_other_receivebox_expo' );
+    } else if (res.fetch_ticket && res.share_user_info && this.receiveTicketInfo.shareCode) {  // 送你三张电影票
+      track('fission_other_receivebox_expo');
       this.receiveTicketInfo = {
         ...this.receiveTicketInfo,
         show: true,
@@ -296,16 +297,16 @@ export default class Index extends wepy.page {
   /**
    * 初始化渠道优惠信息
    */
-  initChannelDiscount ( res ) {
-    if ( res.rp_bg_img ) {
+  initChannelDiscount(res) {
+    if (res.rp_bg_img) {
       this.channelModalInfo.imgUrl = res.rp_bg_img;
       this.channelModalInfo.show = true;
-      track( 'movie_fission_redpack_expo' );
+      track('movie_fission_redpack_expo');
     }
-    if ( res.rp_notice && res.rp_notice.length ) {
+    if (res.rp_notice && res.rp_notice.length) {
       this.noticeInfo.rp_notice = res.rp_notice;
     }
-    if ( res.rp_deduction && res.rp_deduction.length ) {
+    if (res.rp_deduction && res.rp_deduction.length) {
       this.discountInfo.detail = res.rp_deduction;
       this.discountInfo.show = true;
     }
@@ -314,7 +315,7 @@ export default class Index extends wepy.page {
    * 初始化背景图
    * @param {*} res
    */
-  initBgImages ( res ) {
+  initBgImages(res) {
     this.movieImg = res.movies_bottom_pic;
     this.cardImg = res.card_img;
     this.bgImages = res.bg_imgs;
@@ -322,14 +323,14 @@ export default class Index extends wepy.page {
     this.partBg = res.bg_img_01;
   }
 
-   /**
-   * 初始化支付信息
-   * @param {*} res
-   */
-  initBuyInfo ( res ) {
+  /**
+  * 初始化支付信息
+  * @param {*} res
+  */
+  initBuyInfo(res) {
     this.buyMutiModalInfo = {
       ...this.buyMutiModalInfo,
-      basePrice: parseInt( res.pay_price ),
+      basePrice: parseInt(res.pay_price),
       baseDesc: res.pay_notice
     };
   }
@@ -337,14 +338,14 @@ export default class Index extends wepy.page {
    * 初始化接收卡
    * @param {*} statusRes
    */
-  async initCardStatus () {
-    this.receiveGiftInfo.cardInfo = await Detail.getCardInfo( this.cardCode );
+  async initCardStatus() {
+    this.receiveGiftInfo.cardInfo = await Detail.getCardInfo(this.cardCode);
     var _info = this.receiveGiftInfo.cardInfo;
-    if ( !_info.is_owner && _info.can_get ) {
+    if (!_info.is_owner && _info.can_get) {
       this.receiveGiftInfo.show = true;
-      _info.phone && ( this.receiveGiftInfo.phoneNum = _info.phone );
-    } else if ( !_info.is_owner && !_info.can_get ) {
-      track( 'page_receive_box_expo' );
+      _info.phone && (this.receiveGiftInfo.phoneNum = _info.phone);
+    } else if (!_info.is_owner && !_info.can_get) {
+      track('page_receive_box_expo');
       this.receiveFaildInfo.show = true;
       this.receiveFaildInfo.msg = _info.msg;
     }
@@ -353,14 +354,14 @@ export default class Index extends wepy.page {
    * 初始化购买状态
    * @param {*} statusRes
    */
-  initDetailStatus ( statusRes ) {
+  initDetailStatus(statusRes) {
     return statusRes;
   }
   /**
    * 初始化购买文案
    * @param {*} desc
    */
-  initBuyText ( res ) {
+  initBuyText(res) {
     return {
       ...res.desc,
       current_person_count: res.current_person_count
@@ -370,37 +371,37 @@ export default class Index extends wepy.page {
    * 初始化 规则信息
    * @param {*} desc
    */
-  initRulesText ( desc ) {
-    var _r = [ 0, 1, 2, 3 ];
-    return _r.map( ( item ) => {
+  initRulesText(desc) {
+    var _r = [0, 1, 2, 3];
+    return _r.map((item) => {
       return {
         title: desc[`desc${item * 2 + 17}`],
         desc: desc[`desc${item * 2 + 17 + 1}`]
       };
-    } );
+    });
   }
   /**
    * 初始化连接上的参数
    * @param {*} options
    */
-  initOptions ( options ) {
-    console.log( wepy.$instance.globalData.query );
-    this.detailCode = Object.assign( {}, options, wepy.$instance.globalData.query );
+  initOptions(options) {
+    console.log(wepy.$instance.globalData.query);
+    this.detailCode = Object.assign({}, options, wepy.$instance.globalData.query);
     // var this.detailCode =  Object.assign({}, options, wepy.$instance.globalData.query)
-    if ( this.detailCode.qrcode_from ) {
+    if (this.detailCode.qrcode_from) {
       wepy.$instance.globalData.query.qrcode_from = this.detailCode.qrcode_from;
       this.data.qrcode_from = this.detailCode.qrcode_from;
     }
     this.data.shareId = this.detailCode.share_uid || '';
     this.cardCode = this.detailCode.cardCode || '';
-    if ( this.detailCode.ticketId ) {  // 立即升级点过来
+    if (this.detailCode.ticketId) {  // 立即升级点过来
       this.discountInfo.ticketId = this.detailCode.ticketId;
       this.discountInfo.show = true;
     }
-    if ( this.detailCode.shareCode ) { // 由别人分享电影票点进来
+    if (this.detailCode.shareCode) { // 由别人分享电影票点进来
       this.receiveTicketInfo.shareCode = this.detailCode.shareCode;
     }
-    if ( this.detailCode.rp_code ) {
+    if (this.detailCode.rp_code) {
       this.channelModalInfo.rp_code = this.detailCode.rp_code;
     }
     this.$apply();
@@ -409,33 +410,33 @@ export default class Index extends wepy.page {
   /**
    *  支付
    */
-  async pay ( ) {
+  async pay() {
     try {
       await auth.ready();
-      var createRes = await Detail.creatOrder( this.buyMutiModalInfo.number, this.statusQuery );
-      if ( createRes.code === '4000032129' || createRes.code === '4000031814' ) {
-        tips.error( createRes.msg );
+      var createRes = await Detail.creatOrder(this.buyMutiModalInfo.number, this.statusQuery);
+      if (createRes.code === '4000032129' || createRes.code === '4000031814') {
+        tips.error(createRes.msg);
         return;
       }
 
-      var getOrderRes = await Detail.getOrderDetail( createRes );
-      track( 'page_wx_pay_start' );
-      const { resultCode } = await wepy.tradePay( { orderStr: getOrderRes.sign } );
-      if ( resultCode.toString() !== '9000' ) {
-        throw new Error( '支付失败' );
+      var getOrderRes = await Detail.getOrderDetail(createRes);
+      track('page_wx_pay_start');
+      const { resultCode } = await wepy.tradePay({ orderStr: getOrderRes.sign });
+      if (resultCode.toString() !== '9000') {
+        throw new Error('支付失败');
       }
-      track( 'page_pay_successful' );
-      this.paySucc( createRes.order_no );
-    } catch ( e ) {
+      track('page_pay_successful');
+      this.paySucc(createRes.order_no);
+    } catch (e) {
       // this.buyMutiModalInfo.show = false;
       this.$apply();
-      track( 'page_pay_failed' );
+      track('page_pay_failed');
     }
   }
   /**
    *改变购买状态
    */
-  async changeDetailStatus () {
+  async changeDetailStatus() {
     var statusRes = await Detail.getDetailStatus();
     this.detailStatus = statusRes;
     this.$apply();
@@ -443,18 +444,18 @@ export default class Index extends wepy.page {
   /**
    *  支付成功
    */
-  paySucc ( orderNo ) {
+  paySucc(orderNo) {
     this.clearCutInfo();
-    wepy.navigateTo( {
+    wepy.navigateTo({
       url: `../result/result?orderNo=${orderNo}`
-    } );
+    });
   }
-  payFail () {
+  payFail() {
   }
   /**
    *  清除优惠信息
    */
-  clearCutInfo () {
+  clearCutInfo() {
     this.noticeInfo.show = false;
     this.discountInfo.show = false;
     this.discountInfo.ticketId = '';

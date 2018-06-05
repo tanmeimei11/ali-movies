@@ -41,7 +41,28 @@ const getParamV = ( options, key ) => {
   return '';
 };
 
+/**
+ * 封装wxPromisefy
+ */
+var wxPromisify = ( fn ) => {
+  return function ( obj = {} ) {
+    return new Promise( ( resolve, reject ) => {
+      obj.success = function ( res ) {
+        if ( res.data ) {
+          resolve( res.data );
+        }
+        resolve( res );
+      };
+      obj.fail = function ( res ) {
+        reject( res );
+      };
+      fn( obj );
+    } );
+  };
+};
+
 module.exports = {
   formatTime,
-  getParamV
+  getParamV,
+  wxPromisify
 };

@@ -67,7 +67,7 @@ export default class Last extends Pagebase {
       business_party: createRes.businessParty || businessParty,
       order_detail: createRes.order_detail,
       // order_detail: createRes.order_detail,
-      extend_params: JSON.stringify( { 'return_url': 'http://www.in66.com', 'need_purchase': '1' } )
+      extend_params: JSON.stringify( { 'return_url': 'http://www.in66.com', 'need_purchase': '0', 'from_mini_app': '1' } )
     };
 
     if ( createRes.open_id ) {

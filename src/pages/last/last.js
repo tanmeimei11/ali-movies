@@ -4,6 +4,7 @@ import Detail from '@/api/last';
 import tips from '@/utils/tips';
 import report from '@/components/report-submit';
 import buyMultle from '@/components/last/buyMultle';
+// import { wxPromisify } from '@/utils/common';
 // import track from '@/utils/track';
 
 export default class Index extends wepy.page {
@@ -51,6 +52,7 @@ export default class Index extends wepy.page {
     rule: {},
     num: 0,
     width: 0,
+    timeStr: '',
     renewInfo: {}, // 包月
     payAfter: { // 支付成功后的提示
       text: '前往“in同城趴电影”小程序选座',
@@ -60,7 +62,8 @@ export default class Index extends wepy.page {
       isShow: false,
       number: 2,
       defaultPrice: 59
-    }
+    },
+    isSigned: false // 是否已经签约
   }
   events = {
     changeBuyNum ( val ) {
@@ -70,16 +73,16 @@ export default class Index extends wepy.page {
       this.buyMulteModal.isShow = false;
     },
     payOrder () {
-      this.payPrepare( '/agreement/agreement/create', {
-        'product_id': this.renewInfo.product_id,
-        'pay_channel': 'aliagreement',
-        'paymentChannel': 'aliagreement',
-        'businessParty': 'incrowdfunding_wap'
+      this.pay( '/mnp/order/create_common', {
+        'buy_num': this.buyMulteModal.number,
+        'product_id': 359,
+        'deduction_mode': 'fs'
       } );
     }
   }
   methods = {
     openBuyMulteModal () {
+      this.num = 2;
       this.buyMulteModal.defaultPrice = this.detailInfo.double_present_price;
       this.buyMulteModal.isShow = true;
     },
@@ -129,11 +132,14 @@ export default class Index extends wepy.page {
       } );
     },
     submitRenew () {
+      if ( this.isSigned ) {
+        return;
+      }
       this.payPrepare( '/agreement/agreement/create', {
         'product_id': this.renewInfo.product_id,
         'pay_channel': 'aliagreement',
         'paymentChannel': 'aliagreement',
-        'businessParty': 'incrowdfunding_wap'
+        'businessParty': 'incrowdfunding_app'
       } );
     }
   }
@@ -150,8 +156,8 @@ export default class Index extends wepy.page {
     } );
   }
 
+  // 签约函数
   async payPrepare ( _url, _data ) {
-    await auth.ready();
     try {
       var createRes = await Detail.creatOrder( _url, _data );
 
@@ -164,26 +170,21 @@ export default class Index extends wepy.page {
         ...createRes,
         ..._data
       } );
-      const { resultCode } = await wepy.paySignCenter( { signStr: _orderDetailData.sign } );
-      if ( resultCode.toString() !== '7000' ) {
+
+      const res = await wepy.paySignCenter( { signStr: _orderDetailData.sign } );
+      var exec = /\"resultStatus\"\:\"7000\"/;
+      if ( !exec.test( JSON.stringify( res ) ) ) {
         tips.loaded();
         return;
       }
-      this.payModal = false;
-      if ( this.num == 1 ) {
-        this.succOne = true;
-      } else if ( this.num == 2 ) {
-        this.succTwo = true;
-      }
+      this.isSigned = true;
       this.$apply();
-      // this.refreshUnion()
     } catch ( error ) {
       tips.loaded();
       console.error( error );
     }
   }
   async pay ( _url, _data ) {
-    await auth.ready();
     try {
       var createRes = await Detail.creatOrder( _url, _data );
 
@@ -201,11 +202,10 @@ export default class Index extends wepy.page {
         return;
       }
       this.payModal = false;
-      if ( this.num == 1 ) {
-        this.succOne = true;
-      } else if ( this.num == 2 ) {
-        this.succTwo = true;
-      }
+      this.buyMulteModal.isShow = false;
+      this.succOne = this.num == 1;
+      this.succTwo = this.num == 2;
+
       this.$apply();
       // this.refreshUnion()
     } catch ( error ) {
@@ -214,6 +214,7 @@ export default class Index extends wepy.page {
     }
   }
   async init () {
+    await auth.ready();
     var data = await Detail.getDetailStatus();
     this.btn_tips = data.btn_tips;
     this.productId = data.product_id;
@@ -222,7 +223,8 @@ export default class Index extends wepy.page {
       text: data.win_msg || '前往“in同城趴电影”小程序首页即可观影选座',
       btnText: data.btn_msg || '前去选座'
     };
-    this.$apply();
+    this.timeStr = data.valid_data_str;
+    this.isSigned = data.signed || false;
     this.detailInfo = data;
     this.tabbar = data.tabbar;
     this.equitybar = data.equitybar;

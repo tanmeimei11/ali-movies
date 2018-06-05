@@ -44,4 +44,34 @@ export default class Index extends Pagebase {
       data: data
     } );
   }
+
+  /**
+   * @static 获得卡的信息
+   * @param {any} code
+   * @memberof Detail
+   */
+  static async getCardInfo ( code ) {
+    return await this.request( {
+      url: '/mnp/card/reward_info',
+      data: {
+        reward_code: code
+      }
+    } );
+  }
+
+  /**
+   * 领取别人赠送的卡
+   * @param {*} code
+   * @param {*} phone
+   */
+  static async receiveCard ( code, phone ) {
+    return await this.request( {
+      url: '/mnp/card/fetch',
+      method: 'POST',
+      data: {
+        reward_code: code,
+        phone: phone
+      }
+    } );
+  }
 }

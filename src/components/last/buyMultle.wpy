@@ -1,9 +1,9 @@
 <template>
   <view class="c-modal multle-Modal">
     <view class="c-wrap">
-      <view class="s-close" @click="closePay"></view>
+      <view class="s-close" @tap="closePay"></view>
       <view class="wxPay">购买后有效期</view>
-      <view class="wxPay">2018.5.31~2018.6.30</view>
+      <view class="wxPay">{{time}}</view>
       <view class="s-main pay-wrap">
         <view class="s-desc-text ">购买数量
           <view class="op-wrap">
@@ -29,6 +29,10 @@ export default class adBanner extends wepy.component{
     defaultPrice: {
       type:Number,
       default: 59
+    },
+    time: {
+      type:String,
+      default: '购买之后的一个月'
     },
   };
   data  = {

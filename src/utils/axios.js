@@ -28,7 +28,7 @@ function getQueryParams ( str ) {
  */
 export default class http {
   static async request ( config ) {
-    if (config.url.indexOf('h5/user/ticket/qr_code') === -1) {
+    if ( config.url.indexOf( 'h5/user/ticket/qr_code' ) === -1 ) {
       tips.loading();
     }
     this._fixRequest( config ); // 支付宝小程序特有
@@ -38,6 +38,7 @@ export default class http {
       return myres.data.data;
     } else {
       console.error( Object.assign( config, myres ) );
+      console.log( myres );
       throw this.requestException( myres );
     }
   }
@@ -60,6 +61,7 @@ export default class http {
   static requestException ( { status, data } ) {
     const error = {};
     error.statusCode = status;
+    error.msg = data.msg || '失败';
     const serverData = data.data;
     if ( serverData ) {
       error.serverCode = data.code;

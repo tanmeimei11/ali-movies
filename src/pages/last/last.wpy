@@ -67,16 +67,18 @@
       <view class="c-wrap">
         <view class="s-close" @tap="closePay"></view>
         <view class="s-btn">
-          <text>{{renewInfo.renew_price}}元（一个月无限观影权限）</text>
-          <text class="pay" @tap="submitRenew">￥{{renewInfo.renew_price}}</text>
+          <text class="m-title">推荐</text>
+          <text>{{renewInfo.renew_price}}元（连续包月，可随时取消）</text>
+          <text class="pay {{isSigned ? 'sign':''}}" @tap="submitRenew">{{ isSigned ? '已签约':'￥'+renewInfo.renew_price}}</text>
+        </view>
+        <view class="s-btn">
+          <text class="m-title">限时</text>
+          <text>{{detailInfo.double_present_price}}元（一个月无限观影权限）*2张</text>
+          <text class="pay" @tap="openBuyMulteModal" data-num='2'>￥{{detailInfo.double_present_price*2}}</text>
         </view>
         <view class="s-btn">
           <text>{{detailInfo.present_price}}元（一个月无限观影权限）</text>
           <text class="pay" @tap="submit" data-num='1'>￥{{detailInfo.present_price}}</text>
-        </view>
-        <view class="s-btn">
-          <text>{{detailInfo.double_present_price}}元（一个月无限观影权限）*2张</text>
-          <text class="pay" @tap="openBuyMulteModal" data-num='2'>￥{{detailInfo.double_present_price*2}}</text>
         </view>
       </view>
     </view>
@@ -109,13 +111,13 @@
           <view class="ok" @tap="startBuy">点击立即抢购</view>
         </view>
       </view>
-      <view class="c-modal c-buymuti-modal succOne" wx:if="{{succOne}}">
-        <view class="c-wrap">
-          <view class="txt1">{{payAfter.text}}</view>
-          <!-- <view class="txt2"> -->
-          <!-- <text>in同城趴</text>，观影选座</view> -->
-          <view class="ok" @tap="closePayBtn">{{payAfter.btnText}}</view>
-        </view>
+    </view>
+    <view class="c-modal c-buymuti-modal succOne" wx:if="{{succOne}}">
+      <view class="c-wrap">
+        <view class="txt1">{{payAfter.text}}</view>
+        <!-- <view class="txt2"> -->
+        <!-- <text>in同城趴</text>，观影选座</view> -->
+        <view class="ok" @tap="closePayBtn">{{payAfter.btnText}}</view>
       </view>
     </view>
     <view class="c-modal c-buymuti-modal succTwo" wx:if="{{succTwo}}">
@@ -126,7 +128,7 @@
         <view class="ok" @tap="closePay">我知道了</view>
       </view>
     </view>
-    <buyMultle :defaultPrice.sync="buyMulteModal.defaultPrice" wx:if="{{buyMulteModal.isShow}}"></buyMultle>
+    <buyMultle :defaultPrice.sync="buyMulteModal.defaultPrice" :time.sync="timeStr" wx:if="{{buyMulteModal.isShow}}"></buyMultle>
   </view>
   <!-- </report> -->
 </template>

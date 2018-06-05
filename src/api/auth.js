@@ -20,7 +20,7 @@ export default class auth extends base {
   static async login () {
     tips.setLoading();
     const { authCode: code } = await wepy.getAuthCode( { scopes: 'auth_base' } );
-    const { tg_auth: token, _aries } = await this.post( `${this.baseUrl}/api/login`, { data: { code,'auth_base':1 } } );
+    const { tg_auth: token, _aries } = await this.post( `${this.baseUrl}/api/login`, { data: { code, 'auth_base': 1 } } );
     wepy.$instance.globalData.xToken = token;
     wepy.$instance.globalData.xAries = _aries;
     this._readyStatus = true;

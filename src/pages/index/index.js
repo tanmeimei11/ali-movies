@@ -7,6 +7,9 @@ import adBanner from '@/components/adBanner';
 import tabbbar from '@/components/tabbbar';
 import buyCard from '@/components/index/buyCard';
 import qrcodeFromMixin from '@/mixins/qrcodeFromMixin';
+import receiveGiftModal from '@/components/index/receiveGiftModal';
+import receiveTicketModal from '@/components/detail/receiveTicketModal';
+import receiveFaildModal from '@/components/index/receiveFaildModal';
 import auth from '@/api/auth';
 import util from '@/utils/util';
 import track from '@/utils/track';
@@ -16,7 +19,7 @@ export default class index extends wepy.page {
   config = {
     navigationBarTitleText: '电影中心'
   }
-  components = { report, researchWindow, receiveCardModal, adBanner, tabbbar, buyCard }
+  components = { report, researchWindow, receiveCardModal, adBanner, tabbbar, buyCard, receiveGiftModal, receiveTicketModal, receiveFaildModal }
 
   mixins = [qrcodeFromMixin]
 
@@ -44,10 +47,55 @@ export default class index extends wepy.page {
       '4': '排片中'
     },
     isHiddenPage: false,
-    isShowPop: false
+    isShowPop: false,
+    receiveGiftInfo: {  // 接收卡片
+      btnStatus: false,
+      phoneNum: '',
+      show: false,
+      cardInfo: {}
+    },
+    cardCode: '', // 分享进来的转赠卡的卡片code
+    receiveFaildInfo: { // 失败弹窗
+      type: '',
+      show: false,
+      msg: ''
+    }
   }
 
   events = {
+    changeReceCardBtnStatus ( val, phoneNum ) {
+      this.receiveGiftInfo.btnStatus = val;
+      phoneNum && ( this.receiveGiftInfo.phoneNum = phoneNum );
+    },
+    closeReceiveModal () {
+      this.receiveGiftInfo.show = false;
+    },
+    async receiveCard () {
+      try {
+        track( 'page_receive_box_confirm' );
+        await Index.receiveCard( this.cardCode, this.receiveGiftInfo.phoneNum );
+        wepy.reLaunch( {
+          url: `/pages/self/self`
+        } );
+      } catch ( e ) {
+        console.log( e );
+        // 接收失败
+        this.receiveGiftInfo.show = false;
+        this.receiveFaildInfo = {
+          ...this.receiveFaildInfo,
+          show: true,
+          msg: e.msg
+        };
+
+        this.$apply();
+      }
+    },
+    closeRecevieFaild () {
+      this.receiveFaildInfo.show = false;
+      if ( this.receiveFaildInfo.type === 'notGetTicket' ) {
+        track( 'fission_other_soldout_iknow' );
+      }
+    },
     closeResearchWindow () {
       this.showResearchWindow = false;
     },
@@ -112,6 +160,11 @@ export default class index extends wepy.page {
     await auth.ready();
     await this.initPageInfo( _options );
     await this.initShowWin( _options );
+    if ( _options.cardCode ) { // 赠送卡的code
+      this.cardCode = _options.cardCode;
+      await this.initCardStatus();
+    }
+
     this.clearOptions();
     track( 'index_page_enter_login' );
     await this.initHuabeiInfo( _options );
@@ -149,6 +202,22 @@ export default class index extends wepy.page {
         btnStatus: util.verifyPhone( _huabeiInfo.phone )
       } );
       track( 'pickseat_huabei_card_expo' );
+    }
+  }
+  /**
+   * 初始化接收卡
+   * @param {*} statusRes
+   */
+  async initCardStatus () {
+    this.receiveGiftInfo.cardInfo = await Index.getCardInfo( this.cardCode );
+    var _info = this.receiveGiftInfo.cardInfo;
+    if ( !_info.is_owner && _info.can_get ) {
+      this.receiveGiftInfo.show = true;
+      _info.phone && ( this.receiveGiftInfo.phoneNum = _info.phone );
+    } else if ( !_info.is_owner && !_info.can_get ) {
+      track( 'page_receive_box_expo' );
+      this.receiveFaildInfo.show = true;
+      this.receiveFaildInfo.msg = _info.msg;
     }
   }
 
