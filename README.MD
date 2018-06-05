@@ -28,7 +28,7 @@
 ### part-10 @xiaofu v:0.3.4
 支付宝购卡新页面
 
-### part-11 @xiangxian v:0.3.5 // 在调试
+### part-11 @xiangxian v:0.3.5 
 1.包月签约
 2.领卡路径替换
 3.领卡文案展示
@@ -36,7 +36,7 @@
 ### part-12 @xiangxian v:0.3.6
 1.拍片中文案修改
 
-### part-13 @xiangxiang  // 没上 
+### part-13 @xiangxiang  
 1.弹窗
 2.banner
 3.我的 banner
